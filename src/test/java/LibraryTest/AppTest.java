@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-    features = "/home/shuhabsiddigi/Documents/SWE1/Project/LibraryApp/src/test/Features/",
+    features = "src/Features/",
     plugin = { "summary"},
     snippets = SnippetType.CAMELCASE,
     glue = { "Library","LibraryTest"}
