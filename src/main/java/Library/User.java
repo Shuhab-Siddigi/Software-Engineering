@@ -2,6 +2,8 @@ package Library;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 
 public class User {
 
@@ -57,9 +59,19 @@ public class User {
         this.rentedBooks.add(book);
 	}
 
-    public List<Book> rentedBooks(){
-        return rentedBooks;
+	public boolean hasBookWithSignature(String signature) {
+        List<Book> book = rentedBooks.stream().filter(b -> // lambda
+        b.getSignature().contains(signature)).collect(Collectors.toList());
+        if (book.size() != 0 ){
+            return true;
+        }else {
+            return false;
+        }
     }
+
+	public int numberOfRentedBooks() {
+		return rentedBooks.size();
+	}
 
 
 	

@@ -64,15 +64,6 @@ public class LibraryApp {
 			b.getAuthor().contains(searchText) 	  ||
 			b.getTitle().contains(searchText)).collect(Collectors.toList());
 	}
-
-	public void rentBook(User user, Book book) throws OperationNotAllowedException {
-		if(!isRegistered(user) && (user.rentedBooks().size() <= MAXNUMBEROFBOOKS)){
-			if (!books.contains(book)){
-				throw new OperationNotAllowedException("Book not in stock");
-			}
-			books.remove(book);
-			user.addBook(book);
-		}
-	}
-
+	
+	
 }

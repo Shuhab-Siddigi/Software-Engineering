@@ -1,13 +1,14 @@
 # A registered user can borrow a book independent from whether the administrator is logged in or not. If the user has already borrowed 10 books, he cannot borrow an 11th book. Instead a TooManyBookException is thrown with the error message "Can't borrow more than 10 books".
 
 
- Feature: Borrow book 
-    Description: The user borrows the book
-    Actors: User
+#  Feature: Borrow book 
+#     Description: The user borrows the book
+#     Actors: User
     
- Scenario: The user borrows a book
-    Given the user is registered to the library
-    #When the user borrows the book
+#  Scenario: The user borrows a book
+#     Given the user is registered to the library
+#     And there is a book with title "Extreme Programming", author "Kent Beck", and signature "Beck99"
+#     When the user borrows the book with signature "Beck99"
 #     Then the book is not in the library anymore
 
 #  Scenario: The user tries to borrow the book again
