@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
     features = "src/Features/",
     plugin = { "summary","html:target/report.html"},
     snippets = SnippetType.CAMELCASE,
+    monochrome = true,
     glue = { "Library","LibraryTest"}
     )
     
