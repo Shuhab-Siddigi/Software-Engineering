@@ -5,11 +5,11 @@ Feature: Borrow book
     Description: The user borrows the book
     Actors: User
 
-Scenario: The user borrows a book
-    Given the user is registered to the library
-#     And there is a book with title "Extreme Programming", author "Kent Beck", and signature "Beck99"
-#     When the user borrows the book with signature "Beck99"
-#     Then the book is not in the library anymore
+Scenario: User borrows a book succesfully
+    Given there is a book with title "Extreme Programming", author "Kent Beck", and signature "Beck99"
+    And a user is registered with the library
+    When the user borrows the book
+    Then the book is borrowed by the user
 
 #  Scenario: The user tries to borrow the book again
 #     Given the user is registered to the library
@@ -17,3 +17,10 @@ Scenario: The user borrows a book
 #  	When the user borrows the book again
 #     Then the user gets the message "Book is already borrowed"
 
+Scenario: User borrows more than 10 books
+    Given there is a book with signature "Beck99" is cointained in the library
+    And a user is registered with the library
+    And the user has borrowed 10 books
+    When the user borrows the Book
+    Then the book is not borrowed by the user
+    And the error message "Can't borrow more than 10 books" is thrown
