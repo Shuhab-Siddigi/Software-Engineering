@@ -1,4 +1,4 @@
-package LibraryTest;
+package LibraryTest.StepClasses;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,7 +11,7 @@ import Library.Book;
 import Library.ErrorMessageHolder;
 import Library.LibraryApp;
 import Library.OperationNotAllowedException;
-import Library.UserHelper;
+import LibraryTest.HelperClasses.UserHelper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

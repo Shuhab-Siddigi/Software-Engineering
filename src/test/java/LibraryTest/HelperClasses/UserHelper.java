@@ -1,5 +1,8 @@
-package Library;
+package LibraryTest.HelperClasses;
 
+import Library.Address;
+import Library.LibraryApp;
+import Library.User;
 
 public class UserHelper {
 
