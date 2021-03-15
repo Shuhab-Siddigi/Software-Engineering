@@ -1,4 +1,4 @@
-package LibraryTest.StepClasses;
+package SystemTest.StepClasses;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -6,13 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
-import Library.Address;
-import Library.Book;
-import Library.ErrorMessageHolder;
-import Library.LibraryApp;
-import Library.OperationNotAllowedException;
-import Library.User;
-import LibraryTest.HelperClasses.UserHelper;
+import System.Address;
+import System.Book;
+import System.ErrorMessageHolder;
+import System.LibraryApp;
+import System.OperationNotAllowedException;
+import System.User;
+import SystemTest.HelperClasses.UserHelper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

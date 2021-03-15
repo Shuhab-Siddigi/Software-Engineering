@@ -1,4 +1,4 @@
-package LibraryTest;
+package SystemTest;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
     plugin = { "summary","html:target/report.html"},
     snippets = SnippetType.CAMELCASE,
     monochrome = true,
-    glue = { "Library","LibraryTest"}
+    glue = { "System","SystemTest"}
     )
     
 
