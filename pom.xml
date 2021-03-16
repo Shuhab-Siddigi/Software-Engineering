@@ -7,8 +7,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>dtu</groupId>
-	<artifactId>library01</artifactId>
-	<name>library01</name>
+	<artifactId>my-app</artifactId>
 	<version>SNAPSHOT 0.0.1</version>
 
 	<properties>
