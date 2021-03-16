@@ -1,8 +1,16 @@
-Feature: Worker registers hours in project
+Feature: Create project
 
-    Scenario: A Worker registers hours succesfully
-        Given a Worker with name "Bob hansen", ID "ABCD" exists in the system
-#        And a project with name "Project1", project number "030901" exists in the system
-#        And the worker is assigned to the project
-#        When the worker registers 'int' number of work hours on project
-#        Then the worker "Bob Hansen" has worked 'int' hours on the project with name "Project1", project number "030901"
+    Description: A worker creates a project
+    Actors: Worker OR Projectleader
+
+    Scenario: A project is added to system successfully
+        Given the system contains a worker with name "Bob Hansen", ID "ABCD"
+        And the system contains a project with name "Project1", number "030901"
+        When the worker creates the project
+        Then the project exist in the system
+
+    Scenario: Adding a project to the system fails when project already exist
+        Given the system contains a worker with name "Bob Hansen", ID "ABCD"
+        And the system contains a project with name "Project1", number "030901"
+        When the worker adds the project again
+        Then the error "Project already exist!" is given
