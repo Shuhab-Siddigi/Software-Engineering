@@ -3,6 +3,7 @@
 .project
 .classpath
 .settings
+.vscode
 
 # Compiled class file
 *.class
