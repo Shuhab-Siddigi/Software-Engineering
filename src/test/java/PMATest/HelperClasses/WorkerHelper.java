@@ -1,4 +1,4 @@
-package SystemTest.HelperClasses;
+package PMATest.HelperClasses;
 
 import java.util.ArrayList;
 import java.util.List;

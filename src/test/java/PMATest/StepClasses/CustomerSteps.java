@@ -1,4 +1,4 @@
-package SystemTest.StepClasses;
+package PMATest.StepClasses;
 
 public class CustomerSteps {
     
