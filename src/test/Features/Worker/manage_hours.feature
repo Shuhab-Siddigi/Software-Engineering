@@ -1,4 +1,6 @@
-# Feature: Worker registers hours in project
+# Feature: Worker manages hours in project
+# Description: A worker registers hours
+# Actors: worker
 
 #     Scenario: A Worker registers hours succesfully
 
@@ -27,3 +29,5 @@
 #         When the worker registers 'int' number of work hours on project
 #         Then the error message "Worker doesn't exist" is given
 
+
+#     Scenario: Worker can't register hours because he hasent enough hours

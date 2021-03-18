@@ -1,6 +1,6 @@
 # Feature: change times of an activity
-#     Description:
-#     Actors: Projectleader
+#     Description: Project leader changes date of activity
+#     Actors: Project leader
 
 #     Scenario: The start time of an activity is moved closer to the present
 #         Given a project with name "Project1", and project number "030901" exists in the system
@@ -8,6 +8,9 @@
 #         And The project has an activity with Name "activity 1" and a start time of "21 december"
 #         When the project leader changes the start time of the activity to "20 december"
 #         Then the activity has a start time of "20 december"
+
+#     Scenario: The start time of an activity is moved closer to the future
+
 
 #     Scenario: The start time of an activity is not moved closer to the present
 #         Given a project with name "Project1", and project number "030901" exists in the system
@@ -17,4 +20,5 @@
 #         Then the activity has a start time of "21 december"
 #         And the error message "Only allowed by project leaders" is given
 
+#     Scenario: The start time of an activity is not moved closer to the future
 

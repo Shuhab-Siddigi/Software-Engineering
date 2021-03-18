@@ -8,8 +8,6 @@ import PMA.Worker;
 
 public class WorkerHelper {
 
-
-
     private Worker worker;
     private System system;
     private List<Worker> allWorkers = new ArrayList<>();

@@ -1,4 +1,6 @@
 # Feature: Assign project leader
+# Description: Assign project leader to projectr
+# Actors: Worker/System
 
 #     Scenario: A project leader is assigned to a project
 

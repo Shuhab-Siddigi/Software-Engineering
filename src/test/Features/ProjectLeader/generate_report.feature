@@ -3,7 +3,6 @@
 #     Actors: project leader
 
 
-
 #     Scenario: A report is generated susccesfully
 
 #         Given the system contains a worker with name "Bob Hansen", ID "ABCD"

@@ -1,10 +1,10 @@
-Feature: Create new Activity
+# Feature: Create new Activity
 
-    Description: A project leader creates an activity in a project
-    Actors: Project leader
+#     Description: A project leader creates an activity in a project
+#     Actors: Project leader
 
-        Scenario: A new Activity is added to project
-#        Given the system contains a worker with name "Bob Hansen", ID "ABCD"
+#     Scenario: A new Activity is added to project
+#         Given the system contains a worker with name "Bob Hansen", ID "ABCD"
 #         And the system contains a project with name "Project1", number "030901"
 #         And the project has a start date "21 December 2020", end date "1 January 2021"
 #         And the activity with name "activity1", number "01"
@@ -38,3 +38,4 @@ Feature: Create new Activity
 #         When the activity is added to the project
 #         Then the error text "Activity ends after project" is given
 
+#     Scenario: Worker tries to create project

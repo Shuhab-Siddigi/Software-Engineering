@@ -19,4 +19,4 @@
 #         When activity named "activity2" is removed
 #         Then the error text "Activity not in project" is given
 
-
+#     Scenario: worker ties to remove activity

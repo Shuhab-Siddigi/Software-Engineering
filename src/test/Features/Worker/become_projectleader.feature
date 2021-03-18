@@ -1,7 +1,6 @@
 # Feature: Becomes project leader
-
-#     Description: A worker becomes a project leader
-#     Actors: Worker
+# Description: A worker becomes project leader for a given project
+# Actors: worker
 
 #     Scenario: A worker is promoted to project leader sucessfully
 #         Given the system contains a worker with name "Bob Hansen", ID "ABCD"

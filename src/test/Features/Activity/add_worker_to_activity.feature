@@ -1,6 +1,6 @@
     # Feature assign worker to activity
-    # Description:
-    # Actors:
+    # Description: Project leader assigns worker to activity
+    # Actors: Project leader
 
 
     # Scenario: a worker is assigned to an activity
@@ -30,6 +30,7 @@
     #     Given the system contains a project with number "030901" 
     #     And the system contains a worker with name "Bob Hansen", ID "ABCD"
     #     And there exist an activity with number "01"
-    #     When the worker adds the worker with name "Bob Hansen", ID "ABCD"
+    #     When the worker with ID "EFGH" adds the worker with name "Bob Hansen", ID "ABCD"
     #     Then the error message "Only the project leader can assign workers to activities!" is given
+    #     And the worker is not contained in the activity
     

@@ -1,4 +1,6 @@
-# Feature: Create project
+# Feature: Remove project
+# Description: Project leader can remove project
+# Actors: Project leader
 
 #     Description: A worker creates a project
 #     Actors: Worker OR Projectleader

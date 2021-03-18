@@ -1,4 +1,6 @@
 # Feature: Create project
+# Description: A worker creates a project
+# Actors: Worker
 
 #     Description: A worker creates a project
 #     Actors: Worker OR Projectleader
