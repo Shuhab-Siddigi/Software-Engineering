@@ -6,9 +6,6 @@ class ICONINFO{
 +public
 }
 
-left to right direction
-
-
 class System{
 -projects : Project[*]
 -workers : Worker[*] 
@@ -65,10 +62,10 @@ class Activity{
 +canReceiveHelp(Worker) : boolean
 }
 
-System o--> Project
-System o--> Worker
-Activity o--> Worker
-Project --|> Activity
-Activity --> Project  
+System o-right-> Worker
+System o-down-> Project
+Project -right-|> Activity
+Activity o-left-> Worker
+Activity -left-> Project  
 
 ```

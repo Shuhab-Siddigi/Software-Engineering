@@ -9,7 +9,7 @@
 #     And there exist an activity with number "01"
 #     And the activity contains a worker with ID "ABCD"
 #     When the project leader chooses the project 
-#     Then the error message "only the assigned project leader can edit the projec" is given
+#     Then the error message "only the assigned project leader can edit the project" is given
 
 
 

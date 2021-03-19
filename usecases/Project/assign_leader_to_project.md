@@ -16,6 +16,19 @@ wo --> UC6
 
 }
 
+@enduml
+```
+
+```plantuml
+
+@startuml
+title  A project leader is assigned to a project
+ 
+--> "The System" : assignLeader()
+"The System" --> "The System"  : canBeAssigned(Worker,Project)
+"The System" --> aProject : getLeader()
+return leader
+"The System" --> aProject : setProjectLeader(worker)
 
 @enduml
 ```

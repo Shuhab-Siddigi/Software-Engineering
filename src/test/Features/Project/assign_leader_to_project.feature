@@ -2,12 +2,12 @@
 # Description: Assign project leader to projectr
 # Actors: Worker/System
 
-#     Scenario: A project leader is assigned to a project
+    Scenario: A project leader is assigned to a project
 
-#         Given a project leader with name "Bob Hansen", ID "ABCD" exists
-#         And a project with name "Project1", project number "030901" exists in the system
-#         When the system assigns the project leader to the project
-#         Then the project leader with name "Bob Hansen", ID "ABCD" is assigned to the project with name "Project1", project number "030901"
+        Given a project leader with name "Bob Hansen", ID "ABCD" exists
+        And a project with name "Project1", project number "030901" exists in the system
+        When the system assigns the project leader to the project
+        Then the project leader with name "Bob Hansen", ID "ABCD" is assigned to the project with name "Project1", project number "030901"
 
 
 #     Scenario:  A project leader is not assigned to a project, as project does not exist

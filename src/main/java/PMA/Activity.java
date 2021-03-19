@@ -3,9 +3,8 @@ package PMA;
 import java.sql.Date;
 import java.sql.Time;
 
-public class Project {
-
-
+public class Activity {
+    
     private String title;
     private String ID;
     private Time expectedHours;
@@ -65,6 +64,5 @@ public class Project {
         this.title = title;
     }
     
-    
-    
+
 }
