@@ -19,9 +19,9 @@ class System{
 
 class Worker{
 -Name : String
--HoursAllowed : int
--startTimeToday : Calender
--endTimeToday : Calender
+'-HoursAllowed : int
+'-startTimeToday : Calender
+'-endTimeToday : Calender
 -ID : String
 
 +registerHours(int, Activity) : boolean
@@ -31,18 +31,19 @@ class Worker{
 
 
 class Project{
--Activities : Activity[*]
--Report : Project
+-activities : Activity[*]
+-report : Project
+-info : Info
 -FixedActivities : Activity[*]
--Title : String
--ID :  String
--Expected Hours : int
--Hours Worked :  int
--StartDate : Calendar
--EndDate : Calendar
--Description : String
--Leader : Worker
--Workers : Worker[*]
+'-Title : String
+'-ID :  String
+'-Expected Hours : int
+'-Hours Worked :  int
+'-StartDate : Calendar
+'-EndDate : Calendar
+'-Description : String
+-leader : Worker
+'-Workers : Worker[*]
 +addActivity(Activity) : boolean
 +removeActivity(Activity) :  boolean
 +generateReport(Project) :  void
@@ -51,6 +52,27 @@ class Project{
 }
 
 class Activity{
+'-Title : String
+'-ID :  String
+'-Expected Hours : int
+'-Hours Worked :  int
+'-StartDate : Calendar
+'-EndDate : Calendar
+'-Description : String
+'-Leader : Worker
+-workers : Worker[*]
+-info : Info
+
+'+setProjectLeader(Worker) : void
++ChangeDate(Calender, Calender) : void
++addWorker(Worker): void
++removeWorker(Worker) : void 
+'+canBecomeLeader(Worker) : boolean
++searchWorkerByID(String): Worker
++canReceiveHelp(Worker) : boolean
+}
+
+class Info{
 -Title : String
 -ID :  String
 -Expected Hours : int
@@ -58,22 +80,16 @@ class Activity{
 -StartDate : Calendar
 -EndDate : Calendar
 -Description : String
--Leader : Worker
--Workers : Worker[*]
 
-+setProjectLeader(Worker) : void
-+ChangeDate(Calender, Calender) : void
-+addWorker(Worker): void
-+removeWorker(Worker) : void 
-+canBecomeLeader(Worker) : boolean
-+searchWorkerByID(String): Worker
-+canReceiveHelp(Worker) : boolean
++changeStartDate(calendar): void
++changeEndDate(calendar): void
 }
 
-System o-right-> Worker
-System o-down-> Project
-Project -right-|> Activity
-Activity o-left-> Worker
-Activity -left-> Project  
+Worker o-up-> System
+Project o-up-> System
+Activity o-down-> Worker
+Activity o-left-> Project  
+Info o-down-> Activity
+Info o-down-> Project
 
 ```
