@@ -1,7 +1,7 @@
 ```plantuml
 @startuml
 left to right direction
-title Manage project use case
+title Add worker to activity use case
 actor "Project Leader" as pl
 
 
@@ -15,8 +15,8 @@ pl --> UC1
 
 }
 
-
 @enduml
+<<<<<<< HEAD
 ```
 
 ```plantuml
@@ -51,3 +51,6 @@ deactivate S
 @enduml
 ```
 
+=======
+```
+>>>>>>> f4508f782b7b8430adfd868b2cd03ba5a093b6d6

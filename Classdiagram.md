@@ -6,6 +6,10 @@ class ICONINFO{
 +public
 }
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 class System{
 -projects : Project[*]
 -workers : Worker[*] 
@@ -34,7 +38,15 @@ class Project{
 -Activities : Activity[*]
 -Report : Project
 -FixedActivities : Activity[*]
-
+-Title : String
+-ID :  String
+-Expected Hours : int
+-Hours Worked :  int
+-StartDate : Calendar
+-EndDate : Calendar
+-Description : String
+-Leader : Worker
+-Workers : Worker[*]
 +addActivity(Activity) : boolean
 +removeActivity(Activity) :  boolean
 +generateReport(Project) :  void
@@ -62,10 +74,16 @@ class Activity{
 +canReceiveHelp(Worker) : boolean
 }
 
+<<<<<<< Updated upstream
 System o-right-> Worker
 System o-down-> Project
 Project -right-|> Activity
 Activity o-left-> Worker
+=======
+System o-down-> Project
+System o-right-> Worker
+Activity o-up-> Worker
+>>>>>>> Stashed changes
 Activity -left-> Project  
 
 ```

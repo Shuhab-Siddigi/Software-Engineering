@@ -1,5 +1,5 @@
 # Feature: Create project
-# Description: A worker creates a project
+# Description: A project is created
 # Actors: Worker
 
 #     Description: A worker creates a project

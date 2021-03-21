@@ -10,8 +10,8 @@ actor "Worker" as wo
 rectangle System {
   usecase "Add future activity" as UC11  
   
-pl --> UC1
-wo --> UC1
+pl --> UC11
+wo --> UC11
 
 }
 

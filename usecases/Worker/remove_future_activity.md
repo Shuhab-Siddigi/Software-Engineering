@@ -3,7 +3,7 @@
 ```plantuml
 @startuml
 left to right direction
-title Manage project use case
+title Remove future activity use case
 actor "Project Leader" as pl
 actor "Worker" as wo
 
