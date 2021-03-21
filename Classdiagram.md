@@ -23,7 +23,9 @@ class Worker{
 '-startTimeToday : Calender
 '-endTimeToday : Calender
 -ID : String
+-activities : Activity[*] 
 
++searchActivityByID(string) : activity
 +registerHours(int, Activity) : boolean
 +editHours(int, Activity) : boolean
 +askForHelp(Activity, Worker) : boolean 
