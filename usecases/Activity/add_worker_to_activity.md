@@ -16,7 +16,6 @@ pl --> UC1
 }
 
 @enduml
-<<<<<<< HEAD
 ```
 
 ```plantuml
@@ -51,6 +50,3 @@ deactivate S
 @enduml
 ```
 
-=======
-```
->>>>>>> f4508f782b7b8430adfd868b2cd03ba5a093b6d6
