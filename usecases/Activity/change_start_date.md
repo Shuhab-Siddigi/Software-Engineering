@@ -20,7 +20,7 @@ wo --> UC2
 
 ```plantuml
 @startuml
-title  A worker is added to an Activity 
+title  Start date of activity is changed
 
 actor "Project Leader" as pl
 participant "aProject" as aP
@@ -29,19 +29,10 @@ participant "anActivity" as aA
 
 pl --> aP : getProject
 activate aP
-  activate aW
-  return  worker
-  S -> S : canBeAssigned 
-  S -> aP :getProject
-    activate aP
-    return project
-  S -> aP : getActivity
-  deactivate S
-  activate aP
-  return activity
-  S -> aA : setWorker
+  aP -> aA : getActivity
   activate aA
-    aA --> P : done
-  deactivate aA
+  return activity
+  aP -> aP : changeStartDate
+aP --> pl : done
 @enduml
 ```

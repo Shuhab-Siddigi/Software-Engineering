@@ -19,11 +19,11 @@ class System{
 
 class Worker{
 -Name : String
+-ID : String
+-currentActivities : Activity
 '-HoursAllowed : int
 '-startTimeToday : Calender
 '-endTimeToday : Calender
--ID : String
--activities : Activity[*] 
 
 +searchActivityByID(string) : activity
 +registerHours(int, Activity) : boolean
@@ -34,9 +34,11 @@ class Worker{
 
 class Project{
 -activities : Activity[*]
--report : Project
 -info : Info
 -FixedActivities : Activity[*]
+-leader : Worker
+'-report : Project
+'-Workers : Worker[*]
 '-Title : String
 '-ID :  String
 '-Expected Hours : int
@@ -44,8 +46,7 @@ class Project{
 '-StartDate : Calendar
 '-EndDate : Calendar
 '-Description : String
--leader : Worker
-'-Workers : Worker[*]
+
 +addActivity(Activity) : boolean
 +removeActivity(Activity) :  boolean
 +generateReport(Project) :  void
@@ -54,6 +55,8 @@ class Project{
 }
 
 class Activity{
+-workers : Worker[*]
+-info : Info
 '-Title : String
 '-ID :  String
 '-Expected Hours : int
@@ -62,16 +65,15 @@ class Activity{
 '-EndDate : Calendar
 '-Description : String
 '-Leader : Worker
--workers : Worker[*]
--info : Info
 
-'+setProjectLeader(Worker) : void
-+ChangeDate(Calender, Calender) : void
+
 +addWorker(Worker): void
 +removeWorker(Worker) : void 
-'+canBecomeLeader(Worker) : boolean
-+searchWorkerByID(String): Worker
++searchWorkerByID(String): worker
 +canReceiveHelp(Worker) : boolean
+'+ChangeDate(Calender, Calender) : void
+'+canBecomeLeader(Worker) : boolean
+'+setProjectLeader(Worker) : void
 }
 
 class Info{
@@ -85,11 +87,12 @@ class Info{
 
 +changeStartDate(calendar): void
 +changeEndDate(calendar): void
++calHoursWorked(): int
 }
 
 Worker o-up-> System
-Project o-up-> System
-Activity o-down-> Worker
+Project -up-> System
+Activity -down-> Worker
 Activity o-left-> Project  
 Info o-down-> Activity
 Info o-down-> Project
