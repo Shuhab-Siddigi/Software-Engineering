@@ -20,16 +20,28 @@ wo --> UC6
 ```
 
 ```plantuml
-
 @startuml
 title  A project leader is assigned to a project
- 
---> "The System" : assignLeader()
-"The System" --> "The System"  : canBeAssigned(Worker,Project)
-"The System" --> aProject : getLeader()
-return leader
-"The System" --> aProject : setProjectLeader(worker)
 
+actor "Worker \n System Huset A/S" as P
+participant "The System " as S
+participant "aWorker" as W
+participant "aProject" as aP
+
+
+P -> S : Assign leader
+activate S
+S -> W : getWorker
+activate W
+return worker
+S -> aP :getProject
+activate aP
+return project
+S --> aP : setProjectLeader(worker)
+deactivate S
+activate aP
+aP --> P : done
+deactivate aP
 @enduml
 ```
 

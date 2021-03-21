@@ -21,3 +21,17 @@ wo --> UC7
 
 @enduml
 ```
+
+```plantuml
+@startuml
+title  project is added to system successfully
+
+actor "Project Leader \n System Huset A/S \n Worker" as P
+participant "The System " as S
+P -> S : Create Project
+activate S
+S -> S : addProject
+S --> P : done
+deactivate S
+@enduml
+```

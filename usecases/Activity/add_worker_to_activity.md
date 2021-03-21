@@ -19,3 +19,35 @@ pl --> UC1
 @enduml
 ```
 
+```plantuml
+@startuml
+title  A worker is added to an Activity 
+
+actor "Worker" as P
+participant "The System " as S
+participant "aProject" as aP
+participant "aWorker" as aW
+participant "anActivity" as aA
+
+
+P --> S : Add worker
+S -> aW : getWorker
+activate S
+  activate aW
+  return  worker
+  S -> S : canBeAssigned 
+  S -> aP :getProject
+    activate aP
+    return project
+  S -> aP : getActivity
+  deactivate S
+  activate aP
+  return activity
+  S -> aA : setWorker
+  activate aA
+    aA --> P : done
+  deactivate aA
+deactivate S
+@enduml
+```
+
