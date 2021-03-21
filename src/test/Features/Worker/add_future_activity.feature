@@ -1,14 +1,8 @@
 Feature: Create new Activity 
-# Description: Project leader/worker creates a new activity
-# Actors: Project leader/worker
+# Description: A worker/project leader creates an future activity in a project
+# Actors: Worker/Project leader
 
-#hmmmmmm
-#fixed as field of activity
-
-    Description: A worker creates an future activity in a project
-    Actors: Worker
-
-        Scenario: A new Activity is added to project
+#        Scenario: A new Activity is added to project
 #        Given the system contains a worker with name "Bob Hansen", ID "ABCD"
 #         And the system contains a project with name "Project1", number "030901"
 #         And the project has a start date "21 December 2020", end date "1 January 2021"
@@ -22,7 +16,7 @@ Feature: Create new Activity
 #         And the system contains a project with name "Project1", number "030901"
 #         And the project contains an activity with Name "activity1", number "01"
 #         When the activity is added to the project
-#         Then the error text "project already contain activity" is given
+#         Then the error text "Project already contain activity" is given
 
 #     Scenario: Activity starts time is before project start
 #         Given the system contains a worker with name "Bob Hansen", ID "ABCD"
