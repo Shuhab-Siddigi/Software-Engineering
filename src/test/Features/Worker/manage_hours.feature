@@ -1,6 +1,6 @@
 # Feature: Worker manages hours in project
 # Description: A worker registers hours
-# Actors: worker
+# Actors: Worker
 
 #     Scenario: A Worker registers hours succesfully
 
