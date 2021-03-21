@@ -1,13 +1,10 @@
 # Feature: Create project
 # Description: A project is created
-# Actors: Worker
-
-#     Description: A worker creates a project
-#     Actors: Worker OR Projectleader
+# Actors: Worker/Project leader
 
 #     Scenario: A project is added to system successfully
 #         Given the system contains a worker with name "Bob Hansen", ID "ABCD"
-#         And the system contains a project with name "Project1", number "030901"
+#         And a project with name "Project1", number "030901"
 #         When the worker creates the project
 #         Then the project exist in the system
 
