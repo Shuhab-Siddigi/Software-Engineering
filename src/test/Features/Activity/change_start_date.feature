@@ -2,23 +2,47 @@
 #     Description: Project leader changes date of activity
 #     Actors: Project leader
 
-#     Scenario: The start time of an activity is moved closer to the present
-#         Given a project with name "Project1", and project number "030901" exists in the system
-#         And a project leader with name "Jens Jensen" and ID "EFGH" is assigned to the project
-#         And The project has an activity with Name "activity 1" and a start time of "21 december"
-#         When the project leader changes the start time of the activity to "20 december"
-#         Then the activity has a start time of "20 december"
+#     Scenario: Activity starts time is closer to project start
+#         Given the system contains a worker with name "Bob Hansen", ID "ABCD"
+#         And the system contains a project with name "Project1", number "030901"
+#         And the project has a start date "21 December 2020", end date "1 January 2021"
+#         And the activity with name "activity1", number "01"
+#         And the activity has a start date "22 December 2020", end date "30 December 2020"
+#         When the activity is added to the project
+#         Then the project contains the activity
+#         When the activity changes start date "21 December 2020", end date "30 December 2020"
+#         Then the project changes date
 
-#     Scenario: The start time of an activity is moved closer to the future
+#     Scenario: Activity end time is closer to project end
+#         Given the system contains a worker with name "Bob Hansen", ID "ABCD"
+#         And the system contains a project with name "Project1", number "030901"
+#         And the project has a start date "21 December 2020", end date "1 January 2021"
+#         And the activity with name "activity1", number "01"
+#         And the activity has a start date "22 December 2020", end date "30 December 2020"
+#         When the activity is added to the project
+#         Then the project contains the activity
+#         When the activity changes start date "22 December 2020", end date "1 January 2021"
+#         Then the project changes date
 
 
-#     Scenario: The start time of an activity is not moved closer to the present
-#         Given a project with name "Project1", and project number "030901" exists in the system
-#         And a worker with name "Bob Hansen", ID "ABCD" is assigned to the project
-#         And The project has an activity with Name "activity 1" and a start time of "21 december"
-#         When the worker changes the start time of the activity to "20 december"
-#         Then the activity has a start time of "21 december"
-#         And the error message "Only allowed by project leaders" is given
+#     Scenario: Activity starts time is before project start
+#         Given the system contains a worker with name "Bob Hansen", ID "ABCD"
+#         And the system contains a project with name "Project1", number "030901"
+#         And the project has a start date "21 December 2020", end date "1 January 2021"
+#         And the activity with name "activity1", number "01"
+#         And the activity has a start date "22 December 2020", end date "30 December 2020"
+#         When the activity is added to the project
+#         Then the project contains the activity
+#         When the activity changes start date "20 December 2020", end date "30 December 2020"
+#         Then the error text "Activity starts before project" is given
 
-#     Scenario: The start time of an activity is not moved closer to the future
-
+#     Scenario: Activity starts time is after project ends
+#         Given the system contains a worker with name "Bob Hansen", ID "ABCD"
+#         And the system contains a project with name "Project1", number "030901"
+#         And the project has a start date "21 December 2020", end date "1 January 2021"
+#         And the activity with name "activity1", number "01"
+#         And the activity has a start date "22 December 2020", end date "30 December 2020"
+#         When the activity is added to the project
+#         Then the project contains the activity
+#         When the activity changes start date "22 December 2020", end date "2 January 2021"
+#         Then the error text "Activity ends after project" is given
