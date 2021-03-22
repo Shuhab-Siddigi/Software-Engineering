@@ -3,7 +3,7 @@
 ```plantuml
 @startuml
 left to right direction
-title Create activity use case
+title add activity to project use case
 actor "Project Leader" as pl
 actor "Worker" as wo
 
@@ -20,7 +20,7 @@ wo --> UC3
 
 ```plantuml
 @startuml
-title  Create new activity in project
+title  add activity to project
 
 actor "Project Leader" as pl
 participant "aProject" as aP

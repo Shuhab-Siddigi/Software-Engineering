@@ -19,18 +19,25 @@ rectangle System {
   usecase "Create project" as UC7
   usecase "Manage project" as UC8
   usecase "Remove project" as UC9
-  usecase "Generate report" as UC10
-  usecase "Add future activity" as UC11  
-  usecase "Become project leader" as UC12
-  usecase "Manage hours" as UC13
-  usecase "Remove future activity" as UC14
+  usecase "Generate report" as UC10 
+  usecase "Take Project" as UC11
+  usecase "Manage hours" as UC12
+
 
   
-pl --> UC1
+wo -- UC1
+wo -- UC2
+wo -- UC3
+wo -- UC4
+wo -- UC5
+wo -- UC6
+wo -- UC7
+wo -- UC8
+wo -- UC9
+wo -- UC10
 
-sh --> UC2
-
-wo --> UC1
+wo -- UC11
+wo -- UC12
 
 }
 
