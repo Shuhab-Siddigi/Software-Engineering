@@ -3,12 +3,12 @@
 ```plantuml
 @startuml
 left to right direction
-title Manage project use case
+title Add activity use case
 actor "Project Leader" as pl
 actor "Worker" as wo
 
 rectangle System {
-  usecase "Add future activity" as UC11  
+  usecase "Add activity" as UC11  
   
 pl --> UC11
 wo --> UC11
