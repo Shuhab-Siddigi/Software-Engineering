@@ -3,7 +3,7 @@
 ```plantuml
 @startuml
 left to right direction
-title Manage project use case
+title Manage activity use case
 actor "Worker" as wo
 
 
