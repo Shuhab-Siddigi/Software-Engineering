@@ -5,8 +5,6 @@
 left to right direction
 title Manage project use case
 actor "Project Leader" as pl
-actor "Worker" as wo
-actor "Software huset A/S" as sh
 
 
 rectangle System {
@@ -15,29 +13,23 @@ rectangle System {
   usecase "Create activity" as UC3
   usecase "Remove activity" as UC4
   usecase "Remove worker from activity" as UC5
-  usecase "Assign leader to project" as UC6
-  usecase "Create project" as UC7
+  'usecase "Assign leader to project" as UC6
+  'usecase "Create project" as UC7
   usecase "Manage project" as UC8
-  usecase "Remove project" as UC9
+  'usecase "Remove project" as UC9
   usecase "Generate report" as UC10 
-  usecase "Take Project" as UC11
-  usecase "Manage hours" as UC12
+  'usecase "Take Project" as UC11
+  'usecase "Manage hours" as UC12
 
 
   
-wo -- UC1
-wo -- UC2
-wo -- UC3
-wo -- UC4
-wo -- UC5
-wo -- UC6
-wo -- UC7
-wo -- UC8
-wo -- UC9
-wo -- UC10
-
-wo -- UC11
-wo -- UC12
+pl -- UC1
+pl -- UC2
+pl -- UC3
+pl -- UC4
+pl -- UC5
+pl -- UC8
+pl -- UC10
 
 }
 
