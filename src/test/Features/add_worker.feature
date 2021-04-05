@@ -1,8 +1,8 @@
-    # Feature Create Worker
+    Feature: Create Worker
 
-    # Scenario:  A Worker is created
-    #     Given a Worker with name ”Bob hansen” and ID ”ABCD” does not exist
-    #     And a Costumer with name ”SoftwareHuset A/S” exists in the system–
+    Scenario:  A Worker is created
+        Given a Worker with name "Bob hansen" and ID "ABCD" does not exist
+        And a Worker with name "IB hansen" and ID "BCDE" exists in the system
     #     When the Costumer with name ”SoftwareHuset A/S” creates a Worker withname ”Bob hansen” and ID ”ABCD”
     #     Then a Worker with name ”Bob hansen” and ID ”ABCD” exists
 

@@ -4,25 +4,24 @@ public class Worker {
 
     private String firstname;
     private String lastname;
-    private int ID;
+    private String ID;
 
     public Worker(){
 
     }
 
 
-    public Worker(String firstname,String lastname,int ID) {
+    public Worker(String firstname,String lastname,String ID) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.ID = ID;
-    
     }
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int iD) {
+    public void setID(String iD) {
         this.ID = iD;
     }
 

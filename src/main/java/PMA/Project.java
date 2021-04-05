@@ -16,6 +16,12 @@ public class Project {
     private Worker projectLeder;
     
     
+    public Project(String title) {
+       this.title = title;
+       //setTitle(title);
+    }
+
+
     public String getTitle() {
         return title;
     }
