@@ -3,17 +3,19 @@ package PMATest.HelperClasses;
 import java.util.ArrayList;
 import java.util.List;
 
+import PMA.PMA;
 import PMA.Worker;
 
 
 public class WorkerHelper {
 
     private Worker worker;
-    private System system;
+    private PMA pma;
     private List<Worker> allWorkers = new ArrayList<>();
 
-    public WorkerHelper(System system) {
-        this.system = system;
+
+    public WorkerHelper(PMA pma) {
+        this.pma = pma;
     }
 
     public Worker getWorker() {
@@ -32,17 +34,20 @@ public class WorkerHelper {
     }
 
     private Worker exampleWorker() {
-        Worker worker = new Worker("Worker","Workerson",0);
+        Worker worker = new Worker("Worker","Workerson","A");
         return worker;
     }
 
     private List<Worker> exampleAllWorkers() {
-        Worker tempWorker = new Worker();        
+        Worker tempWorker = new Worker();    
+        String ID;    
         for (int i = 1; i <= 50; i++){
             tempWorker.setFirstname("Worker"+i);
             tempWorker.setLastname("Workerson"+i);
-            tempWorker.setID(i);
+            ID = Integer.toString(i);
+            tempWorker.setID(ID);
             allWorkers.add(tempWorker);
+            pma.addWorker(tempWorker);
         }
      
         return allWorkers;
