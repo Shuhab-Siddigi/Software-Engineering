@@ -1,4 +1,4 @@
-package pmatest.StepClasses;
+package dtu.pmatest.StepClasses;
 
 import static org.junit.Assert.assertTrue;
 
