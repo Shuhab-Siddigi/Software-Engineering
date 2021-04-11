@@ -1,13 +1,11 @@
 Feature: Create Project
+
     Scenario:  A project is created succesfully
-    Given there is a project  with  title "Project1" and ID 0309.
-#        And the project is not in the system
-#         And there is a worker in the system
-#         When the project is added to the system
-#         Then a project with name "Extreme Programming", and project   number 030901 exists in the system
-
-
-
+        Given a  project  with  name  "Extreme  Programming",
+#        And  project  number "030901" does not exist
+#         And a Costumer with name "SoftwareHuset A/S" exists in the system
+#         When the Costumer with name "SoftwareHuset A/S" creates a project with name "Extreme Programming", and project number "030901"–
+#         Then a project with name "Extreme Programming", and project number "030901"exists
 
 #     Scenario:  A project is not created when customer does not exist
 #         Given a Costumer with name "SoftwareHuset A/S" does not exist

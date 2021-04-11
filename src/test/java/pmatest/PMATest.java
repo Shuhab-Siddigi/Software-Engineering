@@ -8,11 +8,11 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-    features = "src/test/Features/",
+    features = "src/Features",
     plugin = { "summary","html:target/report.html"},
     snippets = SnippetType.CAMELCASE,
-    monochrome = true,
-    glue = { "PMA","PMATest"}
+    monochrome = true
+    //glue = { "PMA","PMATest"}
     )
     
 

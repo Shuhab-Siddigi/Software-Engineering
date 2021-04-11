@@ -6,10 +6,19 @@ import io.cucumber.java.en.Given;
 
 public class ProjectSteps {
 
-    @Given("there is a project  with  title {string} and ID {int}.")
-    public void thereIsAProjectWithTitleAndID(String string, Integer int1) {
-       assertTrue(true);
+
+    @Given("a  project  with  name  {string},")
+    public void aProjectWithName(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        assertTrue(true);
     }
+    
+    @Given("project  number {string} does not exist")
+    public void projectNumberDoesNotExist(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        assertTrue(true);
+    }
+    
     
 
 }
