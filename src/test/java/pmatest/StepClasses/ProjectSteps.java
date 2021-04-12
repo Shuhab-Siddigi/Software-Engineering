@@ -53,17 +53,18 @@ public class ProjectSteps {
     }
 
     // Second scenario
-    
+
     @Given("the project exist in the system")
     public void theProjectExistInTheSystem() throws OperationNotAllowedException {
         project = projectHelper.getProject();
         pma.addProject(project);
         assertTrue(pma.containsProjectWithID(project.getID()));
     }
-   
+
     @Then("the error message {string} is given")
-    public void theErrorMessageIsGiven(String errorMessage) throws Exception{
+    public void theErrorMessageIsGiven(String errorMessage) throws Exception {
         assertEquals(errorMessage, this.errorMessage.getErrorMessage());
     }
+
 
 }

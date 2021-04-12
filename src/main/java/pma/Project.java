@@ -6,6 +6,7 @@ public class Project {
 
     private String title;
     private int ID;
+    private Worker projectLeader;
     
     public Project(String title, Integer ID) {
         this.setTitle(title);
@@ -37,6 +38,10 @@ public class Project {
         this.ID = iD;
     }
 
+    public void setProjectLeader(Worker worker){
+        this.projectLeader = worker;
+    }
+    
 
     
 }

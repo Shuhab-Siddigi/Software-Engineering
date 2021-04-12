@@ -3,15 +3,23 @@ package pma;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PMA {
 
-    private List<Worker> workers = new ArrayList<>();
-    private List<Project> projects = new ArrayList<>();
+    private List<Worker> workers = new ArrayList<Worker>();
+    private List<Project> projects = new ArrayList<Project>();
+    private Database db = new Database();
+
+    public void addDatabase() {
+
+        for (Worker w : db.getWorkers()) {
+            workers.add(w);
+        }
+    }
 
     public boolean containsProjectWithID(int ID) {
         return projects.stream().anyMatch(p -> p.getID() == ID);
-
     }
 
     public boolean containsProjectWithTitle(String Title) {
@@ -19,22 +27,39 @@ public class PMA {
     }
 
     public void addProject(Project p) throws OperationNotAllowedException {
-        
-        if(searchProject(p) != null){
+
+        if (!containsProjectWithID(p.getID()) || !containsProjectWithTitle(p.getTitle())) {
+            projects.add(p);
+        } else {
             throw new OperationNotAllowedException("Project ID is already used!");
-        }else{
-           projects.add(p);
         }
-        
+
     }
 
-    private Project searchProject(Project project) {
-        return projects.stream()
-                .filter(p -> (p.getID() == project.getID() || p.getTitle().contentEquals(project.getTitle()))).findAny()
-                .orElse(null);
+    public boolean containsWorkerWithID(String ID) {
+        return workers.stream().anyMatch(w -> w.getID().contentEquals(ID));
     }
 
-    public void addWorker(Worker worker) {
-        workers.add(worker);
+    public Project getProjectWithID(int ID) {
+        for (Project project : projects) {
+            if (ID == project.getID()) {
+                return project;
+            }
+        }
+        return null;
     }
+
+    public Worker getWorkerWithID(String ID) {
+        for (Worker worker : workers) {
+            if (ID == worker.getID()) {
+                return worker;
+            }
+        }
+        return null;
+    }
+
+    public void assignLeader(Worker worker, Project project) {
+        project.setProjectLeader(worker);
+    }
+
 }

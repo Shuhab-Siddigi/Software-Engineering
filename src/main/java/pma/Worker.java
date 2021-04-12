@@ -6,21 +6,18 @@ public class Worker {
     private String lastname;
     private String ID;
 
-    public Worker(){
-
-    }
-
-
-    public Worker(String firstname,String lastname,String ID) {
+    public Worker(String firstname, String lastname, String ID) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.ID = ID;
     }
 
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
 
-
-    public String getID() {
-        return ID;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public void setID(String iD) {
@@ -31,17 +28,12 @@ public class Worker {
         return lastname;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
     public String getFirstname() {
         return firstname;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public String getID() {
+        return ID;
     }
-    
     
 }
