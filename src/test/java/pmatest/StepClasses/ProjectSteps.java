@@ -27,6 +27,7 @@ public class ProjectSteps {
         this.errorMessage = errorMessage;
     }
 
+    // First scenario
     @Given("there is a project with title {string}, ID {int}")
     public void thereIsAProjectWithTitleID(String title, Integer ID) {
         project = new Project(title, ID);
@@ -39,12 +40,30 @@ public class ProjectSteps {
 
     @When("the project with title {string}, ID {int} is added to the system")
     public void theProjectWithTitleIDIsAddedToTheSystem(String title, Integer ID) throws OperationNotAllowedException {
-        pma.addProject(new Project(title, ID));
+        try {
+            pma.addProject(new Project(title, ID));
+        } catch (OperationNotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
     }
 
     @Then("the project with ID {int} exist in the system")
     public void theProjectWithIDExistInTheSystem(Integer ID) {
         assertTrue(pma.containsProjectWithID(ID));
+    }
+
+    // Second scenario
+    
+    @Given("the project exist in the system")
+    public void theProjectExistInTheSystem() throws OperationNotAllowedException {
+        project = projectHelper.getProject();
+        pma.addProject(project);
+        assertTrue(pma.containsProjectWithID(project.getID()));
+    }
+   
+    @Then("the error message {string} is given")
+    public void theErrorMessageIsGiven(String errorMessage) throws Exception{
+        assertEquals(errorMessage, this.errorMessage.getErrorMessage());
     }
 
 }
