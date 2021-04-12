@@ -31,7 +31,7 @@ public class WorkerHelper {
     }
 
     private Worker exampleWorker() {
-        Worker worker = new Worker("Angela", "Anderson", "AAAA");
+        Worker worker = new Worker("Angela", "Anderson", "AAAA"); // 1
         return worker;
     }
 
@@ -111,7 +111,7 @@ public class WorkerHelper {
         pma.addWorker(new Worker("Gertrude", "Fernandez", "ATAA"));
         pma.addWorker(new Worker("Angela", " Anderson", "AUAA"));
         pma.addWorker(new Worker("Aiden", "Faulkner", "AVAA"));
-        pma.addWorker(new Worker("Maisy", " Hudson", "AWAA"));
+        pma.addWorker(new Worker("Maisy", " Hudson", "AWAA")); // 72
 
         return allWorkers;
     }

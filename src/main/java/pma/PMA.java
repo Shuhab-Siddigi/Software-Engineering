@@ -1,60 +1,23 @@
 package pma;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
 
 public class PMA {
 
-    
-    private List<Worker> workers = new ArrayList<>();
-
-
+   // private List<Worker> workers = new ArrayList<>();
+    private List<Project> projects = new ArrayList<>();
     
 
-
-
-
-    public static boolean containsProjectWithID(String string)
-    {
-        return false;
+    public boolean containsProjectWithID(int ID) {
+        return projects.stream().anyMatch(p -> p.getID() == ID);
     }
 
 
-
-
-
-    public List<Worker> getWorkers() {
-        return workers;
+    public void addProject(Project project) {
+        projects.add(project);
     }
 
-
-
-
-
-    public void setWorkers(List<Worker> workers) {
-        this.workers = workers;
-    }
-
-
-    public Stream<Worker> getWorkerStream() {
-		return workers.stream();
-	}
-
-
-    public boolean containsWorkerWithID(String iD) {
-        return getWorkerStream().anyMatch(m -> m.getID().contentEquals(iD));
-    }
-
-    public boolean containsWorkerWithName(String name) {
-        return false;
-    }
-
-
-
-    public void addWorker(Worker tempWorker) {
-        workers.add(tempWorker);
-    }
-
-    
 }
