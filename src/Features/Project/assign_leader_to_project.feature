@@ -7,7 +7,7 @@ Feature: Assign project leader
         And the project exist in the system
         And the system contains a worker with ID "AAAA"
         When the worker with ID "AAAA" is assigned to the project with ID 0001
-#        Then the worker is the project leader with ID "AAAA" of the project with ID 0001
+        Then the worker with ID "AAAA" is the project leader of the project with ID 0001
 
 # Scenario:  A project leader is not assigned to a project, as project does not exist
 #       Given the system contains a worker with name "Bob Hansen", ID "ABCD"

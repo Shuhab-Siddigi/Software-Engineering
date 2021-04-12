@@ -42,6 +42,9 @@ public class Project {
         this.projectLeader = worker;
     }
     
+    public Worker getProjectLeader(){
+        return projectLeader;
+    }
 
     
 }

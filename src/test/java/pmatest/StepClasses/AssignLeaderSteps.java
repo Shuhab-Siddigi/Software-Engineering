@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pma.ErrorMessageHolder;
 import pma.PMA;
@@ -42,9 +43,9 @@ public class AssignLeaderSteps {
         pma.assignLeader(worker, project);
     }
 
-    /*
-     * @When("the worker with ID {string} is assigned to project with ID {int}")
-     * public void theWorkerIsAssignedAsTheProjectLeader() {
-     */
+    @Then("the worker with ID {string} is the project leader of the project with ID {int}")
+    public void theWorkerWithIDIsTheProjectLeaderOfTheProjectWithID(String wID, Integer pID) {
+        assertEquals(pma.getWorkerWithID(wID), pma.getProjectWithID(pID).getProjectLeader());
+    }
 
 }
