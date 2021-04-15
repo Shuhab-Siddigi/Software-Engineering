@@ -5,26 +5,13 @@
 
 #     Scenario: A report is generated susccesfully
 
-#         Given the system contains a worker with name "Bob Hansen", ID "ABCD"
-#         And the system contains a project with name "Project1", number "030901"
-#         And the worker is project leader
+#         Given there is a project with title "Extreme Programming", ID 0001
+#         And the worker with ID "AAAA" is the project leader of the project with ID 0001
 #         When the project leader generates a report
-#         Then the report is succesfully generated
+#         Then the report for project with ID 0001 is succesfully generated
 
-#     Scenario: A report is not generated
-
-#         Given the system contains a worker with name "Bob Hansen", ID "ABCD"
-#         And the system contains a project with name "Project1", number "030901"
-#         And the worker is not the project leader
+#     Scenario: A worker tries to generate report
+#         Given there is a project with title "Extreme Programming", ID 0001
+#         And the worker with ID "AAAA" is not the project leader of the project with ID 0001
 #         When the worker generates a report
 #         Then the error message "You are not the project leader" is given
-
-
-#     Scenario: The report contains project leader name
-
-#         Given the system contains a worker with name "Bob Hansen", ID "ABCD"
-#         And the system contains a project with name "Project1", number "030901"
-#         And the worker is project leader
-#         When A report is generated succesfully
-#         Then the report is opened
-#         And the report contains project leader

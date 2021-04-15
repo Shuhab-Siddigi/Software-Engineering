@@ -1,5 +1,3 @@
-
-
 # Feature: Promote Worker create project leader•
 
 #     Scenario:  A Worker is promoted to project leader
