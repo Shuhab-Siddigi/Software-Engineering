@@ -1,4 +1,4 @@
-    # Feature assign worker to activity
+    # Feature Assign worker to activity
     # Description: Project leader assigns worker to activity
     # Actors: Project leader
 
