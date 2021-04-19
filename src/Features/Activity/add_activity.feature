@@ -7,9 +7,11 @@ Feature: Create new Activity
         Given the system contains a worker with ID "AAAA"
         And there is a project with title "Extreme Programming", ID 0001
         And the project exist in the system
-        And there exist an activity with title "Activity 1" ID 0001 
-     #    When the activity is added to the project
-     #    Then the project contains the activity
+        And there exist an activity with title "Activity 1", ID 0001, start date "2020-12-21", end date "2021-01-20"
+    #  And the activity is more than a week long (SKAL DETTE IMPLEMENTERES?)
+        When the activity is added to the project
+        Then the project with ID 0001 contains the activity with ID 0001
+        And the project start and end date is set to activity start and end date
 
 #     Scenario: A new Activity is added to project by customer
 #         Given the system contains a worker with ID "AAAA"

@@ -20,7 +20,7 @@ public class ProjectSteps {
     private ProjectHelper projectHelper;
     private Project project;
     private ErrorMessageHolder errorMessage;
-
+    
     public ProjectSteps(PMA pma, ProjectHelper projectHelper, ErrorMessageHolder errorMessage) {
         this.pma = pma;
         this.projectHelper = projectHelper;
@@ -58,7 +58,7 @@ public class ProjectSteps {
     public void theProjectExistInTheSystem() throws OperationNotAllowedException {
         project = projectHelper.getProject();
         pma.addProject(project);
-        assertTrue(pma.containsProjectWithID(project.getID()));
+        assertTrue(pma.containsProjectWithID(project.getInfo().getID()));
     }
 
     @Then("the error message {string} is given")
@@ -70,7 +70,4 @@ public class ProjectSteps {
     public void theProjectWithIDDoesNotExistInTheSystem(Integer ID) {
         assertFalse(pma.containsProjectWithID(ID));
     }
-
-
-
 }

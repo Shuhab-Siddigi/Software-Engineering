@@ -8,8 +8,8 @@ import java.util.stream.Stream;
 
 public class PMA {
 
-    private List<Worker> workers = new ArrayList<Worker>();
-    private List<Project> projects = new ArrayList<Project>();
+    private List<Worker> workers = new ArrayList<>();
+    private List<Project> projects = new ArrayList<>();
     private Database db = new Database();
     private boolean databaseAdded = false;
 
@@ -24,21 +24,35 @@ public class PMA {
     }
 
     public boolean containsProjectWithID(int ID) {
-        return projects.stream().anyMatch(p -> p.getID() == ID);
+        return projects.stream().anyMatch(p -> p.getInfo().getID() == ID);
     }
 
     public boolean containsProjectWithTitle(String Title) {
-        return projects.stream().anyMatch(p -> p.getTitle().contentEquals(Title));
+        return projects.stream().anyMatch(p -> p.getInfo().getTitle().contentEquals(Title));
+    }
+
+    public boolean projectContainsActivity(int projectID, int activityID) {
+        Project p = getProjectWithID(projectID);
+        if (p.getActivityFromID(activityID) != null){
+            return true;
+        } 
+        return false;
     }
 
     public void addProject(Project p) throws OperationNotAllowedException {
 
-        if (!containsProjectWithID(p.getID()) || !containsProjectWithTitle(p.getTitle())) {
+        if (!containsProjectWithID(p.getInfo().getID()) || !containsProjectWithTitle(p.getInfo().getTitle())) {
             projects.add(p);
         } else {
             throw new OperationNotAllowedException("Project ID is already used!");
         }
 
+    }
+
+    public void addActivityToProject(Project p, Activity a){
+        p.addActivity(a);
+        p.getInfo().setStartDate(a.getInfo().getStartDate());
+        p.getInfo().setEndDate(a.getInfo().getEndDate());
     }
 
     public void removeProject(Worker worker, Project project) throws OperationNotAllowedException {
@@ -57,7 +71,7 @@ public class PMA {
 
     public Project getProjectWithID(int ID) {
         return projects.stream()
-        .filter(u -> u.getID() == ID)
+        .filter(p -> p.getInfo().getID() == ID)
         .findAny()
         .orElse(null);
     }
@@ -83,9 +97,7 @@ public class PMA {
 
         project.setProjectLeader(worker);
 
-    }
-
-    
+    }    
 
 }
 

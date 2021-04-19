@@ -2,72 +2,22 @@ package pma;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Activity {
-    
-    private String title;
-    private int ID;
-    private Time expectedHours;
-    private Time hoursWorked;
-    private Date startDate;
-    private Date endDate;
-    private String descripton;
-    private Worker projectLeder;
-    
+        
+    private List<Worker> workers = new ArrayList<>();
+    private Info info;
 
-    public Activity(String title, int ID) {
-        this.title = title;
-        this.ID = ID;
+    public Activity(String title, int ID, Date startDate, Date endDate) {
+        this.info = new Info(title, ID, startDate, endDate);
     }
-    
-    public String getTitle() {
-        return title;
-    }
-    public Worker getProjectLeder() {
-        return projectLeder;
-    }
-    public void setProjectLeder(Worker projectLeder) {
-        this.projectLeder = projectLeder;
-    }
-    public String getDescripton() {
-        return descripton;
-    }
-    public void setDescripton(String descripton) {
-        this.descripton = descripton;
-    }
-    public Date getEndDate() {
-        return endDate;
-    }
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-    public Date getStartDate() {
-        return startDate;
-    }
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-    public Time getHoursWorked() {
-        return hoursWorked;
-    }
-    public void setHoursWorked(Time hoursWorked) {
-        this.hoursWorked = hoursWorked;
-    }
-    public Time getExpectedHours() {
-        return expectedHours;
-    }
-    public void setExpectedHours(Time expectedHours) {
-        this.expectedHours = expectedHours;
-    }
-    public int getID() {
-        return ID;
-    }
-    public void setID(int iD) {
-        this.ID = iD;
-    }
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    
 
+    public Info getInfo() {
+        return this.info;
+    }
+
+    //Add worker
+    //Remove worker
 }

@@ -1,44 +1,17 @@
 package pma;
 
-
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Project {
 
-
-    private String title;
-    private int ID;
+    private List<Activity> activities = new ArrayList<>();
     private Worker projectLeader;
-
+    private Info info;
     
-    public Project(String title, Integer ID) {
-        this.setTitle(title);
-        this.setID(ID);
-    }
-
-
-
-    public Project(Integer ID) {
-        this.setID(ID);
-    }
-
-
-    public String getTitle() {
-        return title;
-    }
-
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-
-    public int getID() {
-        return ID;
-    }
-
-
-    public void setID(int iD) {
-        this.ID = iD;
+    public Project(String title, int ID) {
+        this.info = new Info(title, ID);
     }
 
     public void setProjectLeader(Worker worker){
@@ -49,5 +22,22 @@ public class Project {
         return projectLeader;
     }
 
+    public Info getInfo() {
+        return this.info;
+    }
     
+    //Create activity
+    public void addActivity(Activity activity){
+        this.activities.add(activity);
+    }
+    //Remove activity
+
+    public Activity getActivityFromID (int ID){
+        for (Activity a : activities){
+            if (a.getInfo().getID() == ID){
+                return a;
+            } 
+        }
+        return null;
+    }
 }
