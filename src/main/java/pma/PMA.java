@@ -65,8 +65,8 @@ public class PMA {
         }
         // p.getInfo().setStartDate(aStart);
         
-        System.out.println("Activity " + a.getInfo().getID() + " enddate: " + a.getInfo().getEndDate());
-        System.out.println("Project enddate: " + p.getInfo().getEndDate());
+        //System.out.println("Activity " + a.getInfo().getID() + " enddate: " + a.getInfo().getEndDate());
+        //System.out.println("Project enddate: " + p.getInfo().getEndDate());
     }
 
     public void removeProject(Worker worker, Project project) throws OperationNotAllowedException {

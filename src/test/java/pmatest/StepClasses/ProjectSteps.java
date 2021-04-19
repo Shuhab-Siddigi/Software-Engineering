@@ -14,6 +14,7 @@ import pma.PMA;
 import pma.Project;
 import pma.Worker;
 import pmatest.HelperClasses.ProjectHelper;
+import pma.Activity;
 import pma.ErrorMessageHolder;
 
 public class ProjectSteps {
@@ -93,6 +94,30 @@ public class ProjectSteps {
         assertEquals(endDate, project.getInfo().getEndDate().toString());
         assertTrue(expectedHours == project.getInfo().getExpectedHours());
         assertTrue(workedHours == project.getInfo().getHoursWorked());
+    }
+
+    @Given("has activty {string}, ID {int}, start date {string}, end date {string}")
+    public void hasActivtyIDStartDateEndDate(String name, Integer id, String startDate, String endDate) {
+        Activity activity = new Activity(name, id, Date.valueOf(startDate), Date.valueOf(endDate));
+        try {
+            project.addActivity(activity);
+        } catch (OperationNotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+
+        assertTrue(project.getActivities().contains(activity));
+    }
+
+    @Given("activity with ID {int} contains worker {string} {string}, ID {string} and worker {string} {string}, ID {string}")
+    public void activityWithIDContainsWorkerIDAndWorkerID(Integer activityID, String firstName1, String lastName1, String id1, String firstName2, String lastName2, String id2) {
+        Worker worker1 = new Worker(firstName1, lastName1, id1);
+        Worker worker2 = new Worker(firstName2, lastName2, id2);
+
+        project.getActivityFromID(activityID).addWorker(worker1);
+        project.getActivityFromID(activityID).addWorker(worker2);
+
+        assertTrue(project.getActivityFromID(activityID).getWorkers().contains(worker1));
+        assertTrue(project.getActivityFromID(activityID).getWorkers().contains(worker2));
     }
 
     @When("the project leader generates a report")

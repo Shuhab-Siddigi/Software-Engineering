@@ -28,8 +28,15 @@ public class Project {
 
     public String generateReport() {
         String text = printRepport();
+        for (Activity a : activities) {
+            text += a.printActivity();
+        }
 
         return text;
+    }
+
+    public List<Activity> getActivities() {
+        return this.activities;
     }
 
     public String printRepport() {
@@ -38,16 +45,18 @@ public class Project {
             text += this.getInfo().getStartDate() + " ";
         if (this.getInfo().getEndDate() != null)
             text += this.getInfo().getEndDate() + " ";
-        if (this.getInfo().getExpectedHours() != 0)
+        if (this.getInfo().getExpectedHours() > 0) {
             text += this.getInfo().getExpectedHours() + " ";
-        if (this.getInfo().getHoursWorked() != 0)
             text += this.getInfo().getHoursWorked() + " ";
-
+        }
         text += "\n";
         text += this.projectLeader.getLastname() + ", " + this.projectLeader.getFirstname() + " "
                 + this.projectLeader.getID();
 
-        return text;
+        if (this.activities.size() >0)
+            text += "\n\n";
+        
+            return text;
     }
 
     private void checksDates(Activity activity) {
@@ -70,7 +79,7 @@ public class Project {
         if (getActivityFromID(activity.getInfo().getID()) != null) {
             throw new OperationNotAllowedException("Project already contains activity!");
         } else if (activity.getInfo().getEndDate().before(this.info.getStartDate())) {
-            System.out.println("Date check works");
+            //System.out.println("Date check works");
             throw new OperationNotAllowedException("Activity date is before project start!");
         }
 
