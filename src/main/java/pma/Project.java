@@ -1,17 +1,20 @@
 package pma;
 
 
+
 public class Project {
 
 
     private String title;
     private int ID;
     private Worker projectLeader;
+
     
     public Project(String title, Integer ID) {
         this.setTitle(title);
         this.setID(ID);
     }
+
 
 
     public Project(Integer ID) {
