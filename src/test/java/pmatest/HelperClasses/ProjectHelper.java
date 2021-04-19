@@ -24,7 +24,7 @@ public class ProjectHelper {
 
     
     private Project exampleProject() {
-        Project project = new Project("Extreme Programming");
+        Project project = new Project("Extreme Programming",0001);
         return project;
     }
 
