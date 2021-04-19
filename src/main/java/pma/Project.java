@@ -3,8 +3,6 @@ package pma;
 
 
 public class Project {
-
-
     private String title;
     private int ID;
     private Worker projectLeader;
@@ -49,5 +47,12 @@ public class Project {
         return projectLeader;
     }
 
+    public String generateReport(){
+        String text;
+        text = this.title + " " + this.ID + "\n";
+        text += this.projectLeader.getLastname() + ", " + this.projectLeader.getFirstname() + " " + this.projectLeader.getID();
+
+        return text;
+    }
     
 }
