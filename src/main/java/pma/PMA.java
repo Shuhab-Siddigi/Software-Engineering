@@ -1,5 +1,6 @@
 package pma;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -14,13 +15,13 @@ public class PMA {
     private boolean databaseAdded = false;
 
     public void addDatabase() {
-        if(databaseAdded == false) {
+        if (databaseAdded == false) {
 
             databaseAdded = true;
-        for (Worker w : db.getWorkers()) {
-            workers.add(w);
+            for (Worker w : db.getWorkers()) {
+                workers.add(w);
+            }
         }
-    }
     }
 
     public boolean containsProjectWithID(int ID) {
@@ -31,16 +32,23 @@ public class PMA {
         return projects.stream().anyMatch(p -> p.getInfo().getTitle().contentEquals(Title));
     }
 
+    public Project getProjectWithID(int ID) {
+        return projects.stream().filter(p -> p.getInfo().getID() == ID).findAny().orElse(null);
+    }
+
+    public Worker getWorkerWithID(String ID) {
+        return workers.stream().filter(u -> u.getID().equals(ID)).findAny().orElse(null);
+    }
+
     public boolean projectContainsActivity(int projectID, int activityID) {
         Project p = getProjectWithID(projectID);
-        if (p.getActivityFromID(activityID) != null){
+        if (p.getActivityFromID(activityID) != null) {
             return true;
-        } 
+        }
         return false;
     }
 
     public void addProject(Project p) throws OperationNotAllowedException {
-
         if (!containsProjectWithID(p.getInfo().getID()) || !containsProjectWithTitle(p.getInfo().getTitle())) {
             projects.add(p);
         } else {
@@ -49,16 +57,22 @@ public class PMA {
 
     }
 
-    public void addActivityToProject(Project p, Activity a){
+    public void addActivityToProject(Project p, Activity a) throws OperationNotAllowedException {
+
         p.addActivity(a);
-        p.getInfo().setStartDate(a.getInfo().getStartDate());
-        p.getInfo().setEndDate(a.getInfo().getEndDate());
+        if (a.getInfo().getEndDate().after(p.getInfo().getEndDate())) {
+            p.getInfo().setEndDate(a.getInfo().getEndDate());
+        }
+        // p.getInfo().setStartDate(aStart);
+        
+        System.out.println("Activity " + a.getInfo().getID() + " enddate: " + a.getInfo().getEndDate());
+        System.out.println("Project enddate: " + p.getInfo().getEndDate());
     }
 
     public void removeProject(Worker worker, Project project) throws OperationNotAllowedException {
         if (project == null) {
             throw new OperationNotAllowedException("Project does not exist!");
-        } else if (worker != project.getProjectLeader()){
+        } else if (worker != project.getProjectLeader()) {
             throw new OperationNotAllowedException("Only the project leader can remove project!");
         } else {
             projects.remove(project);
@@ -69,40 +83,18 @@ public class PMA {
         return workers.stream().anyMatch(w -> w.getID().contentEquals(ID));
     }
 
-    public Project getProjectWithID(int ID) {
-        return projects.stream()
-        .filter(p -> p.getInfo().getID() == ID)
-        .findAny()
-        .orElse(null);
-    }
-
-    public Worker getWorkerWithID(String ID) {
-        return workers.stream()
-				.filter(u -> u.getID().equals(ID))
-				.findAny()
-				.orElse(null);
-    }
-
     public void assignLeader(Worker worker, Project project) throws OperationNotAllowedException {
         if (project == null) {
             throw new OperationNotAllowedException("Project does not exist");
-        }
-        else if (worker == null) {
+        } else if (worker == null) {
             throw new OperationNotAllowedException("Worker does not exist in system");
 
-        }
-        else if(project.getProjectLeader() != null) {
+        } else if (project.getProjectLeader() != null) {
             throw new OperationNotAllowedException("A project leader already exist");
         }
 
         project.setProjectLeader(worker);
 
-    }    
+    }
 
 }
-
-// try {
-// getProjectWithID(project.getID());
-// } catch (Exception NullPointerException) {
-// th
-// }

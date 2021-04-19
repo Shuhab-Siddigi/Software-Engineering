@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.sql.Date;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -79,8 +81,6 @@ public class ProjectSteps {
     }
     
     
-    
-
     @When("the project leader generates a report")
     public void theProjectLeaderGeneratesAReport() {
         reportText = project.generateReport();
@@ -91,6 +91,11 @@ public class ProjectSteps {
     public void theTextIsGiven(String text) {
         assertEquals(text.replace("\\n", "\n"), reportText);
     }
-
+    
+    @Then("the project has a end date {string}")
+    public void theProjectHasAEndDate(String date) {
+        Date endDate = Date.valueOf(date);
+        assertEquals(project.getInfo().getEndDate(), endDate);
+    }
 
 }

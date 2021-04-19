@@ -1,5 +1,7 @@
 package pmatest.HelperClasses;
 
+import java.sql.Date;
+
 import pma.PMA;
 import pma.Project;
 
@@ -25,6 +27,7 @@ public class ProjectHelper {
     
     private Project exampleProject() {
         Project project = new Project("Extreme Programming",0001);
+        
         return project;
     }
 

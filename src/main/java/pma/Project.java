@@ -32,11 +32,35 @@ public class Project {
 
         return text;
     }
-    
-    //Create activity
-    public void addActivity(Activity activity){
+
+    private void checksDates(Activity activity){
+        if (this.info.getStartDate() != null ){
+            for (Activity a : activities){
+                if (activity.getInfo().getEndDate().after(a.getInfo().getEndDate())){
+                    this.info.setEndDate(activity.getInfo().getEndDate());
+                    }
+                }
+        } else {
+            this.info.setStartDate(activity.getInfo().getStartDate());
+            this.info.setEndDate(activity.getInfo().getEndDate());
+        }
+    }
+
+    public void addActivity(Activity activity) throws OperationNotAllowedException{
+        //Creates start and end date for project
+        checksDates(activity);
+
+        if (getActivityFromID(activity.getInfo().getID()) != null) {
+            throw new OperationNotAllowedException("Project already contains activity!");
+        } else if (activity.getInfo().getEndDate().before(this.info.getStartDate())) {
+            System.out.println("Date check works");
+            throw new OperationNotAllowedException("Activity date is before project start!");
+        }
+
+        // Adds activity
         this.activities.add(activity);
     }
+
     //Remove activity
 
     public Activity getActivityFromID (int ID){
