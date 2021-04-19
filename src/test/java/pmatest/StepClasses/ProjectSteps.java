@@ -76,22 +76,36 @@ public class ProjectSteps {
     }
 
     @Given("the worker with Name {string} {string} and ID {string} is assigned project leader of the project with ID {int}")
-    public void theWorkerWithNameAndIDIsAssignedProjectLeaderOfTheProjectWithID(String firstName, String lastName, String workerID, Integer projectID) {
+    public void theWorkerWithNameAndIDIsAssignedProjectLeaderOfTheProjectWithID(String firstName, String lastName,
+            String workerID, Integer projectID) {
         project.setProjectLeader(new Worker(firstName, lastName, workerID));
     }
-    
-    
+
+    @Given("with start date {string}, endDate {string}, expected hours {int} and worked hours {int}")
+    public void withStartDateEndDateExpectedHoursAndWorkedHours(String startDate, String endDate, Integer expectedHours,
+            Integer workedHours) {
+        project.getInfo().setStartDate(Date.valueOf(startDate));
+        project.getInfo().setEndDate(Date.valueOf(endDate));
+        project.getInfo().setExpectedHours(expectedHours);
+        project.getInfo().setHoursWorked(workedHours);
+
+        assertEquals(startDate, project.getInfo().getStartDate().toString());
+        assertEquals(endDate, project.getInfo().getEndDate().toString());
+        assertTrue(expectedHours == project.getInfo().getExpectedHours());
+        assertTrue(workedHours == project.getInfo().getHoursWorked());
+    }
+
     @When("the project leader generates a report")
     public void theProjectLeaderGeneratesAReport() {
         reportText = project.generateReport();
-        
+
     }
 
     @Then("the text is given {string}")
     public void theTextIsGiven(String text) {
         assertEquals(text.replace("\\n", "\n"), reportText);
     }
-    
+
     @Then("the project has a end date {string}")
     public void theProjectHasAEndDate(String date) {
         Date endDate = Date.valueOf(date);

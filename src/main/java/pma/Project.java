@@ -9,45 +9,62 @@ public class Project {
     private List<Activity> activities = new ArrayList<>();
     private Worker projectLeader;
     private Info info;
-    
+
     public Project(String title, int ID) {
         this.info = new Info(title, ID);
     }
 
-    public void setProjectLeader(Worker worker){
+    public void setProjectLeader(Worker worker) {
         this.projectLeader = worker;
     }
-    
-    public Worker getProjectLeader(){
+
+    public Worker getProjectLeader() {
         return projectLeader;
     }
 
     public Info getInfo() {
         return this.info;
     }
-    public String generateReport(){
-        String text;
-        text = this.getInfo().getTitle() + " " + this.getInfo().getID() + "\n";
-        text += this.projectLeader.getLastname() + ", " + this.projectLeader.getFirstname() + " " + this.projectLeader.getID();
+
+    public String generateReport() {
+        String text = printRepport();
 
         return text;
     }
 
-    private void checksDates(Activity activity){
-        if (this.info.getStartDate() != null ){
-            for (Activity a : activities){
-                if (activity.getInfo().getEndDate().after(a.getInfo().getEndDate())){
+    public String printRepport() {
+        String text = this.getInfo().getTitle() + " " + this.getInfo().getID() + " ";
+        if (this.getInfo().getStartDate() != null)
+            text += this.getInfo().getStartDate() + " ";
+        if (this.getInfo().getEndDate() != null)
+            text += this.getInfo().getEndDate() + " ";
+        if (this.getInfo().getExpectedHours() != 0)
+            text += this.getInfo().getExpectedHours() + " ";
+        if (this.getInfo().getHoursWorked() != 0)
+            text += this.getInfo().getHoursWorked() + " ";
+
+        text += "\n";
+        text += this.projectLeader.getLastname() + ", " + this.projectLeader.getFirstname() + " "
+                + this.projectLeader.getID();
+
+        return text;
+    }
+
+    private void checksDates(Activity activity) {
+        if (this.info.getStartDate() != null) {
+            for (Activity a : activities) {
+                if (activity.getInfo().getEndDate().after(a.getInfo().getEndDate())) {
                     this.info.setEndDate(activity.getInfo().getEndDate());
-                    }
                 }
+            }
         } else {
             this.info.setStartDate(activity.getInfo().getStartDate());
             this.info.setEndDate(activity.getInfo().getEndDate());
         }
     }
 
-    public void addActivity(Activity activity) throws OperationNotAllowedException{
-        //Creates start and end date for project
+    public void addActivity(Activity activity) throws OperationNotAllowedException {
+        // Creates start and end date for project
         checksDates(activity);
 
         if (getActivityFromID(activity.getInfo().getID()) != null) {
@@ -61,13 +78,13 @@ public class Project {
         this.activities.add(activity);
     }
 
-    //Remove activity
+    // Remove activity
 
-    public Activity getActivityFromID (int ID){
-        for (Activity a : activities){
-            if (a.getInfo().getID() == ID){
+    public Activity getActivityFromID(int ID) {
+        for (Activity a : activities) {
+            if (a.getInfo().getID() == ID) {
                 return a;
-            } 
+            }
         }
         return null;
     }
