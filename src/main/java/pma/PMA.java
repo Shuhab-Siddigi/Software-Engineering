@@ -50,14 +50,6 @@ public class PMA {
         .filter(u -> u.getID() == ID)
         .findAny()
         .orElse(null);
-
-       /* for (Project project : projects) {
-            if (ID == project.getID()) {
-                return project;
-            }
-        }
-        return null;
-        */
     }
 
     public Worker getWorkerWithID(String ID) {
@@ -65,14 +57,6 @@ public class PMA {
 				.filter(u -> u.getID().equals(ID))
 				.findAny()
 				.orElse(null);
-
-        /*for (Worker worker : workers) {
-            if (ID == worker.getID()) {
-                return worker;
-            }
-        }
-        return null;
-        */
     }
 
     public void assignLeader(Worker worker, Project project) throws OperationNotAllowedException {

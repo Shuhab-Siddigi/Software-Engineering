@@ -6,7 +6,7 @@ import java.sql.Time;
 public class Activity {
     
     private String title;
-    private String ID;
+    private int ID;
     private Time expectedHours;
     private Time hoursWorked;
     private Date startDate;
@@ -14,6 +14,11 @@ public class Activity {
     private String descripton;
     private Worker projectLeder;
     
+
+    public Activity(String title, int ID) {
+        this.title = title;
+        this.ID = ID;
+    }
     
     public String getTitle() {
         return title;
@@ -54,10 +59,10 @@ public class Activity {
     public void setExpectedHours(Time expectedHours) {
         this.expectedHours = expectedHours;
     }
-    public String getID() {
+    public int getID() {
         return ID;
     }
-    public void setID(String iD) {
+    public void setID(int iD) {
         this.ID = iD;
     }
     public void setTitle(String title) {

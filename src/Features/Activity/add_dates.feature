@@ -1,15 +1,17 @@
-Feature: Create new Activity
+# Feature: Create new Activity
 
-    Description: A project leader creates an activity in a project
-    Actors: Project leader
+#     Description: A project leader creates an activity in a project
+#     Actors: Project leader
 
-    Scenario: A new Activity is added to project by projectleader
-        Given the system contains a worker with ID "AAAA"
-        And there is a project with title "Extreme Programming", ID 0001
-        And the project exist in the system
-        And there exist an activity with title "Activity 1" ID 0001 
-     #    When the activity is added to the project
-     #    Then the project contains the activity
+#     Scenario: A new Activity is added to project by projectleader
+#         Given the system contains a worker with ID "AAAA"
+#         And there is a project with title "Extreme Programming", ID 0001
+#         And the project exist in the system
+#        And the project has a start date "21 December 2020", end date "1 January 2021"
+#          And there exist an activity with number 0001 in the project with ID 0001
+#        And the activity has a start date "21 December 2020", end date "1 January 2021"
+#          When the activity is added to the project
+#          Then the project contains the activity
 
 #     Scenario: A new Activity is added to project by customer
 #         Given the system contains a worker with ID "AAAA"
