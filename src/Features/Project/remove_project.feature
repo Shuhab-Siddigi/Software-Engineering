@@ -1,22 +1,28 @@
-# Feature: A project is removed
-# Description: Project leader can remove project
-# Actors: Worker/Project leader
+Feature: A project is removed
+Description: Project leader can remove project
+Actors: Worker/Project leader
 
 
-#     Scenario: A project is removed from system by worker
-#         Given the system contains a worker with name "Bob Hansen", ID "ABCD"
-#         And the system contains a project with name "Project1", number "030901"
-#         When the worker removes the project
-#         Then the project does not exist in the system
+    Scenario: A project is removed from system by project leader
+        Given the system contains a worker with ID "AAAA"
+        And there is a project with title "Extreme Programming", ID 0001
+        And the project exist in the system
+        And the worker with ID "AAAA" is the project leader of project with ID 0001
+        When the worker with ID "AAAA" removes the project with ID 0001
+        Then the project with ID 0001 does not exist in the system
 
-#     Scenario: Removing a project from the system fails when project does not exist
-#         Given the system contains a worker with name "Bob Hansen", ID "ABCD"
-#         When the worker remove the project with number "030901"
-#         Then the error "Project does not exist!" is given
+    Scenario: Removing a project from the system fails when project does not exist
+        Given the system contains a worker with ID "AAAA"
+        And there is a project with title "Extreme Programming", ID 0001
+        And project with title "Extreme Programming", ID 0001 does not exist in the system
+        When the worker with ID "AAAA" removes the project with ID 0001
+        Then the error message "Project does not exist!" is given
 
-#     Scenario: Worker ties to remove project with project leader
-#         Given the system contains a project with number "030901"
-#         And that name "Jens Jensen", ID "JeJe" is the project leader
-#         And the system contains a worker with name "Bob Hansen", ID "ABCD"
-#         When the worker remove the project with number "030901"
-#         Then the error "Only the project leader can remove project" is given
+    Scenario: Worker tries to remove project
+        Given there is a project with title "Extreme Programming", ID 0001
+        And the project exist in the system
+        And the system contains a worker with ID "AAAA"
+        And the worker with ID "AAAA" is the project leader of project with ID 0001
+        And the system contains a worker with ID "AAAB"
+        When the worker with ID "AAAB" removes the project with ID 0001
+        Then the error message "Only the project leader can remove project!" is given

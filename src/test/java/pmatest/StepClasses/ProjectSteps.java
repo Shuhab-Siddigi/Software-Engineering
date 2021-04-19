@@ -66,5 +66,11 @@ public class ProjectSteps {
         assertEquals(errorMessage, this.errorMessage.getErrorMessage());
     }
 
+    @Then("the project with ID {int} does not exist in the system")
+    public void theProjectWithIDDoesNotExistInTheSystem(Integer ID) {
+        assertFalse(pma.containsProjectWithID(ID));
+    }
+
+
 
 }

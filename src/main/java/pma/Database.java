@@ -85,6 +85,7 @@ public class Database {
          workers.add(new Worker("Angela", " Anderson", "AUAA"));
          workers.add(new Worker("Aiden", "Faulkner", "AVAA"));
          workers.add(new Worker("Maisy", " Hudson", "AWAA")); // 72
+         workers.add(new Worker("System", "Huset", "X"));
 
         return workers;
     }

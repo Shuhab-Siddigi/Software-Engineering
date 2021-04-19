@@ -2,40 +2,23 @@
 #     Description: A project is removed from the system
 #     Actors: Worker or Project leader
 
-#     Scenario: An activity is removed from project sucessfully 
+#     Scenario: An activity is removed from project sucessfully
+#         Given there is a project with title "Extreme Programming", ID 0001
+#         And the worker with ID "AAAA" is the project leader of the project with ID 0001
+#         And there exist an activity with number 0001 in the project with ID 0001
+#         When the activity is removed
+#         Then the activity with id 0001 is not contained in project
 
-#         Given a project with project number "030901" exists in the system
-#         And a project leader with name "Jens Jensen" and ID "EFGH" is assigned to the project
-#         And the project contains an activity with Name "activity1" and a start time of "21 December"
-#         When activity named "activity1" is removed
-#         Then the activity is not contained in project
+#     Scenario: Cannot remove an activity that does not exist
+#         Given there is a project with title "Extreme Programming", ID 0001
+#         And the worker with ID "AAAA" is the project leader of the project with ID 0001
+#         And there does not exist an activity with number 0001 in the project with ID 0001
+#         When the activity is removed
+#         Then the error text "Activity is not in project" is given
 
-
-#     Scenario: The Activity does not exist 
-
-#         Given a project with name "Project1", and project number "030901" exists in the system
-#         And a project leader with name "Jens Jensen" and ID "EFGH" is assigned to the project
-#         And The project has an activity with Name "activity1" and a start time of "21 December"
-#         When activity named "activity2" is removed
-#         Then the error text "Activity not in project" is given
-
-#     Scenario: worker ties to remove activity
-
-
-#     Scenario: An activit is removed rom project
-#         Given the system contains a worker with name "Bob Hansen", ID "ABCD"
-#         And the system contains a project with name "Project1", number "030901"
-#         And the project has a start date "21 December 2020", end date "1 January 2021"
-#         And the activity with name "activity1", number "01"
-#         And the activity has a start date "22 December 2020", end date "30 December 2020"
-#         When the activity is added to the project
-#         Then the project contains the activity
-#         When the activity is removed from the project
-#         Then the project does not contrain the activity
-
-#     Scenario: An activit is removed rom project
-#         Given the system contains a worker with name "Bob Hansen", ID "ABCD"
-#         And the system contains a project with name "Project1", number "030901"
-#         And the project has a start date "21 December 2020", end date "1 January 2021"
-#         When the activity is removed from the project
-#         Then the error text "Activity does not excist" is given
+#     Scenario: Worker tries to remove activity
+#         Given there is a project with title "Extreme Programming", ID 0001
+#         And the worker with ID "AAAA" is not the project leader of the project with ID 0001
+#         And there exist an activity with number 0001 in the project with ID 0001
+#         When the activity is removed
+#         Then the error text "Worker cannot remove activities" is given
