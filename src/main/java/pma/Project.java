@@ -25,6 +25,13 @@ public class Project {
     public Info getInfo() {
         return this.info;
     }
+    public String generateReport(){
+        String text;
+        text = this.getInfo().getTitle() + " " + this.getInfo().getID() + "\n";
+        text += this.projectLeader.getLastname() + ", " + this.projectLeader.getFirstname() + " " + this.projectLeader.getID();
+
+        return text;
+    }
     
     //Create activity
     public void addActivity(Activity activity){

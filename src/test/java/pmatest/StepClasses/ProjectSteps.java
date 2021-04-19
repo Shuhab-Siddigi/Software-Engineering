@@ -10,6 +10,7 @@ import io.cucumber.java.en.When;
 import pma.OperationNotAllowedException;
 import pma.PMA;
 import pma.Project;
+import pma.Worker;
 import pmatest.HelperClasses.ProjectHelper;
 import pma.ErrorMessageHolder;
 
@@ -20,7 +21,8 @@ public class ProjectSteps {
     private ProjectHelper projectHelper;
     private Project project;
     private ErrorMessageHolder errorMessage;
-    
+    private String reportText;
+
     public ProjectSteps(PMA pma, ProjectHelper projectHelper, ErrorMessageHolder errorMessage) {
         this.pma = pma;
         this.projectHelper = projectHelper;
@@ -70,4 +72,25 @@ public class ProjectSteps {
     public void theProjectWithIDDoesNotExistInTheSystem(Integer ID) {
         assertFalse(pma.containsProjectWithID(ID));
     }
+
+    @Given("the worker with Name {string} {string} and ID {string} is assigned project leader of the project with ID {int}")
+    public void theWorkerWithNameAndIDIsAssignedProjectLeaderOfTheProjectWithID(String firstName, String lastName, String workerID, Integer projectID) {
+        project.setProjectLeader(new Worker(firstName, lastName, workerID));
+    }
+    
+    
+    
+
+    @When("the project leader generates a report")
+    public void theProjectLeaderGeneratesAReport() {
+        reportText = project.generateReport();
+        
+    }
+
+    @Then("the text is given {string}")
+    public void theTextIsGiven(String text) {
+        assertEquals(text.replace("\\n", "\n"), reportText);
+    }
+
+
 }
