@@ -41,6 +41,16 @@ public class PMA {
 
     }
 
+    public void removeProject(Worker worker, Project project) throws OperationNotAllowedException {
+        if (project == null) {
+            throw new OperationNotAllowedException("Project does not exist!");
+        } else if (worker != project.getProjectLeader()){
+            throw new OperationNotAllowedException("Only the project leader can remove project!");
+        } else {
+            projects.remove(project);
+        }
+    }
+
     public boolean containsWorkerWithID(String ID) {
         return workers.stream().anyMatch(w -> w.getID().contentEquals(ID));
     }
@@ -74,6 +84,8 @@ public class PMA {
         project.setProjectLeader(worker);
 
     }
+
+    
 
 }
 
