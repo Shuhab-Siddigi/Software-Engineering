@@ -1,16 +1,19 @@
 package pmatest.StepClasses;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import pma.OperationNotAllowedException;
 import pma.ErrorMessageHolder;
 import pma.PMA;
 import pma.Project;
 import pma.Worker;
-import pmatest.HelperClasses.WorkerHelper;
+//import pmatest.HelperClasses.WorkerHelper;
 
 public class AssignLeaderSteps {
 
@@ -37,10 +40,18 @@ public class AssignLeaderSteps {
 
     @When("the worker with ID {string} is assigned to the project with ID {int}")
     public void theWorkerWithIDIsAssignedToTheProjectWithID(String wID, Integer pID) {
+
+        try {
+            worker = pma.getWorkerWithID(wID);
+            project = pma.getProjectWithID(pID);
+            pma.assignLeader(worker, project);
+        } catch (OperationNotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+
+
         // Write code here that turns the phrase above into concrete actions
-        worker = pma.getWorkerWithID(wID);
-        project = pma.getProjectWithID(pID);
-        pma.assignLeader(worker, project);
+      
     }
 
     @Then("the worker with ID {string} is the project leader of the project with ID {int}")
@@ -48,4 +59,11 @@ public class AssignLeaderSteps {
         assertEquals(pma.getWorkerWithID(wID), pma.getProjectWithID(pID).getProjectLeader());
     }
 
+    @Given("the system doesn't contains a worker with ID {string}")
+    public void theSystemDoesnTContainsAWorkerWithID(String wID) {
+        assertEquals(pma.getWorkerWithID(wID), null);
+      
+    }
+
+   
 }

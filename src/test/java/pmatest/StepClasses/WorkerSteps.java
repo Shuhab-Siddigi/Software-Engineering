@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import io.cucumber.java.en.Given;
 import pma.PMA;
 import pma.Worker;
-import pmatest.HelperClasses.WorkerHelper;
+//import pmatest.HelperClasses.WorkerHelper;
 
 public class WorkerSteps {
 

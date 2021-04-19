@@ -4,18 +4,23 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class PMA {
 
     private List<Worker> workers = new ArrayList<Worker>();
     private List<Project> projects = new ArrayList<Project>();
     private Database db = new Database();
+    private boolean databaseAdded = false;
 
     public void addDatabase() {
+        if(databaseAdded == false) {
 
+            databaseAdded = true;
         for (Worker w : db.getWorkers()) {
             workers.add(w);
         }
+    }
     }
 
     public boolean containsProjectWithID(int ID) {
@@ -41,25 +46,55 @@ public class PMA {
     }
 
     public Project getProjectWithID(int ID) {
-        for (Project project : projects) {
+        return projects.stream()
+        .filter(u -> u.getID() == ID)
+        .findAny()
+        .orElse(null);
+
+       /* for (Project project : projects) {
             if (ID == project.getID()) {
                 return project;
             }
         }
         return null;
+        */
     }
 
     public Worker getWorkerWithID(String ID) {
-        for (Worker worker : workers) {
+        return workers.stream()
+				.filter(u -> u.getID().equals(ID))
+				.findAny()
+				.orElse(null);
+
+        /*for (Worker worker : workers) {
             if (ID == worker.getID()) {
                 return worker;
             }
         }
         return null;
+        */
     }
 
-    public void assignLeader(Worker worker, Project project) {
+    public void assignLeader(Worker worker, Project project) throws OperationNotAllowedException {
+        if (project == null) {
+            throw new OperationNotAllowedException("Project does not exist");
+        }
+        else if (worker == null) {
+            throw new OperationNotAllowedException("Worker does not exist in system");
+
+        }
+        else if(project.getProjectLeader() != null) {
+            throw new OperationNotAllowedException("A project leader already exist");
+        }
+
         project.setProjectLeader(worker);
+
     }
 
 }
+
+// try {
+// getProjectWithID(project.getID());
+// } catch (Exception NullPointerException) {
+// th
+// }
