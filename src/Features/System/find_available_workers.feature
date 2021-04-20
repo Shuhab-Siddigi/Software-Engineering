@@ -27,10 +27,30 @@ Feature: Finding available workers
         When the project leader search for avaiable workers using last name "Bentsen"
         Then the system returns a worker with matching last name
 
-     Scenario: Unable to find avaiable worker by worker last name
+    Scenario: Unable to find avaiable worker by worker last name
         Given there is a list of workers, which contain worker with Name "Bent" "Bentsen" ID "BENT"
         When the project leader search for avaiable workers using last name "Tobiasen"
         Then the error "There are no workers by that Last Name" is given
+
+    Scenario: Worker is avaliable by checking activity before
+        Given an activity exist with start date "2020-05-01" and end date "2020-05-31"
+        When checked if activity is booked with date "2020-04-01" and end date "2020-04-30"
+        Then the activity fits in plan
+
+    Scenario: Worker is avaliable by checking activity after
+        Given an activity exist with start date "2020-05-01" and end date "2020-05-31"
+        When checked if activity is booked with date "2020-06-01" and end date "2020-06-30"
+        Then the activity fits in plan
+
+    Scenario: Worker is not avaliable by checking activity with start in middel
+        Given an activity exist with start date "2020-05-01" and end date "2020-05-31"
+        When checked if activity is booked with date "2020-05-15" and end date "2020-06-30"
+        Then the activity does not fit in plan
+
+    Scenario: Worker is not avaliable by checking activity with end in middel
+        Given an activity exist with start date "2020-05-01" and end date "2020-05-31"
+        When checked if activity is booked with date "2020-04-01" and end date "2020-05-15"
+        Then the activity does not fit in plan
 
 ################# er ikke sikker på de giver mening #################
 #    Scenario: Finding avaiable workers in list by worker ID

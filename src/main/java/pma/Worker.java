@@ -1,10 +1,14 @@
 package pma;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Worker {
 
     private String firstname;
     private String lastname;
     private String ID;
+    private List<Activity> Activities = new ArrayList<>();
 
     public Worker(String firstname, String lastname, String ID) {
         this.firstname = firstname;
@@ -34,6 +38,10 @@ public class Worker {
 
     public String getID() {
         return ID;
+    }
+
+    public List<Activity> getActivities(){
+        return this.Activities;
     }
     
 }

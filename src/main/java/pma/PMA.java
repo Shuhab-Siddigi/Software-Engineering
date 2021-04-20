@@ -135,4 +135,23 @@ public class PMA {
         }
         throw new OperationNotAllowedException("There are no workers by that Last Name");
     }
+
+    public List<Worker> findAvaliableWorkersByDates(List<Worker> list, Date startDate, Date endDate){
+        List<Worker> tempWorkers = new ArrayList<>();
+        boolean flag = true;
+        for (Worker w : list) {
+            for (Activity a : w.getActivities()) {
+                if(!a.isFree(startDate, endDate)){
+                    flag = false;
+                    break;
+                }
+                    
+            }
+            if(!flag){
+                tempWorkers.add(w);
+            }
+            flag = true;
+        }
+        return tempWorkers;
+    }
 }

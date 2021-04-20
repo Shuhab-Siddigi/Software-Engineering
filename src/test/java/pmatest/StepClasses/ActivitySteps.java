@@ -25,6 +25,7 @@ public class ActivitySteps {
     private ProjectHelper projectHelper;
     private ActivityHelper activityHelper;
     private Activity activity;
+    private boolean result;
 
     public ActivitySteps(PMA pma, ProjectHelper projectHelper, ErrorMessageHolder errorMessage, ActivityHelper activityHelper) {
         this.pma = pma;
@@ -106,7 +107,29 @@ public class ActivitySteps {
         assertTrue(pma.projectContainsActivity(p.getInfo().getID(), a2.getInfo().getID()));
     }
     
-
+    @Given("an activity exist with start date {string} and end date {string}")
+    public void anActivityExistWithStartDateAndEndDate(String startDate, String endDate) {
+        Date start = Date.valueOf(startDate);
+        Date end = Date.valueOf(endDate);
+        activity = new Activity("title", 00, start, end);
+    }
     
+    @When("checked if activity is booked with date {string} and end date {string}")
+    public void checkedIfActivityIsBookedWithDateAndEndDate(String startDate, String endDate) {
+        Date start = Date.valueOf(startDate);
+        Date end = Date.valueOf(endDate);
+        result = activity.isFree(start, end);
+    }
+    
+    @Then("the activity fits in plan")
+    public void theActivityFitsInPlan() {
+        assertTrue(result);
+    }
+    
+    @Then("the activity does not fit in plan")
+    public void theActivityDoesNotFitInPlan() {
+        assertFalse(result);
+    }
+
     
 }
