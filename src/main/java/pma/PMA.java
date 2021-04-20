@@ -48,6 +48,10 @@ public class PMA {
         return false;
     }
 
+    public List<Worker> getWorkers() {
+        return this.workers;
+    }
+
     public void addProject(Project p) throws OperationNotAllowedException {
         if (!containsProjectWithID(p.getInfo().getID()) || !containsProjectWithTitle(p.getInfo().getTitle())) {
             projects.add(p);
@@ -64,9 +68,10 @@ public class PMA {
             p.getInfo().setEndDate(a.getInfo().getEndDate());
         }
         // p.getInfo().setStartDate(aStart);
-        
-        //System.out.println("Activity " + a.getInfo().getID() + " enddate: " + a.getInfo().getEndDate());
-        //System.out.println("Project enddate: " + p.getInfo().getEndDate());
+
+        // System.out.println("Activity " + a.getInfo().getID() + " enddate: " +
+        // a.getInfo().getEndDate());
+        // System.out.println("Project enddate: " + p.getInfo().getEndDate());
     }
 
     public void removeProject(Worker worker, Project project) throws OperationNotAllowedException {
@@ -97,4 +102,37 @@ public class PMA {
 
     }
 
+    public Worker findWorkerByID(List<Worker> list, String id) throws OperationNotAllowedException {
+        id = id.toLowerCase();
+        String tempID;
+        for (Worker w : list) {
+            tempID = w.getID().toLowerCase();
+            if (tempID.equals(id))
+                return w;
+        }
+        throw new OperationNotAllowedException("There are no workers by that ID");
+    }
+
+
+    public Worker findWorkerByFirstName(List<Worker> list, String firstName) throws OperationNotAllowedException {
+        firstName = firstName.toLowerCase();
+        String tempID;
+        for (Worker w : list) {
+            tempID = w.getFirstname().toLowerCase();
+            if (tempID.equals(firstName))
+                return w;
+        }
+        throw new OperationNotAllowedException("There are no workers by that First Name");
+    }
+
+    public Worker findWorkerByLastName(List<Worker> list, String lastName) throws OperationNotAllowedException {
+        lastName = lastName.toLowerCase();
+        String tempID;
+        for (Worker w : list) {
+            tempID = w.getLastname().toLowerCase();
+            if (tempID.equals(lastName))
+                return w;
+        }
+        throw new OperationNotAllowedException("There are no workers by that Last Name");
+    }
 }

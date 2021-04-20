@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.sql.Date;
+import java.util.Collections;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -25,6 +26,8 @@ public class ProjectSteps {
     private Project project;
     private ErrorMessageHolder errorMessage;
     private String reportText;
+    private Worker origWorker;
+    private Worker testWorker;
 
     public ProjectSteps(PMA pma, ProjectHelper projectHelper, ErrorMessageHolder errorMessage) {
         this.pma = pma;
@@ -109,7 +112,8 @@ public class ProjectSteps {
     }
 
     @Given("activity with ID {int} contains worker {string} {string}, ID {string} and worker {string} {string}, ID {string}")
-    public void activityWithIDContainsWorkerIDAndWorkerID(Integer activityID, String firstName1, String lastName1, String id1, String firstName2, String lastName2, String id2) {
+    public void activityWithIDContainsWorkerIDAndWorkerID(Integer activityID, String firstName1, String lastName1,
+            String id1, String firstName2, String lastName2, String id2) {
         Worker worker1 = new Worker(firstName1, lastName1, id1);
         Worker worker2 = new Worker(firstName2, lastName2, id2);
 
@@ -136,5 +140,60 @@ public class ProjectSteps {
         Date endDate = Date.valueOf(date);
         assertEquals(project.getInfo().getEndDate(), endDate);
     }
+
+    @Given("there is a list of workers, which contain worker with Name {string} {string} ID {string}")
+    public void thereIsAListOfWorkersWhichContainWorkerWithNameID(String firstName, String lastName, String id) {
+        origWorker = new Worker(firstName, lastName, id);
+        pma.addDatabase();
+        pma.getWorkers().add(origWorker);
+        Collections.shuffle(pma.getWorkers());
+
+        assertTrue(pma.getWorkers().contains(origWorker));
+    }
+
+    @When("the project leader search for avaiable workers using ID {string}")
+    public void theProjectLeaderSearchForAvaiableWorkersUsingID(String id) {
+        try {
+            testWorker = pma.findWorkerByID(pma.getWorkers(), id);
+        } catch (OperationNotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+
+    }
+
+    @Then("the system returns a worker with matching id")
+    public void theSystemReturnsAWorkerWithMatchingId() {
+        assertEquals(origWorker.getID(), testWorker.getID());
+    }
+
+    @When("the project leader search for avaiable workers using first name {string}")
+    public void theProjectLeaderSearchForAvaiableWorkersUsingFirstName(String firstName) {
+        try {
+            testWorker = pma.findWorkerByFirstName(pma.getWorkers(), firstName);
+        } catch (OperationNotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+
+    @Then("the system returns a worker with matching first name")
+    public void theSystemReturnsAWorkerWithMatchingFirstName() {
+        assertEquals(origWorker.getFirstname(), testWorker.getFirstname());
+    }
+
+    @When("the project leader search for avaiable workers using last name {string}")
+    public void theProjectLeaderSearchForAvaiableWorkersUsingLastName(String lastName) {
+        try {
+            testWorker = pma.findWorkerByLastName(pma.getWorkers(), lastName);
+        } catch (OperationNotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+    
+    @Then("the system returns a worker with matching last name")
+    public void theSystemReturnsAWorkerWithMatchingLastName() {
+        assertEquals(origWorker.getLastname(), testWorker.getLastname());
+    }
+    
+    
 
 }
