@@ -13,6 +13,8 @@ public class Main {
     Window window = new Window();
     PMA pma = new PMA();
     pma.addDatabase();
+
+    
     EventQueue.invokeLater(new Runnable() {
       public void run() {
         try {
