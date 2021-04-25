@@ -24,9 +24,6 @@ public class PMA {
         }
     }
 
-    public void addWorker(Worker worker){
-        workers.add(worker);
-    }
 
     public boolean containsProjectWithID(int ID) {
         return projects.stream().anyMatch(p -> p.getInfo().getID() == ID);
@@ -43,9 +40,12 @@ public class PMA {
     public Worker getWorkerWithID(String ID) {
         return workers.stream().filter(u -> u.getID().equals(ID)).findAny().orElse(null);
     }
-
     public Activity getActivityWithID(Project project, int activityID){
         return project.getActivityFromID(activityID);
+    }
+
+    public void addWorker(Worker worker){
+        workers.add(worker);
     }
 
     public boolean projectContainsActivity(int projectID, int activityID) {
