@@ -214,4 +214,10 @@ public class ActivitySteps {
         throw new io.cucumber.java.PendingException();
     }
 
+    @Given("the activity with ID {int} is not contained in the project")
+    public void theActivityWithIDIsNotContainedInTheProject(Integer aID) {
+        theActivityWithIdIsNotContainedInProject(aID);
+}
+
+
 }
