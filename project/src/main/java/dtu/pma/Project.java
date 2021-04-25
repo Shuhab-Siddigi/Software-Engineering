@@ -106,4 +106,28 @@ public class Project {
         } 
             activities.remove(activity);
     }
+
+    public void addWorkerToActivity(Activity activity, Worker worker, Worker projectLeader) throws OperationNotAllowedException {
+        if(activity == null)
+        {
+            throw new OperationNotAllowedException("Activity does not exist!");
+        } else if (worker == null){
+            throw new OperationNotAllowedException("Worker does not exist in system");
+        } else if (projectLeader != this.projectLeader) {
+            throw new OperationNotAllowedException("You are not the project leader for this project!");
+        }
+        activity.addWorker(worker);
+    }
+
+    public void removeWorkerFromActivity(Activity activity, Worker worker, Worker projectLeader) throws OperationNotAllowedException {
+        if(activity == null)
+        {
+            throw new OperationNotAllowedException("Activity does not exist!");
+        } else if (worker == null){
+            throw new OperationNotAllowedException("Worker does not exist in system");
+        } else if (projectLeader != this.projectLeader) {
+            throw new OperationNotAllowedException("You are not the project leader for this project!");
+        }
+        activity.removeWorker(worker);
+    }
 }

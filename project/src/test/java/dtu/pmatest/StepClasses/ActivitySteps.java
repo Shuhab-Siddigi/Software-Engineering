@@ -17,6 +17,7 @@ import dtu.pma.Project;
 import dtu.pma.Worker;
 import dtu.pmatest.HelperClasses.ActivityHelper;
 import dtu.pmatest.HelperClasses.ProjectHelper;
+import dtu.pmatest.HelperClasses.WorkerHelper;
 import dtu.pma.Activity;
 import dtu.pma.ErrorMessageHolder;
 
@@ -25,6 +26,7 @@ public class ActivitySteps {
     private ErrorMessageHolder errorMessage;
     private ProjectHelper projectHelper;
     private ActivityHelper activityHelper;
+    private WorkerHelper workerHelper;
     private Activity activity;
     private Project project;
     private Worker worker;
@@ -159,7 +161,7 @@ public class ActivitySteps {
         projectLeader = project.getProjectLeader();
 
         try {
-            pma.addWorkerToActivity(project, activity, worker, projectLeader);
+            project.addWorkerToActivity(activity, worker, projectLeader);
         } catch (OperationNotAllowedException e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
@@ -177,7 +179,7 @@ public class ActivitySteps {
         Worker projectLeader = pma.getWorkerWithID(workerID);
         Worker worker = pma.getWorkerWithID(workerID2);
         try {
-            pma.addWorkerToActivity(project, activity, worker, projectLeader);
+            project.addWorkerToActivity(activity, worker, projectLeader);
         } catch (OperationNotAllowedException e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
@@ -189,9 +191,9 @@ public class ActivitySteps {
     }
 
     @When("the project leader removes the worker from the activity")
-    public void theProjectLeaderRemovesTheWorkerFromTheActivity() {
+    public void theProjectLeaderRemovesTheWorkerFromTheActivity() throws OperationNotAllowedException {
         try {
-            pma.removeWorkerFromActivity(project, activity, worker, projectLeader);
+            project.removeWorkerFromActivity(activity, worker, projectLeader);
         } catch (OperationNotAllowedException e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
@@ -209,9 +211,55 @@ public class ActivitySteps {
     }
 
     @When("the worker removes a worker from the activity")
-    public void theWorkerRemovesAWorkerFromTheActivity() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void theWorkerRemovesAWorkerFromTheActivity() throws OperationNotAllowedException {
+        try {
+            project.removeWorkerFromActivity(activity, worker, worker);
+        } catch (OperationNotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }  
+    }
+
+    @Given("a project and an activity exist in the system")
+    public void theProjectAndAnActivityExistInTheSystem() throws OperationNotAllowedException {
+        project = projectHelper.getProject();
+        activity = activityHelper.getActivity();
+        try {
+            project.addActivity(activity);
+        } catch (OperationNotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }  
+    }
+
+
+    @Given("a worker exist in the system")
+    public void aWorkerExistInTheSystem() {
+        pma.addDatabase();
+        worker = pma.getWorkerWithID("AAAB");
+    }
+
+    @Given("the project has a project leader")
+    public void theProjectHasAProjectLeader() throws OperationNotAllowedException {
+        pma.addDatabase();
+        projectLeader = pma.getWorkerWithID("AAAA");
+        try {
+            pma.assignLeader(projectLeader, project);
+        } catch (OperationNotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }  
+    }
+
+    @Given("the worker is assigned to the activity")
+    public void theWorkerIsAssignedToTheActivity() {
+        try {
+            project.addWorkerToActivity(activity, worker, projectLeader);
+        } catch (OperationNotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+
+    @Then("the worker is removed from the activity")
+    public void theWorkerIsRemovedFromTheActivity() {
+        assertFalse(activity.getWorker(worker.getID()) != null);
     }
 
 }
