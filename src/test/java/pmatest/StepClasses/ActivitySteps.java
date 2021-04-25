@@ -131,5 +131,25 @@ public class ActivitySteps {
         assertFalse(result);
     }
 
-    
+    @When("the worker with ID {string} removes the activity with ID {int} from the project with ID {int}")
+public void theWorkerWithIDRemovesTheActivityWithIDFromTheProjectWithID(String wID, Integer aID, Integer pID) throws OperationNotAllowedException {
+
+    try {
+        pma.getProjectWithID(pID).removeActivity(pma.getWorkerWithID(wID), pma.getProjectWithID(pID).getActivityFromID(aID));
+    } catch (OperationNotAllowedException e) {
+        errorMessage.setErrorMessage(e.getMessage());
+    }
 }
+
+@Then("the activity with id {int} is not contained in project")
+public void theActivityWithIdIsNotContainedInProject(Integer aID) {
+    assertEquals(null, projectHelper.getProject().getActivityFromID(aID));
+}
+
+
+}
+
+  
+
+    
+
