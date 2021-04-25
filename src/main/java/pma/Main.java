@@ -1,9 +1,22 @@
 package pma;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+import pma.GUI.Frame;
+import java.awt.*;
 public class Main 
 {
+    
+    
     public static void main( String[] args )
     {
-        System.out.println( "This is for UI" );
+
+        Frame frame = new Frame("Project Management System");
+
+        JButton b=new JButton("click");//creating instance of JButton  
+        b.setBounds(130,100,100, 40);//x axis, y axis, width, height  
+                  
+        frame.add(b);//adding button in JFrame  
     }
 }
