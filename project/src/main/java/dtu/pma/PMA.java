@@ -40,6 +40,10 @@ public class PMA {
         return workers.stream().filter(u -> u.getID().equals(ID)).findAny().orElse(null);
     }
 
+    public Activity getActivityWithID(Project project, int activityID){
+        return project.getActivityFromID(activityID);
+    }
+
     public boolean projectContainsActivity(int projectID, int activityID) {
         Project p = getProjectWithID(projectID);
         if (p.getActivityFromID(activityID) != null) {
@@ -153,5 +157,20 @@ public class PMA {
             flag = true;
         }
         return tempWorkers;
+    }
+
+    public void addWorkerToActivity(Project project, Activity activity, Worker worker, Worker projectLeader) throws OperationNotAllowedException {
+        if(project == null)
+        {
+            throw new OperationNotAllowedException("Project does not exist");
+        } else if(activity == null)
+        {
+            throw new OperationNotAllowedException("Activity does not exist!");
+        } else if (worker == null){
+            throw new OperationNotAllowedException("Worker does not exist in system");
+        } else if (projectLeader != project.getProjectLeader()) {
+            throw new OperationNotAllowedException("You are not the project leader for this project!");
+        }
+        activity.addWorker(worker);
     }
 }

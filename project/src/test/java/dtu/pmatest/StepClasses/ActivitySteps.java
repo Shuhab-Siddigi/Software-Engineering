@@ -14,6 +14,7 @@ import io.cucumber.java.en.When;
 import dtu.pma.OperationNotAllowedException;
 import dtu.pma.PMA;
 import dtu.pma.Project;
+import dtu.pma.Worker;
 import dtu.pmatest.HelperClasses.ActivityHelper;
 import dtu.pmatest.HelperClasses.ProjectHelper;
 import dtu.pma.Activity;
@@ -130,6 +131,40 @@ public class ActivitySteps {
     public void theActivityDoesNotFitInPlan() {
         assertFalse(result);
     }
+
+    
+    @When("the project leader adds the worker with ID {string} to activity with number {int}")
+    public void theProjectLeaderAddsTheWorkerWithIDToActivityWithNumber(String workerID, Integer activityNum) throws OperationNotAllowedException {
+        Project project = projectHelper.getProject();
+        activity = project.getActivityFromID(activityNum);
+        Worker worker = pma.getWorkerWithID(workerID);
+        Worker projectLeader = project.getProjectLeader();
+
+        try {
+            pma.addWorkerToActivity(project, activity, worker, projectLeader);
+        } catch (OperationNotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+
+    @Then("the worker with ID {string} is added to the activity")
+    public void theWorkerWithIDIsAddedToTheActivity(String workerID) {
+        assertTrue(activity.getWorker(workerID).getID().equals(workerID));
+    }
+
+    @When("worker with ID {string} adds the worker with ID {string} to activity with number {int}")
+    public void workerWithIDAddsTheWorkerWithIDToActivityWithNumber(String workerID, String workerID2, Integer activityNum) {
+        Project project = projectHelper.getProject();
+        activity = project.getActivityFromID(activityNum);
+        Worker projectLeader = pma.getWorkerWithID(workerID);
+        Worker worker = pma.getWorkerWithID(workerID2);
+        try {
+            pma.addWorkerToActivity(project, activity, worker, projectLeader);
+        } catch (OperationNotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+
 
     
 }

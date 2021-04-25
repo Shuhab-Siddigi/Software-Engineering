@@ -1,13 +1,14 @@
-    # Feature Assign worker to activity
-    # Description: Project leader assigns worker to activity
-    # Actors: Project leader
+Feature: Assign worker to activity
+    Description: Project leader assigns worker to activity
+    Actors: Project leader
 
 
-    # Scenario: a worker is assigned to an activity
-    #     Given there is a project with title "Extreme Programming", ID 0001 
-    #     And the worker with ID "AAAA" is the project leader of the project with ID 0001
-    #     And there exist an activity with number 0001 in the project with ID 0001
-    #     When the project leader adds the worker with ID "AAAB" to activity with number 0001
+    Scenario: a worker is assigned to an activity
+        Given the project exist in the system
+        And the worker with ID "AAAA" is the project leader of the project with ID 0001
+        And there exist an activity with number 0001 in the project with ID 0001
+        And the system contains a worker with ID "AAAB"
+        When the project leader adds the worker with ID "AAAB" to activity with number 0001
     #     Then the worker is added to the activity
     
     # Scenario: A worker is not assigned because the activity does not exist

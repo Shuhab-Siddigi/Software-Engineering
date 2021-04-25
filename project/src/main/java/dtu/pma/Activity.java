@@ -1,5 +1,6 @@
 package dtu.pma;
 
+import java.lang.annotation.Retention;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -63,6 +64,10 @@ public class Activity {
 
     public List<Worker> getWorkers() {
         return workers;
+    }
+
+    public Worker getWorker(String workerID){
+        return workers.stream().filter(w -> w.getID().equals(workerID)).findAny().orElse(null);
     }
     // Add worker
     // Remove worker
