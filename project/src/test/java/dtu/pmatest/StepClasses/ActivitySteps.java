@@ -26,6 +26,9 @@ public class ActivitySteps {
     private ProjectHelper projectHelper;
     private ActivityHelper activityHelper;
     private Activity activity;
+    private Project project;
+    private Worker worker;
+    private Worker projectLeader;
     private boolean result;
 
     public ActivitySteps(PMA pma, ProjectHelper projectHelper, ErrorMessageHolder errorMessage, ActivityHelper activityHelper) {
@@ -132,13 +135,28 @@ public class ActivitySteps {
         assertFalse(result);
     }
 
+    @When("the worker with ID {string} removes the activity with ID {int} from the project with ID {int}")
+    public void theWorkerWithIDRemovesTheActivityWithIDFromTheProjectWithID(String wID, Integer aID, Integer pID) throws OperationNotAllowedException {
     
-    @When("the project leader adds the worker with ID {string} to activity with number {int}")
-    public void theProjectLeaderAddsTheWorkerWithIDToActivityWithNumber(String workerID, Integer activityNum) throws OperationNotAllowedException {
-        Project project = projectHelper.getProject();
-        activity = project.getActivityFromID(activityNum);
-        Worker worker = pma.getWorkerWithID(workerID);
-        Worker projectLeader = project.getProjectLeader();
+        try {
+            pma.getProjectWithID(pID).removeActivity(pma.getWorkerWithID(wID), pma.getProjectWithID(pID).getActivityFromID(aID));
+        } catch (OperationNotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+    
+    @Then("the activity with id {int} is not contained in project")
+    public void theActivityWithIdIsNotContainedInProject(Integer aID) {
+        assertEquals(null, projectHelper.getProject().getActivityFromID(aID));
+    }
+
+    
+    @When("the project leader adds the worker with ID {string} to activity with ID {int}")
+    public void theProjectLeaderAddsTheWorkerWithIDToActivityWithNumber(String workerID, Integer activityID) throws OperationNotAllowedException {
+        project = projectHelper.getProject();
+        activity = project.getActivityFromID(activityID);
+        worker = pma.getWorkerWithID(workerID);
+        projectLeader = project.getProjectLeader();
 
         try {
             pma.addWorkerToActivity(project, activity, worker, projectLeader);
@@ -152,10 +170,10 @@ public class ActivitySteps {
         assertTrue(activity.getWorker(workerID).getID().equals(workerID));
     }
 
-    @When("worker with ID {string} adds the worker with ID {string} to activity with number {int}")
-    public void workerWithIDAddsTheWorkerWithIDToActivityWithNumber(String workerID, String workerID2, Integer activityNum) {
-        Project project = projectHelper.getProject();
-        activity = project.getActivityFromID(activityNum);
+    @When("worker with ID {string} adds the worker with ID {string} to activity with ID {int}")
+    public void workerWithIDAddsTheWorkerWithIDToActivityWithNumber(String workerID, String workerID2, Integer activityID) {
+        project = projectHelper.getProject();
+        activity = project.getActivityFromID(activityID);
         Worker projectLeader = pma.getWorkerWithID(workerID);
         Worker worker = pma.getWorkerWithID(workerID2);
         try {
@@ -165,6 +183,35 @@ public class ActivitySteps {
         }
     }
 
+    @Given("the worker with ID {string} is assigned to the activity with ID {int}")
+    public void theWorkerWithIDIsAssignedToTheActivityWithID(String workerID, Integer activityID) throws OperationNotAllowedException {
+        theProjectLeaderAddsTheWorkerWithIDToActivityWithNumber(workerID, activityID);
+    }
 
+    @When("the project leader removes the worker from the activity")
+    public void theProjectLeaderRemovesTheWorkerFromTheActivity() {
+        try {
+            pma.removeWorkerFromActivity(project, activity, worker, projectLeader);
+        } catch (OperationNotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+
+    @Then("the worker with ID {string} is not assigned to the activity with ID {int}")
+    public void theWorkerWithIDIsNotAssignedToTheActivityWithID(String workerID, Integer activityID) {
+        assertFalse(pma.getActivityWithID(project, activityID).getWorker(workerID) != null);
+    }
     
+    @Given("the project contains an activity")
+    public void theProjectContainsAnActivity() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the worker removes a worker from the activity")
+    public void theWorkerRemovesAWorkerFromTheActivity() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
 }

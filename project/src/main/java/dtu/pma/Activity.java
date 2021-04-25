@@ -71,4 +71,8 @@ public class Activity {
     }
     // Add worker
     // Remove worker
+
+    public void removeWorker(Worker worker) {
+        workers.removeIf(w -> w.getID().equals(worker.getID()));
+    }
 }

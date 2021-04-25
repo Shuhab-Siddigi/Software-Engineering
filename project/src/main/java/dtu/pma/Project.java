@@ -97,4 +97,13 @@ public class Project {
         }
         return null;
     }
+
+    public void removeActivity(Worker worker, Activity activity) throws OperationNotAllowedException {
+        if (activity == null) {
+            throw new OperationNotAllowedException("Activity does not exist!");
+        } else if (worker != getProjectLeader()) {
+            throw new OperationNotAllowedException("Only the project leader can remove activity!");
+        } 
+            activities.remove(activity);
+    }
 }

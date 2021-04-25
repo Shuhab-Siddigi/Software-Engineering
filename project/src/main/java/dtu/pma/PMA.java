@@ -173,4 +173,19 @@ public class PMA {
         }
         activity.addWorker(worker);
     }
+
+    public void removeWorkerFromActivity(Project project, Activity activity, Worker worker, Worker projectLeader) throws OperationNotAllowedException {
+        if(project == null)
+        {
+            throw new OperationNotAllowedException("Project does not exist");
+        } else if(activity == null)
+        {
+            throw new OperationNotAllowedException("Activity does not exist!");
+        } else if (worker == null){
+            throw new OperationNotAllowedException("Worker does not exist in system");
+        } else if (projectLeader != project.getProjectLeader()) {
+            throw new OperationNotAllowedException("You are not the project leader for this project!");
+        }
+        activity.removeWorker(worker);
+    }
 }
