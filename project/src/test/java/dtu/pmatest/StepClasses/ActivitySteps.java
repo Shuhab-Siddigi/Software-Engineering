@@ -262,4 +262,10 @@ public class ActivitySteps {
         assertFalse(activity.getWorker(worker.getID()) != null);
     }
 
+    @Given("the activity with ID {int} is not contained in the project")
+    public void theActivityWithIDIsNotContainedInTheProject(Integer aID) {
+        theActivityWithIdIsNotContainedInProject(aID);
+}
+
+
 }

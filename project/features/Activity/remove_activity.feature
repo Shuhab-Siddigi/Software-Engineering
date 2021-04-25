@@ -12,19 +12,26 @@ Feature: Description Remove new Activity
         When the worker with ID "AAAA" removes the activity with ID 0001 from the project with ID 0001
         Then the activity with id 0001 is not contained in project
 
-#     Scenario: Cannot remove an activity that does not exist
-#         Given there is a project with title "Extreme Programming", ID 0001
-#         And the worker with ID "AAAA" is the project leader of the project with ID 0001
-#         And there does not exist an activity with number 0001 in the project with ID 0001
-#         When the activity is removed
-#         Then the error text "Activity is not in project" is given
+     Scenario: Cannot remove an activity that does not exist
+        Given there is a project with title "Extreme Programming", ID 0001
+        And the project exist in the system
+        And the system contains a worker with ID "AAAA"
+        And the worker with ID "AAAA" is assigned to the project with ID 0001
+        And the activity with ID 0001 is not contained in the project
+        When the worker with ID "AAAA" removes the activity with ID 0001 from the project with ID 0001
+        Then the error text "Activity does not exist!" is given
 
-#     Scenario: Worker tries to remove activity
-#         Given there is a project with title "Extreme Programming", ID 0001
-#         And the worker with ID "AAAA" is not the project leader of the project with ID 0001
-#         And there exist an activity with number 0001 in the project with ID 0001
-#         When the activity is removed
-#         Then the error text "Worker cannot remove activities" is given
+     Scenario: Worker tries to remove activity
+        Given there is a project with title "Extreme Programming", ID 0001
+        And the project exist in the system
+        And the system contains a worker with ID "AAAA"
+        And the worker with ID "AAAA" is assigned to the project with ID 0001
+        And there exist an activity with title "Activity 1", ID 0001, start date "2020-12-21", end date "2021-01-20"
+        And the activity with ID 0001 is added to the project
+        And the system contains a worker with ID "AAAB"
+        When the worker with ID "AAAB" removes the activity with ID 0001 from the project with ID 0001
+        Then the error text "Only the project leader can remove activity!" is given
+
 
 
 # Scenario: A new Activity is added to project by projectleader
