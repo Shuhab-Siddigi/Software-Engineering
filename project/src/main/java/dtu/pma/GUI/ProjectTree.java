@@ -8,6 +8,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 public class ProjectTree extends DefaultMutableTreeNode {
     DefaultMutableTreeNode projectTree;
     PMA pma;
+   
     public ProjectTree(PMA pma){
         projectTree =  new DefaultMutableTreeNode("Projects");
         this.pma = pma;

@@ -1,6 +1,9 @@
 package dtu.pma.GUI;
 
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 import dtu.pma.PMA;
 
 public class Window {
@@ -14,7 +17,7 @@ public class Window {
     MainPanel mainpanel = new MainPanel(pma);
    
     frame.add(mainpanel);
-
+    
     frame.setVisible(true);
   }
 }

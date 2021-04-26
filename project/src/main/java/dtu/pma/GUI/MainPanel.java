@@ -1,22 +1,40 @@
 package dtu.pma.GUI;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.BorderFactory;
 import java.awt.*;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
 import dtu.pma.PMA;
 
-public class MainPanel extends JPanel{
+public class MainPanel extends JPanel {
 
-    public MainPanel(PMA pma){
+    private PMA pma;
 
-        JButton btn = new JButton("List Workers");
-        WorkerTable workerTable = new WorkerTable(pma);
+    public MainPanel(PMA pma) {
 
-        this.add(new JScrollPane(workerTable));
-        this.add(btn);
+        this.setSize(300, 300);
+        String workingDir = System.getProperty("user.dir");
+        ImageIcon icon = new ImageIcon(
+                new ImageIcon(workingDir + "/src/background.jpg").getImage().getScaledInstance(800, 800, Image.SCALE_SMOOTH));
+        System.out.println(workingDir + "/src/background.jpg");
+        JLabel label = new JLabel(icon);
+        this.add(label);
+
+        
+     
+
+        /*
+         * CardLayout layout = new CardLayout(); layout.setHgap(10); layout.setVgap(10);
+         * this.setLayout(layout); // this.setBackground(Color.BLACK);
+         * 
+         * // WorkerTable workerTable = new WorkerTable(pma); // this.add(new
+         * JScrollPane(workerTable));
+         * 
+         * // this.add(new IntroPanel());
+         * 
+         * this.add(btn);
+         */
+
     }
+
 }

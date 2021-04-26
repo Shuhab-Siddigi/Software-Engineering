@@ -1,11 +1,7 @@
 package dtu.pma.GUI;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
-import java.awt.*;
 
 public class Frame extends JFrame {
 
@@ -20,8 +16,5 @@ public class Frame extends JFrame {
         this.setVisible(true); 
     }
     
-    private void initialize(){
-        
-    }
 
 }
