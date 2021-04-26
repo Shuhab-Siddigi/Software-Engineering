@@ -73,16 +73,10 @@ public class PMA {
     }
 
     public void addActivityToProject(Project p, Activity a) throws OperationNotAllowedException {
-
         p.addActivity(a);
         if (a.getInfo().getEndDate().after(p.getInfo().getEndDate())) {
             p.getInfo().setEndDate(a.getInfo().getEndDate());
         }
-        // p.getInfo().setStartDate(aStart);
-
-        // System.out.println("Activity " + a.getInfo().getID() + " enddate: " +
-        // a.getInfo().getEndDate());
-        // System.out.println("Project enddate: " + p.getInfo().getEndDate());
     }
 
     public void removeProject(Worker worker, Project project) throws OperationNotAllowedException {

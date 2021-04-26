@@ -88,8 +88,6 @@ public class ActivitySteps {
                 errorMessage.setErrorMessage(e.getMessage());
             }
         }
-        
-        
     }
     
     @Then("the error {string} is given")
@@ -271,7 +269,6 @@ public class ActivitySteps {
         } catch (OperationNotAllowedException e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
-        
     }
 
     @Then("the activity changes start date to {string}")
@@ -296,6 +293,5 @@ public class ActivitySteps {
     public void theActivityChangesEndDateTo(String endDate) {
         Date end = Date.valueOf(endDate);
         assertEquals(activity.getInfo().getEndDate(), end);
-    }
-    
+    }   
 }
