@@ -13,15 +13,6 @@ Feature: Create new Activity
         Then the project with ID 0001 contains the activity with ID 0001
         And the project start and end date is set to activity start and end date
 
-#     Scenario: A new Activity is added to project by customer (SKAL VI BRUGE DET HER SCENARIE??)
-#         Given the system contains a worker with ID "AAAA"
-#         And the system contains a project with ID 0001
-#         And the project has a start date "21 December 2020", end date "1 January 2021"
-#         And there exist an activity with number 0001 in the project with ID 0001
-#         And the activity has a start date "21 December 2020", end date "1 January 2021"
-#         When the activity is added to the project
-#         Then the project contains the activity
-
     Scenario: Activity already exist
         Given there is a project with title "Extreme Programming", ID 0001
         And the project exist in the system
@@ -45,3 +36,11 @@ Feature: Create new Activity
         And there exist an activity with title "Activity 2", ID 0002, start date "2020-12-25", end date "2021-01-22"
         When the activity with ID 0002 is added to the project
         Then the project has a end date "2021-01-22"
+
+    Scenario: Activity with wrong ID is added 
+        Given there is a project with title "Extreme Programming", ID 0001
+        And the project exist in the system
+        And there exist an activity with title "Activity 1", ID 12341, start date "2020-12-25", end date "2021-01-22"
+        When the activity with ID 12341 is added to the project
+        Then the error text "Activity can not have more than a 4 digit ID" is given
+        #Can only check if it is more than 4. 0's will be compiled as white space

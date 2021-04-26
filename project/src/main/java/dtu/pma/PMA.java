@@ -162,4 +162,13 @@ public class PMA {
         }
         return tempWorkers;
     }
+
+
+    public void changeStartDateActivity(Project project, Activity activity, Date startDate) throws OperationNotAllowedException {
+        project.changeStartDateForActivity(activity, startDate);
+    }
+
+    public void changeEndDateActivity(Project project, Activity activity, Date endDate) throws OperationNotAllowedException {
+        project.changeEndDateForActivity(activity, endDate);
+    }
 }

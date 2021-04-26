@@ -203,12 +203,6 @@ public class ActivitySteps {
     public void theWorkerWithIDIsNotAssignedToTheActivityWithID(String workerID, Integer activityID) {
         assertFalse(pma.getActivityWithID(project, activityID).getWorker(workerID) != null);
     }
-    
-    @Given("the project contains an activity")
-    public void theProjectContainsAnActivity() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
 
     @When("the worker removes a worker from the activity")
     public void theWorkerRemovesAWorkerFromTheActivity() throws OperationNotAllowedException {
@@ -265,9 +259,43 @@ public class ActivitySteps {
     @Given("the activity with ID {int} is not contained in the project")
     public void theActivityWithIDIsNotContainedInTheProject(Integer aID) {
         theActivityWithIdIsNotContainedInProject(aID);
-}
+    }
 
+    @When("the start date of the activity is changed to {string}")
+    public void theStartDateOfTheActivityIsChangedTo(String startDate) throws OperationNotAllowedException {
+        activity = activityHelper.getActivity();
+        project = projectHelper.getProject();
+        Date start = Date.valueOf(startDate);
+        try {
+            pma.changeStartDateActivity(project, activity , start);
+        } catch (OperationNotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+        
+    }
 
+    @Then("the activity changes start date to {string}")
+    public void theActivityChangesStartDateTo(String startDate) {
+        Date start = Date.valueOf(startDate);
+        assertEquals(activity.getInfo().getStartDate(), start);
+    }
 
-
+    @When("the end date of the activity is changed to {string}")
+    public void theEndDateOfTheActivityIsChangedTo(String endDate) throws OperationNotAllowedException {
+        activity = activityHelper.getActivity();
+        project = projectHelper.getProject();
+        Date end = Date.valueOf(endDate);
+        try {
+            pma.changeEndDateActivity(project, activity, end);
+        } catch (OperationNotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+    
+    @Then("the activity changes end date to {string}")
+    public void theActivityChangesEndDateTo(String endDate) {
+        Date end = Date.valueOf(endDate);
+        assertEquals(activity.getInfo().getEndDate(), end);
+    }
+    
 }

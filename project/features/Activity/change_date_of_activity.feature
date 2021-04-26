@@ -3,39 +3,32 @@ Feature: Change times of an activity
     Actors: Project leader
 
     Scenario: Activity start time is changed
-        Given the system contains a worker with ID "AAAA"
-        And there is a project with title "Extreme Programming", ID 0001 
-        # And the project has a start date "21 December 2020", end date "1 January 2021"
-#         And there exist an activity with number 0001 in the project with ID 0001
-#         And the activity has a start date "22 December 2020", end date "30 December 2020"
-#         And the current date is "15 December 2020"
-#         When the activity changes start date to "20 December 2020"
-#         Then the project changes start date to "20 December 2020"
+        Given the project exist in the system
+        And the project contains the activity with title "Activity 1", ID 0001, start date "2020-12-21", end date "2021-01-20"
+        When the start date of the activity is changed to "2020-12-29"
+        Then the activity changes start date to "2020-12-29"
 
-#     Scenario: Activity end time is changed
-#         Given the system contains a worker with ID "AAAA"
-#         And there is a project with title "Extreme Programming", ID 0001 
-#         And the project has a start date "21 December 2020", end date "1 January 2021"
-#         And there exist an activity with number 0001 in the project with ID 0001
-#         And the activity has a start date "22 December 2020", end date "30 December 2020"
-#         When the activity changes end date to end date "5 Januar 2021"
-#         Then the project changes end date to "5 Januar 2021"
+    Scenario: Activity and project start time is changed 
+        Given the project exist in the system
+        And the project contains the activity with title "Activity 1", ID 0001, start date "2020-12-21", end date "2021-01-20"
+        When the start date of the activity is changed to "2020-12-29"
+        Then the activity changes start date to "2020-12-29"
 
-#     Scenario: Activity starts time is before project start
-#         Given the system contains a worker with ID "AAAA"
-#         And there is a project with title "Extreme Programming", ID 0001 
-#         And the project has a start date "21 December 2020", end date "1 January 2021"
-#         And there exist an activity with number 0001 in the project with ID 0001
-#         And the activity has a start date "22 December 2020", end date "30 December 2020"
-#         And the current date is "15 December 2020"
-#         When the activity changes start date to "14 December 2020"
-#         Then the error text "Activity starts before project" is given
+    Scenario: Activity start time is changed to time after project end 
+        Given the project exist in the system
+        And the project contains the activity with title "Activity 1", ID 0001, start date "2020-12-21", end date "2021-01-20"
+        When the start date of the activity is changed to "2021-01-21"
+        Then the error "Cannot change start date to after project ends!" is given
 
-#     Scenario: Activity starts time is after project ends
-#         Given the system contains a worker with ID "AAAA"
-#         And there is a project with title "Extreme Programming", ID 0001 
-#         And the project has a start date "21 December 2020", end date "1 January 2021"
-#         And there exist an activity with number 0001 in the project with ID 0001
-#         And the activity has a start date "22 December 2020", end date "30 December 2020"
-#         When the activity changes start date "2 January 2021"
-#         Then the error text "Activity start after project ends" is given
+    Scenario: Activity end time is changed
+        Given the project exist in the system
+        And the project contains the activity with title "Activity 1", ID 0001, start date "2020-12-21", end date "2021-01-20"
+        When the end date of the activity is changed to "2021-01-25"
+        Then the activity changes end date to "2021-01-25"
+
+    Scenario: Activity start time is changed to time after project end 
+        Given the project exist in the system
+        And the project contains the activity with title "Activity 1", ID 0001, start date "2020-12-21", end date "2021-01-20"
+        When the end date of the activity is changed to "2020-01-25"
+        Then the error "Cannot change end date to before project starts!" is given
+
