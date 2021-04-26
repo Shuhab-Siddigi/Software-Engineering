@@ -17,11 +17,6 @@ public class Window {
     MainPanel mainpanel = new MainPanel(pma);
    
     frame.add(mainpanel);
-<<<<<<< HEAD
-=======
-
-
->>>>>>> d3c971d7273373dc5f395b9dfba476efa8c8cf35
     
     frame.setVisible(true);
 
