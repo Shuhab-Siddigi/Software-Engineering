@@ -15,6 +15,10 @@ public class Window {
    
     frame.add(mainpanel);
 
+
+    
     frame.setVisible(true);
+
   }
+
 }

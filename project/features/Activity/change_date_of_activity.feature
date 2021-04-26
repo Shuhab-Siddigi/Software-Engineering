@@ -1,11 +1,11 @@
-# Feature: Change times of an activity
-#     Description: Project leader changes date of activity
-#     Actors: Project leader
+Feature: Change times of an activity
+    Description: Project leader changes date of activity
+    Actors: Project leader
 
-#     Scenario: Activity start time is changed
-#         Given the system contains a worker with ID "AAAA"
-#         And there is a project with title "Extreme Programming", ID 0001 
-#         And the project has a start date "21 December 2020", end date "1 January 2021"
+    Scenario: Activity start time is changed
+        Given the system contains a worker with ID "AAAA"
+        And there is a project with title "Extreme Programming", ID 0001 
+        # And the project has a start date "21 December 2020", end date "1 January 2021"
 #         And there exist an activity with number 0001 in the project with ID 0001
 #         And the activity has a start date "22 December 2020", end date "30 December 2020"
 #         And the current date is "15 December 2020"
