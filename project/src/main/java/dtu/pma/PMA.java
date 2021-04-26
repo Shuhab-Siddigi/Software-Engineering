@@ -61,12 +61,15 @@ public class PMA {
     }
 
     public void addProject(Project p) throws OperationNotAllowedException {
-        if (!containsProjectWithID(p.getInfo().getID()) || !containsProjectWithTitle(p.getInfo().getTitle())) {
-            projects.add(p);
-        } else {
+        int lengthID = Integer.toString(p.getInfo().getID()).length();
+        if (containsProjectWithID(p.getInfo().getID()) || containsProjectWithTitle(p.getInfo().getTitle())) {
             throw new OperationNotAllowedException("Project ID is already used!");
+        } else if(lengthID > 4) {
+            throw new OperationNotAllowedException("Project can not have more than a 4 digit ID");
+        }        
+        else {
+            projects.add(p);
         }
-
     }
 
     public void addActivityToProject(Project p, Activity a) throws OperationNotAllowedException {

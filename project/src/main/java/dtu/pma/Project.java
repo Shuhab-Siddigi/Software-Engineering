@@ -83,8 +83,6 @@ public class Project {
             //System.out.println("Date check works");
             throw new OperationNotAllowedException("Activity date is before project start!");
         } else if (lengthID > 4){
-            System.out.println("ID: "+ activity.getInfo().getID());
-            System.out.println("ID as string: "+ lengthID);
             throw new OperationNotAllowedException("Activity can not have more than a 4 digit ID");
         }
 
@@ -137,9 +135,6 @@ public class Project {
     }
 
     public void changeStartDateForActivity(Activity activity, Date startDate) throws OperationNotAllowedException {
-        
-        System.out.println("start date: " + this.info.getStartDate() + " end date: " + this.info.getEndDate());
-        System.out.println("New start date: " + startDate);
         if(startDate.after(this.info.getEndDate()))
         {
             throw new OperationNotAllowedException("Cannot change start date to after project ends!");
@@ -149,12 +144,9 @@ public class Project {
         }// Skrevet af Tobias: Ikke sikker på om projekt start skal ændre sig hvis activity start gør..
         
         activity.getInfo().setStartDate(startDate);
-        System.out.println("Project new start date: " + this.info.getStartDate());
     }
 
     public void changeEndDateForActivity(Activity activity, Date endDate) throws OperationNotAllowedException {
-        System.out.println("start date: " + this.info.getStartDate() + " end date: " + this.info.getEndDate());
-        System.out.println("New end date: " + endDate);
         if(endDate.before(this.info.getStartDate()))
         {
             throw new OperationNotAllowedException("Cannot change end date to before project starts!");
@@ -163,6 +155,5 @@ public class Project {
             this.info.setEndDate(endDate);
         }
         activity.getInfo().setEndDate(endDate);
-        System.out.println("Project new end date: " + this.info.getEndDate());
     }
 }
