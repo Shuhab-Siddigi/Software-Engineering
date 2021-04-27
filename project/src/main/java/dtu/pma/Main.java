@@ -2,14 +2,14 @@ package dtu.pma;
 
 import java.awt.*;
 
-
 public class Main {
   
-  public static void main(String[] args) {
+  public static void main(String[] args) throws OperationNotAllowedException {
 
     Application application = new Application();
     PMA pma = new PMA();
     pma.addDatabase();
+    pma.addProject(new Project("Extreme Programming",0001));
 
     
     EventQueue.invokeLater(new Runnable() {

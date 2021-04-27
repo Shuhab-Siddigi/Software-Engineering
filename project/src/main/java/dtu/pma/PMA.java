@@ -60,6 +60,10 @@ public class PMA {
         return this.workers;
     }
 
+    public List<Project> getProjects() {
+        return this.projects;
+    }
+
     public void addProject(Project p) throws OperationNotAllowedException {
         int lengthID = Integer.toString(p.getInfo().getID()).length();
         if (containsProjectWithID(p.getInfo().getID()) || containsProjectWithTitle(p.getInfo().getTitle())) {

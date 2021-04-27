@@ -1,6 +1,7 @@
 package dtu.pma.GUI.Panels;
 
 import dtu.pma.PMA;
+import dtu.pma.Project;
 import dtu.pma.Worker;
 import java.awt.*;
 import javax.swing.JPanel;
@@ -25,8 +26,17 @@ public class ProjectTree extends JPanel {
     }
 
     private void AddWorkersToTree(PMA pma,DefaultMutableTreeNode projetNode){
-       for (Worker worker : pma.getWorkers()) {
-        projetNode.add(new DefaultMutableTreeNode(worker.getFirstname()));
+       for (Project project : pma.getProjects()) {
+        projetNode.add(new DefaultMutableTreeNode(
+            "Title: "+project.getInfo().getTitle()+
+            " ID: "+Integer.toString(project.getInfo().getID())));
+       }
+
+       // Test
+       for (Worker w : pma.getWorkers()) {
+        projetNode.add(new DefaultMutableTreeNode(
+            "Title: "+w.getFirstname()+
+            " ID: "+w.getLastname()));
        }
     }
 

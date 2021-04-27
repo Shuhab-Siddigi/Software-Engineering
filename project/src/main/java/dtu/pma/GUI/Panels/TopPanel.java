@@ -28,21 +28,20 @@ public class TopPanel extends JPanel{
         constrain.gridy = 0;
         this.add(homeBtn,constrain);
 
-        addProjectBtn = new JButton();
-        addProjectBtn.setText("Add Project");
-
-        constrain.weighty = 0.5;
-        constrain.gridx = 1;
-        constrain.gridy = 0;
-        this.add(addProjectBtn,constrain);
-
         showWorkersBtn = new JButton();
         showWorkersBtn.setText("Set ID");
         constrain.weightx = 0.5; 
-        constrain.gridx = 2;
+        constrain.gridx = 1;
         constrain.gridy = 0;
         constrain.insets = new Insets(0,10,0,0);
         this.add(showWorkersBtn,constrain);
+
+        addProjectBtn = new JButton();
+        addProjectBtn.setText("Add Project");
+        constrain.weighty = 0.5;
+        constrain.gridx = 2;
+        constrain.gridy = 0;
+        this.add(addProjectBtn,constrain);
  
         setIDBtn = new JButton();
         setIDBtn.setText("Show Workers");
