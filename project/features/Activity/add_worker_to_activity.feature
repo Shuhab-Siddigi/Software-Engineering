@@ -3,13 +3,13 @@ Feature: Assign worker to activity
     Actors: Project leader
 
 
-    # Scenario: a worker is assigned to an activity
-    #     Given the project exist in the system
-    #     And the worker with ID "AAAA" is the project leader of the project with ID 0001
-    #     And the project contains the activity with title "Activity 1", ID 0001, start date "2020-12-21", end date "2021-01-20"
-    #     And the system contains a worker with ID "AAAB"
-    #     When the project leader adds the worker with ID "AAAB" to activity with number 0001
-    #     Then the worker with ID "AAAB" is added to the activity
+    Scenario: a worker is assigned to an activity
+        Given the project exist in the system
+        And the worker with ID "AAAA" is the project leader of the project with ID 0001
+        And the project contains the activity with title "Activity 1", ID 0001, start date "2020-12-21", end date "2021-01-20"
+        And the system contains a worker with ID "AAAB"
+        When the project leader adds the worker with ID "AAAB" to activity with ID 0001
+        Then the worker with ID "AAAB" is added to the activity
     
     Scenario: A worker is not assigned because the activity does not exist
         Given the project exist in the system
@@ -43,7 +43,6 @@ Feature: Assign worker to activity
         And the project contains the activity with title "Activity 1", ID 0001, start date "2020-12-21", end date "2021-01-20"
         When the project leader adds the worker with ID "AAAB" to activity with ID 0001
         Then the error message "Worker does not exist in system" is given
-
 
     # Scenario: A worker tries to assigned another worker to activity
     #     Given there is a project with title "Extreme Programming", ID 0001 

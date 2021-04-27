@@ -13,4 +13,11 @@ Feature: Create Project
         When the project with title "Extreme Programming", ID 0001 is added to the system
         Then the error message "Project ID is already used!" is given
 
+    Scenario: Project with wrong ID is added 
+        Given there is a project with title "Extreme Programming", ID 12341
+        And project with title "Extreme Programming", ID 12341 does not exist in the system
+        When the project with title "Extreme Programming", ID 12341 is added to the system
+        Then the error message "Project can not have more than a 4 digit ID" is given
+        #Can only check if it is more than 4. 0's will be compiled as white space
+
     

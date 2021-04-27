@@ -2,6 +2,7 @@ Feature: Description Remove new Activity
     Description: A project is removed from the system
     Actors: Worker or Project leader
  #only worker or PL can remove?
+ 
     Scenario: An activity is removed from project sucessfully
         Given there is a project with title "Extreme Programming", ID 0001
         And the project exist in the system

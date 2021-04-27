@@ -75,12 +75,15 @@ public class Project {
     public void addActivity(Activity activity) throws OperationNotAllowedException {
         // Creates start and end date for project
         checksDates(activity);
-
+        int lengthID = Integer.toString(activity.getInfo().getID()).length();
+        
         if (getActivityFromID(activity.getInfo().getID()) != null) {
             throw new OperationNotAllowedException("Project already contains activity!");
         } else if (activity.getInfo().getEndDate().before(this.info.getStartDate())) {
             //System.out.println("Date check works");
             throw new OperationNotAllowedException("Activity date is before project start!");
+        } else if (lengthID > 4){
+            throw new OperationNotAllowedException("Activity can not have more than a 4 digit ID");
         }
 
         // Adds activity
@@ -129,5 +132,28 @@ public class Project {
             throw new OperationNotAllowedException("You are not the project leader for this project!");
         }
         activity.removeWorker(worker);
+    }
+
+    public void changeStartDateForActivity(Activity activity, Date startDate) throws OperationNotAllowedException {
+        if(startDate.after(this.info.getEndDate()))
+        {
+            throw new OperationNotAllowedException("Cannot change start date to after project ends!");
+        }
+        if (startDate.before(this.info.getStartDate())){
+            this.info.setStartDate(startDate);
+        }// Skrevet af Tobias: Ikke sikker på om projekt start skal ændre sig hvis activity start gør..
+        
+        activity.getInfo().setStartDate(startDate);
+    }
+
+    public void changeEndDateForActivity(Activity activity, Date endDate) throws OperationNotAllowedException {
+        if(endDate.before(this.info.getStartDate()))
+        {
+            throw new OperationNotAllowedException("Cannot change end date to before project starts!");
+        }
+        if (endDate.after(this.info.getEndDate())){
+            this.info.setEndDate(endDate);
+        }
+        activity.getInfo().setEndDate(endDate);
     }
 }

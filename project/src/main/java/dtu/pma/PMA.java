@@ -61,25 +61,22 @@ public class PMA {
     }
 
     public void addProject(Project p) throws OperationNotAllowedException {
-        if (!containsProjectWithID(p.getInfo().getID()) || !containsProjectWithTitle(p.getInfo().getTitle())) {
-            projects.add(p);
-        } else {
+        int lengthID = Integer.toString(p.getInfo().getID()).length();
+        if (containsProjectWithID(p.getInfo().getID()) || containsProjectWithTitle(p.getInfo().getTitle())) {
             throw new OperationNotAllowedException("Project ID is already used!");
+        } else if(lengthID > 4) {
+            throw new OperationNotAllowedException("Project can not have more than a 4 digit ID");
+        }        
+        else {
+            projects.add(p);
         }
-
     }
 
     public void addActivityToProject(Project p, Activity a) throws OperationNotAllowedException {
-
         p.addActivity(a);
         if (a.getInfo().getEndDate().after(p.getInfo().getEndDate())) {
             p.getInfo().setEndDate(a.getInfo().getEndDate());
         }
-        // p.getInfo().setStartDate(aStart);
-
-        // System.out.println("Activity " + a.getInfo().getID() + " enddate: " +
-        // a.getInfo().getEndDate());
-        // System.out.println("Project enddate: " + p.getInfo().getEndDate());
     }
 
     public void removeProject(Worker worker, Project project) throws OperationNotAllowedException {
@@ -161,5 +158,14 @@ public class PMA {
             flag = true;
         }
         return tempWorkers;
+    }
+
+
+    public void changeStartDateActivity(Project project, Activity activity, Date startDate) throws OperationNotAllowedException {
+        project.changeStartDateForActivity(activity, startDate);
+    }
+
+    public void changeEndDateActivity(Project project, Activity activity, Date endDate) throws OperationNotAllowedException {
+        project.changeEndDateForActivity(activity, endDate);
     }
 }

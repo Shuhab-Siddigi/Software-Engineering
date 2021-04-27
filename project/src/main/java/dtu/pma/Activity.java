@@ -69,9 +69,7 @@ public class Activity {
     public Worker getWorker(String workerID){
         return workers.stream().filter(w -> w.getID().equals(workerID)).findAny().orElse(null);
     }
-    // Add worker
-    // Remove worker
-
+    
     public void removeWorker(Worker worker) {
         workers.removeIf(w -> w.getID().equals(worker.getID()));
     }
