@@ -2,23 +2,26 @@ package dtu.pma.GUI;
 
 import dtu.pma.PMA;
 import dtu.pma.Worker;
-
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
 
-public class WorkerTable extends JTable {
-    private PMA pma;
+public class WorkerTable extends JPanel {
 
-    public WorkerTable(PMA pma) {
-        this.pma = pma;
-        this.setSize(100, 800);
-        setTable();
+    public WorkerTable(PMA pma,int width,int height) {
+        
+
+        JTable workerTable = new JTable();
+    
+        workerTable = setTable(pma,workerTable);
+        
+        JScrollPane scrollPane = new JScrollPane(workerTable);
+        scrollPane.setPreferredSize(new Dimension(width, height-5));
+        this.add(scrollPane);
+
     }
 
-    private void setTable() {
+    private JTable setTable(PMA pma,JTable jTable) {
         DefaultTableModel model = new DefaultTableModel();
 
         model.addColumn("Firstname");
@@ -35,7 +38,9 @@ public class WorkerTable extends JTable {
             );
         }
 
-        this.setModel(model);
+        jTable.setModel(model);
+
+        return jTable;
     }
 
 }

@@ -1,16 +1,15 @@
 package dtu.pma;
 
-import dtu.pma.GUI.Window;
-
-
 import java.awt.*;
+
+import dtu.pma.GUI.Application;
 
 
 public class Main {
   
   public static void main(String[] args) {
 
-    Window window = new Window();
+    Application application = new Application();
     PMA pma = new PMA();
     pma.addDatabase();
 
@@ -18,7 +17,7 @@ public class Main {
     EventQueue.invokeLater(new Runnable() {
       public void run() {
         try {
-          window.initialize(pma);
+          application.initialize(pma);
 
         } catch (Exception e) {
           e.printStackTrace();
