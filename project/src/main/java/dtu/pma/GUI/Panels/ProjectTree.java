@@ -1,4 +1,4 @@
-package dtu.pma.GUI;
+package dtu.pma.GUI.Panels;
 
 import dtu.pma.PMA;
 import dtu.pma.Worker;

@@ -2,6 +2,10 @@ package dtu.pma.GUI;
 
 import java.awt.*;
 
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
+
 public class GUITools {
     
     public void resetConstrains(GridBagConstraints constrain) {
@@ -15,6 +19,12 @@ public class GUITools {
         constrain.ipadx = 0; // request any extra vertical space
         constrain.ipady = 0; // request any extra vertical space
         constrain.gridwidth = 1;
+    }
+
+      // Visual Debuging to show border around panel
+      public void showBorder(JPanel panel) {
+        Border blackline = BorderFactory.createLineBorder(Color.black);
+        panel.setBorder(blackline);
     }
 
 }

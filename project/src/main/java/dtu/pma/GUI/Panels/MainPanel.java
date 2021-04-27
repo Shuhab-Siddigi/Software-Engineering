@@ -1,9 +1,10 @@
-package dtu.pma.GUI;
+package dtu.pma.GUI.Panels;
 
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.Border;
+import java.awt.event.*;
 import dtu.pma.PMA;
+import dtu.pma.GUI.GUITools;
 
 /*
 * [T] = Top Panel      [T][T][T][T] 
@@ -12,61 +13,61 @@ import dtu.pma.PMA;
 * [C] = Calender Panel
 */
 public class MainPanel extends JPanel {
-   
+
     public MainPanel(PMA pma) {
 
         setLayout(new GridBagLayout());
         GUITools guiTool = new GUITools();
         GridBagConstraints constrain = new GridBagConstraints();
-       // setSize(new Dimension(1000, 800));
-        
-        showBorder(this);
+
+        guiTool.showBorder(this);
 
         TopPanel topPanel = new TopPanel();
-        showBorder(topPanel);
-        topPanel.setPreferredSize(new Dimension(800, 50));
+        topPanel.setPreferredSize(new Dimension(1000, 50));
         constrain.gridx = 0;
         constrain.gridy = 0;
         constrain.gridwidth = 3;
-        showBorder(topPanel);
-        topPanel.getLeftBtn().setVisible(false);
-        topPanel.getRightBtn().setVisible(false);
         this.add(topPanel, constrain);
         guiTool.resetConstrains(constrain);
 
         LeftPanel leftPanel = new LeftPanel();
-        showBorder(leftPanel);
         leftPanel.setPreferredSize(new Dimension(100, 800));
         constrain.gridx = 0;
         constrain.gridy = 1;
         constrain.gridheight = 1;
-        showBorder(leftPanel);
         this.add(leftPanel, constrain);
         guiTool.resetConstrains(constrain);
 
         BottomPanel bottomPanel = new BottomPanel();
-        bottomPanel.setPreferredSize(new Dimension(800, 50));
+        bottomPanel.setPreferredSize(new Dimension(1000, 50));
         constrain.gridx = 0;
         constrain.gridy = 2;
         constrain.gridwidth = 3;
         constrain.fill = GridBagConstraints.VERTICAL;
         this.add(bottomPanel, constrain);
 
-
         IntroPanel introPanel = new IntroPanel();
-        introPanel.setPreferredSize(new Dimension(700, 800));
+        introPanel.setPreferredSize(new Dimension(900, 800));
+        guiTool.showBorder(introPanel);
         constrain.gridx = 2;
         constrain.gridy = 1;
-        showBorder(introPanel);
+
         this.add(introPanel, constrain);
         guiTool.resetConstrains(constrain);
 
+        AddProjectPanel addProjectPanel = new AddProjectPanel(pma);
+        addProjectPanel.setPreferredSize(new Dimension(900, 800));
+        guiTool.showBorder(addProjectPanel);
+        constrain.gridx = 2;
+        constrain.gridy = 1;
+        addProjectPanel.setVisible(false);
+        this.add(addProjectPanel, constrain);
+        guiTool.resetConstrains(constrain);
 
         // WorkerTable workerTable = new WorkerTable(pma, 200, 800);
         // workerTable.setPreferredSize(new Dimension(200, 800));
         // constrain.gridx = 1;
         // constrain.gridy = 1;
-        // showBorder(workerTable);
         // this.add(workerTable, constrain);
         // workerTable.setVisible(false);
         // guiTool.resetConstrains(constrain);
@@ -76,7 +77,7 @@ public class MainPanel extends JPanel {
         // constrain.gridx = 1;
         // constrain.gridy = 1;
         // showBorder(projectTree);
-        // projectTree.setVisible(false);
+        // //projectTree.setVisible(false);
         // this.add(projectTree, constrain);
 
         // ChartPanel chartPanel = new ChartPanel(pma);
@@ -87,27 +88,24 @@ public class MainPanel extends JPanel {
         // showBorder(chartPanel);
         // this.add(chartPanel, constrain);
 
-
         this.setVisible(true);
+        
+        topPanel.getHomeBtn().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                introPanel.setVisible(true);
+                addProjectPanel.setVisible(false);
+            }
+        });
 
-        // leftPanel.getForgotBtn().addActionListener(new ActionListener() {
-        //     public void actionPerformed(ActionEvent e) {
-        //         if (leftPanel.getForgotBtn().isSelected()) {
-        //             workerTable.setVisible(true);
-        //             projectTree.setVisible(false);
-        //         } else {
-        //             workerTable.setVisible(false);
-        //             projectTree.setVisible(true);
-        //         }
-        //     }
-        // });
+        topPanel.getAddProjectBtn().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                introPanel.setVisible(false);
+                addProjectPanel.setVisible(true);
+            }
+        });
 
-    }
+    
 
-    // Visual Debuging to show border around panel
-    private void showBorder(JPanel panel) {
-        Border blackline = BorderFactory.createLineBorder(Color.black);
-        panel.setBorder(blackline);
     }
 
 }

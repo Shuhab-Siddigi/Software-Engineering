@@ -2,8 +2,6 @@ package dtu.pma;
 
 import java.awt.*;
 
-import dtu.pma.GUI.Application;
-
 
 public class Main {
   

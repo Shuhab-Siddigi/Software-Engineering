@@ -1,6 +1,8 @@
-package dtu.pma.GUI;
+package dtu.pma;
 
-import dtu.pma.PMA;
+import dtu.pma.GUI.Frame;
+import dtu.pma.GUI.Panels.MainPanel;
+
 import java.awt.*;
 
 public class Application {

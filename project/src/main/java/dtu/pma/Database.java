@@ -10,6 +10,7 @@ public class Database {
     public List<Worker> getWorkers(){
         // Female
         List<Worker> workers = new ArrayList<>();
+        workers.add(new Worker("System", "Huset", "X"));
         workers.add(new Worker("Angela", "Anderson", "AAAA"));
         workers.add(new Worker("Aaliyah", "Turner", "AAAB"));
         workers.add(new Worker("allulah", " Hebert", "AAAC"));
@@ -85,8 +86,6 @@ public class Database {
          workers.add(new Worker("Angela", " Anderson", "AUAA"));
          workers.add(new Worker("Aiden", "Faulkner", "AVAA"));
          workers.add(new Worker("Maisy", " Hudson", "AWAA")); // 72
-         workers.add(new Worker("System", "Huset", "X"));
-
         return workers;
     }
 

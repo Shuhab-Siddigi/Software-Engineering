@@ -1,4 +1,4 @@
-package dtu.pma.GUI;
+package dtu.pma.GUI.Panels;
 
 import dtu.pma.PMA;
 import dtu.pma.Worker;
@@ -8,22 +8,21 @@ import javax.swing.table.DefaultTableModel;
 
 public class WorkerTable extends JPanel {
 
-    public WorkerTable(PMA pma,int width,int height) {
-        
+    public WorkerTable(PMA pma, int width, int height) {
 
         JTable workerTable = new JTable();
-    
-        workerTable = setTable(pma,workerTable);
-        
+
+        workerTable = setTable(pma, workerTable);
+
         JScrollPane scrollPane = new JScrollPane(workerTable);
-        scrollPane.setPreferredSize(new Dimension(width, height-5));
+        scrollPane.setPreferredSize(new Dimension(width, height - 5));
         this.add(scrollPane);
 
     }
 
     private JTable setTable(PMA pma,JTable jTable) {
         DefaultTableModel model = new DefaultTableModel();
-
+        
         model.addColumn("Firstname");
         model.addColumn("Lastname");
         model.addColumn("ID");
