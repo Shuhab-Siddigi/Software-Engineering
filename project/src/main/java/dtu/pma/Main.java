@@ -1,6 +1,7 @@
 package dtu.pma;
 
 import java.awt.*;
+import java.sql.Date;
 
 public class Main {
   
@@ -9,9 +10,9 @@ public class Main {
     Application application = new Application();
     PMA pma = new PMA();
     pma.addDatabase();
-    pma.addProject(new Project("Extreme Programming",0001));
+    Project p = new Project("Extreme Programming",0001);
 
-    
+  
     EventQueue.invokeLater(new Runnable() {
       public void run() {
         try {

@@ -1,7 +1,6 @@
 package dtu.pma.GUI.Panels;
 
 import java.awt.*;
-import java.awt.event.MouseListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
@@ -14,13 +13,14 @@ import dtu.pma.GUI.GUITools;
 public class AddProjectPanel extends JPanel {
 
     JButton addProjectBtn;
+    ProjectTree projectTree;
 
     public AddProjectPanel(PMA pma) {
 
         setLayout(new GridBagLayout());
         GUITools guiTool = new GUITools();
         GridBagConstraints constrain = new GridBagConstraints();
-
+        
         JTextField settitleTextField = new JTextField("Set Title:");
         JLabel settitleLabel = new JLabel();
         settitleLabel.setText("Title:");
@@ -51,7 +51,7 @@ public class AddProjectPanel extends JPanel {
         JTextArea setDescriptionTextField = new JTextArea("Set Description");
         setDescriptionLabel.setFont(new Font("Serif", Font.BOLD, 20));
 
-        ProjectTree projectTree = new ProjectTree(pma, 300, 780);
+        projectTree = new ProjectTree(pma, 300, 780);
 
         addProjectBtn = new JButton();
         addProjectBtn.setText("ADD PROJECT");
@@ -175,19 +175,15 @@ public class AddProjectPanel extends JPanel {
 
         addProjectBtn.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-
                
                 try {
-                    Project p = new Project(settitleTextField.getText(), setIDTextField.getText());
-
-                    //@wip
+                    Project p = new Project(settitleTextField.getText(), Integer.parseInt(setIDTextField.getText()));
                     if (setProjectLeaderTextField.getText() != "") {
                         p.setProjectLeader(pma.getWorkerWithID(setProjectLeaderTextField.getText()));
                     }
                     pma.addProject(p);
                     JOptionPane.showMessageDialog(addProjectBtn, "The Project was added");
-                    validate();
-                    repaint();
+                
                 } catch (OperationNotAllowedException e1) {
                     JOptionPane.showMessageDialog(addProjectBtn, e1.getMessage());
                 }
@@ -195,5 +191,4 @@ public class AddProjectPanel extends JPanel {
         });
 
     }
-
 }

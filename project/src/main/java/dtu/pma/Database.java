@@ -89,4 +89,54 @@ public class Database {
         return workers;
     }
 
+
+    public List<Project> getProjects(){
+
+        List<Project> projects = new ArrayList<>();
+       
+        projects.add(new Project("Shark Platinum", 0001));
+        projects.add(new Project("Shark Copper", 0001));
+        projects.add(new Project("Sturgeon Lead", 0001));
+        projects.add(new Project("Herring Tin", 0001));
+        projects.add(new Project("Crayfish Platinum", 0001));
+        projects.add(new Project("Sardine Beipiaosaurus", 0001));
+        projects.add(new Project("Sturgeon Beishanlong", 0001));
+        projects.add(new Project("Bass Seismosaurus", 0001));
+        projects.add(new Project("Eel Sonorasaurus", 0001));
+        projects.add(new Project("Viper Lycorhinus", 0001));
+        projects.add(new Project("King Cobra Brachiosaurus", 0001));
+        projects.add(new Project("Python Ornithopsis", 0001));
+        projects.add(new Project("Gold Dragonfly", 0001));
+        projects.add(new Project("Iron Beetle", 0001));
+        projects.add(new Project("Platinum Beetle", 0001));
+        projects.add(new Project("Aluminum Scottish Terrier", 0001));
+        projects.add(new Project("Krypton Collie", 0001));
+        projects.add(new Project("Nihonium Chihuahua", 0001));
+        projects.add(new Project("Actinium Collie", 0001));
+        projects.add(new Project("Ytterbium Airedale", 0001));
+        projects.add(new Project("Cobalt Greyhound", 0001));
+        projects.add(new Project("Oganesson Dalmatian", 0001));
+        projects.add(new Project("Europium Irish Setter", 0001));
+        projects.add(new Project("Potassium Airedale", 0001));
+        projects.add(new Project("Astatine Irish Setter", 0001));
+        projects.add(new Project("Ytterbium Saint Bernard", 0001));
+        projects.add(new Project("Ytterbium Corgi", 0001));
+        projects.add(new Project("Cadmium Pekingese", 0001));
+        projects.add(new Project("Rhodium Border Collie", 0001));
+        projects.add(new Project("Terbium Hound", 0001));
+        projects.add(new Project("Yttrium Scottish Terrier", 0001));
+        projects.add(new Project("Europium Great Dane", 0001));
+        projects.add(new Project("Curium Great Dane", 0001));
+        projects.add(new Project("Berkelium Poodle", 0001));
+        projects.add(new Project("Neodymium Beagle", 0001));
+        projects.add(new Project("Samarium Dachshund", 0001));
+        projects.add(new Project("Nitrogen Lhasa Apso", 0001));
+        projects.add(new Project("Rutherfordium Collie", 0001));
+        projects.add(new Project("Dysprosium Chihuahua", 0001));
+        projects.add(new Project("Polonium Spaniel", 0001));
+        projects.add(new Project("Thorium Spaniel", 0001));
+        projects.add(new Project("Magnesium Hound", 0001));
+
+        return projects;
+    } 
 }
