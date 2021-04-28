@@ -14,7 +14,7 @@ public class Application {
   public void initialize(PMA pma) {
     Frame frame = new Frame("Project Management System");
     
-    MainPanel mainpanel = new MainPanel(pma);
+    MainPanel mainpanel = new MainPanel(pma,frame);
     frame.getContentPane().add(mainpanel, BorderLayout.CENTER);
 
     //frame.add(mainpanel);

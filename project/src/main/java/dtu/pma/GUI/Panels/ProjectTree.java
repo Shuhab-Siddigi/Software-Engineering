@@ -10,14 +10,16 @@ import javax.swing.JTree;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 public class ProjectTree extends JPanel {
 
     DefaultMutableTreeNode projetNode = new DefaultMutableTreeNode("Projects");
     JTree tree;
+    PMA pma;
 
     public ProjectTree(PMA pma, int width, int height) {
-
+        this.pma = pma;
         tree = new JTree(projetNode);
 
         AddProjectsToTree(pma, projetNode);
@@ -26,7 +28,6 @@ public class ProjectTree extends JPanel {
         treeView.setPreferredSize(new Dimension(width, height - 5));
 
         this.add(treeView);
-
 
     }
 
@@ -41,9 +42,11 @@ public class ProjectTree extends JPanel {
         projetNode.add(new DefaultMutableTreeNode(
                 "Title: " + project.getInfo().getTitle() + " ID: " + Integer.toString(project.getInfo().getID())));
     }
-    public JTree getTree(){
-        return tree;
-    }
 
+    public void updateTree() {
+        DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
+        model.reload(root);
+    }
 
 }

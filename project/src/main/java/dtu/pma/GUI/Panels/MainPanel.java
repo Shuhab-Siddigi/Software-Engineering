@@ -14,7 +14,7 @@ import dtu.pma.GUI.GUITools;
 */
 public class MainPanel extends JPanel {
 
-    public MainPanel(PMA pma) {
+    public MainPanel(PMA pma, Frame frame) {
 
         setLayout(new GridBagLayout());
         GUITools guiTool = new GUITools();
@@ -98,12 +98,13 @@ public class MainPanel extends JPanel {
         // this.add(chartPanel, constrain);
 
         this.setVisible(true);
-        
+
         topPanel.getHomeBtn().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 introPanel.setVisible(true);
                 addProjectPanel.setVisible(false);
                 showProjectsPanel.setVisible(false);
+
             }
         });
 
@@ -111,7 +112,8 @@ public class MainPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 introPanel.setVisible(false);
                 addProjectPanel.setVisible(true);
-                showProjectsPanel.setVisible(false);
+                
+                // showProjectsPanel.setVisible(false);
             }
         });
 
@@ -120,10 +122,9 @@ public class MainPanel extends JPanel {
                 introPanel.setVisible(false);
                 addProjectPanel.setVisible(false);
                 showProjectsPanel.setVisible(true);
+
             }
         });
-
-    
 
     }
 
