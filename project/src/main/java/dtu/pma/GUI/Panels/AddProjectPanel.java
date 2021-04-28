@@ -50,25 +50,26 @@ public class AddProjectPanel extends JPanel {
         setDescriptionLabel.setText("Descripton:");
         JTextArea setDescriptionTextField = new JTextArea("Set Description");
         setDescriptionLabel.setFont(new Font("Serif", Font.BOLD, 20));
+        setDescriptionTextField.setMinimumSize(new Dimension(200, 100));
+        setDescriptionTextField.setMaximumSize(new Dimension(200, 200));
 
-        projectTree = new ProjectTree(pma, 300, 780);
+        projectTree = new ProjectTree(pma, 340, 750);
+        //projectTree.setMinimumSize(new Dimension(300, 700));
+        //projectTree.setMaximumSize(new Dimension(300, 700));
 
         addProjectBtn = new JButton();
         addProjectBtn.setText("ADD PROJECT");
 
+        constrain.fill = GridBagConstraints.BOTH;
+        constrain.anchor = GridBagConstraints.CENTER;
+        constrain.insets = new Insets(10,0,10,10);
+        constrain.weightx = 0.05; 
         constrain.gridx = 0;
         constrain.gridy = 0;
-        constrain.anchor = GridBagConstraints.LINE_START;
-        constrain.insets = new Insets(0, 50, 50, 50);
-        constrain.weightx = 0.9;
-        constrain.weighty = 1;
-        constrain.ipady = 30;
-        constrain.ipadx = 50;
         this.add(settitleLabel, constrain);
 
         constrain.gridx = 1;
         constrain.gridy = 0;
-
         this.add(settitleTextField, constrain);
 
         constrain.gridx = 0;
@@ -109,26 +110,22 @@ public class AddProjectPanel extends JPanel {
 
         constrain.gridx = 1;
         constrain.gridy = 5;
-        constrain.ipady = 70;
-        constrain.ipadx = 100;
         this.add(setDescriptionTextField, constrain);
 
-        constrain.anchor = GridBagConstraints.CENTER;
         constrain.gridx = 0;
         constrain.gridy = 6;
         constrain.gridwidth = 2;
-        constrain.ipady = 70;
-        constrain.ipadx = 200;
+        constrain.fill = GridBagConstraints.VERTICAL;
+        constrain.anchor = GridBagConstraints.CENTER;
+        constrain.weightx = 0.5;
         this.add(addProjectBtn, constrain);
 
-        constrain.insets = new Insets(0, 0, 0, 0);
-        constrain.gridx = 3;
+        constrain.gridx = 2;
         constrain.gridy = 0;
-        constrain.gridheight = 7;
-        constrain.weightx = 1;
         constrain.weighty = 1;
-        constrain.ipady = 780;
-        constrain.ipadx = 400;
+        constrain.weightx = 1;
+        constrain.fill = GridBagConstraints.BOTH;
+        constrain.gridheight = 6;
         this.add(projectTree, constrain);
 
         settitleTextField.addMouseListener(new MouseAdapter() {
