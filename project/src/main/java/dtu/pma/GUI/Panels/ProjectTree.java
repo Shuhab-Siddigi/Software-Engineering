@@ -7,31 +7,43 @@ import java.awt.*;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.event.TreeModelEvent;
+import javax.swing.event.TreeModelListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 public class ProjectTree extends JPanel {
 
-    public ProjectTree(PMA pma,int width,int height){
-        
-        DefaultMutableTreeNode projetNode = new DefaultMutableTreeNode("Projects");
-    
-        JTree tree = new JTree(projetNode);
-       
-        AddWorkersToTree(pma,projetNode);
-        
+    DefaultMutableTreeNode projetNode = new DefaultMutableTreeNode("Projects");
+    JTree tree;
+
+    public ProjectTree(PMA pma, int width, int height) {
+
+        tree = new JTree(projetNode);
+
+        AddProjectsToTree(pma, projetNode);
+
         JScrollPane treeView = new JScrollPane(tree);
-        treeView.setPreferredSize(new Dimension(width, height-5));
-        
+        treeView.setPreferredSize(new Dimension(width, height - 5));
+
         this.add(treeView);
+
+
     }
 
-    private void AddWorkersToTree(PMA pma,DefaultMutableTreeNode projetNode){
-       for (Project project : pma.getProjects()) {
-        projetNode.add(new DefaultMutableTreeNode(
-            "Title: "+project.getInfo().getTitle()+
-            " ID: "+Integer.toString(project.getInfo().getID())));
-       }
+    private void AddProjectsToTree(PMA pma, DefaultMutableTreeNode projetNode) {
+        for (Project project : pma.getProjects()) {
+            projetNode.add(new DefaultMutableTreeNode(
+                    "Title: " + project.getInfo().getTitle() + " ID: " + Integer.toString(project.getInfo().getID())));
+        }
     }
-    
+
+    public void AddProjectToTree(Project project) {
+        projetNode.add(new DefaultMutableTreeNode(
+                "Title: " + project.getInfo().getTitle() + " ID: " + Integer.toString(project.getInfo().getID())));
+    }
+    public JTree getTree(){
+        return tree;
+    }
+
 
 }

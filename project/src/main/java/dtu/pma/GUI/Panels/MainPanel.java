@@ -64,6 +64,15 @@ public class MainPanel extends JPanel {
         this.add(addProjectPanel, constrain);
         guiTool.resetConstrains(constrain);
 
+        ShowProjectsPanel showProjectsPanel = new ShowProjectsPanel(pma);
+        showProjectsPanel.setPreferredSize(new Dimension(900, 800));
+        guiTool.showBorder(addProjectPanel);
+        constrain.gridx = 2;
+        constrain.gridy = 1;
+        showProjectsPanel.setVisible(false);
+        this.add(showProjectsPanel, constrain);
+        guiTool.resetConstrains(constrain);
+
         // WorkerTable workerTable = new WorkerTable(pma, 200, 800);
         // workerTable.setPreferredSize(new Dimension(200, 800));
         // constrain.gridx = 1;
@@ -94,6 +103,7 @@ public class MainPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 introPanel.setVisible(true);
                 addProjectPanel.setVisible(false);
+                showProjectsPanel.setVisible(false);
             }
         });
 
@@ -101,6 +111,15 @@ public class MainPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 introPanel.setVisible(false);
                 addProjectPanel.setVisible(true);
+                showProjectsPanel.setVisible(false);
+            }
+        });
+
+        topPanel.showProjectsBtn().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                introPanel.setVisible(false);
+                addProjectPanel.setVisible(false);
+                showProjectsPanel.setVisible(true);
             }
         });
 

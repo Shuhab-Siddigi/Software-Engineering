@@ -44,8 +44,7 @@ public class IntroPanel extends JPanel{
         
 
         guiTool.resetConstrains(constrain);
-
-      
+ 
 
     }
 }

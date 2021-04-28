@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
+import javax.swing.event.TreeModelEvent;
 
 import dtu.pma.OperationNotAllowedException;
 import dtu.pma.PMA;
@@ -20,7 +21,7 @@ public class AddProjectPanel extends JPanel {
         setLayout(new GridBagLayout());
         GUITools guiTool = new GUITools();
         GridBagConstraints constrain = new GridBagConstraints();
-        
+
         JTextField settitleTextField = new JTextField("Set Title:");
         JLabel settitleLabel = new JLabel();
         settitleLabel.setText("Title:");
@@ -54,16 +55,16 @@ public class AddProjectPanel extends JPanel {
         setDescriptionTextField.setMaximumSize(new Dimension(200, 200));
 
         projectTree = new ProjectTree(pma, 340, 730);
-        //projectTree.setMinimumSize(new Dimension(300, 700));
-        //projectTree.setMaximumSize(new Dimension(300, 700));
+        // projectTree.setMinimumSize(new Dimension(300, 700));
+        // projectTree.setMaximumSize(new Dimension(300, 700));
 
         addProjectBtn = new JButton();
         addProjectBtn.setText("ADD PROJECT");
 
         constrain.fill = GridBagConstraints.BOTH;
         constrain.anchor = GridBagConstraints.CENTER;
-        constrain.insets = new Insets(10,0,10,10);
-        constrain.weightx = 0.05; 
+        constrain.insets = new Insets(10, 0, 10, 10);
+        constrain.weightx = 0.05;
         constrain.gridx = 0;
         constrain.gridy = 0;
         this.add(settitleLabel, constrain);
@@ -172,15 +173,17 @@ public class AddProjectPanel extends JPanel {
 
         addProjectBtn.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-               
+
                 try {
                     Project p = new Project(settitleTextField.getText(), Integer.parseInt(setIDTextField.getText()));
-                    if (setProjectLeaderTextField.getText() != "") {
+                    if (setProjectLeaderTextField.getText() != ""
+                            || setProjectLeaderTextField.getText() != "Set Project Leader") {
                         p.setProjectLeader(pma.getWorkerWithID(setProjectLeaderTextField.getText()));
                     }
                     pma.addProject(p);
+                    projectTree.AddProjectToTree(p);
                     JOptionPane.showMessageDialog(addProjectBtn, "The Project was added");
-                
+
                 } catch (OperationNotAllowedException e1) {
                     JOptionPane.showMessageDialog(addProjectBtn, e1.getMessage());
                 }
@@ -188,4 +191,5 @@ public class AddProjectPanel extends JPanel {
         });
 
     }
+
 }
