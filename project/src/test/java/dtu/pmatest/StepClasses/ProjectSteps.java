@@ -193,11 +193,28 @@ public class ProjectSteps {
         assertEquals(origWorker.getLastname(), testWorker.getLastname());
     }
 
-//     @Given("the project has a start date {string}, end date {string}")
-// public void theProjectHasAStartDateEndDate(String string, String string2) {
-//     // Write code here that turns the phrase above into concrete actions
-//     throw new io.cucumber.java.PendingException();
-// }
+    @Given("there is a project with title {string}, ID {string}")
+    public void thereIsAProjectWithTitleID(String title, String ID) {
+        try {
+            project = new Project(title, ID);
+        } catch (OperationNotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+
+    @When("the project with title {string}, ID {string} is added to the system")
+    public void theProjectWithTitleIDIsAddedToTheSystem(String title, String ID) {
+        try {
+            pma.addProject(new Project(title, ID));
+        } catch (OperationNotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+}
+
+
+ 
+
+
 
     
     

@@ -175,11 +175,15 @@ public class AddProjectPanel extends JPanel {
 
         addProjectBtn.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                Project p = new Project(settitleTextField.getText(), Integer.parseInt(setIDTextField.getText()));
-                if (setProjectLeaderTextField.getText() != "") {
-                    p.setProjectLeader(pma.getWorkerWithID(setProjectLeaderTextField.getText()));
-                }
+
+               
                 try {
+                    Project p = new Project(settitleTextField.getText(), setIDTextField.getText());
+
+                    //@wip
+                    if (setProjectLeaderTextField.getText() != "") {
+                        p.setProjectLeader(pma.getWorkerWithID(setProjectLeaderTextField.getText()));
+                    }
                     pma.addProject(p);
                     JOptionPane.showMessageDialog(addProjectBtn, "The Project was added");
                     validate();

@@ -3,6 +3,7 @@ package dtu.pma;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.*;
 
 public class Project {
 
@@ -12,6 +13,40 @@ public class Project {
 
     public Project(String title, int ID) {
         this.info = new Info(title, ID);
+    }
+
+    public Project(String title, String ID) throws OperationNotAllowedException {
+        // input_check
+        
+            isAllowedID(ID);
+            int IDInt = Integer.parseInt(ID);
+            this.info = new Info(title, IDInt);
+            
+        }
+
+    public static boolean isAllowedID(String str) throws OperationNotAllowedException {
+        // Regex to check string
+        // contains only digits
+        String regex = "^[0-9]{4}$";
+
+        // Compile the ReGex
+        Pattern p = Pattern.compile(regex);
+        // empty
+        if (str == null || str == "") {
+            throw new OperationNotAllowedException ("Invalid input sequence: ID has to be inserted");
+          }
+        // check
+        Matcher m = p.matcher(str);
+
+        if (m.matches() == false) {
+            throw new OperationNotAllowedException ("Invalid input sequence: ID has to be in range [0000-9999]");
+        }
+
+        if (m.matches() == true) {
+            return true;
+        }
+
+        return false;
     }
 
     public void setProjectLeader(Worker worker) {
@@ -53,10 +88,10 @@ public class Project {
         text += this.projectLeader.getLastname() + ", " + this.projectLeader.getFirstname() + " "
                 + this.projectLeader.getID();
 
-        if (this.activities.size() >0)
+        if (this.activities.size() > 0)
             text += "\n\n";
-        
-            return text;
+
+        return text;
     }
 
     private void checksDates(Activity activity) {
@@ -76,13 +111,13 @@ public class Project {
         // Creates start and end date for project
         checksDates(activity);
         int lengthID = Integer.toString(activity.getInfo().getID()).length();
-        
+
         if (getActivityFromID(activity.getInfo().getID()) != null) {
             throw new OperationNotAllowedException("Project already contains activity!");
         } else if (activity.getInfo().getEndDate().before(this.info.getStartDate())) {
-            //System.out.println("Date check works");
+            // System.out.println("Date check works");
             throw new OperationNotAllowedException("Activity date is before project start!");
-        } else if (lengthID > 4){
+        } else if (lengthID > 4) {
             throw new OperationNotAllowedException("Activity can not have more than a 4 digit ID");
         }
 
@@ -106,15 +141,15 @@ public class Project {
             throw new OperationNotAllowedException("Activity does not exist!");
         } else if (worker != getProjectLeader()) {
             throw new OperationNotAllowedException("Only the project leader can remove activity!");
-        } 
-            activities.remove(activity);
+        }
+        activities.remove(activity);
     }
 
-    public void addWorkerToActivity(Activity activity, Worker worker, Worker projectLeader) throws OperationNotAllowedException {
-        if(activity == null)
-        {
+    public void addWorkerToActivity(Activity activity, Worker worker, Worker projectLeader)
+            throws OperationNotAllowedException {
+        if (activity == null) {
             throw new OperationNotAllowedException("Activity does not exist!");
-        } else if (worker == null){
+        } else if (worker == null) {
             throw new OperationNotAllowedException("Worker does not exist in system");
         } else if (projectLeader != this.projectLeader) {
             throw new OperationNotAllowedException("You are not the project leader for this project!");
@@ -122,11 +157,11 @@ public class Project {
         activity.addWorker(worker);
     }
 
-    public void removeWorkerFromActivity(Activity activity, Worker worker, Worker projectLeader) throws OperationNotAllowedException {
-        if(activity == null)
-        {
+    public void removeWorkerFromActivity(Activity activity, Worker worker, Worker projectLeader)
+            throws OperationNotAllowedException {
+        if (activity == null) {
             throw new OperationNotAllowedException("Activity does not exist!");
-        } else if (worker == null){
+        } else if (worker == null) {
             throw new OperationNotAllowedException("Worker does not exist in system");
         } else if (projectLeader != this.projectLeader) {
             throw new OperationNotAllowedException("You are not the project leader for this project!");
@@ -135,23 +170,22 @@ public class Project {
     }
 
     public void changeStartDateForActivity(Activity activity, Date startDate) throws OperationNotAllowedException {
-        if(startDate.after(this.info.getEndDate()))
-        {
+        if (startDate.after(this.info.getEndDate())) {
             throw new OperationNotAllowedException("Cannot change start date to after project ends!");
         }
-        if (startDate.before(this.info.getStartDate())){
+        if (startDate.before(this.info.getStartDate())) {
             this.info.setStartDate(startDate);
-        }// Skrevet af Tobias: Ikke sikker på om projekt start skal ændre sig hvis activity start gør..
-        
+        } // Skrevet af Tobias: Ikke sikker på om projekt start skal ændre sig hvis
+          // activity start gør..
+
         activity.getInfo().setStartDate(startDate);
     }
 
     public void changeEndDateForActivity(Activity activity, Date endDate) throws OperationNotAllowedException {
-        if(endDate.before(this.info.getStartDate()))
-        {
+        if (endDate.before(this.info.getStartDate())) {
             throw new OperationNotAllowedException("Cannot change end date to before project starts!");
         }
-        if (endDate.after(this.info.getEndDate())){
+        if (endDate.after(this.info.getEndDate())) {
             this.info.setEndDate(endDate);
         }
         activity.getInfo().setEndDate(endDate);

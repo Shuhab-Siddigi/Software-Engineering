@@ -293,5 +293,10 @@ public class ActivitySteps {
     public void theActivityChangesEndDateTo(String endDate) {
         Date end = Date.valueOf(endDate);
         assertEquals(activity.getInfo().getEndDate(), end);
-    }   
+    }
+    
+  
+
+
+
 }

@@ -64,7 +64,16 @@ public class PMA {
         return this.projects;
     }
 
+
+    private void isAllowedID(int ID)
+    {
+        
+    }
+    
     public void addProject(Project p) throws OperationNotAllowedException {
+
+        
+
         int lengthID = Integer.toString(p.getInfo().getID()).length();
         if (containsProjectWithID(p.getInfo().getID()) || containsProjectWithTitle(p.getInfo().getTitle())) {
             throw new OperationNotAllowedException("Project ID is already used!");

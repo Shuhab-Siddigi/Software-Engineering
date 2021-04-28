@@ -20,4 +20,7 @@ Feature: Create Project
         Then the error message "Project can not have more than a 4 digit ID" is given
         #Can only check if it is more than 4. 0's will be compiled as white space
 
-    
+    Scenario: Project with nonInteger ID
+        Given there is a project with title "Extreme Programming", ID "ABCD"
+        When the project with title "Extreme Programming", ID "ABCD" is added to the system
+        Then the error message "Invalid input sequence: ID has to be in range [0000-9999]" is given    
