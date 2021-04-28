@@ -10,9 +10,6 @@ public class Main {
     Application application = new Application();
     PMA pma = new PMA();
     pma.addDatabase();
-    Project p = new Project("Extreme Programming",0001);
-
-  
     EventQueue.invokeLater(new Runnable() {
       public void run() {
         try {

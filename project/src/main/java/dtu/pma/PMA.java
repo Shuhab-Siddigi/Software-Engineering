@@ -21,6 +21,9 @@ public class PMA {
             for (Worker w : db.getWorkers()) {
                 workers.add(w);
             }
+            for (Project p: db.getProjects()){
+                projects.add(p);
+            }
         }
     }
 

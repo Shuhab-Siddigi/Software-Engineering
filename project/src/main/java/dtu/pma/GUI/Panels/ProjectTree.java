@@ -31,13 +31,6 @@ public class ProjectTree extends JPanel {
             "Title: "+project.getInfo().getTitle()+
             " ID: "+Integer.toString(project.getInfo().getID())));
        }
-
-       // Test
-       for (Worker w : pma.getWorkers()) {
-        projetNode.add(new DefaultMutableTreeNode(
-            "Title: "+w.getFirstname()+
-            " ID: "+w.getLastname()));
-       }
     }
     
 
