@@ -11,10 +11,11 @@ import dtu.pma.PMA;
 import dtu.pma.Project;
 
 public class ProjectTable extends JPanel{
+    
+    private DefaultTableModel model = new DefaultTableModel();
+    JTable projectTable = new JTable();
 
     public ProjectTable(PMA pma,int width, int height){
-
-        JTable projectTable = new JTable();
 
         projectTable = setTable(pma, projectTable);
 
@@ -25,7 +26,7 @@ public class ProjectTable extends JPanel{
     }
 
     private JTable setTable(PMA pma,JTable jTable) {
-        DefaultTableModel model = new DefaultTableModel();
+      
         
         model.addColumn("Title");
         model.addColumn("ID");
@@ -53,4 +54,19 @@ public class ProjectTable extends JPanel{
 
         return jTable;
     }
+    public void addProject(Project p){
+        model.addRow(
+            new Object[] {   
+                p.getInfo().getTitle(), 
+                p.getInfo().getID(), 
+                p.getInfo().getStartDate(), 
+                p.getInfo().getEndDate(), 
+                p.getInfo().getHoursWorked(), 
+                p.getInfo().getExpectedHours(), 
+                p.getInfo().getDescription(), 
+            }
+        );
+    }
+    
+  
 }

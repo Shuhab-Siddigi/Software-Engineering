@@ -15,8 +15,10 @@ public class AddProjectPanel extends JPanel {
 
     JButton addProjectBtn;
     ProjectTree projectTree;
-
-    public AddProjectPanel(PMA pma) {
+    ProjectTable projectTable;
+    public AddProjectPanel(PMA pma,ProjectTree projectTree,ProjectTable projectTable) {
+        this.projectTable = projectTable;
+        this.projectTree = projectTree;
 
         setLayout(new GridBagLayout());
         GUITools guiTool = new GUITools();
@@ -54,7 +56,7 @@ public class AddProjectPanel extends JPanel {
         setDescriptionTextField.setMinimumSize(new Dimension(200, 100));
         setDescriptionTextField.setMaximumSize(new Dimension(200, 200));
 
-        projectTree = new ProjectTree(pma, 340, 730);
+       
         // projectTree.setMinimumSize(new Dimension(300, 700));
         // projectTree.setMaximumSize(new Dimension(300, 700));
 
@@ -180,10 +182,12 @@ public class AddProjectPanel extends JPanel {
                             || setProjectLeaderTextField.getText() != "Set Project Leader") {
                         p.setProjectLeader(pma.getWorkerWithID(setProjectLeaderTextField.getText()));
                     }
+                    JOptionPane.showMessageDialog(addProjectBtn, "The Project was added");
                     pma.addProject(p);
                     projectTree.AddProjectToTree(p);
-                    projectTree.updateTree();          
-                    JOptionPane.showMessageDialog(addProjectBtn, "The Project was added");
+                    projectTree.updateTree();
+                    projectTable.addProject(p);
+                    
 
                 } catch (OperationNotAllowedException e1) {
                     JOptionPane.showMessageDialog(addProjectBtn, e1.getMessage());

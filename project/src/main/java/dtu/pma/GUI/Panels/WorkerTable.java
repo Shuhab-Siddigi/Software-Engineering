@@ -7,6 +7,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class WorkerTable extends JPanel {
+   
+    DefaultTableModel model = new DefaultTableModel();
 
     public WorkerTable(PMA pma, int width, int height) {
 
@@ -20,26 +22,21 @@ public class WorkerTable extends JPanel {
 
     }
 
-    private JTable setTable(PMA pma,JTable jTable) {
-        DefaultTableModel model = new DefaultTableModel();
-        
+    private JTable setTable(PMA pma, JTable jTable) {
+
         model.addColumn("Firstname");
         model.addColumn("Lastname");
         model.addColumn("ID");
 
         for (Worker w : pma.getWorkers()) {
-            model.addRow(
-                new Object[] {   
-                    w.getFirstname(), 
-                    w.getLastname(), 
-                    w.getID() 
-                }
-            );
+            model.addRow(new Object[] { w.getFirstname(), w.getLastname(), w.getID() });
         }
 
         jTable.setModel(model);
 
         return jTable;
     }
+
+
 
 }

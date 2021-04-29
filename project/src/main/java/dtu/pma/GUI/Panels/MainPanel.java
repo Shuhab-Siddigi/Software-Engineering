@@ -14,7 +14,13 @@ import dtu.pma.GUI.GUITools;
 */
 public class MainPanel extends JPanel {
 
+    ProjectTree projectTree;
+    ProjectTable projectTable;
+
     public MainPanel(PMA pma, Frame frame) {
+
+        projectTree = new ProjectTree(pma, 340, 730);
+        projectTable = new ProjectTable(pma, 800, 700);
 
         setLayout(new GridBagLayout());
         GUITools guiTool = new GUITools();
@@ -46,32 +52,54 @@ public class MainPanel extends JPanel {
         constrain.fill = GridBagConstraints.VERTICAL;
         this.add(bottomPanel, constrain);
 
+        JPanel cardLayoutPanel = new JPanel();
+        CardLayout cardLayout = new CardLayout();
+        cardLayoutPanel.setLayout(cardLayout);
+        constrain.gridx = 2;
+        constrain.gridy = 1;
+        this.add(cardLayoutPanel, constrain);
+
         IntroPanel introPanel = new IntroPanel();
         introPanel.setPreferredSize(new Dimension(900, 800));
-        guiTool.showBorder(introPanel);
-        constrain.gridx = 2;
-        constrain.gridy = 1;
-
-        this.add(introPanel, constrain);
-        guiTool.resetConstrains(constrain);
-
-        AddProjectPanel addProjectPanel = new AddProjectPanel(pma);
+        
+        AddProjectPanel addProjectPanel = new AddProjectPanel(pma, projectTree, projectTable);
         addProjectPanel.setPreferredSize(new Dimension(900, 800));
-        guiTool.showBorder(addProjectPanel);
-        constrain.gridx = 2;
-        constrain.gridy = 1;
-        addProjectPanel.setVisible(false);
-        this.add(addProjectPanel, constrain);
-        guiTool.resetConstrains(constrain);
-
-        ShowProjectsPanel showProjectsPanel = new ShowProjectsPanel(pma);
+        
+        ShowProjectsPanel showProjectsPanel = new ShowProjectsPanel(pma, projectTable);
         showProjectsPanel.setPreferredSize(new Dimension(900, 800));
-        guiTool.showBorder(addProjectPanel);
-        constrain.gridx = 2;
-        constrain.gridy = 1;
-        showProjectsPanel.setVisible(false);
-        this.add(showProjectsPanel, constrain);
-        guiTool.resetConstrains(constrain);
+
+        cardLayoutPanel.add(introPanel, "intro");
+        cardLayoutPanel.add(addProjectPanel, "add-project");
+        cardLayoutPanel.add(showProjectsPanel, "show-projects");
+
+        // IntroPanel introPanel = new IntroPanel();
+        // introPanel.setPreferredSize(new Dimension(900, 800));
+        // guiTool.showBorder(introPanel);
+        // constrain.gridx = 2;
+        // constrain.gridy = 1;
+
+        // this.add(introPanel, constrain);
+        // guiTool.resetConstrains(constrain);
+
+        // AddProjectPanel addProjectPanel = new
+        // AddProjectPanel(pma,projectTree,projectTable);
+        // addProjectPanel.setPreferredSize(new Dimension(900, 800));
+        // guiTool.showBorder(addProjectPanel);
+        // constrain.gridx = 2;
+        // constrain.gridy = 1;
+        // addProjectPanel.setVisible(false);
+        // this.add(addProjectPanel, constrain);
+        // guiTool.resetConstrains(constrain);
+
+        // ShowProjectsPanel showProjectsPanel = new
+        // ShowProjectsPanel(pma,projectTable);
+        // showProjectsPanel.setPreferredSize(new Dimension(900, 800));
+        // guiTool.showBorder(addProjectPanel);
+        // constrain.gridx = 2;
+        // constrain.gridy = 1;
+        // showProjectsPanel.setVisible(false);
+        // this.add(showProjectsPanel, constrain);
+        // guiTool.resetConstrains(constrain);
 
         // WorkerTable workerTable = new WorkerTable(pma, 200, 800);
         // workerTable.setPreferredSize(new Dimension(200, 800));
@@ -101,28 +129,19 @@ public class MainPanel extends JPanel {
 
         topPanel.getHomeBtn().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                introPanel.setVisible(true);
-                addProjectPanel.setVisible(false);
-                showProjectsPanel.setVisible(false);
-
+                cardLayout.show(cardLayoutPanel, "intro");
             }
         });
 
         topPanel.getAddProjectBtn().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                introPanel.setVisible(false);
-                addProjectPanel.setVisible(true);
-                
-                // showProjectsPanel.setVisible(false);
+                cardLayout.show(cardLayoutPanel, "add-project");
             }
         });
 
         topPanel.showProjectsBtn().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                introPanel.setVisible(false);
-                addProjectPanel.setVisible(false);
-                showProjectsPanel.setVisible(true);
-
+                cardLayout.show(cardLayoutPanel, "show-projects");
             }
         });
 
