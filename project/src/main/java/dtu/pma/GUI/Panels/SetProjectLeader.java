@@ -27,6 +27,14 @@ public class SetProjectLeader extends JPanel{
         JLabel workerLabel = new JLabel();
         workerLabel.setText("Workers");
         workerLabel.setFont(new Font("Serif", Font.BOLD, 30));
+
+        JLabel projectLabel2 = new JLabel();
+        projectLabel2.setText("Projects:");
+        projectLabel2.setFont(new Font("Serif", Font.BOLD, 15));
+
+        JLabel workerLabel2 = new JLabel();
+        workerLabel2.setText("Workers:");
+        workerLabel2.setFont(new Font("Serif", Font.BOLD, 15));
         
         constrain.insets = new Insets(0, 0, 0, 0);
         constrain.fill = GridBagConstraints.CENTER;
@@ -46,6 +54,22 @@ public class SetProjectLeader extends JPanel{
         constrain.weighty = 0.8;
         constrain.gridwidth = 2;
         this.add(projectWithoutProjectLeaderTable,constrain);
+
+        constrain.insets = new Insets(0, 0, 0, 0);
+        constrain.fill = GridBagConstraints.BOTH;
+        constrain.weightx = 0.5;
+        constrain.weighty = 0.1;
+        constrain.gridx = 0;
+        constrain.gridy = 2;
+        constrain.gridwidth = 1;
+        this.add(projectLabel2,constrain);
+
+        constrain.insets = new Insets(0, 0, 0, 0);
+        constrain.weightx = 0.5;
+        constrain.weighty = 0.1;
+        constrain.gridx = 1;
+        constrain.gridy = 2;
+        this.add(workerLabel2,constrain);
 
     }
     
