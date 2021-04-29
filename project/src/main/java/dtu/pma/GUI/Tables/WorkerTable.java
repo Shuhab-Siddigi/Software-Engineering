@@ -1,13 +1,14 @@
-package dtu.pma.GUI.Panels;
+package dtu.pma.GUI.Tables;
 
 import dtu.pma.PMA;
 import dtu.pma.Worker;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 public class WorkerTable extends JPanel {
-   
+
     DefaultTableModel model = new DefaultTableModel();
 
     public WorkerTable(PMA pma, int width, int height) {
@@ -16,8 +17,11 @@ public class WorkerTable extends JPanel {
 
         workerTable = setTable(pma, workerTable);
 
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(model);
+        workerTable.setRowSorter(sorter);
+
         JScrollPane scrollPane = new JScrollPane(workerTable);
-        scrollPane.setPreferredSize(new Dimension(width, height - 5));
+        scrollPane.setPreferredSize(new Dimension(width, height));
         this.add(scrollPane);
 
     }
@@ -37,6 +41,10 @@ public class WorkerTable extends JPanel {
         return jTable;
     }
 
+    public void addWorker(Worker w) {
 
+        model.addRow(new Object[] { w.getFirstname(), w.getLastname(), w.getID() });
+
+    }
 
 }

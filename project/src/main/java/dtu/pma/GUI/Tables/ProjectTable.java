@@ -1,4 +1,4 @@
-package dtu.pma.GUI.Panels;
+package dtu.pma.GUI.Tables;
 
 import java.awt.Dimension;
 
@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 import dtu.pma.PMA;
 import dtu.pma.Project;
@@ -18,9 +19,12 @@ public class ProjectTable extends JPanel{
     public ProjectTable(PMA pma,int width, int height){
 
         projectTable = setTable(pma, projectTable);
+        
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(model);
+        projectTable.setRowSorter(sorter);
 
         JScrollPane scrollPane = new JScrollPane(projectTable);
-        scrollPane.setPreferredSize(new Dimension(width, height - 5));
+        scrollPane.setPreferredSize(new Dimension(width, height));
         this.add(scrollPane);
 
     }

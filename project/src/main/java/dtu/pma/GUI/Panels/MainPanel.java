@@ -5,6 +5,9 @@ import javax.swing.*;
 import java.awt.event.*;
 import dtu.pma.PMA;
 import dtu.pma.GUI.GUITools;
+import dtu.pma.GUI.Tables.ProjectTable;
+import dtu.pma.GUI.Tables.WorkerTable;
+import dtu.pma.GUI.Trees.ProjectTree;
 
 /*
 * [T] = Top Panel      [T][T][T][T] 
@@ -16,11 +19,13 @@ public class MainPanel extends JPanel {
 
     ProjectTree projectTree;
     ProjectTable projectTable;
+    WorkerTable workerTable;
 
     public MainPanel(PMA pma, Frame frame) {
 
         projectTree = new ProjectTree(pma, 340, 730);
-        projectTable = new ProjectTable(pma, 800, 700);
+        projectTable = new ProjectTable(pma, 890, 790);
+        workerTable = new WorkerTable(pma, 890, 790);
 
         setLayout(new GridBagLayout());
         GUITools guiTool = new GUITools();
@@ -57,6 +62,7 @@ public class MainPanel extends JPanel {
         cardLayoutPanel.setLayout(cardLayout);
         constrain.gridx = 2;
         constrain.gridy = 1;
+        guiTool.showBorder(cardLayoutPanel);
         this.add(cardLayoutPanel, constrain);
 
         IntroPanel introPanel = new IntroPanel();
@@ -82,13 +88,6 @@ public class MainPanel extends JPanel {
         // guiTool.resetConstrains(constrain);
 
 
-        // ChartPanel chartPanel = new ChartPanel(pma);
-        // //chartPanel.setPreferredSize(new Dimension(750, 800));
-        // constrain.gridx = 2;
-        // constrain.gridy = 1;
-        // constrain.gridwidth = 3;
-        // showBorder(chartPanel);
-        // this.add(chartPanel, constrain);
 
         this.setVisible(true);
 

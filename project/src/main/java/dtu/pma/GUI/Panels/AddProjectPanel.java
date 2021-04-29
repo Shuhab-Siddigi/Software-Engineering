@@ -10,6 +10,8 @@ import dtu.pma.OperationNotAllowedException;
 import dtu.pma.PMA;
 import dtu.pma.Project;
 import dtu.pma.GUI.GUITools;
+import dtu.pma.GUI.Tables.ProjectTable;
+import dtu.pma.GUI.Trees.ProjectTree;
 
 public class AddProjectPanel extends JPanel {
 

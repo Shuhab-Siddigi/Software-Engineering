@@ -8,12 +8,11 @@ import java.awt.event.MouseEvent;
 
 import dtu.pma.PMA;
 import dtu.pma.GUI.GUITools;
-import dtu.pma.GUI.Tables.ProjectTable;
+import dtu.pma.GUI.Tables.WorkerTable;
 
-public class ShowProjectsPanel extends JPanel{
+public class ShowWorkerPanel extends JPanel{
 
-    JButton updateTableBtn;
-    public ShowProjectsPanel(PMA pma,ProjectTable projectTable){
+    public ShowWorkerPanel(PMA pma,WorkerTable workerTable){
         setLayout(new GridBagLayout());
         GUITools guiTool = new GUITools();
         GridBagConstraints constrain = new GridBagConstraints();
@@ -27,8 +26,7 @@ public class ShowProjectsPanel extends JPanel{
         constrain.gridx = 1;
         constrain.gridy = 1;
 
-        this.add(projectTable,constrain);
-
+        this.add(workerTable,constrain);
         
     }
 }
