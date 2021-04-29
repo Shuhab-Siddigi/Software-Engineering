@@ -61,6 +61,18 @@ public class Project {
         return this.info;
     }
 
+    public String gReport(){
+
+        String p =  "Title: "           + this.info.getTitle()          + "\n"+
+                    "ID : "             + this.info.getID()             + "\n"+
+                    "Expected hours: "  + this.info.getExpectedHours()  + "\n"+
+                    "Hours Worked: "    + this.info.getHoursWorked()    + "\n"+
+                    "Start Date: "      + this.info.getStartDate()      + "\n"+
+                    "End Date : "       + this.info.getEndDate()        + "\n"+
+                    "Description: "     + this.info.getDescription()    + "\n";
+        return p;
+    }
+
     public String generateReport() {
         String text = printRepport();
         for (Activity a : activities) {

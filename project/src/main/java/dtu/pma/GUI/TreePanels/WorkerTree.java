@@ -1,7 +1,6 @@
 package dtu.pma.GUI.TreePanels;
 
 import dtu.pma.PMA;
-import dtu.pma.Project;
 import dtu.pma.Worker;
 import java.awt.*;
 

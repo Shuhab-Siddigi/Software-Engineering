@@ -3,7 +3,6 @@ package dtu.pma.GUI.Panels;
 import java.awt.*;
 import javax.swing.*;
 
-import dtu.pma.GUI.GUITools;
 
 public class TopPanel extends JPanel {
 

@@ -34,17 +34,6 @@ public class LeftPanel extends JPanel {
         constrain.anchor = GridBagConstraints.PAGE_START;
         this.add(logoLabel, constrain);
         
-        // IDTextfield = new JTextField(1);
-        // IDTextfield.setText("Insert ID ..");
-        // IDTextfield.setFont(new Font("Serif", Font.ITALIC, 13));
-        // constrain.gridx = 0;
-        // constrain.gridy = 1;
-        // constrain.fill = GridBagConstraints.HORIZONTAL;
-        // constrain.anchor = GridBagConstraints.PAGE_START;
-        // constrain.insets = new Insets(20, 0, 0, 0);
-        // this.add(IDTextfield, constrain);
-
-        
     }
 
 

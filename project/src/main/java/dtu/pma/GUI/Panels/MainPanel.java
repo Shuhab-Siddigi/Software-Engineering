@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import dtu.pma.PMA;
 import dtu.pma.GUI.GUITools;
+import dtu.pma.GUI.TablePanels.GenerateReportTable;
 import dtu.pma.GUI.TablePanels.ProjectTable;
 import dtu.pma.GUI.TablePanels.ProjectWithoutProjectLeaderTable;
 import dtu.pma.GUI.TablePanels.WorkerTable;
@@ -21,6 +22,7 @@ public class MainPanel extends JPanel {
     ProjectTree projectTree;
     ProjectTable projectTable;
     WorkerTable workerTable;
+    GenerateReportTable generateReportTable;
     ProjectWithoutProjectLeaderTable projectWithoutProjectLeaderTable;
 
     public MainPanel(PMA pma, Frame frame) {
@@ -28,6 +30,7 @@ public class MainPanel extends JPanel {
         projectTree = new ProjectTree(pma, 340, 730);
         projectTable = new ProjectTable(pma, 890, 790);
         workerTable = new WorkerTable(pma, 890, 790);
+        generateReportTable = new GenerateReportTable(pma, 890, 790);
         projectWithoutProjectLeaderTable = new ProjectWithoutProjectLeaderTable(pma, 890, 690);
 
         
@@ -78,23 +81,20 @@ public class MainPanel extends JPanel {
         ShowProjectsPanel showProjectsPanel = new ShowProjectsPanel(pma, projectTable);
         showProjectsPanel.setPreferredSize(new Dimension(900, 800));
 
-        SetProjectLeader setProjectLeader = new SetProjectLeader(pma, projectWithoutProjectLeaderTable);
+        SetProjectLeader setProjectLeader = new SetProjectLeader(pma, 
+        projectWithoutProjectLeaderTable,
+        addProjectPanel,
+        showProjectsPanel);
         setProjectLeader.setPreferredSize(new Dimension(900, 800));
+
+        GenerateReportPanel generateReportPanel = new GenerateReportPanel(pma,generateReportTable);
+        showProjectsPanel.setPreferredSize(new Dimension(900, 800));
 
         cardLayoutPanel.add(introPanel, "intro");
         cardLayoutPanel.add(addProjectPanel, "add-project");
         cardLayoutPanel.add(showProjectsPanel, "show-projects");
         cardLayoutPanel.add(setProjectLeader, "set-project-leader");
-
-
-        // WorkerTable workerTable = new WorkerTable(pma, 200, 800);
-        // workerTable.setPreferredSize(new Dimension(200, 800));
-        // constrain.gridx = 1;
-        // constrain.gridy = 1;
-        // this.add(workerTable, constrain);
-        // workerTable.setVisible(false);
-        // guiTool.resetConstrains(constrain);
-
+        cardLayoutPanel.add(generateReportPanel, "generate-report");
 
 
         this.setVisible(true);
@@ -120,6 +120,12 @@ public class MainPanel extends JPanel {
         topPanel.setProjectLeaderBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardLayoutPanel, "set-project-leader");
+            }
+        });
+
+        topPanel.generateReportBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardLayoutPanel, "generate-report");
             }
         });
 

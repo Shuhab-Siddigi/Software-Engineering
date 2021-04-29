@@ -8,21 +8,15 @@ import javax.swing.JTable;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
-
 import dtu.pma.OperationNotAllowedException;
 import dtu.pma.PMA;
 import dtu.pma.Project;
 import dtu.pma.Worker;
 import dtu.pma.GUI.GUITools;
-import dtu.pma.GUI.TablePanels.ProjectTable;
 import dtu.pma.GUI.TablePanels.ProjectWithoutProjectLeaderTable;
-
 public class SetProjectLeader extends JPanel {
 
     JTable projectTable;
@@ -31,7 +25,7 @@ public class SetProjectLeader extends JPanel {
     Project project;
     int selectedRow;
 
-    public SetProjectLeader(PMA pma, ProjectWithoutProjectLeaderTable projectWithoutProjectLeaderTable) {
+    public SetProjectLeader(PMA pma, ProjectWithoutProjectLeaderTable projectWithoutProjectLeaderTable,AddProjectPanel addProjectPanel,ShowProjectsPanel showProjectsPanel) {
 
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();
@@ -147,7 +141,8 @@ public class SetProjectLeader extends JPanel {
                     pma.assignLeader(worker, project);
                     projectWithoutProjectLeaderTable.setProjectLeaderAtRow(worker.getID(), selectedRow);
                     JOptionPane.showMessageDialog(addProjectLeader, "Project Leader added to Project");
-
+                    addProjectPanel.getProjectTree().changeNode(project);
+                    showProjectsPanel.getProjectTable().addProject(project);
                 } catch (OperationNotAllowedException e1) {
                     JOptionPane.showMessageDialog(addProjectLeader, e1.getMessage());
                 }

@@ -1,8 +1,6 @@
 package dtu.pma;
 
 import java.awt.*;
-import java.sql.Date;
-
 public class Main {
   
   public static void main(String[] args) throws OperationNotAllowedException {

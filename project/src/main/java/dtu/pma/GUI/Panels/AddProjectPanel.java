@@ -4,33 +4,23 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
-import javax.swing.event.TreeModelEvent;
-import javax.swing.event.TreeSelectionListener;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.event.TreeModelEvent;
-import javax.swing.event.TreeSelectionListener;
-import javax.swing.event.TreeModelListener;
-import javax.swing.event.TreeSelectionEvent;
 import dtu.pma.OperationNotAllowedException;
 import dtu.pma.PMA;
 import dtu.pma.Project;
-import dtu.pma.GUI.GUITools;
 import dtu.pma.GUI.TablePanels.ProjectTable;
 import dtu.pma.GUI.TreePanels.ProjectTree;
 
 public class AddProjectPanel extends JPanel {
 
-    JButton addProjectBtn;
-    ProjectTree projectTree;
-    ProjectTable projectTable;
-    String markedNode;
+   private JButton addProjectBtn;
+   private ProjectTree projectTree;
+   private ProjectTable projectTable;
 
-    public AddProjectPanel(PMA pma,ProjectTree projectTree,ProjectTable projectTable) {
+    public AddProjectPanel(PMA pma, ProjectTree projectTree, ProjectTable projectTable) {
         this.projectTable = projectTable;
         this.projectTree = projectTree;
 
         setLayout(new GridBagLayout());
-        GUITools guiTool = new GUITools();
         GridBagConstraints constrain = new GridBagConstraints();
 
         JTextField settitleTextField = new JTextField("Set Title:");
@@ -64,7 +54,6 @@ public class AddProjectPanel extends JPanel {
         setDescriptionLabel.setFont(new Font("Serif", Font.BOLD, 20));
         setDescriptionTextField.setMinimumSize(new Dimension(200, 100));
         setDescriptionTextField.setMaximumSize(new Dimension(200, 200));
-
 
         addProjectBtn = new JButton();
         addProjectBtn.setText("ADD PROJECT");
@@ -100,7 +89,8 @@ public class AddProjectPanel extends JPanel {
         constrain.gridx = 0;
         constrain.gridy = 3;
         this.add(setEndDateLabel, constrain);
-
+        
+        
         constrain.gridx = 1;
         constrain.gridy = 3;
         this.add(setEndDateTextField, constrain);
@@ -179,28 +169,34 @@ public class AddProjectPanel extends JPanel {
             }
         });
 
+
+
         addProjectBtn.addMouseListener(new MouseAdapter() {
 
-    public void mouseClicked(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
 
-        try {
-            Project p = new Project(settitleTextField.getText(), Integer.parseInt(setIDTextField.getText()));
-            if (setProjectLeaderTextField.getText() != ""
-                    || setProjectLeaderTextField.getText() != "Set Project Leader") {
-                p.setProjectLeader(pma.getWorkerWithID(setProjectLeaderTextField.getText()));
+                try {
+                    Project p = new Project(settitleTextField.getText(), Integer.parseInt(setIDTextField.getText()));
+                    if (setProjectLeaderTextField.getText() != ""
+                            || setProjectLeaderTextField.getText() != "Set Project Leader") {
+                        p.setProjectLeader(pma.getWorkerWithID(setProjectLeaderTextField.getText()));
+                    }
+                    JOptionPane.showMessageDialog(addProjectBtn, "The Project was added");
+                    pma.addProject(p);
+                    projectTree.AddProjectToTree(p);
+                    projectTable.addProject(p);
+                    
+                    projectTree.updateTree();
+                } catch (OperationNotAllowedException e1) {
+                    JOptionPane.showMessageDialog(addProjectBtn, e1.getMessage());
+                }
             }
-            JOptionPane.showMessageDialog(addProjectBtn, "The Project was added");
-            pma.addProject(p);
-            projectTree.AddProjectToTree(p);
-            projectTree.updateTree();
-            projectTable.addProject(p);
+        });
 
-        } catch (OperationNotAllowedException e1) {
-            JOptionPane.showMessageDialog(addProjectBtn, e1.getMessage());
-        }
     }
-});
 
-}
+    public ProjectTree getProjectTree(){
+        return projectTree;
+    }
 
 }

@@ -13,11 +13,12 @@ import dtu.pma.Project;
 
 public class ProjectTable extends JPanel{
     
-    private DefaultTableModel model = new DefaultTableModel();
-    JTable projectTable = new JTable();
+    private DefaultTableModel model;
+    private JTable projectTable;
 
     public ProjectTable(PMA pma,int width, int height){
-
+        model = new DefaultTableModel();
+        projectTable = new JTable();
         projectTable = setTable(pma, projectTable);
         
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(model);
@@ -70,10 +71,9 @@ public class ProjectTable extends JPanel{
                 p.getInfo().getHoursWorked(), 
                 p.getInfo().getExpectedHours(), 
                 p.getInfo().getDescription(), 
-                p.getProjectLeader(), 
+                p.getProjectLeader().getID(), 
             }
         );
     }
-    
   
 }

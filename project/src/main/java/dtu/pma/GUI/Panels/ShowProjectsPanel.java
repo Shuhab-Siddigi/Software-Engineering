@@ -3,21 +3,17 @@ package dtu.pma.GUI.Panels;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import dtu.pma.PMA;
-import dtu.pma.GUI.GUITools;
 import dtu.pma.GUI.TablePanels.ProjectTable;
 
 public class ShowProjectsPanel extends JPanel{
-
+    ProjectTable projectTable;
     JButton updateTableBtn;
     public ShowProjectsPanel(PMA pma,ProjectTable projectTable){
         setLayout(new GridBagLayout());
-        GUITools guiTool = new GUITools();
         GridBagConstraints constrain = new GridBagConstraints();
-
+        this.projectTable = projectTable;
 
         constrain.insets = new Insets(0, 0, 0, 0);
         constrain.weightx = 1;
@@ -28,5 +24,8 @@ public class ShowProjectsPanel extends JPanel{
         this.add(projectTable,constrain);
 
         
+    }
+    public ProjectTable getProjectTable(){
+        return projectTable;
     }
 }
