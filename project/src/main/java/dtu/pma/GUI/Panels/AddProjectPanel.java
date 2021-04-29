@@ -178,15 +178,7 @@ public class AddProjectPanel extends JPanel {
                 setProjectLeaderTextField.setText("");
             }
         });
-        /*
-        projectTree.getTree().addTreeSelectionListener(new TreeSelectionListener() {
-         
-            public void valueChanged(TreeSelectionEvent e) {
-               DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode)projectTree.getTree().getLastSelectedPathComponent(); 
-               setProjectLeaderTextField.setText(selectedNode.toString());
-              }
-            });
-        */
+
         addProjectBtn.addMouseListener(new MouseAdapter() {
 
     public void mouseClicked(MouseEvent e) {

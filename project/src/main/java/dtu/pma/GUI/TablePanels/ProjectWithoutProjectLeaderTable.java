@@ -51,12 +51,11 @@ public class ProjectWithoutProjectLeaderTable extends JPanel{
         constrain.weighty = 1;
         constrain.gridx = 0;
         constrain.gridy = 0;
-        this.add(projectScrollPane,constrain);
+        this.add(workerScrollPane,constrain);
 
         constrain.gridx = 1;
         constrain.gridy = 0;
-        this.add(workerScrollPane,constrain);
-
+        this.add(projectScrollPane,constrain);
     }
 
     private JTable setProjectTable(PMA pma,JTable jTable) {
