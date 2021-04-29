@@ -5,7 +5,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.event.TreeModelEvent;
-
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.event.TreeModelEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.event.TreeModelListener;
+import javax.swing.event.TreeSelectionEvent;
 import dtu.pma.OperationNotAllowedException;
 import dtu.pma.PMA;
 import dtu.pma.Project;
@@ -18,6 +23,8 @@ public class AddProjectPanel extends JPanel {
     JButton addProjectBtn;
     ProjectTree projectTree;
     ProjectTable projectTable;
+    String markedNode;
+
     public AddProjectPanel(PMA pma,ProjectTree projectTree,ProjectTable projectTable) {
         this.projectTable = projectTable;
         this.projectTree = projectTree;
@@ -171,29 +178,37 @@ public class AddProjectPanel extends JPanel {
                 setProjectLeaderTextField.setText("");
             }
         });
-
+        /*
+        projectTree.getTree().addTreeSelectionListener(new TreeSelectionListener() {
+         
+            public void valueChanged(TreeSelectionEvent e) {
+               DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode)projectTree.getTree().getLastSelectedPathComponent(); 
+               setProjectLeaderTextField.setText(selectedNode.toString());
+              }
+            });
+        */
         addProjectBtn.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
 
-                try {
-                    Project p = new Project(settitleTextField.getText(), Integer.parseInt(setIDTextField.getText()));
-                    if (setProjectLeaderTextField.getText() != ""
-                            || setProjectLeaderTextField.getText() != "Set Project Leader") {
-                        p.setProjectLeader(pma.getWorkerWithID(setProjectLeaderTextField.getText()));
-                    }
-                    JOptionPane.showMessageDialog(addProjectBtn, "The Project was added");
-                    pma.addProject(p);
-                    projectTree.AddProjectToTree(p);
-                    projectTree.updateTree();
-                    projectTable.addProject(p);
-                    
+    public void mouseClicked(MouseEvent e) {
 
-                } catch (OperationNotAllowedException e1) {
-                    JOptionPane.showMessageDialog(addProjectBtn, e1.getMessage());
-                }
+        try {
+            Project p = new Project(settitleTextField.getText(), Integer.parseInt(setIDTextField.getText()));
+            if (setProjectLeaderTextField.getText() != ""
+                    || setProjectLeaderTextField.getText() != "Set Project Leader") {
+                p.setProjectLeader(pma.getWorkerWithID(setProjectLeaderTextField.getText()));
             }
-        });
+            JOptionPane.showMessageDialog(addProjectBtn, "The Project was added");
+            pma.addProject(p);
+            projectTree.AddProjectToTree(p);
+            projectTree.updateTree();
+            projectTable.addProject(p);
 
+        } catch (OperationNotAllowedException e1) {
+            JOptionPane.showMessageDialog(addProjectBtn, e1.getMessage());
+        }
     }
+});
+
+}
 
 }
