@@ -56,9 +56,6 @@ public class AddProjectPanel extends JPanel {
         setDescriptionTextField.setMinimumSize(new Dimension(200, 100));
         setDescriptionTextField.setMaximumSize(new Dimension(200, 200));
 
-       
-        // projectTree.setMinimumSize(new Dimension(300, 700));
-        // projectTree.setMaximumSize(new Dimension(300, 700));
 
         addProjectBtn = new JButton();
         addProjectBtn.setText("ADD PROJECT");

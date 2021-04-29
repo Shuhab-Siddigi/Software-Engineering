@@ -72,34 +72,6 @@ public class MainPanel extends JPanel {
         cardLayoutPanel.add(addProjectPanel, "add-project");
         cardLayoutPanel.add(showProjectsPanel, "show-projects");
 
-        // IntroPanel introPanel = new IntroPanel();
-        // introPanel.setPreferredSize(new Dimension(900, 800));
-        // guiTool.showBorder(introPanel);
-        // constrain.gridx = 2;
-        // constrain.gridy = 1;
-
-        // this.add(introPanel, constrain);
-        // guiTool.resetConstrains(constrain);
-
-        // AddProjectPanel addProjectPanel = new
-        // AddProjectPanel(pma,projectTree,projectTable);
-        // addProjectPanel.setPreferredSize(new Dimension(900, 800));
-        // guiTool.showBorder(addProjectPanel);
-        // constrain.gridx = 2;
-        // constrain.gridy = 1;
-        // addProjectPanel.setVisible(false);
-        // this.add(addProjectPanel, constrain);
-        // guiTool.resetConstrains(constrain);
-
-        // ShowProjectsPanel showProjectsPanel = new
-        // ShowProjectsPanel(pma,projectTable);
-        // showProjectsPanel.setPreferredSize(new Dimension(900, 800));
-        // guiTool.showBorder(addProjectPanel);
-        // constrain.gridx = 2;
-        // constrain.gridy = 1;
-        // showProjectsPanel.setVisible(false);
-        // this.add(showProjectsPanel, constrain);
-        // guiTool.resetConstrains(constrain);
 
         // WorkerTable workerTable = new WorkerTable(pma, 200, 800);
         // workerTable.setPreferredSize(new Dimension(200, 800));
@@ -109,13 +81,6 @@ public class MainPanel extends JPanel {
         // workerTable.setVisible(false);
         // guiTool.resetConstrains(constrain);
 
-        // ProjectTree projectTree = new ProjectTree(pma, 200, 800);
-        // this.setPreferredSize(new Dimension(1000, 800));
-        // constrain.gridx = 1;
-        // constrain.gridy = 1;
-        // showBorder(projectTree);
-        // //projectTree.setVisible(false);
-        // this.add(projectTree, constrain);
 
         // ChartPanel chartPanel = new ChartPanel(pma);
         // //chartPanel.setPreferredSize(new Dimension(750, 800));

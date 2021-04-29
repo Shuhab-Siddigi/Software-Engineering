@@ -35,6 +35,7 @@ public class ProjectTable extends JPanel{
         model.addColumn("Hours Worked");
         model.addColumn("Expected Hours");
         model.addColumn("Description");
+        model.addColumn("Project Leader");
 
         for (Project p : pma.getProjects()) {
             model.addRow(
@@ -46,6 +47,7 @@ public class ProjectTable extends JPanel{
                     p.getInfo().getHoursWorked(), 
                     p.getInfo().getExpectedHours(), 
                     p.getInfo().getDescription(), 
+                    p.getProjectLeader(), 
                 }
             );
         }
@@ -64,6 +66,7 @@ public class ProjectTable extends JPanel{
                 p.getInfo().getHoursWorked(), 
                 p.getInfo().getExpectedHours(), 
                 p.getInfo().getDescription(), 
+                p.getProjectLeader(), 
             }
         );
     }
