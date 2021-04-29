@@ -1,9 +1,13 @@
 package dtu.pma.GUI.TablePanels;
+
 import java.awt.*;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -11,20 +15,19 @@ import dtu.pma.PMA;
 import dtu.pma.Project;
 import dtu.pma.Worker;
 
-public class ProjectWithoutProjectLeaderTable extends JPanel{
+public class ProjectWithoutProjectLeaderTable extends JPanel {
 
     private DefaultTableModel projectModel = new DefaultTableModel();
     private DefaultTableModel workerModel = new DefaultTableModel();
-    
+
     JTable projectTable = new JTable();
     JTable workerTable = new JTable();
-
     PMA pma;
 
-    public ProjectWithoutProjectLeaderTable(PMA pma,int width, int height){
+    public ProjectWithoutProjectLeaderTable(PMA pma, int width, int height) {
 
         this.pma = pma;
-        
+
         workerTable = new JTable();
         projectTable = new JTable();
 
@@ -38,9 +41,9 @@ public class ProjectWithoutProjectLeaderTable extends JPanel{
 
         JScrollPane projectScrollPane = new JScrollPane(projectTable);
         JScrollPane workerScrollPane = new JScrollPane(workerTable);
-        projectTable.setPreferredSize(new Dimension(width/2, height));
-        workerTable.setPreferredSize(new Dimension(width/2, height));
-        
+        projectTable.setPreferredSize(new Dimension(width / 2, height));
+        workerTable.setPreferredSize(new Dimension(width / 2, height));
+
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();
 
@@ -51,45 +54,37 @@ public class ProjectWithoutProjectLeaderTable extends JPanel{
         constrain.weighty = 1;
         constrain.gridx = 0;
         constrain.gridy = 0;
-        this.add(workerScrollPane,constrain);
+        this.add(workerScrollPane, constrain);
 
         constrain.gridx = 1;
         constrain.gridy = 0;
-        this.add(projectScrollPane,constrain);
+        this.add(projectScrollPane, constrain);
+
     }
 
-    private JTable setProjectTable(PMA pma,JTable jTable) {
-      
-        
+    private JTable setProjectTable(PMA pma, JTable jTable) {
+
         projectModel.addColumn("Title");
         projectModel.addColumn("ID");
         projectModel.addColumn("Project Leader");
 
         for (Project p : pma.getProjects()) {
-            projectModel.addRow(
-                new Object[] {   
-                    p.getInfo().getTitle(), 
-                    p.getInfo().getID(), 
-                    p.getInfo().getDescription(), 
-                    p.getProjectLeader(), 
-                }
-            );
+            projectModel.addRow(new Object[] { p.getInfo().getTitle(), p.getInfo().getID(),
+                    p.getInfo().getDescription(), p.getProjectLeader(), });
         }
 
         jTable.setModel(projectModel);
 
         return jTable;
     }
-    public void addProject(Project p){
-        projectModel.addRow(
-            new Object[] {   
-                p.getInfo().getTitle(), 
-                p.getInfo().getID(), 
-                p.getProjectLeader(), 
-            }
-        );
-    }
 
+    public void addProject(Project p) {
+        projectModel.addRow(new Object[] { 
+            p.getInfo().getTitle(), 
+            p.getInfo().getID(),
+        });
+
+    }
 
     private JTable setWorkerTable(PMA pma, JTable jTable) {
 
@@ -106,11 +101,16 @@ public class ProjectWithoutProjectLeaderTable extends JPanel{
         return jTable;
     }
 
-    public void addWorker(Worker w) {
-
-        workerModel.addRow(new Object[] { w.getFirstname(), w.getLastname(), w.getID() });
-
+    public void setProjectLeaderAtRow(String projectLeader,int row) {
+        projectModel.setValueAt(projectLeader, row, 2);
     }
-    
-  
+
+    public JTable getWorkerTable() {
+        return workerTable;
+    }
+
+    public JTable getProjectTable() {
+        return projectTable;
+    }
+
 }

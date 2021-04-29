@@ -29,6 +29,8 @@ public class MainPanel extends JPanel {
         projectTable = new ProjectTable(pma, 890, 790);
         workerTable = new WorkerTable(pma, 890, 790);
         projectWithoutProjectLeaderTable = new ProjectWithoutProjectLeaderTable(pma, 890, 690);
+
+        
         setLayout(new GridBagLayout());
         GUITools guiTool = new GUITools();
         GridBagConstraints constrain = new GridBagConstraints();

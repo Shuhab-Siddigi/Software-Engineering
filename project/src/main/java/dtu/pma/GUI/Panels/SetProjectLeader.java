@@ -2,23 +2,41 @@ package dtu.pma.GUI.Panels;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
+import dtu.pma.OperationNotAllowedException;
 import dtu.pma.PMA;
+import dtu.pma.Project;
+import dtu.pma.Worker;
 import dtu.pma.GUI.GUITools;
 import dtu.pma.GUI.TablePanels.ProjectTable;
 import dtu.pma.GUI.TablePanels.ProjectWithoutProjectLeaderTable;
 
-public class SetProjectLeader extends JPanel{
+public class SetProjectLeader extends JPanel {
 
+    JTable projectTable;
+    JTable workerTable;
+    Worker worker;
+    Project project;
+    int selectedRow;
 
-    public SetProjectLeader(PMA pma,ProjectWithoutProjectLeaderTable projectWithoutProjectLeaderTable){
+    public SetProjectLeader(PMA pma, ProjectWithoutProjectLeaderTable projectWithoutProjectLeaderTable) {
 
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();
+        workerTable = projectWithoutProjectLeaderTable.getWorkerTable();
+        projectTable = projectWithoutProjectLeaderTable.getProjectTable();
         GUITools guiTools = new GUITools();
 
         JLabel projectLabel = new JLabel();
@@ -48,7 +66,6 @@ public class SetProjectLeader extends JPanel{
         JButton addProjectLeader = new JButton();
         addProjectLeader.setText("ADD PROJECT LEADER");
         addProjectLeader.setFont(new Font("Serif", Font.BOLD, 15));
-        
 
         constrain.fill = GridBagConstraints.CENTER;
         constrain.weightx = 0.4;
@@ -56,18 +73,18 @@ public class SetProjectLeader extends JPanel{
         constrain.gridx = 0;
         constrain.gridy = 0;
         constrain.gridwidth = 2;
-        this.add(workerLabel,constrain);
+        this.add(workerLabel, constrain);
 
         constrain.gridx = 2;
         constrain.gridy = 0;
-        this.add(projectLabel,constrain);
-        
+        this.add(projectLabel, constrain);
+
         constrain.fill = GridBagConstraints.BOTH;
         constrain.gridx = 0;
         constrain.gridy = 1;
         constrain.weighty = 0.8;
         constrain.gridwidth = 4;
-        this.add(projectWithoutProjectLeaderTable,constrain);
+        this.add(projectWithoutProjectLeaderTable, constrain);
 
         guiTools.resetConstrains(constrain);
 
@@ -77,23 +94,66 @@ public class SetProjectLeader extends JPanel{
         constrain.gridy = 2;
         constrain.weighty = 0.2;
         constrain.weightx = 0.2;
-        this.add(projectLabel2,constrain);
+        this.add(workerLabel2, constrain);
         constrain.gridx = 1;
         constrain.gridy = 2;
-        this.add(projectLabel3,constrain);
+        this.add(workerLabel3, constrain);
         constrain.gridx = 2;
         constrain.gridy = 2;
-        this.add(workerLabel2,constrain);
+        this.add(projectLabel2, constrain);
         constrain.gridx = 3;
         constrain.gridy = 2;
-        this.add(workerLabel3,constrain);
+        this.add(projectLabel3, constrain);
 
         constrain.gridx = 0;
         constrain.gridy = 3;
         constrain.gridwidth = 4;
         constrain.weighty = 0.1;
-        this.add(addProjectLeader,constrain);
+        this.add(addProjectLeader, constrain);
+
+        projectTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        projectTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+
+                ListSelectionModel rowSelectionModel = (ListSelectionModel) e.getSource();
+                if (!rowSelectionModel.isSelectionEmpty()) {
+                    selectedRow = rowSelectionModel.getMinSelectionIndex();
+                    String ID = projectTable.getModel().getValueAt(selectedRow, 1).toString();
+                    project = pma.getProjectWithID(Integer.parseInt(ID));
+                    projectLabel3.setText(project.getInfo().getTitle());
+                }
+            }
+        });
+
+        workerTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        workerTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+
+                ListSelectionModel rowSelectionModel = (ListSelectionModel) e.getSource();
+                if (!rowSelectionModel.isSelectionEmpty()) {
+                    int selectedRow = rowSelectionModel.getMinSelectionIndex();
+                    String ID = workerTable.getModel().getValueAt(selectedRow, 2).toString();
+                    worker = pma.getWorkerWithID(ID);
+                    workerLabel3.setText(worker.getFirstname() + " " + worker.getLastname() + " ID: " + worker.getID());
+                }
+            }
+        });
+
+        addProjectLeader.addMouseListener(new MouseAdapter() {
+
+            public void mouseClicked(MouseEvent e) {
+
+                try {
+                    pma.assignLeader(worker, project);
+                    projectWithoutProjectLeaderTable.setProjectLeaderAtRow(worker.getID(), selectedRow);
+                    JOptionPane.showMessageDialog(addProjectLeader, "Project Leader added to Project");
+
+                } catch (OperationNotAllowedException e1) {
+                    JOptionPane.showMessageDialog(addProjectLeader, e1.getMessage());
+                }
+            }
+        });
 
     }
-    
+
 }
