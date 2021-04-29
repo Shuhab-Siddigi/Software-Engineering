@@ -113,8 +113,8 @@ public class SetProjectLeader extends JPanel {
 
         projectTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         projectTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent e) {
 
+            public void valueChanged(ListSelectionEvent e) {
                 ListSelectionModel rowSelectionModel = (ListSelectionModel) e.getSource();
                 if (!rowSelectionModel.isSelectionEmpty()) {
                     selectedRow = rowSelectionModel.getMinSelectionIndex();
@@ -131,7 +131,7 @@ public class SetProjectLeader extends JPanel {
 
                 ListSelectionModel rowSelectionModel = (ListSelectionModel) e.getSource();
                 if (!rowSelectionModel.isSelectionEmpty()) {
-                    int selectedRow = rowSelectionModel.getMinSelectionIndex();
+                    selectedRow = rowSelectionModel.getMinSelectionIndex();
                     String ID = workerTable.getModel().getValueAt(selectedRow, 2).toString();
                     worker = pma.getWorkerWithID(ID);
                     workerLabel3.setText(worker.getFirstname() + " " + worker.getLastname() + " ID: " + worker.getID());
