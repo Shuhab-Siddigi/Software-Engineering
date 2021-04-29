@@ -74,6 +74,7 @@ public class ProjectTable extends JPanel{
                 p.getProjectLeader().getID(), 
             }
         );
+        model.fireTableDataChanged();
     }
   
 }

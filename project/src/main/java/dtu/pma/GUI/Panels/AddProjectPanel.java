@@ -12,14 +12,13 @@ import dtu.pma.GUI.TreePanels.ProjectTree;
 
 public class AddProjectPanel extends JPanel {
 
-   private JButton addProjectBtn;
-   private ProjectTree projectTree;
-   private ProjectTable projectTable;
+    private JButton addProjectBtn;
+    private ProjectTree projectTree;
+    ProjectTable projectTable;
 
-    public AddProjectPanel(PMA pma, ProjectTree projectTree, ProjectTable projectTable) {
+    public AddProjectPanel(PMA pma,ProjectTree projectTree,ProjectTable projectTable){
         this.projectTable = projectTable;
         this.projectTree = projectTree;
-
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();
 
@@ -151,52 +150,52 @@ public class AddProjectPanel extends JPanel {
             }
         });
 
+
+
         settitleTextField.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 settitleTextField.setText("");
             }
         });
 
-        setDescriptionTextField.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                setDescriptionTextField.setText("");
-            }
-        });
-
-        setProjectLeaderTextField.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                setProjectLeaderTextField.setText("");
-            }
-        });
-
-
-
-        addProjectBtn.addMouseListener(new MouseAdapter() {
-
-            public void mouseClicked(MouseEvent e) {
-
-                try {
-                    Project p = new Project(settitleTextField.getText(), Integer.parseInt(setIDTextField.getText()));
-                    if (setProjectLeaderTextField.getText() != ""
-                            || setProjectLeaderTextField.getText() != "Set Project Leader") {
-                        p.setProjectLeader(pma.getWorkerWithID(setProjectLeaderTextField.getText()));
+                setDescriptionTextField.addMouseListener(new MouseAdapter() {
+                    public void mouseClicked(MouseEvent e) {
+                        setDescriptionTextField.setText("");
                     }
-                    JOptionPane.showMessageDialog(addProjectBtn, "The Project was added");
-                    pma.addProject(p);
-                    projectTree.AddProjectToTree(p);
-                    projectTable.addProject(p);
-                    
-                    projectTree.updateTree();
-                } catch (OperationNotAllowedException e1) {
-                    JOptionPane.showMessageDialog(addProjectBtn, e1.getMessage());
-                }
+                });
+
+                setProjectLeaderTextField.addMouseListener(new MouseAdapter() {
+                    public void mouseClicked(MouseEvent e) {
+                        setProjectLeaderTextField.setText("");
+                    }
+                });
+
+
+                addProjectBtn.addMouseListener(new MouseAdapter() {
+
+                    public void mouseClicked(MouseEvent e) {
+
+                        try {
+                            Project p = new Project(settitleTextField.getText(), Integer.parseInt(setIDTextField.getText()));
+                            if (setProjectLeaderTextField.getText() != ""
+                                    || setProjectLeaderTextField.getText() != "Set Project Leader") {
+                                p.setProjectLeader(pma.getWorkerWithID(setProjectLeaderTextField.getText()));
+                            }
+                            JOptionPane.showMessageDialog(addProjectBtn, "The Project was added");
+                            pma.addProject(p);
+                            projectTree.AddProjectToTree(p);
+                            projectTable.addProject(p);
+
+                            projectTree.updateTree();
+                        } catch (OperationNotAllowedException e1) {
+                            JOptionPane.showMessageDialog(addProjectBtn, e1.getMessage());
+                        }
+                    }
+                });
+
             }
-        });
-
+            public ProjectTree getProjectTree(){
+                return projectTree;
+            }
+        
     }
-
-    public ProjectTree getProjectTree(){
-        return projectTree;
-    }
-
-}
