@@ -1,4 +1,4 @@
-package dtu.pma.GUI.Tables;
+package dtu.pma.GUI.TablePanels;
 
 import dtu.pma.PMA;
 import dtu.pma.Worker;

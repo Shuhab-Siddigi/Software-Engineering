@@ -1,4 +1,4 @@
-package dtu.pma.GUI.Trees;
+package dtu.pma.GUI.TreePanels;
 
 import dtu.pma.PMA;
 import dtu.pma.Project;

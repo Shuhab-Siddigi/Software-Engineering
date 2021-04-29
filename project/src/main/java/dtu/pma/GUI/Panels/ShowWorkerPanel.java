@@ -8,7 +8,7 @@ import java.awt.event.MouseEvent;
 
 import dtu.pma.PMA;
 import dtu.pma.GUI.GUITools;
-import dtu.pma.GUI.Tables.WorkerTable;
+import dtu.pma.GUI.TablePanels.WorkerTable;
 
 public class ShowWorkerPanel extends JPanel{
 
@@ -23,8 +23,8 @@ public class ShowWorkerPanel extends JPanel{
         constrain.insets = new Insets(0, 0, 0, 0);
         constrain.weightx = 1;
         constrain.weighty = 1;
-        constrain.gridx = 1;
-        constrain.gridy = 1;
+        constrain.gridx = 0;
+        constrain.gridy = 0;
 
         this.add(workerTable,constrain);
         

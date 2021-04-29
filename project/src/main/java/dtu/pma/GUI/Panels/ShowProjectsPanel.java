@@ -8,7 +8,7 @@ import java.awt.event.MouseEvent;
 
 import dtu.pma.PMA;
 import dtu.pma.GUI.GUITools;
-import dtu.pma.GUI.Tables.ProjectTable;
+import dtu.pma.GUI.TablePanels.ProjectTable;
 
 public class ShowProjectsPanel extends JPanel{
 
@@ -18,9 +18,7 @@ public class ShowProjectsPanel extends JPanel{
         GUITools guiTool = new GUITools();
         GridBagConstraints constrain = new GridBagConstraints();
 
-       
-        //constrain.fill = GridBagConstraints.BOTH;
-        ///constrain.anchor = GridBagConstraints.CENTER;
+
         constrain.insets = new Insets(0, 0, 0, 0);
         constrain.weightx = 1;
         constrain.weighty = 1;

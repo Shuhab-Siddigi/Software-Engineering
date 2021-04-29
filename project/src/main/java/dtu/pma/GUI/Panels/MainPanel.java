@@ -5,9 +5,10 @@ import javax.swing.*;
 import java.awt.event.*;
 import dtu.pma.PMA;
 import dtu.pma.GUI.GUITools;
-import dtu.pma.GUI.Tables.ProjectTable;
-import dtu.pma.GUI.Tables.WorkerTable;
-import dtu.pma.GUI.Trees.ProjectTree;
+import dtu.pma.GUI.TablePanels.ProjectTable;
+import dtu.pma.GUI.TablePanels.ProjectWithoutProjectLeaderTable;
+import dtu.pma.GUI.TablePanels.WorkerTable;
+import dtu.pma.GUI.TreePanels.ProjectTree;
 
 /*
 * [T] = Top Panel      [T][T][T][T] 
@@ -20,13 +21,14 @@ public class MainPanel extends JPanel {
     ProjectTree projectTree;
     ProjectTable projectTable;
     WorkerTable workerTable;
+    ProjectWithoutProjectLeaderTable projectWithoutProjectLeaderTable;
 
     public MainPanel(PMA pma, Frame frame) {
 
         projectTree = new ProjectTree(pma, 340, 730);
         projectTable = new ProjectTable(pma, 890, 790);
         workerTable = new WorkerTable(pma, 890, 790);
-
+        projectWithoutProjectLeaderTable = new ProjectWithoutProjectLeaderTable(pma, 890, 790);
         setLayout(new GridBagLayout());
         GUITools guiTool = new GUITools();
         GridBagConstraints constrain = new GridBagConstraints();
@@ -74,9 +76,13 @@ public class MainPanel extends JPanel {
         ShowProjectsPanel showProjectsPanel = new ShowProjectsPanel(pma, projectTable);
         showProjectsPanel.setPreferredSize(new Dimension(900, 800));
 
+        SetProjectLeader setProjectLeader = new SetProjectLeader(pma, projectWithoutProjectLeaderTable);
+        setProjectLeader.setPreferredSize(new Dimension(900, 800));
+
         cardLayoutPanel.add(introPanel, "intro");
         cardLayoutPanel.add(addProjectPanel, "add-project");
         cardLayoutPanel.add(showProjectsPanel, "show-projects");
+        cardLayoutPanel.add(setProjectLeader, "set-project-leader");
 
 
         // WorkerTable workerTable = new WorkerTable(pma, 200, 800);
@@ -106,6 +112,12 @@ public class MainPanel extends JPanel {
         topPanel.showProjectsBtn().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardLayoutPanel, "show-projects");
+            }
+        });
+
+        topPanel.setProjectLeaderBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardLayoutPanel, "set-project-leader");
             }
         });
 
