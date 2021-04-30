@@ -18,15 +18,15 @@ import dtu.pma.GUI.TreePanels.ProjectTree;
 */
 public class MainPanel extends JPanel {
 
-    ProjectTree projectTree;
-    ProjectTable projectTable;
-    GenerateReportTable generateReportTable;
-    ProjectWithoutProjectLeaderTable projectWithoutProjectLeaderTable;
+    private ProjectTree projectTree;
+    private ProjectTable projectTable;
+    private GenerateReportTable generateReportTable;
+    private ProjectWithoutProjectLeaderTable projectWithoutProjectLeaderTable;
 
-    GenerateReportPanel generateReportPanel;
-    AddProjectPanel addProjectPanel;
-    ShowProjectsPanel showProjectsPanel;
-    SetProjectLeader setProjectLeader;
+    private GenerateReportPanel generateReportPanel;
+    private AddProjectPanel addProjectPanel;
+    private ShowProjectsPanel showProjectsPanel;
+    private SetProjectLeader setProjectLeader;
 
     public MainPanel(PMA pma, Frame frame) {
 

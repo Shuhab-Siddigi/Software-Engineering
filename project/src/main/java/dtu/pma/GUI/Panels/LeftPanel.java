@@ -3,15 +3,12 @@ package dtu.pma.GUI.Panels;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import java.awt.*;
 
 
 public class LeftPanel extends JPanel {
 
-    JTextField IDTextfield;
-    
     public LeftPanel() {
 
         setLayout(new GridBagLayout());

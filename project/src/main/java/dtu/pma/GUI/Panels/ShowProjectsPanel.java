@@ -1,6 +1,5 @@
 package dtu.pma.GUI.Panels;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.*;
 
@@ -8,8 +7,7 @@ import dtu.pma.PMA;
 import dtu.pma.GUI.TablePanels.ProjectTable;
 
 public class ShowProjectsPanel extends JPanel{
-    ProjectTable projectTable;
-    JButton updateTableBtn;
+    private ProjectTable projectTable;
     public ShowProjectsPanel(PMA pma,ProjectTable projectTable){
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();

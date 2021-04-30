@@ -22,9 +22,9 @@ import dtu.pma.GUI.TreePanels.ProjectTree;
 public class SetProjectLeader extends JPanel {
 
 
-    Worker worker;
-    Project project;
-    int selectedRow;
+    private Worker worker;
+    private Project project;
+    private int selectedRow;
 
     public SetProjectLeader(PMA pma,ProjectWithoutProjectLeaderTable projectWithoutProjectLeaderTable,ProjectTable projectTable,ProjectTree projectTree,GenerateReportTable generateReportTable) {
 

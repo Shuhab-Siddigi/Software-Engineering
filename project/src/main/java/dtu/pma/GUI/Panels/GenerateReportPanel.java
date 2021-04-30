@@ -16,8 +16,8 @@ import javax.swing.event.ListSelectionListener;
 import dtu.pma.GUI.TablePanels.GenerateReportTable;
 
 public class GenerateReportPanel extends JPanel {
-    Project project;
-    int selectedRow;
+    private Project project;
+    private int selectedRow;
 
     public GenerateReportPanel(PMA pma, GenerateReportTable generateReportTable) {
 
