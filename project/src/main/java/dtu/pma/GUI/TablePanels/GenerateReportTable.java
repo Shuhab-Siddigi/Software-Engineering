@@ -13,11 +13,10 @@ public class GenerateReportTable extends JPanel {
 
     private DefaultTableModel projectModel = new DefaultTableModel();
 
-    JTable generateReportTable = new JTable();
-    PMA pma;
+    private JTable generateReportTable;
 
     public GenerateReportTable(PMA pma, int width, int height) {
-        this.pma = pma;
+        
 
         generateReportTable = new JTable();
 

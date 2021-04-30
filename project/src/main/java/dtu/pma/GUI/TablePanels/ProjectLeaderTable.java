@@ -13,7 +13,7 @@ public class ProjectLeaderTable extends JPanel {
     
 
     private DefaultTableModel model = new DefaultTableModel();
-    JTable projectLeaderTable = new JTable();
+    private JTable projectLeaderTable = new JTable();
 
     public ProjectLeaderTable(PMA pma,int width, int height){
 

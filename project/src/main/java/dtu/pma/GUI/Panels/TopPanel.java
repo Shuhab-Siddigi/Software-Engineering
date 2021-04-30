@@ -6,17 +6,17 @@ import javax.swing.*;
 
 public class TopPanel extends JPanel {
 
-    JButton homeBtn;
-    JButton registerHours;
-    JButton addProjectBtn;
-    JButton addActivityBtn;
-    JButton setIDBtn;
-    JButton showProjectsBtn;
-    JButton showAvailableWorkersBtn;
-    JButton addWorkerToActivity;
-    JButton showProjectActivities;
-    JButton generateReportBtn;
-    JButton setProjectLeaderBtn;
+    private JButton homeBtn;
+    private JButton registerHours;
+    private JButton addProjectBtn;
+    private JButton addActivityBtn;
+    private JButton setIDBtn;
+    private JButton showProjectsBtn;
+    private JButton showAvailableWorkersBtn;
+    private JButton addWorkerToActivity;
+    private JButton showProjectActivities;
+    private JButton generateReportBtn;
+    private JButton setProjectLeaderBtn;
 
     public TopPanel() {
 
@@ -101,35 +101,35 @@ public class TopPanel extends JPanel {
         return addProjectBtn;
     }
 
-    public JButton addActivityBtn() {
+    public JButton getAddActivityBtn() {
         return addActivityBtn;
     };
 
-    public JButton setIDBtn() {
+    public JButton getSetIDBtn() {
         return setIDBtn;
     };
 
-    public JButton showProjectsBtn() {
+    public JButton getShowProjectsBtn() {
         return showProjectsBtn;
     };
 
-    public JButton showAvailableWorkersBtn() {
+    public JButton getShowAvailableWorkersBtn() {
         return showAvailableWorkersBtn;
     };
 
-    public JButton addWorkerToActivity() {
+    public JButton getAddWorkerToActivity() {
         return addWorkerToActivity;
     };
 
-    public JButton showProjectActivities() {
+    public JButton getShowProjectActivities() {
         return showProjectActivities;
     };
 
-    public JButton generateReportBtn() {
+    public JButton getGenerateReportBtn() {
         return generateReportBtn;
     };
 
-    public JButton setProjectLeaderBtn() {
+    public JButton getSetProjectLeaderBtn() {
         return setProjectLeaderBtn;
     };
 

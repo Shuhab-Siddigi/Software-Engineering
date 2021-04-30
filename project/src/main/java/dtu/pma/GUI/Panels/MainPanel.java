@@ -44,7 +44,7 @@ public class MainPanel extends JPanel {
         showProjectsPanel = new ShowProjectsPanel(pma, projectTable);
         setProjectLeader = new SetProjectLeader(pma,projectWithoutProjectLeaderTable,projectTable,projectTree,generateReportTable);
         generateReportPanel = new GenerateReportPanel(pma, generateReportTable);
-        
+
         showProjectsPanel.setPreferredSize(new Dimension(900, 800));
         introPanel.setPreferredSize(new Dimension(900, 800));
         addProjectPanel.setPreferredSize(new Dimension(900, 800));
@@ -105,19 +105,19 @@ public class MainPanel extends JPanel {
             }
         });
 
-        topPanel.showProjectsBtn().addActionListener(new ActionListener() {
+        topPanel.getShowProjectsBtn().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardLayoutPanel, "show-projects");
             }
         });
 
-        topPanel.generateReportBtn.addActionListener(new ActionListener() {
+        topPanel.getGenerateReportBtn().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardLayoutPanel, "generate-report");
             }
         });
 
-        topPanel.setProjectLeaderBtn.addActionListener(new ActionListener() {
+        topPanel.getSetProjectLeaderBtn().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardLayoutPanel, "set-project-leader");
             }

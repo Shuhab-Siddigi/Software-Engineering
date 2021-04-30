@@ -17,13 +17,10 @@ public class ProjectWithoutProjectLeaderTable extends JPanel {
     private DefaultTableModel projectModel = new DefaultTableModel();
     private DefaultTableModel workerModel = new DefaultTableModel();
 
-    JTable projectTable = new JTable();
-    JTable workerTable = new JTable();
-    PMA pma;
+    private JTable projectTable;
+    private JTable workerTable;
 
     public ProjectWithoutProjectLeaderTable(PMA pma, int width, int height) {
-
-        this.pma = pma;
 
         workerTable = new JTable();
         projectTable = new JTable();
