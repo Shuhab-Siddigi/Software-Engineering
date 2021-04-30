@@ -50,21 +50,21 @@ public class GenerateReportTable extends JPanel {
         projectModel.addColumn("Project Leader");
 
         for (Project p : pma.getProjects()) {
-        if(p.getProjectLeader() != null){
+            
+            if(p.getProjectLeader() != null){
             projectModel.addRow(new Object[] { 
                 p.getInfo().getTitle(), 
                 p.getInfo().getID(),
-                p.getInfo().getDescription(), 
                 p.getProjectLeader().getID(), 
             });
-        }else{
+            }else{
             projectModel.addRow(new Object[] { 
                 p.getInfo().getTitle(), 
-                p.getInfo().getID(),
-                p.getInfo().getDescription(), 
-                "",
+                p.getInfo().getID(), 
+                "", 
             });
-        }
+            }
+        
         }
 
         jTable.setModel(projectModel);
