@@ -26,3 +26,4 @@ Feature: Generate report
         And activity with ID 6666 contains worker "Bent" "Bentsen", ID "BBBB" and worker "Claus" "Clausen", ID "CCCC"
         When the project leader generates a report
         Then the text is given "Extreme Programming 1 2020-01-01 2020-02-01 \nAndersen, Anders AAAA\n\ndo Work 2020-01-01 2020-02-01 \nBentsen, Bent BBBB \nClausen, Claus CCCC \n\n\n"
+

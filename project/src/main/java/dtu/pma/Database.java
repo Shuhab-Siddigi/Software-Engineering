@@ -1,12 +1,12 @@
 package dtu.pma;
 
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
-
 public class Database {
-    
-    public List<Worker> getWorkers(){
+
+    public List<Worker> getWorkers() {
         // Female
         List<Worker> workers = new ArrayList<>();
         workers.add(new Worker("System", "Huset", "X"));
@@ -37,62 +37,61 @@ public class Database {
 
         // Male
 
-         workers.add(new Worker("Henry", " Lyons", "AABA"));
-         workers.add(new Worker(" Euan", " Maddox", "AACA"));
-         workers.add(new Worker(" Maxwell", " Shah", "AADA"));
-         workers.add(new Worker("Hassan", " Greer", "AAEA"));
-         workers.add(new Worker("  Marco", " Crane", "AAFA"));
-         workers.add(new Worker("  Verity", " Meza", "AAGA"));
-         workers.add(new Worker("   Louis", "Doyle", "AAHA"));
-         workers.add(new Worker(" Michael", "Schneider", "AAIA"));
-         workers.add(new Worker(" Juan", "Pollard", "AAJA"));
-         workers.add(new Worker("Carlos", "Crawford", "AAKA"));
-         workers.add(new Worker("Marvin", "Harrison", "AALA"));
-         workers.add(new Worker("Arran", "Escobar", "AAMA"));
-         workers.add(new Worker("Thomas", "Tapia", "AANA"));
-         workers.add(new Worker("Phillip", "Lara", "AAOA"));
-         workers.add(new Worker("Conner", "Walker", "AAPA"));
-         workers.add(new Worker("Jeremiah", "Cuevas", "AAQA"));
-         workers.add(new Worker("Isaiah", "Dickerson", "AARA"));
-         workers.add(new Worker("Willard", "Sawyer", "AASA"));
-         workers.add(new Worker("Zachary", "Woodard", "AATA"));
-         workers.add(new Worker("Amir", "Vargas", "AAUA"));
-         workers.add(new Worker("Kyle", "Gilmore", "AAVA"));
-         workers.add(new Worker("Patrick", " Martin", "AAWA"));
-         workers.add(new Worker("Tallulah", "Hebert", "AAXA"));
-         workers.add(new Worker("Aaliyah", "Turner", "AAYA"));
-         workers.add(new Worker("Courtney", "Carr", "AAZA"));
+        workers.add(new Worker("Henry", " Lyons", "AABA"));
+        workers.add(new Worker(" Euan", " Maddox", "AACA"));
+        workers.add(new Worker(" Maxwell", " Shah", "AADA"));
+        workers.add(new Worker("Hassan", " Greer", "AAEA"));
+        workers.add(new Worker("  Marco", " Crane", "AAFA"));
+        workers.add(new Worker("  Verity", " Meza", "AAGA"));
+        workers.add(new Worker("   Louis", "Doyle", "AAHA"));
+        workers.add(new Worker(" Michael", "Schneider", "AAIA"));
+        workers.add(new Worker(" Juan", "Pollard", "AAJA"));
+        workers.add(new Worker("Carlos", "Crawford", "AAKA"));
+        workers.add(new Worker("Marvin", "Harrison", "AALA"));
+        workers.add(new Worker("Arran", "Escobar", "AAMA"));
+        workers.add(new Worker("Thomas", "Tapia", "AANA"));
+        workers.add(new Worker("Phillip", "Lara", "AAOA"));
+        workers.add(new Worker("Conner", "Walker", "AAPA"));
+        workers.add(new Worker("Jeremiah", "Cuevas", "AAQA"));
+        workers.add(new Worker("Isaiah", "Dickerson", "AARA"));
+        workers.add(new Worker("Willard", "Sawyer", "AASA"));
+        workers.add(new Worker("Zachary", "Woodard", "AATA"));
+        workers.add(new Worker("Amir", "Vargas", "AAUA"));
+        workers.add(new Worker("Kyle", "Gilmore", "AAVA"));
+        workers.add(new Worker("Patrick", " Martin", "AAWA"));
+        workers.add(new Worker("Tallulah", "Hebert", "AAXA"));
+        workers.add(new Worker("Aaliyah", "Turner", "AAYA"));
+        workers.add(new Worker("Courtney", "Carr", "AAZA"));
 
-         workers.add(new Worker("Saskia", " Dillon", "ABAA"));
-         workers.add(new Worker("Rachel", " Wright", "ACAA"));
-         workers.add(new Worker("Laura", " Lam", "ADAA"));
-         workers.add(new Worker("Naomi", " Gross", "AEAA"));
-         workers.add(new Worker("Poppy", " Abbott", "AFAA"));
-         workers.add(new Worker("Lauren", " Best", "AGAA"));
-         workers.add(new Worker("Edith", "Velez", "AHAA"));
-         workers.add(new Worker("Gabrielle", " Moyer", "AIAA"));
-         workers.add(new Worker("Hafsah", " Benson", "AJAA"));
-         workers.add(new Worker("Tina", " Friedman", "AKAA"));
-         workers.add(new Worker("Natalie", " Leonard", "ALAA"));
-         workers.add(new Worker("Lena", " Jarvis", "AMAA"));
-         workers.add(new Worker("Salma", " Montgomery", "ANAA"));
-         workers.add(new Worker("Teresa", " Watson", "AOAA"));
-         workers.add(new Worker("Georgia", " Ortiz", "APAA"));
-         workers.add(new Worker("Bailey", " Hill", "AQAA"));
-         workers.add(new Worker("Rhonda", " Rivera", "ARAA"));
-         workers.add(new Worker("Rosemary", " Wolf", "ASAA"));
-         workers.add(new Worker("Gertrude", "Fernandez", "ATAA"));
-         workers.add(new Worker("Angela", " Anderson", "AUAA"));
-         workers.add(new Worker("Aiden", "Faulkner", "AVAA"));
-         workers.add(new Worker("Maisy", " Hudson", "AWAA")); // 72
+        workers.add(new Worker("Saskia", " Dillon", "ABAA"));
+        workers.add(new Worker("Rachel", " Wright", "ACAA"));
+        workers.add(new Worker("Laura", " Lam", "ADAA"));
+        workers.add(new Worker("Naomi", " Gross", "AEAA"));
+        workers.add(new Worker("Poppy", " Abbott", "AFAA"));
+        workers.add(new Worker("Lauren", " Best", "AGAA"));
+        workers.add(new Worker("Edith", "Velez", "AHAA"));
+        workers.add(new Worker("Gabrielle", " Moyer", "AIAA"));
+        workers.add(new Worker("Hafsah", " Benson", "AJAA"));
+        workers.add(new Worker("Tina", " Friedman", "AKAA"));
+        workers.add(new Worker("Natalie", " Leonard", "ALAA"));
+        workers.add(new Worker("Lena", " Jarvis", "AMAA"));
+        workers.add(new Worker("Salma", " Montgomery", "ANAA"));
+        workers.add(new Worker("Teresa", " Watson", "AOAA"));
+        workers.add(new Worker("Georgia", " Ortiz", "APAA"));
+        workers.add(new Worker("Bailey", " Hill", "AQAA"));
+        workers.add(new Worker("Rhonda", " Rivera", "ARAA"));
+        workers.add(new Worker("Rosemary", " Wolf", "ASAA"));
+        workers.add(new Worker("Gertrude", "Fernandez", "ATAA"));
+        workers.add(new Worker("Angela", " Anderson", "AUAA"));
+        workers.add(new Worker("Aiden", "Faulkner", "AVAA"));
+        workers.add(new Worker("Maisy", " Hudson", "AWAA")); // 72
         return workers;
     }
 
-
-    public List<Project> getProjects(){
+    public List<Project> getProjects() {
 
         List<Project> projects = new ArrayList<>();
-       
+
         projects.add(new Project("Shark Platinum", 0002));
         projects.add(new Project("Shark Copper", 0003));
         projects.add(new Project("Sturgeon Lead", 0004));
@@ -136,6 +135,20 @@ public class Database {
         projects.add(new Project("Thorium Spaniel", 0054));
         projects.add(new Project("Magnesium Hound", 0055));
 
+
+        for (Project project : projects) {
+
+            project.getInfo().setExpectedHours(299);
+            project.getInfo().setHoursWorked(89);
+            project.getInfo().setStartDate(Date.valueOf("2020-02-21"));
+            project.getInfo().setEndDate(Date.valueOf("2020-08-19"));
+            project.getInfo().setDescription("INFO");
+        }
+    
         return projects;
-    } 
+    }
+
+        
+       
+ 
 }
