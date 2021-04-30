@@ -23,6 +23,11 @@ public class MainPanel extends JPanel {
     GenerateReportTable generateReportTable;
     ProjectWithoutProjectLeaderTable projectWithoutProjectLeaderTable;
 
+    GenerateReportPanel generateReportPanel;
+    AddProjectPanel addProjectPanel;
+    ShowProjectsPanel showProjectsPanel;
+    SetProjectLeader setProjectLeader;
+
     public MainPanel(PMA pma, Frame frame) {
 
         setLayout(new GridBagLayout());
@@ -31,24 +36,19 @@ public class MainPanel extends JPanel {
 
         projectTree = new ProjectTree(pma, 340, 730);
         projectTable = new ProjectTable(pma, 890, 790);
-        // @WIP
         generateReportTable = new GenerateReportTable(pma, 890, 790);
-        //@WIP
         projectWithoutProjectLeaderTable = new ProjectWithoutProjectLeaderTable(pma, 890, 690);
 
         IntroPanel introPanel = new IntroPanel();
+        addProjectPanel = new AddProjectPanel(pma, projectTree, projectTable,projectWithoutProjectLeaderTable);
+        showProjectsPanel = new ShowProjectsPanel(pma, projectTable);
+        setProjectLeader = new SetProjectLeader(pma,projectWithoutProjectLeaderTable,projectTable,projectTree,generateReportTable);
+        generateReportPanel = new GenerateReportPanel(pma, generateReportTable);
+        
+        showProjectsPanel.setPreferredSize(new Dimension(900, 800));
         introPanel.setPreferredSize(new Dimension(900, 800));
-
-        AddProjectPanel addProjectPanel = new AddProjectPanel(pma, projectTree, projectTable,projectWithoutProjectLeaderTable);
         addProjectPanel.setPreferredSize(new Dimension(900, 800));
-
-        ShowProjectsPanel showProjectsPanel = new ShowProjectsPanel(pma, projectTable);
         showProjectsPanel.setPreferredSize(new Dimension(900, 800));
-
-        GenerateReportPanel generateReportPanel = new GenerateReportPanel(pma, generateReportTable);
-        showProjectsPanel.setPreferredSize(new Dimension(900, 800));
-
-        SetProjectLeader setProjectLeader = new SetProjectLeader(pma,projectWithoutProjectLeaderTable,projectTable,projectTree);
         setProjectLeader.setPreferredSize(new Dimension(900, 800));
 
         guiTool.showBorder(this);
