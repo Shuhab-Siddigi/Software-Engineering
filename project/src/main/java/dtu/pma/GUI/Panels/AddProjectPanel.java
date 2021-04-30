@@ -8,16 +8,16 @@ import dtu.pma.OperationNotAllowedException;
 import dtu.pma.PMA;
 import dtu.pma.Project;
 import dtu.pma.GUI.TablePanels.ProjectTable;
+import dtu.pma.GUI.TablePanels.ProjectWithoutProjectLeaderTable;
 import dtu.pma.GUI.TreePanels.ProjectTree;
 
 public class AddProjectPanel extends JPanel {
 
     private JButton addProjectBtn;
     private ProjectTree projectTree;
-    ProjectTable projectTable;
 
-    public AddProjectPanel(PMA pma,ProjectTree projectTree,ProjectTable projectTable){
-        this.projectTable = projectTable;
+    public AddProjectPanel(PMA pma,ProjectTree projectTree,ProjectTable projectTable,ProjectWithoutProjectLeaderTable projectWithoutProjectLeaderTable){
+        //this.projectTable = projectTable;
         this.projectTree = projectTree;
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();
@@ -186,7 +186,7 @@ public class AddProjectPanel extends JPanel {
                             projectTree.AddProjectToTree(p);
                             projectTable.addProject(p);
 
-                            projectTree.updateTree();
+                           // projectTree.updateTree();
                         } catch (OperationNotAllowedException e1) {
                             JOptionPane.showMessageDialog(addProjectBtn, e1.getMessage());
                         }

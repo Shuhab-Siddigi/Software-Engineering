@@ -9,28 +9,25 @@ import javax.swing.table.TableRowSorter;
 import dtu.pma.PMA;
 import dtu.pma.Project;
 
-public class GenerateReportTable extends JPanel{
+public class GenerateReportTable extends JPanel {
 
     private DefaultTableModel projectModel = new DefaultTableModel();
-    private DefaultTableModel workerModel = new DefaultTableModel();
 
-    JTable projectTable = new JTable();
-    JTable workerTable = new JTable();
+    JTable generateReportTable = new JTable();
     PMA pma;
-    
-    public GenerateReportTable(PMA pma,int width,int height){
+
+    public GenerateReportTable(PMA pma, int width, int height) {
         this.pma = pma;
 
-        workerTable = new JTable();
-        projectTable = new JTable();
+        generateReportTable = new JTable();
 
         TableRowSorter<DefaultTableModel> projectSorter = new TableRowSorter<DefaultTableModel>(projectModel);
-        projectTable.setRowSorter(projectSorter);
+        generateReportTable.setRowSorter(projectSorter);
 
-        projectTable = setProjectTable(pma, projectTable);
+        generateReportTable = setProjectTable(pma, generateReportTable);
 
-        JScrollPane projectScrollPane = new JScrollPane(projectTable);
-        projectTable.setPreferredSize(new Dimension(width, height));
+        JScrollPane generateReportScrollPane = new JScrollPane(generateReportTable);
+        generateReportTable.setPreferredSize(new Dimension(width, height));
 
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();
@@ -42,9 +39,7 @@ public class GenerateReportTable extends JPanel{
         constrain.weighty = 1;
         constrain.gridx = 0;
         constrain.gridy = 0;
-        this.add(projectScrollPane, constrain);
-
-        
+        this.add(generateReportScrollPane, constrain);
 
     }
 
@@ -55,8 +50,21 @@ public class GenerateReportTable extends JPanel{
         projectModel.addColumn("Project Leader");
 
         for (Project p : pma.getProjects()) {
-            projectModel.addRow(new Object[] { p.getInfo().getTitle(), p.getInfo().getID(),
-                    p.getInfo().getDescription(), p.getProjectLeader(), });
+        if(p.getProjectLeader() != null){
+            projectModel.addRow(new Object[] { 
+                p.getInfo().getTitle(), 
+                p.getInfo().getID(),
+                p.getInfo().getDescription(), 
+                p.getProjectLeader().getID(), 
+            });
+        }else{
+            projectModel.addRow(new Object[] { 
+                p.getInfo().getTitle(), 
+                p.getInfo().getID(),
+                p.getInfo().getDescription(), 
+                "",
+            });
+        }
         }
 
         jTable.setModel(projectModel);
@@ -65,19 +73,15 @@ public class GenerateReportTable extends JPanel{
     }
 
     public void addProject(Project p) {
-        projectModel.addRow(new Object[] { 
-            p.getInfo().getTitle(), 
-            p.getInfo().getID(),
-        });
+        projectModel.addRow(new Object[] { p.getInfo().getTitle(), p.getInfo().getID(), });
 
     }
 
-    public void setProjectLeaderAtRow(String projectLeader,int row) {
+    public void setProjectLeaderAtRow(String projectLeader, int row) {
         projectModel.setValueAt(projectLeader, row, 2);
     }
 
     public JTable getProjectTable() {
-        return projectTable;
+        return generateReportTable;
     }
 }
-

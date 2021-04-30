@@ -43,6 +43,7 @@ public class ProjectTable extends JPanel{
         model.addColumn("Project Leader");
 
         for (Project p : pma.getProjects()) {
+            if(p.getProjectLeader() != null){
             model.addRow(
                 new Object[] {   
                     p.getInfo().getTitle(), 
@@ -52,9 +53,23 @@ public class ProjectTable extends JPanel{
                     p.getInfo().getHoursWorked(), 
                     p.getInfo().getExpectedHours(), 
                     p.getInfo().getDescription(), 
-                    p.getProjectLeader(), 
+                    p.getProjectLeader().getID(), 
                 }
             );
+            }else{
+            model.addRow(
+                new Object[] {   
+                    p.getInfo().getTitle(), 
+                    p.getInfo().getID(), 
+                    p.getInfo().getStartDate(), 
+                    p.getInfo().getEndDate(), 
+                    p.getInfo().getHoursWorked(), 
+                    p.getInfo().getExpectedHours(), 
+                    p.getInfo().getDescription(), 
+                    "", 
+                }
+            );
+            }
         }
 
         jTable.setModel(model);
@@ -62,19 +77,38 @@ public class ProjectTable extends JPanel{
         return jTable;
     }
     public void addProject(Project p){
-        model.addRow(
-            new Object[] {   
-                p.getInfo().getTitle(), 
-                p.getInfo().getID(), 
-                p.getInfo().getStartDate(), 
-                p.getInfo().getEndDate(), 
-                p.getInfo().getHoursWorked(), 
-                p.getInfo().getExpectedHours(), 
-                p.getInfo().getDescription(), 
-                p.getProjectLeader().getID(), 
+        if(p.getProjectLeader() != null){
+            model.addRow(
+                new Object[] {   
+                    p.getInfo().getTitle(), 
+                    p.getInfo().getID(), 
+                    p.getInfo().getStartDate(), 
+                    p.getInfo().getEndDate(), 
+                    p.getInfo().getHoursWorked(), 
+                    p.getInfo().getExpectedHours(), 
+                    p.getInfo().getDescription(), 
+                    p.getProjectLeader().getID(), 
+                }
+            );
+            }else{
+            model.addRow(
+                new Object[] {   
+                    p.getInfo().getTitle(), 
+                    p.getInfo().getID(), 
+                    p.getInfo().getStartDate(), 
+                    p.getInfo().getEndDate(), 
+                    p.getInfo().getHoursWorked(), 
+                    p.getInfo().getExpectedHours(), 
+                    p.getInfo().getDescription(), 
+                    "", 
+                }
+            );
             }
-        );
-        model.fireTableDataChanged();
+        //model.fireTableDataChanged();
+    }
+
+    public JTable getProjectTable(){
+        return projectTable;
     }
   
 }

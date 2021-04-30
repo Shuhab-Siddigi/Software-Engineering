@@ -5,27 +5,17 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.event.MenuEvent;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.*;
-import dtu.pma.OperationNotAllowedException;
 import dtu.pma.PMA;
 import dtu.pma.Project;
-import dtu.pma.GUI.TablePanels.ProjectTable;
-import dtu.pma.GUI.TreePanels.ProjectTree;
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import dtu.pma.Worker;
-import dtu.pma.GUI.GUITools;
-import dtu.pma.GUI.TablePanels.ProjectWithoutProjectLeaderTable;
 import dtu.pma.GUI.TablePanels.GenerateReportTable;
 
 public class GenerateReportPanel extends JPanel {
-    JTable projectTable;
     Project project;
     int selectedRow;
 
@@ -33,7 +23,6 @@ public class GenerateReportPanel extends JPanel {
 
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();
-        GUITools guiTools = new GUITools();
 
         JLabel projectLabel = new JLabel();
         projectLabel.setText("Projects");
@@ -90,7 +79,6 @@ public class GenerateReportPanel extends JPanel {
                     selectedRow = rowSelectionModel.getMinSelectionIndex();
                     String ID = generateReportTable.getProjectTable().getModel().getValueAt(selectedRow, 1).toString();
                     project = pma.getProjectWithID(Integer.parseInt(ID));
-                    System.out.println(project.gReport());
                     reportTextArea.setText(project.gReport());
                 }
             }
