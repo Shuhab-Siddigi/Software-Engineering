@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Random;
 
 public class Database {
     private int startYear = 2016;
     private int endYear = 2025;
+    private Random randomGenerator = new Random();
 
     public List<Worker> getWorkers() {
         // Female
@@ -140,8 +142,8 @@ public class Database {
 
         for (Project project : projects) {
             Date startDate = randomStartDate();
-            project.getInfo().setExpectedHours(299);
-            project.getInfo().setHoursWorked(89);
+            project.getInfo().setExpectedHours(getRandomNumber(24, 400));
+            project.getInfo().setHoursWorked(getRandomNumber(1, 23));
             project.getInfo().setStartDate(startDate);
             project.getInfo().setEndDate(randomEndDate(startDate));
             project.getInfo().setDescription("INFO");
@@ -164,6 +166,12 @@ public class Database {
         long ms = (long) ((end - start) * Math.random() + start);
         Date randomDay = new Date(ms);
         return randomDay;
+    }
+
+    private int getRandomNumber(int low, int high) {
+
+        int result = randomGenerator.nextInt(high - low) + low;
+        return result;
     }
 
 }
