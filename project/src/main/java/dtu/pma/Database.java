@@ -2,9 +2,12 @@ package dtu.pma;
 
 import java.util.ArrayList;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Database {
+    private int startYear = 2016;
+    private int endYear = 2025;
 
     public List<Worker> getWorkers() {
         // Female
@@ -135,20 +138,32 @@ public class Database {
         projects.add(new Project("Thorium Spaniel", 0054));
         projects.add(new Project("Magnesium Hound", 0055));
 
-
         for (Project project : projects) {
-
+            Date startDate = randomStartDate();
             project.getInfo().setExpectedHours(299);
             project.getInfo().setHoursWorked(89);
-            project.getInfo().setStartDate(Date.valueOf("2020-02-21"));
-            project.getInfo().setEndDate(Date.valueOf("2020-08-19"));
+            project.getInfo().setStartDate(startDate);
+            project.getInfo().setEndDate(randomEndDate(startDate));
             project.getInfo().setDescription("INFO");
         }
-    
+
         return projects;
     }
 
-        
-       
- 
+    private Date randomStartDate() {
+        long start = Timestamp.valueOf(startYear + 1 + "-1-1 0:0:0").getTime();
+        long end = Timestamp.valueOf(endYear + "-1-1 0:0:0").getTime();
+        long ms = (long) ((end - start) * Math.random() + start);
+        Date randomDay = new Date(ms);
+        return randomDay;
+    }
+
+    private Date randomEndDate(Date startDate) {
+        long start = startDate.getTime() + 1000;
+        long end = Timestamp.valueOf(endYear + "-1-1 0:0:0").getTime();
+        long ms = (long) ((end - start) * Math.random() + start);
+        Date randomDay = new Date(ms);
+        return randomDay;
+    }
+
 }
