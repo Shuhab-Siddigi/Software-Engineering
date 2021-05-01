@@ -22,7 +22,7 @@ public class AddWorkerToActivityPanel extends JPanel {
     private Project project;
     private int selectedRow;
 
-    public AddWorkerToActivityPanel(PMA pma,  AddWorkerToActivityTable addWorkerToActivityTable) {
+    public AddWorkerToActivityPanel(PMA pma, AddWorkerToActivityTable addWorkerToActivityTable) {
 
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();
@@ -32,10 +32,6 @@ public class AddWorkerToActivityPanel extends JPanel {
         projectLabel.setText("Projects");
         projectLabel.setFont(new Font("Serif", Font.BOLD, 30));
 
-        JLabel workerLabel = new JLabel();
-        workerLabel.setText("Workers");
-        workerLabel.setFont(new Font("Serif", Font.BOLD, 30));
-
         JLabel projectLabel2 = new JLabel();
         projectLabel2.setText("Projects:");
         projectLabel2.setFont(new Font("Serif", Font.BOLD, 15));
@@ -44,6 +40,10 @@ public class AddWorkerToActivityPanel extends JPanel {
         projectLabel3.setText("Press on Project ..");
         projectLabel3.setFont(new Font("Serif", Font.BOLD, 15));
 
+        JLabel workerLabel = new JLabel();
+        workerLabel.setText("Workers");
+        workerLabel.setFont(new Font("Serif", Font.BOLD, 30));
+
         JLabel workerLabel2 = new JLabel();
         workerLabel2.setText("Workers:");
         workerLabel2.setFont(new Font("Serif", Font.BOLD, 15));
@@ -51,6 +51,19 @@ public class AddWorkerToActivityPanel extends JPanel {
         JLabel workerLabel3 = new JLabel();
         workerLabel3.setText("Press on Worker ..");
         workerLabel3.setFont(new Font("Serif", Font.BOLD, 15));
+
+
+        JLabel activityLabel = new JLabel();
+        activityLabel.setText("Activity");
+        activityLabel.setFont(new Font("Serif", Font.BOLD, 30));
+
+        JLabel activityLabel2 = new JLabel();
+        activityLabel2.setText("Activity:");
+        activityLabel2.setFont(new Font("Serif", Font.BOLD, 15));
+
+        JLabel activityLabel3 = new JLabel();
+        activityLabel3.setText("Press on Activity ..");
+        activityLabel3.setFont(new Font("Serif", Font.BOLD, 15));
 
         JButton addProjectLeader = new JButton();
         addProjectLeader.setText("ADD PROJECT LEADER");
@@ -68,11 +81,15 @@ public class AddWorkerToActivityPanel extends JPanel {
         constrain.gridy = 0;
         this.add(projectLabel, constrain);
 
+        constrain.gridx = 4;
+        constrain.gridy = 0;
+        this.add(activityLabel, constrain);
+
         constrain.fill = GridBagConstraints.BOTH;
         constrain.gridx = 0;
         constrain.gridy = 1;
-        constrain.weighty = 0.8;
-        constrain.gridwidth = 4;
+        constrain.weighty = 0.7;
+        constrain.gridwidth = 6;
         this.add(addWorkerToActivityTable, constrain);
 
         guiTools.resetConstrains(constrain);
@@ -87,48 +104,60 @@ public class AddWorkerToActivityPanel extends JPanel {
         constrain.gridx = 1;
         constrain.gridy = 2;
         this.add(workerLabel3, constrain);
+        
         constrain.gridx = 2;
         constrain.gridy = 2;
         this.add(projectLabel2, constrain);
         constrain.gridx = 3;
         constrain.gridy = 2;
         this.add(projectLabel3, constrain);
+        
+        constrain.gridx = 4;
+        constrain.gridy = 2;
+        this.add(activityLabel2, constrain);
+        constrain.gridx = 5;
+        constrain.gridy = 2;
+        this.add(activityLabel3, constrain);
 
         constrain.gridx = 0;
         constrain.gridy = 3;
-        constrain.gridwidth = 4;
+        constrain.gridwidth = 6;
         constrain.weighty = 0.1;
         this.add(addProjectLeader, constrain);
 
         addWorkerToActivityTable.getProjectTable().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        addWorkerToActivityTable.getProjectTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+        addWorkerToActivityTable.getProjectTable().getSelectionModel()
+                .addListSelectionListener(new ListSelectionListener() {
 
-            public void valueChanged(ListSelectionEvent e) {
-                ListSelectionModel rowSelectionModel = (ListSelectionModel) e.getSource();
-                if (!rowSelectionModel.isSelectionEmpty()) {
-                    selectedRow = rowSelectionModel.getMinSelectionIndex();
-                    String ID = addWorkerToActivityTable.getProjectTable().getModel().getValueAt(selectedRow, 1).toString();
-                    project = pma.getProjectWithID(Integer.parseInt(ID));
-                    // projectLabel3.setText(project.getInfo().getTitle());
-                }
-            }
-        });
+                    public void valueChanged(ListSelectionEvent e) {
+                        ListSelectionModel rowSelectionModel = (ListSelectionModel) e.getSource();
+                        if (!rowSelectionModel.isSelectionEmpty()) {
+                            selectedRow = rowSelectionModel.getMinSelectionIndex();
+                            String ID = addWorkerToActivityTable.getProjectTable().getModel().getValueAt(selectedRow, 1)
+                                    .toString();
+                            project = pma.getProjectWithID(Integer.parseInt(ID));
+                            // projectLabel3.setText(project.getInfo().getTitle());
+                        }
+                    }
+                });
 
         addWorkerToActivityTable.getWorkerTable().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        addWorkerToActivityTable.getWorkerTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent e) {
+        addWorkerToActivityTable.getWorkerTable().getSelectionModel()
+                .addListSelectionListener(new ListSelectionListener() {
+                    public void valueChanged(ListSelectionEvent e) {
 
-                ListSelectionModel rowSelectionModel = (ListSelectionModel) e.getSource();
-                if (!rowSelectionModel.isSelectionEmpty()) {
-                    selectedRow = rowSelectionModel.getMinSelectionIndex();
-                    String ID = addWorkerToActivityTable.getWorkerTable().getModel().getValueAt(selectedRow, 2).toString();
-                    worker = pma.getWorkerWithID(ID);
-                    // workerLabel3.setText(
-                    // worker.getFirstname() + " " + worker.getLastname() + " ID: " +
-                    // worker.getID());
-                }
-            }
-        });
+                        ListSelectionModel rowSelectionModel = (ListSelectionModel) e.getSource();
+                        if (!rowSelectionModel.isSelectionEmpty()) {
+                            selectedRow = rowSelectionModel.getMinSelectionIndex();
+                            String ID = addWorkerToActivityTable.getWorkerTable().getModel().getValueAt(selectedRow, 2)
+                                    .toString();
+                            worker = pma.getWorkerWithID(ID);
+                            // workerLabel3.setText(
+                            // worker.getFirstname() + " " + worker.getLastname() + " ID: " +
+                            // worker.getID());
+                        }
+                    }
+                });
 
         // addProjectLeader.addMouseListener(new MouseAdapter() {
 
