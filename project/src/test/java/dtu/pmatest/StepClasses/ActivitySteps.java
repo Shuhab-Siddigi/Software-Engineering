@@ -122,7 +122,7 @@ public class ActivitySteps {
     public void checkedIfActivityIsBookedWithDateAndEndDate(String startDate, String endDate) {
         Date start = Date.valueOf(startDate);
         Date end = Date.valueOf(endDate);
-        result = activity.isFree(start, end);
+        result = activity.getInfo().isFree(start, end);
     }
     
     @Then("the activity fits in plan")

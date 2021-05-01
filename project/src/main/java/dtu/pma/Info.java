@@ -19,6 +19,20 @@ public class Info {
         this.setEndDate(endDate);
         this.setDescription(description);
     }
+
+    public boolean isFree(Date startDate, Date endDate) {
+        Date start = this.getStartDate();
+        Date end = this.getEndDate();
+        if(start.before(startDate) && end.after(endDate)){
+            return false;
+        }else if(start.after(endDate)){
+            return true;
+        }else if(end.before(startDate)){
+            return true;
+        }else{
+            return false;
+        }
+    }
     
     public Info (String title, int ID){
         this.title = title;
@@ -73,8 +87,6 @@ public class Info {
     }
 
     
-    //public void calcHoursWorked(){
-    //}
     public String getTitle() {
         return title;
     }

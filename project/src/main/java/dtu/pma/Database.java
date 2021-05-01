@@ -11,6 +11,28 @@ public class Database {
     private int endYear = 2025;
     private Random randomGenerator = new Random();
 
+    private Date randomStartDate() {
+        long start = Timestamp.valueOf(startYear + 1 + "-1-1 0:0:0").getTime();
+        long end = Timestamp.valueOf(endYear + "-1-1 0:0:0").getTime();
+        long ms = (long) ((end - start) * Math.random() + start);
+        Date randomDay = new Date(ms);
+        return randomDay;
+    }
+
+    private Date randomEndDate(Date startDate) {
+        long start = startDate.getTime() + 1000;
+        long end = Timestamp.valueOf(endYear + "-1-1 0:0:0").getTime();
+        long ms = (long) ((end - start) * Math.random() + start);
+        Date randomDay = new Date(ms);
+        return randomDay;
+    }
+
+    private int getRandomNumber(int low, int high) {
+
+        int result = randomGenerator.nextInt(high - low) + low;
+        return result;
+    }
+
     public List<Worker> getWorkers() {
         // Female
         List<Worker> workers = new ArrayList<>();
@@ -152,26 +174,6 @@ public class Database {
         return projects;
     }
 
-    private Date randomStartDate() {
-        long start = Timestamp.valueOf(startYear + 1 + "-1-1 0:0:0").getTime();
-        long end = Timestamp.valueOf(endYear + "-1-1 0:0:0").getTime();
-        long ms = (long) ((end - start) * Math.random() + start);
-        Date randomDay = new Date(ms);
-        return randomDay;
-    }
 
-    private Date randomEndDate(Date startDate) {
-        long start = startDate.getTime() + 1000;
-        long end = Timestamp.valueOf(endYear + "-1-1 0:0:0").getTime();
-        long ms = (long) ((end - start) * Math.random() + start);
-        Date randomDay = new Date(ms);
-        return randomDay;
-    }
-
-    private int getRandomNumber(int low, int high) {
-
-        int result = randomGenerator.nextInt(high - low) + low;
-        return result;
-    }
 
 }

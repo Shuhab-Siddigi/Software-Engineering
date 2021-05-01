@@ -37,24 +37,7 @@ public class Activity {
         return text;
     }
 
-    public boolean isFree(Date startDate, Date endDate) {
-        Date start = this.getInfo().getStartDate();
-        Date end = this.getInfo().getEndDate();
-        // startDate eller endDate ligger imellem activity start og slut dato
-        if ((start.compareTo(startDate) < 0 && end.compareTo(startDate) > 0)
-                || (start.compareTo(endDate) < 0 && end.compareTo(endDate) > 0)) {
-            return false;
 
-            // startDate og endDate ligger efter activity start og slut dato
-        } else if (start.compareTo(startDate) < 0 && start.compareTo(endDate) < 0) {
-            return true;
-
-            // startDate og endDate ligger før activity start og slut dato
-        } else if (end.compareTo(startDate) > 0 && end.compareTo(endDate) > 0) {
-            return true;
-        }
-        return false;
-    }
 
     // er hurtigt tilføjet da den skulle bruges i generate_report.feature
     public void addWorker(Worker worker) {

@@ -66,10 +66,7 @@ public class PMA {
     }
 
 
-    private void isAllowedID(int ID)
-    {
-        
-    }
+  
     
     public void addProject(Project p) throws OperationNotAllowedException {
 
@@ -160,7 +157,7 @@ public class PMA {
         boolean flag = true;
         for (Worker w : list) {
             for (Activity a : w.getActivities()) {
-                if(!a.isFree(startDate, endDate)){
+                if(!a.getInfo().isFree(startDate, endDate)){
                     flag = false;
                     break;
                 }
