@@ -224,7 +224,7 @@ public class ActivitySteps {
 
 
     @Given("a worker exist in the system")
-    public void aWorkerExistInTheSystem() {
+    public void aWorkerExistInTheSystem() throws OperationNotAllowedException {
         pma.addDatabase();
         worker = pma.getWorkerWithID("AAAB");
     }

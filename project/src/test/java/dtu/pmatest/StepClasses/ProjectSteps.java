@@ -141,7 +141,7 @@ public class ProjectSteps {
     }
 
     @Given("there is a list of workers, which contain worker with Name {string} {string} ID {string}")
-    public void thereIsAListOfWorkersWhichContainWorkerWithNameID(String firstName, String lastName, String id) {
+    public void thereIsAListOfWorkersWhichContainWorkerWithNameID(String firstName, String lastName, String id) throws OperationNotAllowedException {
         origWorker = new Worker(firstName, lastName, id);
         pma.addDatabase();
         pma.getWorkers().add(origWorker);

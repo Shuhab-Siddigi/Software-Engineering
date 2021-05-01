@@ -115,7 +115,7 @@ public class Database {
         return workers;
     }
 
-    public List<Project> getProjects() {
+    public List<Project> getProjects() throws OperationNotAllowedException {
 
         List<Project> projects = new ArrayList<>();
 
@@ -161,14 +161,26 @@ public class Database {
         projects.add(new Project("Polonium Spaniel", 0053));
         projects.add(new Project("Thorium Spaniel", 0054));
         projects.add(new Project("Magnesium Hound", 0055));
-
+        int counter = 0;
+        int randName;
         for (Project project : projects) {
-            Date startDate = randomStartDate();
+          
+            Date projectstartDate = randomStartDate();
+            Date projectendDate = randomEndDate(projectstartDate);
             project.getInfo().setExpectedHours(getRandomNumber(24, 400));
             project.getInfo().setHoursWorked(getRandomNumber(1, 23));
-            project.getInfo().setStartDate(startDate);
-            project.getInfo().setEndDate(randomEndDate(startDate));
+            project.getInfo().setStartDate(projectstartDate);
+            project.getInfo().setEndDate(projectendDate);
             project.getInfo().setDescription("INFO");
+            
+            Date activityStartDate = randomEndDate(projectendDate);
+            Date activityEndDate = randomEndDate(activityStartDate);
+            
+            randName = getRandomNumber(0, projects.size());
+
+            Project randProject = projects.get(randName);
+            project.addActivity(new Activity(randProject.getInfo().getTitle(), counter, activityStartDate, activityEndDate));
+            counter++;
         }
 
         return projects;

@@ -32,7 +32,7 @@ public class ProjectLeaderSteps {
     }
 
     @Given("the system contains a worker with ID {string}")
-    public void theSystemContainsAWorkerWithID(String ID) {
+    public void theSystemContainsAWorkerWithID(String ID) throws OperationNotAllowedException {
         pma.addDatabase();
         assertTrue(pma.containsWorkerWithID(ID));
 
