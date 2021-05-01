@@ -12,7 +12,7 @@ public class PMA {
     private Database db = new Database();
     private boolean databaseAdded = false;
 
-    public void addDatabase() throws OperationNotAllowedException {
+    public void addDatabase() {
         if (databaseAdded == false) {
 
             databaseAdded = true;

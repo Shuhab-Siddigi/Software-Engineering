@@ -1,9 +1,8 @@
 package dtu.pmatest.StepClasses;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -32,7 +31,7 @@ public class ProjectLeaderSteps {
     }
 
     @Given("the system contains a worker with ID {string}")
-    public void theSystemContainsAWorkerWithID(String ID) throws OperationNotAllowedException {
+    public void theSystemContainsAWorkerWithID(String ID) {
         pma.addDatabase();
         assertTrue(pma.containsWorkerWithID(ID));
 

@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.sql.Date;
 
-import javax.swing.UIDefaults.ActiveValue;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,7 +16,6 @@ import dtu.pma.Project;
 import dtu.pma.Worker;
 import dtu.pmatest.HelperClasses.ActivityHelper;
 import dtu.pmatest.HelperClasses.ProjectHelper;
-import dtu.pmatest.HelperClasses.WorkerHelper;
 import dtu.pma.Activity;
 import dtu.pma.ErrorMessageHolder;
 
@@ -26,7 +24,6 @@ public class ActivitySteps {
     private ErrorMessageHolder errorMessage;
     private ProjectHelper projectHelper;
     private ActivityHelper activityHelper;
-    private WorkerHelper workerHelper;
     private Activity activity;
     private Project project;
     private Worker worker;
@@ -224,7 +221,7 @@ public class ActivitySteps {
 
 
     @Given("a worker exist in the system")
-    public void aWorkerExistInTheSystem() throws OperationNotAllowedException {
+    public void aWorkerExistInTheSystem()  {
         pma.addDatabase();
         worker = pma.getWorkerWithID("AAAB");
     }

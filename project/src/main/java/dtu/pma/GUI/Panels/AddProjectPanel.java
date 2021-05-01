@@ -185,8 +185,7 @@ public class AddProjectPanel extends JPanel {
                             pma.addProject(p);
                             projectTree.AddProjectToTree(p);
                             projectTable.addProject(p);
-
-                           // projectTree.updateTree();
+                            
                         } catch (OperationNotAllowedException e1) {
                             JOptionPane.showMessageDialog(addProjectBtn, e1.getMessage());
                         }

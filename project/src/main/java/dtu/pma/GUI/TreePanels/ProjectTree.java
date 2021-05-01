@@ -68,7 +68,7 @@ public class ProjectTree extends JPanel {
             titleNode.add(new DefaultMutableTreeNode(" Hours Worked: " + (project.getInfo().getHoursWorked())));
             titleNode.add(new DefaultMutableTreeNode(" Expected Hours: " + (project.getInfo().getExpectedHours())));
             titleNode.add(new DefaultMutableTreeNode(" Description: " + (project.getInfo().getDescription())));
-            titleNode.add(new DefaultMutableTreeNode(" Project Leader: " + (project.getProjectLeader())));
+            titleNode.add(new DefaultMutableTreeNode(" Project Leader: " + (project.getProjectLeader()).getID()));
             projetNode.add(titleNode);
         }else{
             titleNode = new DefaultMutableTreeNode(project.getInfo().getTitle());
