@@ -6,12 +6,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.JOptionPane;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Date;
-
 import dtu.pma.Activity;
 import dtu.pma.OperationNotAllowedException;
 import dtu.pma.PMA;
@@ -20,7 +18,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import dtu.pma.GUI.TablePanels.AddActivityTable;
-import dtu.pma.GUI.TablePanels.ProjectTable;
+
 
 public class AddActivityPanel extends JPanel {
 
