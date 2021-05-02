@@ -109,6 +109,8 @@ public class ShowActivityTable extends JPanel{
                 activityModel.addRow(new Object[] { 
                     a.getInfo().getTitle(), 
                     a.getInfo().getID(),
+                    a.getInfo().getExpectedHours(),
+                    a.getInfo().getHoursWorked(),
                     a.getInfo().getStartDate().toString(),
                     a.getInfo().getEndDate().toString(), 
                 });

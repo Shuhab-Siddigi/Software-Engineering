@@ -166,16 +166,22 @@ public class Database {
 
             Date projectstartDate = randomStartDate();
             Date projectendDate = randomEndDate(projectstartDate);
-            project.getInfo().setExpectedHours(randomNumber(24, 400));
-            project.getInfo().setHoursWorked(randomNumber(1, 23));
+            int projectExpextedhours = randomNumber(24, 400);
+            int projectHoursWorked = randomNumber(1, 23);
+            project.getInfo().setExpectedHours(projectExpextedhours);
+            project.getInfo().setHoursWorked(projectHoursWorked);
             project.getInfo().setStartDate(projectstartDate);
             project.getInfo().setEndDate(projectendDate);
             project.getInfo().setDescription("INFO");
 
             Date activityStartDate = randomEndDate(projectendDate);
             Date activityEndDate = randomEndDate(activityStartDate);
+           
             String randomTitle = projects.get(randomNumber(0,projects.size()-1)).getInfo().getTitle();
-            project.addActivity(new Activity(randomTitle, 0, activityStartDate, activityEndDate));
+            Activity activity = new Activity(randomTitle, 0, activityStartDate, activityEndDate);
+            activity.getInfo().setExpectedHours(randomNumber(0, projectExpextedhours));
+            activity.getInfo().setHoursWorked(projectHoursWorked);
+            project.addActivity(activity);
         }
 
         return projects;
