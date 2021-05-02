@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import dtu.pma.PMA;
 import dtu.pma.GUI.GUITools;
+import dtu.pma.GUI.TablePanels.AddActivityTable;
 import dtu.pma.GUI.TablePanels.GenerateReportTable;
 import dtu.pma.GUI.TablePanels.ProjectTable;
 import dtu.pma.GUI.TablePanels.ProjectWithoutProjectLeaderTable;
@@ -22,11 +23,14 @@ public class MainPanel extends JPanel {
     private ProjectTable projectTable;
     private GenerateReportTable generateReportTable;
     private ProjectWithoutProjectLeaderTable projectWithoutProjectLeaderTable;
+    private AddActivityTable addActivityTable;
 
+    private IntroPanel introPanel;
     private GenerateReportPanel generateReportPanel;
     private AddProjectPanel addProjectPanel;
     private ShowProjectsPanel showProjectsPanel;
     private SetProjectLeader setProjectLeader;
+    private AddActivityPanel addActivityPanel;
 
     public MainPanel(PMA pma, Frame frame) {
 
@@ -38,19 +42,22 @@ public class MainPanel extends JPanel {
         projectTable = new ProjectTable(pma, 890, 790);
         generateReportTable = new GenerateReportTable(pma, 890, 790);
         projectWithoutProjectLeaderTable = new ProjectWithoutProjectLeaderTable(pma, 890, 690);
+        addActivityTable = new AddActivityTable(pma, 890, 690);
 
-        IntroPanel introPanel = new IntroPanel();
+        introPanel = new IntroPanel();
         addProjectPanel = new AddProjectPanel(pma, projectTree, projectTable, projectWithoutProjectLeaderTable);
         showProjectsPanel = new ShowProjectsPanel(pma, projectTable);
         setProjectLeader = new SetProjectLeader(pma, projectWithoutProjectLeaderTable, projectTable, projectTree,
                 generateReportTable);
         generateReportPanel = new GenerateReportPanel(pma, generateReportTable);
+        addActivityPanel = new AddActivityPanel(pma, addActivityTable);
 
         showProjectsPanel.setPreferredSize(new Dimension(900, 800));
         introPanel.setPreferredSize(new Dimension(900, 800));
         addProjectPanel.setPreferredSize(new Dimension(900, 800));
         showProjectsPanel.setPreferredSize(new Dimension(900, 800));
         setProjectLeader.setPreferredSize(new Dimension(900, 800));
+        addActivityPanel.setPreferredSize(new Dimension(900, 800));
         guiTool.showBorder(this);
 
         TopPanel topPanel = new TopPanel();
@@ -90,6 +97,7 @@ public class MainPanel extends JPanel {
         cardLayoutPanel.add(showProjectsPanel, "show-projects");
         cardLayoutPanel.add(generateReportPanel, "generate-report");
         cardLayoutPanel.add(setProjectLeader, "set-project-leader");
+        cardLayoutPanel.add(addActivityPanel, "add-activity");
 
         this.setVisible(true);
 
@@ -128,7 +136,12 @@ public class MainPanel extends JPanel {
                 cardLayout.show(cardLayoutPanel, "add-worker-to-activity");
             }
         });
-
+        
+        topPanel.getAddActivityBtn().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardLayoutPanel, "add-activity");
+            }
+        });
     }
 
 }

@@ -17,7 +17,7 @@ public class ProjectTable extends JPanel{
     private JTable projectTable;
 
     public ProjectTable(PMA pma,int width, int height){
-        model = new DefaultTableModel();
+      
         projectTable = new JTable();
         projectTable = setTable(pma, projectTable);
         
@@ -31,7 +31,8 @@ public class ProjectTable extends JPanel{
     }
 
     private JTable setTable(PMA pma,JTable jTable) {
-      
+        
+        model = new DefaultTableModel();
         
         model.addColumn("Title");
         model.addColumn("ID");

@@ -17,7 +17,7 @@ public class AddProjectPanel extends JPanel {
     private ProjectTree projectTree;
 
     public AddProjectPanel(PMA pma,ProjectTree projectTree,ProjectTable projectTable,ProjectWithoutProjectLeaderTable projectWithoutProjectLeaderTable){
-        //this.projectTable = projectTable;
+       
         this.projectTree = projectTree;
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();
@@ -185,7 +185,7 @@ public class AddProjectPanel extends JPanel {
                             pma.addProject(p);
                             projectTree.AddProjectToTree(p);
                             projectTable.addProject(p);
-                            
+                            projectWithoutProjectLeaderTable.addProject(p);
                         } catch (OperationNotAllowedException e1) {
                             JOptionPane.showMessageDialog(addProjectBtn, e1.getMessage());
                         }

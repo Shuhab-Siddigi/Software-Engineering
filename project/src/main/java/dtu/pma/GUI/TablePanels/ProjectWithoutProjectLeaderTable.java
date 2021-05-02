@@ -63,21 +63,14 @@ public class ProjectWithoutProjectLeaderTable extends JPanel {
         projectModel.addColumn("Project Leader");
 
         for (Project p : pma.getProjects()) {
-            
-            if(p.getProjectLeader() != null){
-            projectModel.addRow(new Object[] { 
-                p.getInfo().getTitle(), 
-                p.getInfo().getID(),
-                p.getProjectLeader().getID(), 
-            });
-            }else{
-            projectModel.addRow(new Object[] { 
-                p.getInfo().getTitle(), 
-                p.getInfo().getID(), 
-                "", 
-            });
+
+            if (p.getProjectLeader() != null) {
+                projectModel.addRow(
+                        new Object[] { p.getInfo().getTitle(), p.getInfo().getID(), p.getProjectLeader().getID(), });
+            } else {
+                projectModel.addRow(new Object[] { p.getInfo().getTitle(), p.getInfo().getID(), "", });
             }
-        
+
         }
 
         jTable.setModel(projectModel);
@@ -86,6 +79,7 @@ public class ProjectWithoutProjectLeaderTable extends JPanel {
     }
 
     public void addProject(Project p) {
+
         projectModel.addRow(new Object[] { p.getInfo().getTitle(), p.getInfo().getID(), });
 
     }
