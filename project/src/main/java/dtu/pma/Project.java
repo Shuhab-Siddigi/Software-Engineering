@@ -70,6 +70,21 @@ public class Project {
                     "Start Date: "      + this.info.getStartDate()      + "\n"+
                     "End Date : "       + this.info.getEndDate()        + "\n"+
                     "Description: "     + this.info.getDescription()    + "\n";
+
+        if(this.getActivities() != null){
+            
+            for (Activity activity : this.getActivities()) {
+
+                p+= "\tActivity:\n\n"+
+                    "\tTitle: "           + activity.getInfo().getTitle()          + "\n"+
+                    "\tID : "             + activity.getInfo().getID()             + "\n"+
+                    "\tExpected hours: "  + activity.getInfo().getExpectedHours()  + "\n"+
+                    "\tHours Worked: "    + activity.getInfo().getHoursWorked()    + "\n"+
+                    "\tStart Date: "      + activity.getInfo().getStartDate()      + "\n"+
+                    "\tEnd Date : "       + activity.getInfo().getEndDate()        + "\n"+
+                    "\tDescription: "     + activity.getInfo().getDescription()    + "\n"; 
+            }
+        }
         return p;
     }
 

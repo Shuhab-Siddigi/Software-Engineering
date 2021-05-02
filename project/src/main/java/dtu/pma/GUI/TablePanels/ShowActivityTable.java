@@ -2,9 +2,7 @@ package dtu.pma.GUI.TablePanels;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import java.awt.Dimension;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;

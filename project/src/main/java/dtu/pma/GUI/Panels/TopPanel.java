@@ -66,18 +66,18 @@ public class TopPanel extends JPanel {
         constrain.gridy = 1;
         this.add(showProjectActivities, constrain);
 
-        showAvailableWorkersBtn = new JButton();
-        showAvailableWorkersBtn.setText("5. Show Available Workers");
+        addWorkerToActivity = new JButton();
+        addWorkerToActivity.setText("5. Add Worker to Activity");
         constrain.gridx = 3;
         constrain.gridy = 0;
-        this.add(showAvailableWorkersBtn, constrain);
+        this.add(addWorkerToActivity, constrain);
 
-        addWorkerToActivity = new JButton();
-        addWorkerToActivity.setText("6. Add Worker to Activity");
+        showAvailableWorkersBtn = new JButton();
+        showAvailableWorkersBtn.setText("6. Show Available Workers");
         constrain.gridx = 3;
         constrain.gridy = 1;
-        this.add(addWorkerToActivity, constrain);
-       
+        this.add(showAvailableWorkersBtn, constrain);
+
         setProjectLeaderBtn = new JButton();
         setProjectLeaderBtn.setText("7. Set Project Leader");
         constrain.gridx = 4;

@@ -32,7 +32,7 @@ public class AddActivityPanel extends JPanel {
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();
 
-        JTextField setProjectTextField = new JTextField("Set ProjectID:");
+        JTextField setProjectTextField = new JTextField("Choose Project ID from table..");
         JLabel setProjectLabel = new JLabel();
         setProjectLabel.setText("Project ID:");
         setProjectLabel.setFont(new Font("Serif", Font.BOLD, 20));
