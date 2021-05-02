@@ -27,7 +27,7 @@ public class Database {
         return randomDay;
     }
 
-    private int getRandomNumber(int low, int high) {
+    private int randomNumber(int low, int high) {
 
         int result = randomGenerator.nextInt(high - low) + low;
         return result;
@@ -115,7 +115,7 @@ public class Database {
         return workers;
     }
 
-    public List<Project> getProjects() {
+    public List<Project> getProjects() throws OperationNotAllowedException {
 
         List<Project> projects = new ArrayList<>();
 
@@ -166,11 +166,16 @@ public class Database {
 
             Date projectstartDate = randomStartDate();
             Date projectendDate = randomEndDate(projectstartDate);
-            project.getInfo().setExpectedHours(getRandomNumber(24, 400));
-            project.getInfo().setHoursWorked(getRandomNumber(1, 23));
+            project.getInfo().setExpectedHours(randomNumber(24, 400));
+            project.getInfo().setHoursWorked(randomNumber(1, 23));
             project.getInfo().setStartDate(projectstartDate);
             project.getInfo().setEndDate(projectendDate);
             project.getInfo().setDescription("INFO");
+
+            Date activityStartDate = randomEndDate(projectendDate);
+            Date activityEndDate = randomEndDate(activityStartDate);
+            String randomTitle = projects.get(randomNumber(0,projects.size()-1)).getInfo().getTitle();
+            project.addActivity(new Activity(randomTitle, 0, activityStartDate, activityEndDate));
         }
 
         return projects;

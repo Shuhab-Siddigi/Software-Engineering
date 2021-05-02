@@ -1,7 +1,5 @@
 package dtu.pmatest.HelperClasses;
 
-import java.sql.Date;
-
 import dtu.pma.PMA;
 import dtu.pma.Project;
 

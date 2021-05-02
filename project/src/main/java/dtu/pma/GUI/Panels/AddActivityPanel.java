@@ -26,10 +26,9 @@ public class AddActivityPanel extends JPanel {
 
     private JButton addActivityBtn;
     private Project project;
-    private Activity activity;
     private String projectID;
     private int selectedRow;
-
+    private Activity activity;
     public AddActivityPanel(PMA pma, AddActivityTable addActivityTable) {
 
         setLayout(new GridBagLayout());
@@ -145,8 +144,10 @@ public class AddActivityPanel extends JPanel {
         constrain.anchor = GridBagConstraints.CENTER;
         this.add(addActivityBtn, constrain);
 
+        constrain.fill = GridBagConstraints.BOTH;
         constrain.gridx = 2;
         constrain.gridy = 0;
+        constrain.weightx = 1;
         constrain.fill = GridBagConstraints.BOTH;
         constrain.gridheight = 8;
         this.add(addActivityTable, constrain);
@@ -197,6 +198,7 @@ public class AddActivityPanel extends JPanel {
                     projectID = addActivityTable.getProjectTable().getModel().getValueAt(selectedRow, 1).toString();
                     project = pma.getProjectWithID(Integer.parseInt(projectID));
                     setProjectTextField.setText(Integer.toString(project.getInfo().getID()));
+                    addActivityTable.setModel(project);
                 }
             }
         });
@@ -204,33 +206,29 @@ public class AddActivityPanel extends JPanel {
         addActivityBtn.addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(MouseEvent e) {
-
-                String title = settitleTextField.getText();
-
-                int ID = Integer.parseInt(setIDTextField.getText());
-                Date startDate = Date.valueOf(setStartDateTextField.getText());
-                Date endDate = Date.valueOf(setEndDateTextField.getText());
-                activity = new Activity(title, ID, startDate, endDate);
-                String Description = setDescriptionTextField.getText();
-                activity.getInfo().setDescription(Description);
-                System.out.println(activity.getInfo().getTitle());
-                System.out.println(activity.getInfo().getID());
-                System.out.println(activity.getInfo().getStartDate());
-                System.out.println(activity.getInfo().getEndDate());
-
                 try {
-                
-                project.addActivity(activity);
-                JOptionPane.showMessageDialog(addActivityBtn, "Activity Added");
-                } catch (OperationNotAllowedException e1) {
-
-                JOptionPane.showMessageDialog(addActivityTable, e1.getMessage());
-
+                    String title = settitleTextField.getText();
+                    int ID = Integer.parseInt(setIDTextField.getText());
+                    Date startDate = Date.valueOf(setStartDateTextField.getText());
+                    Date endDate = Date.valueOf(setEndDateTextField.getText());
+                    activity = new Activity(title, ID, startDate, endDate);
+                    String Description = setDescriptionTextField.getText();
+                    activity.getInfo().setDescription(Description);
+                } catch (Exception e1) {
+                    JOptionPane.showMessageDialog(addActivityBtn, e1.getMessage());
                 }
-
+                try {
+                    project.addActivity(activity);
+                    addActivityTable.addActivity(activity);
+                    JOptionPane.showMessageDialog(addActivityBtn, "Activity Added");
+                } catch (OperationNotAllowedException e1) {
+                    JOptionPane.showMessageDialog(addActivityBtn, e1.getMessage());
+                    e1.printStackTrace();
+                }
             }
 
         });
     }
+
 
 }

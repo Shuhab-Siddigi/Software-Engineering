@@ -4,7 +4,6 @@ import dtu.pma.OperationNotAllowedException;
 import dtu.pma.PMA;
 import dtu.pma.Project;
 import dtu.pma.Worker;
-import dtu.pmatest.HelperClasses.ProjectHelper;
 
 public class WorkerHelper {
 
