@@ -102,8 +102,8 @@ public class AddActivityTable extends JPanel {
         activityModel.addRow(new Object[] {         
             activity.getInfo().getTitle(), 
             activity.getInfo().getID(),
-        //    activity.getInfo().getStartDate().toString(),
-        //    activity.getInfo().getEndDate().toString(), 
+            activity.getInfo().getStartDate().toString(),
+            activity.getInfo().getEndDate().toString(), 
         });
     }
 

@@ -112,7 +112,6 @@ public class MainPanel extends JPanel {
         cardLayoutPanel.add(addActivityPanel, "add-activity");
         cardLayoutPanel.add(showProjectActivitysPanel, "show-activity");
         cardLayoutPanel.add(showAvailableWorkersPanel, "show-available-workers");
-
         this.setVisible(true);
 
         topPanel.getHomeBtn().addActionListener(new ActionListener() {
