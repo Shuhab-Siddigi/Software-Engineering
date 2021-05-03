@@ -21,11 +21,11 @@ public class Info {
     }
 
     public boolean isFree(Date startDate, Date endDate) {
-        Date start = this.getStartDate();
-        Date end = this.getEndDate();
-        if(start.before(startDate) && end.after(endDate)){
-            return false;
-        }else if(start.after(endDate)){
+        Date start = this.getStartDate(); // 1
+        Date end = this.getEndDate(); //2
+        if(start.before(startDate) && end.after(endDate)){ //3
+            return false; //3a
+        }else if(start.after(endDate)){ 
             return true;
         }else if(end.before(startDate)){
             return true;

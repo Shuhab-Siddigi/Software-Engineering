@@ -155,12 +155,12 @@ public class Project {
     // Remove activity
 
     public Activity getActivityFromID(int ID) {
-        for (Activity a : activities) {
-            if (a.getInfo().getID() == ID) {
-                return a;
+        for (Activity a : activities) {     // 1
+            if (a.getInfo().getID() == ID) { // 2 
+                return a; // 2a
             }
         }
-        return null;
+        return null; //3
     }
 
     public void removeActivity(Worker worker, Activity activity) throws OperationNotAllowedException {
