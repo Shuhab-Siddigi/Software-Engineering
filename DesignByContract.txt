@@ -1,0 +1,14 @@
+public Activity getActivityFromID(int ID){
+	pre: 	ID >= 0
+	post: 	a.getInfo().getID = ID ||
+			
+}
+
+public boolean projectContainsActivity(int projectID, int activityID){
+	pre:	activityID != Null	&&
+			for one in projects array:
+				project.ID = projectID	
+	post:		
+			activityID 
+
+}
