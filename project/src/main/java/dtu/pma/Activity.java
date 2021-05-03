@@ -9,6 +9,7 @@ public class Activity {
 
     private List<Worker> workers = new ArrayList<>();
     private Info info;
+    private int registeredHours;
 
     public Activity(String title, int ID, Date startDate, Date endDate) {
         this.info = new Info(title, ID, startDate, endDate);
@@ -37,8 +38,6 @@ public class Activity {
         return text;
     }
 
-
-
     // er hurtigt tilføjet da den skulle bruges i generate_report.feature
     public void addWorker(Worker worker) {
         this.workers.add(worker);
@@ -54,5 +53,13 @@ public class Activity {
     
     public void removeWorker(Worker worker) {
         workers.removeIf(w -> w.getID().equals(worker.getID()));
+    }
+
+    public void setRegisteredHours(int hours){
+        this.info.setHoursWorked(this.info.getHoursWorked() + hours);
+    }
+
+    public int getRegisteredHours(){
+        return this.info.getHoursWorked();
     }
 }

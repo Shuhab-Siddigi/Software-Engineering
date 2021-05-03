@@ -211,6 +211,7 @@ public class ActivitySteps {
     @Given("a project and an activity exist in the system")
     public void theProjectAndAnActivityExistInTheSystem() throws OperationNotAllowedException {
         project = projectHelper.getProject();
+        pma.addProject(project);
         activity = activityHelper.getActivity();
         try {
             project.addActivity(activity);
@@ -225,6 +226,13 @@ public class ActivitySteps {
         pma.addDatabase();
         worker = pma.getWorkerWithID("AAAB");
     }
+
+    @Given("a worker with ID {string} exist in the system")
+    public void aWorkerWithIDExistInTheSystem(String id) throws OperationNotAllowedException {
+        pma.addDatabase();
+        worker = pma.getWorkerWithID(id);
+    }
+    
 
     @Given("the project has a project leader")
     public void theProjectHasAProjectLeader() throws OperationNotAllowedException {
@@ -292,8 +300,32 @@ public class ActivitySteps {
         assertEquals(activity.getInfo().getEndDate(), end);
     }
     
-  
+    @When("the worker registers {int} work hours on activity")
+    public void theWorkerRegistersWorkHoursOnActivity(Integer hours) throws Exception {
+        worker = pma.getWorkerWithID("AAAA");
+        try {
+            pma.addWorkHours(worker, activity, hours);
+        } catch (OperationNotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+        
+    }
+    
+    @Then("the worker has worked {int} hours on the activity with ID {int}")
+    public void theWorkerHasWorkedHoursOnTheActivityWithID(Integer hours, Integer aID) {
+        assertTrue(activity.getRegisteredHours() == hours);
+    }
 
+    @Then("the registered hours is updated for the project with {int} hours")
+    public void theRegisteredHoursIsUpdatedForTheProjectWithHours(Integer hours) {
+        System.out.println(project.getInfo().getHoursWorked()); 
+        assertTrue(project.getInfo().getHoursWorked() == hours);
+    }
 
-
+    @Given("the worker is not assigned to the activity")
+    public void theWorkerIsNotAssignedToTheActivity() {
+        assertEquals(null, activity.getWorker(worker.getID()));
+    }
+    
+    
 }

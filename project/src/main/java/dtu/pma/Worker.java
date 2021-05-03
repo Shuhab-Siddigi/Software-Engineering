@@ -44,4 +44,15 @@ public class Worker {
         return this.Activities;
     }
     
+    public void addActivity(Activity a){
+        this.Activities.add(a);
+    }
+
+    public void registerHours(int hours, Activity a) throws OperationNotAllowedException {
+        if(this.Activities.contains(a)){
+            a.setRegisteredHours(hours);
+        } else {
+            throw new OperationNotAllowedException("Worker isn't assigned to project");
+        }
+    }
 }

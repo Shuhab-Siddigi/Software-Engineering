@@ -178,6 +178,7 @@ public class Project {
             throw new OperationNotAllowedException("You are not the project leader for this project!");
         }
         activity.addWorker(worker);
+        worker.addActivity(activity);
     }
 
     public void removeWorkerFromActivity(Activity activity, Worker worker, Worker projectLeader)
@@ -212,5 +213,13 @@ public class Project {
             this.info.setEndDate(endDate);
         }
         activity.getInfo().setEndDate(endDate);
+    }
+
+    public void updateHoursWorked(){
+        int hoursWorked = 0;
+        for (Activity a : getActivities()){
+            hoursWorked = hoursWorked + a.getRegisteredHours();
+        }
+        this.info.setHoursWorked(hoursWorked);
     }
 }
