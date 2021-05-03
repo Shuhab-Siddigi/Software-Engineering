@@ -24,7 +24,7 @@ public class Project {
             
         }
 
-    public static boolean isAllowedID(String id) throws OperationNotAllowedException {
+    public boolean isAllowedID(String id) throws OperationNotAllowedException {
         // Regex to check string
         // contains only digits
         String regex = "^[0-9]{4}$";
