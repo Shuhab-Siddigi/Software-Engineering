@@ -13,7 +13,7 @@ import dtu.pma.Project;
 
 public class ProjectTable extends JPanel{
     
-    private DefaultTableModel model;
+    private DefaultTableModel model = new DefaultTableModel();
     private JTable projectTable;
 
     public ProjectTable(PMA pma,int width, int height){
@@ -21,6 +21,7 @@ public class ProjectTable extends JPanel{
         projectTable = new JTable();
         projectTable = setTable(pma, projectTable);
         
+
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(model);
         projectTable.setRowSorter(sorter);
 
@@ -31,8 +32,6 @@ public class ProjectTable extends JPanel{
     }
 
     private JTable setTable(PMA pma,JTable jTable) {
-        
-        model = new DefaultTableModel();
         
         model.addColumn("Title");
         model.addColumn("ID");
@@ -72,13 +71,16 @@ public class ProjectTable extends JPanel{
             );
             }
         }
-
+        
         jTable.setModel(model);
 
         return jTable;
     }
-    public void addProject(Project p){
-        if(p.getProjectLeader() != null){
+    public void update(PMA pma){
+        model.setRowCount(0);
+       
+        for (Project p : pma.getProjects()) {
+            if(p.getProjectLeader() != null){
             model.addRow(
                 new Object[] {   
                     p.getInfo().getTitle(), 
@@ -105,7 +107,8 @@ public class ProjectTable extends JPanel{
                 }
             );
             }
-        //model.fireTableDataChanged();
+        }
+       
     }
 
     public JTable getProjectTable(){

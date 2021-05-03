@@ -142,7 +142,7 @@ public class SetProjectLeader extends JPanel {
                     generateReportTable.setProjectLeaderAtRow(worker.getID(), selectedRow);
                     JOptionPane.showMessageDialog(addProjectLeader, "Project Leader added to Project");
                     projectTree.changeNode(project);
-                    projectTable.addProject(project);
+                    projectTable.update(pma);
                    
                 } catch (OperationNotAllowedException e1) {
                     JOptionPane.showMessageDialog(addProjectLeader, e1.getMessage());
