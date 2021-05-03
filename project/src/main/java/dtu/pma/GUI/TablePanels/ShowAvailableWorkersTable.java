@@ -88,7 +88,7 @@ public class ShowAvailableWorkersTable extends JPanel {
 
     public void update(PMA pma){
 
-        workerModel.setRowCount(0);
+        projectModel.setRowCount(0);
         
         if(pma.getProjects() != null){
             for (Project p : pma.getProjects()) {
