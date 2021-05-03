@@ -7,7 +7,7 @@ import javax.swing.*;
 public class TopPanel extends JPanel {
 
     private JButton homeBtn;
-    private JButton registerHours;
+    private JButton registerHoursBtn;
     private JButton addProjectBtn;
     private JButton addActivityBtn;
     private JButton setIDBtn;
@@ -34,12 +34,12 @@ public class TopPanel extends JPanel {
         constrain.gridy = 0;
         this.add(homeBtn, constrain);
 
-        registerHours = new JButton();
-        registerHours.setText("Register Hours");
+        registerHoursBtn = new JButton();
+        registerHoursBtn.setText("Register Hours");
         constrain.gridx = 0;
         constrain.gridy = 1;
         constrain.gridheight = 1;
-        this.add(registerHours, constrain);
+        this.add(registerHoursBtn, constrain);
 
         addProjectBtn = new JButton();
         addProjectBtn.setText("1. Add Project");
@@ -130,6 +130,11 @@ public class TopPanel extends JPanel {
 
     public JButton getSetProjectLeaderBtn() {
         return setProjectLeaderBtn;
+    };
+
+
+    public JButton getRegisterHoursBtn() {
+        return registerHoursBtn;
     };
 
 }

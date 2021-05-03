@@ -148,8 +148,6 @@ public class Project {
         this.activities.add(activity);
     }
 
-    // Remove activity
-
     public Activity getActivityFromID(int ID) {
         for (Activity a : activities) {         // 1
             if (a.getInfo().getID() == ID) {    // 2
@@ -222,4 +220,6 @@ public class Project {
         }
         this.info.setHoursWorked(hoursWorked);
     }
+
+    // Should expected hours be implemented?
 }

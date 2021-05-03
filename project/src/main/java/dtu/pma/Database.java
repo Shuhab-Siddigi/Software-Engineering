@@ -112,6 +112,18 @@ public class Database {
         workers.add(new Worker("Angela", "Anderson", "AUAA"));
         workers.add(new Worker("Aiden", "Faulkner", "AVAA"));
         workers.add(new Worker("Maisy", "Hudson", "AWAA")); // 72
+
+        for (Worker worker : workers) {
+            Date activityStartDate = randomStartDate();
+            Date activityEndDate = randomEndDate(activityStartDate);
+           
+            String randomTitle = workers.get(randomNumber(0,workers.size()-1)).getFirstname();
+            Activity activity = new Activity(randomTitle, 0, activityStartDate, activityEndDate);
+           
+            worker.addActivity(activity);
+
+        }
+        
         return workers;
     }
 

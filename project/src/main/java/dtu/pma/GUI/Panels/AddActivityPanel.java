@@ -189,7 +189,6 @@ public class AddActivityPanel extends JPanel {
         
         addActivityTable.getProjectTable().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         addActivityTable.getProjectTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-
             public void valueChanged(ListSelectionEvent e) {
                 ListSelectionModel rowSelectionModel = (ListSelectionModel) e.getSource();
                 if (!rowSelectionModel.isSelectionEmpty()) {

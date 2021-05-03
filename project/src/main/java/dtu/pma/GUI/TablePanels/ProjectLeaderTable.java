@@ -52,6 +52,7 @@ public class ProjectLeaderTable extends JPanel {
                     p.getProjectLeader(), 
                 });
             } else{
+           
             model.addRow(
                 new Object[] {   
                     p.getInfo().getTitle(), 

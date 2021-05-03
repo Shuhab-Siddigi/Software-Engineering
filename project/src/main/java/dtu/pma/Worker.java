@@ -48,11 +48,28 @@ public class Worker {
         this.Activities.add(a);
     }
 
+    public Activity getActivitiyByID(int ID) {
+        for (Activity a : Activities) {         // 1
+            if (a.getInfo().getID() == ID) {    // 2
+                return a;                       // 2a
+            }
+        }
+        return null;                            // 3
+    }
+
     public void registerHours(int hours, Activity a) throws OperationNotAllowedException {
         if(this.Activities.contains(a)){
             a.setRegisteredHours(hours);
         } else {
-            throw new OperationNotAllowedException("Worker isn't assigned to project");
+            throw new OperationNotAllowedException("Worker isn't assigned to activity");
         }
     }
+
+	public Activity getActivitiyByID() {
+		return null;
+	}
+
+	public Activity getActivitiyByID(String activityID) {
+		return null;
+	}
 }

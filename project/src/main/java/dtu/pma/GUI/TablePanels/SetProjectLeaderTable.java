@@ -17,7 +17,7 @@ public class SetProjectLeaderTable extends JPanel {
     private DefaultTableModel projectModel = new DefaultTableModel();
     private DefaultTableModel workerModel = new DefaultTableModel();
 
-    private JTable projectTable = new JTable();;
+    private JTable projectTable = new JTable();
     private JTable workerTable = new JTable();
 
     public SetProjectLeaderTable(PMA pma, int width, int height) {

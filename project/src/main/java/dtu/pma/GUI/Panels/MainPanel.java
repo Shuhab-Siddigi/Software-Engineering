@@ -8,6 +8,7 @@ import dtu.pma.GUI.GUITools;
 import dtu.pma.GUI.TablePanels.AddActivityTable;
 
 import dtu.pma.GUI.TablePanels.GenerateReportTable;
+import dtu.pma.GUI.TablePanels.RegisterhoursTable;
 import dtu.pma.GUI.TablePanels.SetProjectLeaderTable;
 import dtu.pma.GUI.TablePanels.ShowProjectActivitysTable;
 import dtu.pma.GUI.TablePanels.ShowAvailableWorkersTable;
@@ -29,6 +30,8 @@ public class MainPanel extends JPanel {
     private AddActivityTable addActivityTable;
     private ShowProjectActivitysTable showProjectActivitysTable;
     private ShowAvailableWorkersTable showAvailableWorkersTable;
+    private RegisterhoursTable registerhoursTable;
+
 
     private IntroPanel introPanel;
     private GenerateReportPanel generateReportPanel;
@@ -38,6 +41,7 @@ public class MainPanel extends JPanel {
     private AddActivityPanel addActivityPanel;
     private ShowProjectActivitysPanel showProjectActivitysPanel;
     private ShowAvailableWorkersPanel showAvailableWorkersPanel;
+    private RegisterHoursPanel registerHoursPanel;
 
     public MainPanel(PMA pma, Frame frame) {
  
@@ -53,6 +57,7 @@ public class MainPanel extends JPanel {
         addActivityTable = new AddActivityTable(pma, 890, 690);
         showProjectActivitysTable = new ShowProjectActivitysTable(pma,890,790);
         showAvailableWorkersTable = new ShowAvailableWorkersTable(pma, 890, 790);
+        registerhoursTable = new RegisterhoursTable(pma,890,790);
 
         introPanel = new IntroPanel();
         addProjectPanel = new AddProjectPanel(pma, projectTree);
@@ -62,6 +67,7 @@ public class MainPanel extends JPanel {
         addActivityPanel = new AddActivityPanel(pma, addActivityTable);
         showProjectActivitysPanel = new ShowProjectActivitysPanel(pma,showProjectActivitysTable);
         showAvailableWorkersPanel = new ShowAvailableWorkersPanel(pma, showAvailableWorkersTable);
+        registerHoursPanel = new RegisterHoursPanel(pma,registerhoursTable);
 
         showProjectsPanel.setPreferredSize(new Dimension(900, 800));
         introPanel.setPreferredSize(new Dimension(900, 800));
@@ -71,6 +77,8 @@ public class MainPanel extends JPanel {
         addActivityPanel.setPreferredSize(new Dimension(900, 800));
         showProjectActivitysPanel.setPreferredSize(new Dimension(900, 800));
         showAvailableWorkersPanel.setPreferredSize(new Dimension(900, 800));
+        registerHoursPanel.setPreferredSize(new Dimension(900, 800));
+            
 
         TopPanel topPanel = new TopPanel();
         topPanel.setPreferredSize(new Dimension(1003, 50));
@@ -112,6 +120,7 @@ public class MainPanel extends JPanel {
         cardLayoutPanel.add(addActivityPanel, "add-activity");
         cardLayoutPanel.add(showProjectActivitysPanel, "show-activity");
         cardLayoutPanel.add(showAvailableWorkersPanel, "show-available-workers");
+        cardLayoutPanel.add(registerHoursPanel, "register-hours");
         this.setVisible(true);
 
         topPanel.getHomeBtn().addActionListener(new ActionListener() {
@@ -174,6 +183,13 @@ public class MainPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardLayoutPanel, "show-available-workers");
                 showAvailableWorkersTable.update(pma);
+            }
+        });
+
+        topPanel.getRegisterHoursBtn().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardLayoutPanel, "register-hours");
+                registerhoursTable.update(pma);
             }
         });
 
