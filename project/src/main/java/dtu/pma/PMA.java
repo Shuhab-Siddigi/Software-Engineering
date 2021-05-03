@@ -147,7 +147,7 @@ public class PMA {
         throw new OperationNotAllowedException("There are no workers by that Last Name");
     }
 
-    public List<Worker> findAvaliableWorkersByDates(List<Worker> list, Date startDate, Date endDate) {
+    public List<Worker> findAvaliableWorkersByDates(List<Worker> list, Date startDate, Date endDate) throws Exception {
         List<Worker> tempWorkers = new ArrayList<>();
         boolean flag = true;
         for (Worker w : list) {

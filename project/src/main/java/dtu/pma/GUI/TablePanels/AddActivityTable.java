@@ -90,8 +90,8 @@ public class AddActivityTable extends JPanel {
                 activityModel.addRow(new Object[] { 
                     a.getInfo().getTitle(), 
                     a.getInfo().getID(),
-                    a.getInfo().getStartDate().toString(),
-                    a.getInfo().getEndDate().toString(), 
+         //           a.getInfo().getStartDate().toString(),
+        //            a.getInfo().getEndDate().toString(), 
                 });
             }
         activityTable.setModel(activityModel);
@@ -102,8 +102,8 @@ public class AddActivityTable extends JPanel {
         activityModel.addRow(new Object[] {         
             activity.getInfo().getTitle(), 
             activity.getInfo().getID(),
-            activity.getInfo().getStartDate().toString(),
-            activity.getInfo().getEndDate().toString(), 
+        //    activity.getInfo().getStartDate().toString(),
+        //    activity.getInfo().getEndDate().toString(), 
         });
     }
 
@@ -115,8 +115,8 @@ public class AddActivityTable extends JPanel {
                 projectModel.addRow(new Object[] { 
                     p.getInfo().getTitle(), 
                     p.getInfo().getID(),
-                    p.getInfo().getStartDate().toString(),
-                    p.getInfo().getEndDate().toString(), 
+        //            p.getInfo().getStartDate().toString(),
+        //            p.getInfo().getEndDate().toString(), 
                 });
             }
         projectTable.setModel(projectModel);

@@ -15,7 +15,8 @@ public class AddProjectPanel extends JPanel {
     private ProjectTree projectTree;
 
     public AddProjectPanel(PMA pma,ProjectTree projectTree){
-       
+        
+        //Date currentDate = new Date(System.currentTimeMillis());
         this.projectTree = projectTree;
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();
@@ -37,12 +38,17 @@ public class AddProjectPanel extends JPanel {
 
         JLabel setEndDateLabel = new JLabel();
         setEndDateLabel.setText("End Date:");
-        JTextField setEndDateTextField = new JTextField("Set End Date");
+        JTextField setEndDateTextField = new JTextField("<Optional>");
         setEndDateLabel.setFont(new Font("Serif", Font.BOLD, 20));
+
+        JLabel setExpectedHoursLabel = new JLabel();
+        setExpectedHoursLabel.setText("Expected Hours:");
+        JTextField setExptectedTextField = new JTextField("<Optional>");
+        setExpectedHoursLabel.setFont(new Font("Serif", Font.BOLD, 20));
 
         JLabel setProjectLeaderLabel = new JLabel();
         setProjectLeaderLabel.setText("Project Leader:");
-        JTextField setProjectLeaderTextField = new JTextField("Set Project Leader");
+        JTextField setProjectLeaderTextField = new JTextField("<Optional>");
         setProjectLeaderLabel.setFont(new Font("Serif", Font.BOLD, 20));
 
         JLabel setDescriptionLabel = new JLabel();
@@ -58,7 +64,7 @@ public class AddProjectPanel extends JPanel {
         constrain.fill = GridBagConstraints.BOTH;
         constrain.anchor = GridBagConstraints.CENTER;
         constrain.insets = new Insets(10, 0, 10, 10);
-        constrain.weightx = 0.05;
+        constrain.weightx = 0.04;
         constrain.gridx = 0;
         constrain.gridy = 0;
         this.add(settitleLabel, constrain);
@@ -94,22 +100,30 @@ public class AddProjectPanel extends JPanel {
 
         constrain.gridx = 0;
         constrain.gridy = 4;
+        this.add(setExpectedHoursLabel, constrain);
+        
+        constrain.gridx = 1;
+        constrain.gridy = 4;
+        this.add(setExptectedTextField, constrain);
+
+        constrain.gridx = 0;
+        constrain.gridy = 5;
         this.add(setProjectLeaderLabel, constrain);
 
         constrain.gridx = 1;
-        constrain.gridy = 4;
+        constrain.gridy = 5;
         this.add(setProjectLeaderTextField, constrain);
 
         constrain.gridx = 0;
-        constrain.gridy = 5;
+        constrain.gridy = 6;
         this.add(setDescriptionLabel, constrain);
 
         constrain.gridx = 1;
-        constrain.gridy = 5;
+        constrain.gridy = 6;
         this.add(setDescriptionTextField, constrain);
 
         constrain.gridx = 0;
-        constrain.gridy = 6;
+        constrain.gridy = 7;
         constrain.gridwidth = 2;
         constrain.fill = GridBagConstraints.VERTICAL;
         constrain.anchor = GridBagConstraints.CENTER;
@@ -121,7 +135,7 @@ public class AddProjectPanel extends JPanel {
         constrain.weighty = 1;
         constrain.weightx = 1;
         constrain.fill = GridBagConstraints.BOTH;
-        constrain.gridheight = 6;
+        constrain.gridheight = 7;
         this.add(projectTree, constrain);
 
         settitleTextField.addMouseListener(new MouseAdapter() {

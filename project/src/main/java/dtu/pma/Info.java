@@ -66,10 +66,7 @@ public class Info {
     }
 
     public Date getStartDate() {
-        if (startDate == null) {
-            startDate = Date.valueOf("0000-00-00");
-            return startDate;
-        }
+      
         return startDate;
     }
 
@@ -78,10 +75,6 @@ public class Info {
     }
 
     public Date getEndDate() {
-        if (endDate == null) {
-            endDate = Date.valueOf("0000-00-00");
-            return endDate;
-        }
         return endDate;
     }
 

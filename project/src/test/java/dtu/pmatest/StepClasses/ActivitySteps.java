@@ -55,7 +55,7 @@ public class ActivitySteps {
     }
     
     @Then("the project with ID {int} contains the activity with ID {int}")
-    public void theProjectWithIDContainsTheActivityWithID(Integer pID, Integer aID) {
+    public void theProjectWithIDContainsTheActivityWithID(Integer pID, Integer aID) throws Exception {
         assertTrue(pma.projectContainsActivity(pID, aID));
     }
 
@@ -68,7 +68,7 @@ public class ActivitySteps {
     }
 
     @Given("there exist an activity with number {int} in the project with ID {int}")
-    public void thereExistAnActivityWithNumberInTheProjectWithID(Integer aID, Integer pID) throws OperationNotAllowedException {
+    public void thereExistAnActivityWithNumberInTheProjectWithID(Integer aID, Integer pID) throws Exception {
         Project p = projectHelper.getProject();
         Activity a = activityHelper.getActivity();
         pma.addActivityToProject(p, a);
@@ -99,7 +99,7 @@ public class ActivitySteps {
     }   
     
     @Given("the project contains the activity with title {string}, ID {int}, start date {string}, end date {string}")
-    public void theProjectContainsTheActivityWithTitleIDStartDateEndDate(String title, Integer ID, String startDate, String endDate) throws OperationNotAllowedException {
+    public void theProjectContainsTheActivityWithTitleIDStartDateEndDate(String title, Integer ID, String startDate, String endDate) throws Exception {
         Date start = Date.valueOf(startDate);
         Date end = Date.valueOf(endDate);
         Project p = projectHelper.getProject();
@@ -116,7 +116,7 @@ public class ActivitySteps {
     }
     
     @When("checked if activity is booked with date {string} and end date {string}")
-    public void checkedIfActivityIsBookedWithDateAndEndDate(String startDate, String endDate) {
+    public void checkedIfActivityIsBookedWithDateAndEndDate(String startDate, String endDate) throws Exception {
         Date start = Date.valueOf(startDate);
         Date end = Date.valueOf(endDate);
         result = activity.getInfo().isFree(start, end);

@@ -54,8 +54,8 @@ public class ShowProjectsTable extends JPanel{
                 new Object[] {   
                     p.getInfo().getTitle(), 
                     p.getInfo().getID(), 
-                    p.getInfo().getStartDate(), 
-                    p.getInfo().getEndDate(), 
+          //          p.getInfo().getStartDate(), 
+          //          p.getInfo().getEndDate(), 
                     p.getInfo().getHoursWorked(), 
                     p.getInfo().getExpectedHours(), 
                     p.getInfo().getDescription(), 
@@ -67,8 +67,8 @@ public class ShowProjectsTable extends JPanel{
                 new Object[] {   
                     p.getInfo().getTitle(), 
                     p.getInfo().getID(), 
-                    p.getInfo().getStartDate(), 
-                    p.getInfo().getEndDate(), 
+            //        p.getInfo().getStartDate(), 
+            //        p.getInfo().getEndDate(), 
                     p.getInfo().getHoursWorked(), 
                     p.getInfo().getExpectedHours(), 
                     p.getInfo().getDescription(), 
