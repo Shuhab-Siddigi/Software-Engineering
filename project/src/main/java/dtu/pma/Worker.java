@@ -2,6 +2,7 @@ package dtu.pma;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Date;
 
 public class Worker {
 
@@ -72,4 +73,13 @@ public class Worker {
 	public Activity getActivitiyByID(String activityID) {
 		return null;
 	}
+
+    public Worker CheckSchedule(Date startDate, Date endDate) throws Exception{
+        for (Activity activity : Activities) {
+            if (!activity.getInfo().isFree(startDate, endDate)){
+                return null;
+            }
+        }
+        return this;
+    }
 }

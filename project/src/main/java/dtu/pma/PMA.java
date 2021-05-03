@@ -148,22 +148,15 @@ public class PMA {
     }
 
     public List<Worker> findAvaliableWorkersByDates(List<Worker> list, Date startDate, Date endDate) throws Exception {
-        List<Worker> tempWorkers = new ArrayList<>();
-        boolean flag = true;
-        for (Worker w : list) {
-            for (Activity a : w.getActivities()) {
-                if (!a.getInfo().isFree(startDate, endDate)) {
-                    flag = false;
-                    break;
-                }
-
+        List<Worker> avaliableWorkers = new ArrayList<>();
+        Worker temp;
+        for (Worker worker : this.workers) {
+            temp = worker.CheckSchedule(startDate, endDate);
+            if (temp != null){
+                avaliableWorkers.add(temp);
             }
-            if (!flag) {
-                tempWorkers.add(w);
-            }
-            flag = true;
         }
-        return tempWorkers;
+        return avaliableWorkers;
     }
 
     public void changeStartDateActivity(Project project, Activity activity, Date startDate)
