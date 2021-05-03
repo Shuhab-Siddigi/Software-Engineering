@@ -13,17 +13,15 @@ public class GenerateReportTable extends JPanel {
 
     private DefaultTableModel projectModel = new DefaultTableModel();
 
-    private JTable generateReportTable;
+    private JTable generateReportTable = new JTable();;
 
     public GenerateReportTable(PMA pma, int width, int height) {
         
 
-        generateReportTable = new JTable();
-
         TableRowSorter<DefaultTableModel> projectSorter = new TableRowSorter<DefaultTableModel>(projectModel);
         generateReportTable.setRowSorter(projectSorter);
 
-        generateReportTable = setProjectTable(pma, generateReportTable);
+        setProjectTable(pma);
 
         JScrollPane generateReportScrollPane = new JScrollPane(generateReportTable);
         generateReportTable.setPreferredSize(new Dimension(width, height));
@@ -42,12 +40,19 @@ public class GenerateReportTable extends JPanel {
 
     }
 
-    private JTable setProjectTable(PMA pma, JTable jTable) {
+    private void setProjectTable(PMA pma) {
 
         projectModel.addColumn("Title");
         projectModel.addColumn("ID");
         projectModel.addColumn("Project Leader");
+       
+        update(pma);
+    }
 
+    public void update(PMA pma){
+
+        projectModel.setRowCount(0);
+        if(pma.getProjects() != null){
         for (Project p : pma.getProjects()) {
             
             if(p.getProjectLeader() != null){
@@ -63,12 +68,10 @@ public class GenerateReportTable extends JPanel {
                 "", 
             });
             }
-        
+        }
         }
 
-        jTable.setModel(projectModel);
-
-        return jTable;
+        generateReportTable.setModel(projectModel);
     }
 
     public void addProject(Project p) {

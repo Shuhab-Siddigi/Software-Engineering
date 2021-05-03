@@ -17,7 +17,7 @@ public class ProjectLeaderTable extends JPanel {
 
     public ProjectLeaderTable(PMA pma,int width, int height){
 
-        projectLeaderTable = setTable(pma, projectLeaderTable);
+        setProjectLeaderTable(pma);
         
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(model);
         projectLeaderTable.setRowSorter(sorter);
@@ -28,26 +28,41 @@ public class ProjectLeaderTable extends JPanel {
 
     }
 
-    private JTable setTable(PMA pma,JTable jTable) {
+    private void setProjectLeaderTable(PMA pma) {
           
         model.addColumn("Title");
         model.addColumn("ID");
         model.addColumn("Project Leader");
 
+        update(pma);
+
+    }
+
+    public void update(PMA pma){
+        
+        model.setRowCount(0);
+
+        if(pma.getProjects() != null){
         for (Project p : pma.getProjects()) {
+            if(p.getProjectLeader() != null){
             model.addRow(
                 new Object[] {   
                     p.getInfo().getTitle(), 
                     p.getInfo().getID(), 
                     p.getProjectLeader(), 
-                }
-            );
+                });
+            } else{
+            model.addRow(
+                new Object[] {   
+                    p.getInfo().getTitle(), 
+                    p.getInfo().getID(), 
+                    "", 
+                });
+            }
         }
-
-        jTable.setModel(model);
-
-        return jTable;
     }
+    }
+
     public void addProject(Project p){
         model.addRow(
             new Object[] {   

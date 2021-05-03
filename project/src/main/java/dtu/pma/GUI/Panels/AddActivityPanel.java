@@ -185,18 +185,19 @@ public class AddActivityPanel extends JPanel {
             }
         });
 
+        addActivityTable.update(pma);
+        
         addActivityTable.getProjectTable().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         addActivityTable.getProjectTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
             public void valueChanged(ListSelectionEvent e) {
                 ListSelectionModel rowSelectionModel = (ListSelectionModel) e.getSource();
                 if (!rowSelectionModel.isSelectionEmpty()) {
-
                     selectedRow = rowSelectionModel.getMinSelectionIndex();
                     projectID = addActivityTable.getProjectTable().getModel().getValueAt(selectedRow, 1).toString();
                     project = pma.getProjectWithID(Integer.parseInt(projectID));
                     setProjectTextField.setText(Integer.toString(project.getInfo().getID()));
-                    addActivityTable.setModel(project);
+                    addActivityTable.setActivityModel(project);
                 }
             }
         });

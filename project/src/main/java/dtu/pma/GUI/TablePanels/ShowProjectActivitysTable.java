@@ -14,7 +14,7 @@ import dtu.pma.Project;
 
 
 
-public class ShowActivityTable extends JPanel{
+public class ShowProjectActivitysTable extends JPanel{
        
     private DefaultTableModel projectModel = new DefaultTableModel();
     private DefaultTableModel activityModel = new DefaultTableModel();
@@ -22,7 +22,7 @@ public class ShowActivityTable extends JPanel{
     private JTable projectTable = new JTable();
     private JTable activityTable = new JTable();
    
-    public ShowActivityTable (PMA pma, int width, int height){
+    public ShowProjectActivitysTable (PMA pma, int width, int height){
 
         projectTable.setModel(getModel(pma,projectModel));
     
@@ -91,8 +91,8 @@ public class ShowActivityTable extends JPanel{
                 p.getInfo().getID(),
                 p.getInfo().getExpectedHours(),
                 p.getInfo().getHoursWorked(),
-                p.getInfo().getStartDate().toString(),
-                p.getInfo().getEndDate().toString(), 
+            //    p.getInfo().getStartDate().toString(),
+            //    p.getInfo().getEndDate().toString(), 
             });
         }
 
@@ -107,8 +107,8 @@ public class ShowActivityTable extends JPanel{
                 p.getInfo().getID(),
                 p.getInfo().getExpectedHours(),
                 p.getInfo().getHoursWorked(),
-                p.getInfo().getStartDate().toString(),
-                p.getInfo().getEndDate().toString(), 
+            //    p.getInfo().getStartDate().toString(),
+            //    p.getInfo().getEndDate().toString(), 
             });
         }
         projectTable.setModel(projectModel);
@@ -125,8 +125,8 @@ public class ShowActivityTable extends JPanel{
                     a.getInfo().getID(),
                     a.getInfo().getExpectedHours(),
                     a.getInfo().getHoursWorked(),
-                    a.getInfo().getStartDate().toString(),
-                    a.getInfo().getEndDate().toString(), 
+                //    a.getInfo().getStartDate().toString(),
+                //    a.getInfo().getEndDate().toString(), 
                 });
             }
         }

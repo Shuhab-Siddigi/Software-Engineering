@@ -23,7 +23,7 @@ public class ShowAvailableWorkersTable extends JPanel {
 
     public ShowAvailableWorkersTable(PMA pma, int width, int height) {
 
-        projectTable.setModel(getModel(pma, projectModel));
+        setModels(pma);
 
         TableRowSorter<DefaultTableModel> projectSorter = new TableRowSorter<DefaultTableModel>(projectModel);
         projectTable.setRowSorter(projectSorter);
@@ -31,7 +31,7 @@ public class ShowAvailableWorkersTable extends JPanel {
         JScrollPane projectScrollPane = new JScrollPane(projectTable);
         projectScrollPane.setPreferredSize(new Dimension(width / 3, height));
 
-        activityTable.setModel(getModel(pma, activityModel));
+        
 
         TableRowSorter<DefaultTableModel> activitySorter = new TableRowSorter<DefaultTableModel>(activityModel);
         activityTable.setRowSorter(activitySorter);
@@ -39,8 +39,7 @@ public class ShowAvailableWorkersTable extends JPanel {
         JScrollPane activityScrollPane = new JScrollPane(activityTable);
         activityScrollPane.setPreferredSize(new Dimension(width / 3, height));
 
-        workerTable.setModel(getWorkerModel(pma, workerModel));
-
+        
         TableRowSorter<DefaultTableModel> workerSorter = new TableRowSorter<DefaultTableModel>(workerModel);
         workerTable.setRowSorter(workerSorter);
 
@@ -69,24 +68,38 @@ public class ShowAvailableWorkersTable extends JPanel {
 
     }
 
-    private DefaultTableModel getModel(PMA pma, DefaultTableModel model) {
+   
 
-        model.addColumn("Title");
-        model.addColumn("ID");
+    private void setModels(PMA pma) {
 
-        for (Project p : pma.getProjects()) {
-            model.addRow(new Object[] { p.getInfo().getTitle(), p.getInfo().getID(), });
-        }
+        projectModel.addColumn("Title");
+        projectModel.addColumn("ID");
 
-        return model;
+        activityModel.addColumn("Title");
+        activityModel.addColumn("ID");
+
+        workerModel.addColumn("Firstname");
+        workerModel.addColumn("Lastname");
+        workerModel.addColumn("ID");
+
+        update(pma);
+
     }
 
-    private DefaultTableModel getWorkerModel(PMA pma, DefaultTableModel model) {
+    public void update(PMA pma){
 
-        model.addColumn("Firstname");
-        model.addColumn("Lastname");
-        model.addColumn("ID");
-        return model;
+        workerModel.setRowCount(0);
+        
+        if(pma.getProjects() != null){
+            for (Project p : pma.getProjects()) {
+                projectModel.addRow(new Object[] {
+                     p.getInfo().getTitle(), 
+                     p.getInfo().getID(), 
+                });
+            }
+        }
+    
+        projectTable.setModel(projectModel);
     }
 
     public void setActivityModel(Project p) {
@@ -99,7 +112,10 @@ public class ShowAvailableWorkersTable extends JPanel {
 
                 });
             }
+        activityTable.setModel(activityModel);
         }
+
+        
     }
 
     public void setWorkerModel(PMA pma, Activity activity) {
@@ -110,20 +126,14 @@ public class ShowAvailableWorkersTable extends JPanel {
             for (Worker w : pma.getWorkers()) {
                 
                 if (w.getActivities() != null) {
-                   
                         //if (activity.getInfo().isFree(a.getInfo().getStartDate(), a.getInfo().getEndDate())) {
                  workerModel.addRow(new Object[] { w.getFirstname(), w.getFirstname(), w.getID(), });
-                        //}
-                    
+                        //}   
                 }
-
             }
+        workerTable.setModel(workerModel);
         }
 
-    }
-
-    public void addActivity(Activity activity) {
-        activityModel.addRow(new Object[] { activity.getInfo().getTitle(), activity.getInfo().getID(), });
     }
 
     public JTable getProjectTable() {

@@ -15,9 +15,8 @@ import dtu.pma.PMA;
 import dtu.pma.Project;
 import dtu.pma.Worker;
 import dtu.pma.GUI.GUITools;
-import dtu.pma.GUI.TablePanels.GenerateReportTable;
-import dtu.pma.GUI.TablePanels.ProjectWithoutProjectLeaderTable;
-import dtu.pma.GUI.TreePanels.ProjectTree;
+import dtu.pma.GUI.TablePanels.SetProjectLeaderTable;
+
 public class SetProjectLeader extends JPanel {
 
 
@@ -25,7 +24,7 @@ public class SetProjectLeader extends JPanel {
     private Project project;
     private int selectedRow;
 
-    public SetProjectLeader(PMA pma,ProjectWithoutProjectLeaderTable projectWithoutProjectLeaderTable,ProjectTree projectTree,GenerateReportTable generateReportTable) {
+    public SetProjectLeader(PMA pma,SetProjectLeaderTable setProjectLeaderTable) {
 
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();
@@ -76,7 +75,7 @@ public class SetProjectLeader extends JPanel {
         constrain.gridy = 1;
         constrain.weighty = 0.8;
         constrain.gridwidth = 4;
-        this.add(projectWithoutProjectLeaderTable, constrain);
+        this.add(setProjectLeaderTable, constrain);
 
         guiTools.resetConstrains(constrain);
 
@@ -103,28 +102,28 @@ public class SetProjectLeader extends JPanel {
         constrain.weighty = 0.1;
         this.add(addProjectLeader, constrain);
 
-        projectWithoutProjectLeaderTable.getProjectTable().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        projectWithoutProjectLeaderTable.getProjectTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+        setProjectLeaderTable.getProjectTable().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        setProjectLeaderTable.getProjectTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
             public void valueChanged(ListSelectionEvent e) {
                 ListSelectionModel rowSelectionModel = (ListSelectionModel) e.getSource();
                 if (!rowSelectionModel.isSelectionEmpty()) {
                     selectedRow = rowSelectionModel.getMinSelectionIndex();
-                    String ID = projectWithoutProjectLeaderTable.getProjectTable().getModel().getValueAt(selectedRow, 1).toString();
+                    String ID = setProjectLeaderTable.getProjectTable().getModel().getValueAt(selectedRow, 1).toString();
                     project = pma.getProjectWithID(Integer.parseInt(ID));
                     projectLabel3.setText(project.getInfo().getTitle());
                 }
             }
         });
 
-        projectWithoutProjectLeaderTable.getWorkerTable().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        projectWithoutProjectLeaderTable.getWorkerTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+        setProjectLeaderTable.getWorkerTable().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        setProjectLeaderTable.getWorkerTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
 
                 ListSelectionModel rowSelectionModel = (ListSelectionModel) e.getSource();
                 if (!rowSelectionModel.isSelectionEmpty()) {
                     selectedRow = rowSelectionModel.getMinSelectionIndex();
-                    String ID = projectWithoutProjectLeaderTable.getWorkerTable().getModel().getValueAt(selectedRow, 2).toString();
+                    String ID = setProjectLeaderTable.getWorkerTable().getModel().getValueAt(selectedRow, 2).toString();
                     worker = pma.getWorkerWithID(ID);
                     workerLabel3.setText(worker.getFirstname() + " " + worker.getLastname() + " ID: " + worker.getID());
                 }
@@ -137,10 +136,8 @@ public class SetProjectLeader extends JPanel {
 
                 try {
                     pma.assignLeader(worker, project);
-                    projectWithoutProjectLeaderTable.setProjectLeaderAtRow(worker.getID(), selectedRow);
-                    generateReportTable.setProjectLeaderAtRow(worker.getID(), selectedRow);
+                    setProjectLeaderTable.setProjectLeaderAtRow(worker.getID(), selectedRow);
                     JOptionPane.showMessageDialog(addProjectLeader, "Project Leader added to Project");
-                    projectTree.changeNode(project);
                    
                 } catch (OperationNotAllowedException e1) {
                     JOptionPane.showMessageDialog(addProjectLeader, e1.getMessage());
