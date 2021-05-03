@@ -4,11 +4,11 @@ import javax.swing.JPanel;
 import java.awt.*;
 
 import dtu.pma.PMA;
-import dtu.pma.GUI.TablePanels.ProjectTable;
+import dtu.pma.GUI.TablePanels.ShowProjectsTable;
 
 public class ShowProjectsPanel extends JPanel{
-    private ProjectTable projectTable;
-    public ShowProjectsPanel(PMA pma,ProjectTable projectTable){
+    private ShowProjectsTable projectTable;
+    public ShowProjectsPanel(PMA pma,ShowProjectsTable projectTable){
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();
         this.projectTable = projectTable;
@@ -23,7 +23,7 @@ public class ShowProjectsPanel extends JPanel{
 
         
     }
-    public ProjectTable getProjectTable(){
+    public ShowProjectsTable getProjectTable(){
         return projectTable;
     }
 }

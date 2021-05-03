@@ -24,7 +24,7 @@ public class AddActivityTable extends JPanel {
     public AddActivityTable(PMA pma, int width, int height) {
         
 
-        projectTable.setModel(getModel(pma,projectModel)); ;
+        getProjectModel(pma);
     
         TableRowSorter<DefaultTableModel> projectSorter = new TableRowSorter<DefaultTableModel>(projectModel);
         projectTable.setRowSorter(projectSorter);
@@ -33,7 +33,7 @@ public class AddActivityTable extends JPanel {
         projectScrollPane.setPreferredSize(new Dimension(width, height/2));
 
         
-        activityTable.setModel(getModel(pma,activityModel));
+        getActivityModel(pma);
     
         TableRowSorter<DefaultTableModel> activitySorter = new TableRowSorter<DefaultTableModel>(activityModel);
         activityTable.setRowSorter(activitySorter);
@@ -62,24 +62,50 @@ public class AddActivityTable extends JPanel {
 
  
 
-    private DefaultTableModel getModel(PMA pma,DefaultTableModel model) {
+    private void getProjectModel(PMA pma) {
         
-        model.addColumn("Title");
-        model.addColumn("ID");
-        model.addColumn("Start Date");
-        model.addColumn("End Date");
+        projectModel.addColumn("Title");
+        projectModel.addColumn("ID");
+        projectModel.addColumn("Start Date");
+        projectModel.addColumn("End Date");
 
         for (Project p : pma.getProjects()) {
-            model.addRow(new Object[] { 
+            projectModel.addRow(new Object[] { 
                 p.getInfo().getTitle(), 
                 p.getInfo().getID(),
                 p.getInfo().getStartDate().toString(),
                 p.getInfo().getEndDate().toString(), 
             });
         }
-
-        return model;
+        projectTable.setModel(projectModel);
+     
     }
+
+    private void getActivityModel(PMA pma) {
+        
+        activityModel.addColumn("Title");
+        activityModel.addColumn("ID");
+        activityModel.addColumn("Start Date");
+        activityModel.addColumn("End Date");
+
+        activityTable.setModel(activityModel);
+    }
+
+    public void update(PMA pma){
+
+        projectModel.setRowCount(0);
+        for (Project p : pma.getProjects()) {
+            projectModel.addRow(new Object[] { 
+                p.getInfo().getTitle(), 
+                p.getInfo().getID(),
+                p.getInfo().getStartDate().toString(),
+                p.getInfo().getEndDate().toString(), 
+            });
+        }
+        projectTable.setModel(projectModel);
+
+    }
+
     public void setModel(Project p){
         
         activityModel.setRowCount(0);
@@ -94,10 +120,8 @@ public class AddActivityTable extends JPanel {
                 });
             }
         }
-    }
 
-    public void addProject(Project p) {
-        projectModel.addRow(new Object[] { p.getInfo().getTitle(), p.getInfo().getID(), });
+        activityTable.setModel(activityModel);
     }
 
     public JTable getProjectTable() {

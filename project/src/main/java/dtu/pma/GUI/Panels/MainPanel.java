@@ -6,11 +6,12 @@ import java.awt.event.*;
 import dtu.pma.PMA;
 import dtu.pma.GUI.GUITools;
 import dtu.pma.GUI.TablePanels.AddActivityTable;
+
 import dtu.pma.GUI.TablePanels.GenerateReportTable;
-import dtu.pma.GUI.TablePanels.ProjectTable;
 import dtu.pma.GUI.TablePanels.ProjectWithoutProjectLeaderTable;
 import dtu.pma.GUI.TablePanels.ShowActivityTable;
 import dtu.pma.GUI.TablePanels.ShowAvailableWorkersTable;
+import dtu.pma.GUI.TablePanels.ShowProjectsTable;
 import dtu.pma.GUI.TreePanels.ProjectTree;
 
 /*
@@ -22,7 +23,7 @@ import dtu.pma.GUI.TreePanels.ProjectTree;
 public class MainPanel extends JPanel {
 
     private ProjectTree projectTree;
-    private ProjectTable projectTable;
+    private ShowProjectsTable showProjectsTable;
     private GenerateReportTable generateReportTable;
     private ProjectWithoutProjectLeaderTable projectWithoutProjectLeaderTable;
     private AddActivityTable addActivityTable;
@@ -45,7 +46,7 @@ public class MainPanel extends JPanel {
         GridBagConstraints constrain = new GridBagConstraints();
 
         projectTree = new ProjectTree(pma, 340, 730);
-        projectTable = new ProjectTable(pma, 890, 790);
+        showProjectsTable = new ShowProjectsTable(pma, 890, 790);
         generateReportTable = new GenerateReportTable(pma, 890, 790);
         projectWithoutProjectLeaderTable = new ProjectWithoutProjectLeaderTable(pma, 890, 690);
         addActivityTable = new AddActivityTable(pma, 890, 690);
@@ -53,9 +54,9 @@ public class MainPanel extends JPanel {
         showAvailableWorkersTable = new ShowAvailableWorkersTable(pma, 890, 790);
 
         introPanel = new IntroPanel();
-        addProjectPanel = new AddProjectPanel(pma, projectTree, projectTable, projectWithoutProjectLeaderTable);
-        showProjectsPanel = new ShowProjectsPanel(pma, projectTable);
-        setProjectLeader = new SetProjectLeader(pma, projectWithoutProjectLeaderTable, projectTable, projectTree,
+        addProjectPanel = new AddProjectPanel(pma, projectTree,projectWithoutProjectLeaderTable);
+        showProjectsPanel = new ShowProjectsPanel(pma, showProjectsTable);
+        setProjectLeader = new SetProjectLeader(pma, projectWithoutProjectLeaderTable, projectTree,
                 generateReportTable);
         generateReportPanel = new GenerateReportPanel(pma, generateReportTable);
         addActivityPanel = new AddActivityPanel(pma, addActivityTable);
@@ -117,58 +118,71 @@ public class MainPanel extends JPanel {
         topPanel.getHomeBtn().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardLayoutPanel, "intro");
+                update(pma);
             }
         });
 
         topPanel.getAddProjectBtn().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardLayoutPanel, "add-project");
+                update(pma);
             }
         });
 
         topPanel.getShowProjectsBtn().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardLayoutPanel, "show-projects");
+                update(pma);
             }
         });
 
         topPanel.getGenerateReportBtn().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardLayoutPanel, "generate-report");
+                update(pma);
             }
         });
 
         topPanel.getSetProjectLeaderBtn().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardLayoutPanel, "set-project-leader");
+                update(pma);
             }
         });
 
         topPanel.getAddWorkerToActivity().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardLayoutPanel, "add-worker-to-activity");
+                update(pma);
             }
         });
         
         topPanel.getAddActivityBtn().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardLayoutPanel, "add-activity");
+                update(pma);
             }
         });
 
         topPanel.getShowProjectActivities().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardLayoutPanel, "show-activity");
+                update(pma);
             }
         });
 
         topPanel.getShowAvailableWorkersBtn().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardLayoutPanel, "show-available-workers");
+                update(pma);
             }
         });
 
        
+    }
+    private void update(PMA pma){
+        showProjectsTable.update(pma);
+        addActivityTable.update(pma);
     }
 
 }

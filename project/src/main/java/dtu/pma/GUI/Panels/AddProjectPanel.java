@@ -7,7 +7,6 @@ import javax.swing.*;
 import dtu.pma.OperationNotAllowedException;
 import dtu.pma.PMA;
 import dtu.pma.Project;
-import dtu.pma.GUI.TablePanels.ProjectTable;
 import dtu.pma.GUI.TablePanels.ProjectWithoutProjectLeaderTable;
 import dtu.pma.GUI.TreePanels.ProjectTree;
 
@@ -16,7 +15,7 @@ public class AddProjectPanel extends JPanel {
     private JButton addProjectBtn;
     private ProjectTree projectTree;
 
-    public AddProjectPanel(PMA pma,ProjectTree projectTree,ProjectTable projectTable,ProjectWithoutProjectLeaderTable projectWithoutProjectLeaderTable){
+    public AddProjectPanel(PMA pma,ProjectTree projectTree,ProjectWithoutProjectLeaderTable projectWithoutProjectLeaderTable){
        
         this.projectTree = projectTree;
         setLayout(new GridBagLayout());
@@ -184,7 +183,6 @@ public class AddProjectPanel extends JPanel {
                             JOptionPane.showMessageDialog(addProjectBtn, "The Project was added");
                             pma.addProject(p);
                             projectTree.AddProjectToTree(p);
-                            projectTable.update(pma);;
                             projectWithoutProjectLeaderTable.addProject(p);
                         } catch (OperationNotAllowedException e1) {
                             JOptionPane.showMessageDialog(addProjectBtn, e1.getMessage());

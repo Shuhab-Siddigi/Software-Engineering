@@ -16,7 +16,6 @@ import dtu.pma.Project;
 import dtu.pma.Worker;
 import dtu.pma.GUI.GUITools;
 import dtu.pma.GUI.TablePanels.GenerateReportTable;
-import dtu.pma.GUI.TablePanels.ProjectTable;
 import dtu.pma.GUI.TablePanels.ProjectWithoutProjectLeaderTable;
 import dtu.pma.GUI.TreePanels.ProjectTree;
 public class SetProjectLeader extends JPanel {
@@ -26,7 +25,7 @@ public class SetProjectLeader extends JPanel {
     private Project project;
     private int selectedRow;
 
-    public SetProjectLeader(PMA pma,ProjectWithoutProjectLeaderTable projectWithoutProjectLeaderTable,ProjectTable projectTable,ProjectTree projectTree,GenerateReportTable generateReportTable) {
+    public SetProjectLeader(PMA pma,ProjectWithoutProjectLeaderTable projectWithoutProjectLeaderTable,ProjectTree projectTree,GenerateReportTable generateReportTable) {
 
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();
@@ -142,7 +141,6 @@ public class SetProjectLeader extends JPanel {
                     generateReportTable.setProjectLeaderAtRow(worker.getID(), selectedRow);
                     JOptionPane.showMessageDialog(addProjectLeader, "Project Leader added to Project");
                     projectTree.changeNode(project);
-                    projectTable.update(pma);
                    
                 } catch (OperationNotAllowedException e1) {
                     JOptionPane.showMessageDialog(addProjectLeader, e1.getMessage());

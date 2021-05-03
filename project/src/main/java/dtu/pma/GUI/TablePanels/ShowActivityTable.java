@@ -98,6 +98,22 @@ public class ShowActivityTable extends JPanel{
 
         return model;
     }
+
+    public void update(PMA pma){
+        projectModel.setRowCount(0);
+        for (Project p : pma.getProjects()) {
+            projectModel.addRow(new Object[] { 
+                p.getInfo().getTitle(), 
+                p.getInfo().getID(),
+                p.getInfo().getExpectedHours(),
+                p.getInfo().getHoursWorked(),
+                p.getInfo().getStartDate().toString(),
+                p.getInfo().getEndDate().toString(), 
+            });
+        }
+        projectTable.setModel(projectModel);
+    }
+    
     public void setModel(Project p){
         
         activityModel.setRowCount(0);
