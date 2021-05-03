@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class PMA {
 
     private List<Worker> workers = new ArrayList<>();
@@ -19,12 +18,11 @@ public class PMA {
             for (Worker w : db.getWorkers()) {
                 workers.add(w);
             }
-            for (Project p: db.getProjects()){
+            for (Project p : db.getProjects()) {
                 projects.add(p);
             }
         }
     }
-
 
     public boolean containsProjectWithID(int ID) {
         return projects.stream().anyMatch(p -> p.getInfo().getID() == ID);
@@ -41,20 +39,24 @@ public class PMA {
     public Worker getWorkerWithID(String ID) {
         return workers.stream().filter(u -> u.getID().equals(ID)).findAny().orElse(null);
     }
-    public Activity getActivityWithID(Project project, int activityID){
+
+    public Activity getActivityWithID(Project project, int activityID) {
         return project.getActivityFromID(activityID);
     }
 
-    public void addWorker(Worker worker){
+    public void addWorker(Worker worker) {
         workers.add(worker);
     }
 
-    public boolean projectContainsActivity(int projectID, int activityID) {
-        Project p = getProjectWithID(projectID);
-        if (p.getActivityFromID(activityID) != null) {
-            return true;
+    public boolean projectContainsActivity(int projectID, int activityID) throws Exception {
+        Project p = getProjectWithID(projectID); // 1
+        if (p == null) { // 2
+            throw new NullPointerException("Project with " + projectID + " does not exist"); // 2a
         }
-        return false;
+        if (p.getActivityFromID(activityID) != null) { // 3
+            return true; // 3a
+        }
+        return false; // 4
     }
 
     public List<Worker> getWorkers() {
@@ -65,22 +67,16 @@ public class PMA {
         return this.projects;
     }
 
-
-  
-    
     public void addProject(Project p) throws OperationNotAllowedException {
-
-        
-
-        int lengthID = Integer.toString(p.getInfo().getID()).length();
-        if (containsProjectWithID(p.getInfo().getID()) || containsProjectWithTitle(p.getInfo().getTitle())) {
-            throw new OperationNotAllowedException("Project ID is already used!");
-        } else if(lengthID > 4) {
-            throw new OperationNotAllowedException("Project can not have more than a 4 digit ID");
-        }        
-        else {
-            projects.add(p);
+        int lengthID = Integer.toString(p.getInfo().getID()).length(); // 1
+        if (containsProjectWithID(p.getInfo().getID())) { // 2
+            throw new OperationNotAllowedException("Project ID is already used!"); // 2a
+        } else if (containsProjectWithTitle(p.getInfo().getTitle())) { // 3
+            throw new OperationNotAllowedException("Project title is already used!"); // 3a
+        } else if (lengthID > 4) { // 4
+            throw new OperationNotAllowedException("Project can not have more than a 4 digit ID"); // 4a
         }
+        projects.add(p); // 5
     }
 
     public void addActivityToProject(Project p, Activity a) throws OperationNotAllowedException {
@@ -129,7 +125,6 @@ public class PMA {
         throw new OperationNotAllowedException("There are no workers by that ID");
     }
 
-
     public Worker findWorkerByFirstName(List<Worker> list, String firstName) throws OperationNotAllowedException {
         firstName = firstName.toLowerCase();
         String tempID;
@@ -152,18 +147,18 @@ public class PMA {
         throw new OperationNotAllowedException("There are no workers by that Last Name");
     }
 
-    public List<Worker> findAvaliableWorkersByDates(List<Worker> list, Date startDate, Date endDate){
+    public List<Worker> findAvaliableWorkersByDates(List<Worker> list, Date startDate, Date endDate) {
         List<Worker> tempWorkers = new ArrayList<>();
         boolean flag = true;
         for (Worker w : list) {
             for (Activity a : w.getActivities()) {
-                if(!a.getInfo().isFree(startDate, endDate)){
+                if (!a.getInfo().isFree(startDate, endDate)) {
                     flag = false;
                     break;
                 }
-                    
+
             }
-            if(!flag){
+            if (!flag) {
                 tempWorkers.add(w);
             }
             flag = true;
@@ -171,12 +166,13 @@ public class PMA {
         return tempWorkers;
     }
 
-
-    public void changeStartDateActivity(Project project, Activity activity, Date startDate) throws OperationNotAllowedException {
+    public void changeStartDateActivity(Project project, Activity activity, Date startDate)
+            throws OperationNotAllowedException {
         project.changeStartDateForActivity(activity, startDate);
     }
 
-    public void changeEndDateActivity(Project project, Activity activity, Date endDate) throws OperationNotAllowedException {
+    public void changeEndDateActivity(Project project, Activity activity, Date endDate)
+            throws OperationNotAllowedException {
         project.changeEndDateForActivity(activity, endDate);
     }
 }

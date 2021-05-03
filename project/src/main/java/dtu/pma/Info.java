@@ -20,18 +20,21 @@ public class Info {
         this.setDescription(description);
     }
 
-    public boolean isFree(Date startDate, Date endDate) {
-        Date start = this.getStartDate(); // 1
-        Date end = this.getEndDate(); //2
-        if(start.before(startDate) && end.after(endDate)){ //3
-            return false; //3a
-        }else if(start.after(endDate)){ 
-            return true;
-        }else if(end.before(startDate)){
-            return true;
-        }else{
-            return false;
+    public boolean isFree(Date startDate, Date endDate) throws Exception{
+        if (endDate.before(startDate)){ // 1
+            throw new Exception("End Date is before Start Date"); // 1a
         }
+       
+        Date start = this.getStartDate(); 
+        Date end = this.getEndDate(); 
+        if(start.before(startDate) && end.after(endDate)){ // 2
+            return false; // 2a
+        }else if(start.after(endDate)){ // 3
+            return true;    // 3a
+        }else if(end.before(startDate)){ // 4
+            return true; // 4a
+        }
+        return false;   // 5
     }
     
     public Info (String title, int ID){

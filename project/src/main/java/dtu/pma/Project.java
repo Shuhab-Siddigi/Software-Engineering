@@ -24,7 +24,7 @@ public class Project {
             
         }
 
-    public static boolean isAllowedID(String str) throws OperationNotAllowedException {
+    public static boolean isAllowedID(String id) throws OperationNotAllowedException {
         // Regex to check string
         // contains only digits
         String regex = "^[0-9]{4}$";
@@ -32,21 +32,17 @@ public class Project {
         // Compile the ReGex
         Pattern p = Pattern.compile(regex);
         // empty
-        if (str == null || str == "") {
-            throw new OperationNotAllowedException ("Invalid input sequence: ID has to be inserted");
+        if (id == null || id == "") {   // 1
+            throw new OperationNotAllowedException ("Invalid input sequence: ID has to be inserted"); // 1a
           }
         // check
-        Matcher m = p.matcher(str);
+        Matcher m = p.matcher(id);
 
-        if (m.matches() == false) {
-            throw new OperationNotAllowedException ("Invalid input sequence: ID has to be in range [0000-9999]");
+        if (m.matches() == false) { // 2
+            throw new OperationNotAllowedException ("Invalid input sequence: ID has to be in range [0000-9999]"); // 2a
         }
 
-        if (m.matches() == true) {
-            return true;
-        }
-
-        return false;
+        return true;   // 3
     }
 
     public void setProjectLeader(Worker worker) {
@@ -155,12 +151,12 @@ public class Project {
     // Remove activity
 
     public Activity getActivityFromID(int ID) {
-        for (Activity a : activities) {     // 1
-            if (a.getInfo().getID() == ID) { // 2 
-                return a; // 2a
+        for (Activity a : activities) {         // 1
+            if (a.getInfo().getID() == ID) {    // 2
+                return a;                       // 2a
             }
         }
-        return null; //3
+        return null;                            // 3
     }
 
     public void removeActivity(Worker worker, Activity activity) throws OperationNotAllowedException {
