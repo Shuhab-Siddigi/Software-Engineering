@@ -149,11 +149,9 @@ public class PMA {
 
     public List<Worker> findAvaliableWorkersByDates(List<Worker> list, Date startDate, Date endDate) throws Exception {
         List<Worker> avaliableWorkers = new ArrayList<>();
-        Worker temp;
         for (Worker worker : this.workers) {
-            temp = worker.CheckSchedule(startDate, endDate);
-            if (temp != null){
-                avaliableWorkers.add(temp);
+            if (worker.CheckSchedule(startDate, endDate)){
+                avaliableWorkers.add(worker);
             }
         }
         return avaliableWorkers;

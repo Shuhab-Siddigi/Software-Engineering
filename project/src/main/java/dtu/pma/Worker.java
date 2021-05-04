@@ -74,12 +74,12 @@ public class Worker {
 		return null;
 	}
 
-    public Worker CheckSchedule(Date startDate, Date endDate) throws Exception{
+    public Boolean CheckSchedule(Date startDate, Date endDate) throws Exception{
         for (Activity activity : Activities) {
             if (!activity.getInfo().isFree(startDate, endDate)){
-                return null;
+                return false;
             }
         }
-        return this;
+        return true;
     }
 }
