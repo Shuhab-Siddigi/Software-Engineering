@@ -32,7 +32,7 @@ public class AddActivityPanel extends JPanel {
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();
 
-        JTextField setProjectTextField = new JTextField("Choose Project ID from table..");
+        JLabel setProjectTextField = new JLabel("Choose Project ID from table..");
         JLabel setProjectLabel = new JLabel();
         setProjectLabel.setText("Project ID:");
         setProjectLabel.setFont(new Font("Serif", Font.BOLD, 20));
@@ -56,11 +56,6 @@ public class AddActivityPanel extends JPanel {
         setEndDateLabel.setText("End Date:");
         JTextField setEndDateTextField = new JTextField("YYYY-MM-DD");
         setEndDateLabel.setFont(new Font("Serif", Font.BOLD, 20));
-
-        JLabel setProjectLeaderLabel = new JLabel();
-        setProjectLeaderLabel.setText("Project Leader:");
-        JTextField setProjectLeaderTextField = new JTextField("Set Project Leader");
-        setProjectLeaderLabel.setFont(new Font("Serif", Font.BOLD, 20));
 
         JLabel setDescriptionLabel = new JLabel();
         setDescriptionLabel.setText("Descripton:");
@@ -118,14 +113,6 @@ public class AddActivityPanel extends JPanel {
         this.add(setEndDateTextField, constrain);
 
         constrain.gridx = 0;
-        constrain.gridy = 5;
-        this.add(setProjectLeaderLabel, constrain);
-
-        constrain.gridx = 1;
-        constrain.gridy = 5;
-        this.add(setProjectLeaderTextField, constrain);
-
-        constrain.gridx = 0;
         constrain.gridy = 6;
         this.add(setDescriptionLabel, constrain);
 
@@ -173,11 +160,7 @@ public class AddActivityPanel extends JPanel {
                 setEndDateTextField.setText("");
             }
         });
-        setProjectLeaderTextField.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                setProjectLeaderTextField.setText("");
-            }
-        });
+
 
         setDescriptionTextField.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -212,16 +195,18 @@ public class AddActivityPanel extends JPanel {
                     int ID = Integer.parseInt(setIDTextField.getText());
                     Date startDate = Date.valueOf(setStartDateTextField.getText());
                     Date endDate = Date.valueOf(setEndDateTextField.getText());
+
                     activity = new Activity(title, ID, startDate, endDate);
                     String Description = setDescriptionTextField.getText();
                     activity.getInfo().setDescription(Description);
+                
                 } catch (Exception e1) {
                     JOptionPane.showMessageDialog(addActivityBtn, e1.getMessage());
                 }
                 try {
                     project.addActivity(activity);
                     addActivityTable.addActivity(activity);
-                    JOptionPane.showMessageDialog(addActivityBtn, "Activity Added");
+                    JOptionPane.showMessageDialog(addActivityBtn,"Activity Added");
                 } catch (OperationNotAllowedException e1) {
                     JOptionPane.showMessageDialog(addActivityBtn, e1.getMessage());
                     e1.printStackTrace();

@@ -25,24 +25,23 @@ public class Project {
         }
 
     public boolean isAllowedID(String id) throws OperationNotAllowedException {
-        // Regex to check string
-        // contains only digits
+
         String regex = "^[0-9]{4}$";
 
-        // Compile the ReGex
+
         Pattern p = Pattern.compile(regex);
-        // empty
-        if (id == null || id == "") {   // 1
+
+        if (id == null || id == "") {   
             throw new OperationNotAllowedException ("Invalid input sequence: ID has to be inserted"); // 1a
           }
-        // check
+    
         Matcher m = p.matcher(id);
 
-        if (m.matches() == false) { // 2
-            throw new OperationNotAllowedException ("Invalid input sequence: ID has to be in range [0000-9999]"); // 2a
+        if (m.matches() == false) { 
+            throw new OperationNotAllowedException ("Invalid input sequence: ID has to be in range [0000-9999]"); 
         }
 
-        return true;   // 3
+        return true;  
     }
 
     public boolean isAllowedDate(String date) throws OperationNotAllowedException {

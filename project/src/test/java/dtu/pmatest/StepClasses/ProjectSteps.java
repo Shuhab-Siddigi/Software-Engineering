@@ -99,7 +99,7 @@ public class ProjectSteps {
     }
 
     @Given("has activty {string}, ID {int}, start date {string}, end date {string}")
-    public void hasActivtyIDStartDateEndDate(String name, Integer id, String startDate, String endDate) {
+    public void hasActivtyIDStartDateEndDate(String name, Integer id, String startDate, String endDate) throws OperationNotAllowedException {
         Activity activity = new Activity(name, id, Date.valueOf(startDate), Date.valueOf(endDate));
         try {
             project.addActivity(activity);
