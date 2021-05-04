@@ -64,11 +64,11 @@ public class SetProjectLeader extends JPanel {
         constrain.gridx = 0;
         constrain.gridy = 0;
         constrain.gridwidth = 2;
-        this.add(workerLabel, constrain);
+        this.add(projectLabel, constrain);
 
         constrain.gridx = 2;
         constrain.gridy = 0;
-        this.add(projectLabel, constrain);
+        this.add(workerLabel, constrain);
 
         constrain.fill = GridBagConstraints.BOTH;
         constrain.gridx = 0;
@@ -85,22 +85,37 @@ public class SetProjectLeader extends JPanel {
         constrain.gridy = 2;
         constrain.weighty = 0.2;
         constrain.weightx = 0.2;
-        this.add(workerLabel2, constrain);
+        this.add(projectLabel2, constrain);
         constrain.gridx = 1;
         constrain.gridy = 2;
-        this.add(workerLabel3, constrain);
+        this.add(projectLabel3, constrain);
         constrain.gridx = 2;
         constrain.gridy = 2;
-        this.add(projectLabel2, constrain);
+        this.add(workerLabel2, constrain);
         constrain.gridx = 3;
         constrain.gridy = 2;
-        this.add(projectLabel3, constrain);
+        this.add(workerLabel3, constrain);
 
         constrain.gridx = 0;
         constrain.gridy = 3;
         constrain.gridwidth = 4;
         constrain.weighty = 0.1;
         this.add(addProjectLeader, constrain);
+
+
+        setProjectLeaderTable.getWorkerTable().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        setProjectLeaderTable.getWorkerTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+
+                ListSelectionModel rowSelectionModel = (ListSelectionModel) e.getSource();
+                if (!rowSelectionModel.isSelectionEmpty()) {
+                    selectedRow = rowSelectionModel.getMinSelectionIndex();
+                    String ID = setProjectLeaderTable.getWorkerTable().getModel().getValueAt(selectedRow, 2).toString();
+                    worker = pma.getWorkerWithID(ID);
+                    workerLabel3.setText(worker.getFirstname() + " " + worker.getLastname() + " ID: " + worker.getID());
+                }
+            }
+        });
 
         setProjectLeaderTable.getProjectTable().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         setProjectLeaderTable.getProjectTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -116,19 +131,6 @@ public class SetProjectLeader extends JPanel {
             }
         });
 
-        setProjectLeaderTable.getWorkerTable().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        setProjectLeaderTable.getWorkerTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent e) {
-
-                ListSelectionModel rowSelectionModel = (ListSelectionModel) e.getSource();
-                if (!rowSelectionModel.isSelectionEmpty()) {
-                    selectedRow = rowSelectionModel.getMinSelectionIndex();
-                    String ID = setProjectLeaderTable.getWorkerTable().getModel().getValueAt(selectedRow, 2).toString();
-                    worker = pma.getWorkerWithID(ID);
-                    workerLabel3.setText(worker.getFirstname() + " " + worker.getLastname() + " ID: " + worker.getID());
-                }
-            }
-        });
 
         addProjectLeader.addMouseListener(new MouseAdapter() {
 
