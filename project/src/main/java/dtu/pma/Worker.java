@@ -62,7 +62,7 @@ public class Worker {
         if(this.Activities.contains(a)){
             a.setRegisteredHours(hours);
         } else {
-            throw new OperationNotAllowedException("Worker isn't assigned to activity");
+            throw new OperationNotAllowedException("Worker isn't assigned to project");
         }
     }
 
