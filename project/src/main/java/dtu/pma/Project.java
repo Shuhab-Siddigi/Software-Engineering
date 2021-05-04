@@ -17,42 +17,44 @@ public class Project {
 
     public Project(String title, String ID) throws OperationNotAllowedException {
         // input_check
-        
-            isAllowedID(ID);
-            int IDInt = Integer.parseInt(ID);
-            this.info = new Info(title, IDInt);
-            
-        }
+
+        isAllowedID(ID);
+        int IDInt = Integer.parseInt(ID);
+        this.info = new Info(title, IDInt);
+
+    }
 
     public boolean isAllowedID(String id) throws OperationNotAllowedException {
 
-        String regex = "^[0-9]{4}$";
+        assert true;
 
+        String regex = "^[0-9]{4}$";
 
         Pattern p = Pattern.compile(regex);
 
-        if (id == null || id == "") {   
-            throw new OperationNotAllowedException ("Invalid input sequence: ID has to be inserted"); // 1a
-          }
-    
-        Matcher m = p.matcher(id);
-
-        if (m.matches() == false) { 
-            throw new OperationNotAllowedException ("Invalid input sequence: ID has to be in range [0000-9999]"); 
+        if (id == null || id == "") {
+            throw new OperationNotAllowedException("Invalid input sequence: ID has to be inserted"); // 1a
         }
 
-        return true;  
+        Matcher m = p.matcher(id);
+
+        if (m.matches() == false) {
+            throw new OperationNotAllowedException("Invalid input sequence: ID has to be in range [0000-9999]");
+        }
+        assert true;
+
+        return true;
     }
 
     public boolean isAllowedDate(String date) throws OperationNotAllowedException {
-      
+
         String regex = "^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(date);
-        if (!m.matches()) { 
-           return false;
+        if (!m.matches()) {
+            return false;
         }
-        return true;  
+        return true;
     }
 
     public void setProjectLeader(Worker worker) {
@@ -67,28 +69,23 @@ public class Project {
         return this.info;
     }
 
-    public String gReport(){
+    public String gReport() {
 
-        String p =  "Title: "           + this.info.getTitle()          + "\n"+
-                    "ID : "             + this.info.getID()             + "\n"+
-                    "Expected hours: "  + this.info.getExpectedHours()  + "\n"+
-                    "Hours Worked: "    + this.info.getHoursWorked()    + "\n"+
-                    "Start Date: "      + this.info.getStartDate()      + "\n"+
-                    "End Date : "       + this.info.getEndDate()        + "\n"+
-                    "Description: "     + this.info.getDescription()    + "\n";
+        String p = "Title: " + this.info.getTitle() + "\n" + "ID : " + this.info.getID() + "\n" + "Expected hours: "
+                + this.info.getExpectedHours() + "\n" + "Hours Worked: " + this.info.getHoursWorked() + "\n"
+                + "Start Date: " + this.info.getStartDate() + "\n" + "End Date : " + this.info.getEndDate() + "\n"
+                + "Description: " + this.info.getDescription() + "\n";
 
-        if(this.getActivities() != null){
-            
+        if (this.getActivities() != null) {
+
             for (Activity activity : this.getActivities()) {
 
-                p+= "\tActivity:\n\n"+
-                    "\tTitle: "           + activity.getInfo().getTitle()          + "\n"+
-                    "\tID : "             + activity.getInfo().getID()             + "\n"+
-                    "\tExpected hours: "  + activity.getInfo().getExpectedHours()  + "\n"+
-                    "\tHours Worked: "    + activity.getInfo().getHoursWorked()    + "\n"+
-                    "\tStart Date: "      + activity.getInfo().getStartDate()      + "\n"+
-                    "\tEnd Date : "       + activity.getInfo().getEndDate()        + "\n"+
-                    "\tDescription: "     + activity.getInfo().getDescription()    + "\n"; 
+                p += "\tActivity:\n\n" + "\tTitle: " + activity.getInfo().getTitle() + "\n" + "\tID : "
+                        + activity.getInfo().getID() + "\n" + "\tExpected hours: "
+                        + activity.getInfo().getExpectedHours() + "\n" + "\tHours Worked: "
+                        + activity.getInfo().getHoursWorked() + "\n" + "\tStart Date: "
+                        + activity.getInfo().getStartDate() + "\n" + "\tEnd Date : " + activity.getInfo().getEndDate()
+                        + "\n" + "\tDescription: " + activity.getInfo().getDescription() + "\n";
             }
         }
         return p;
@@ -159,13 +156,31 @@ public class Project {
     }
 
     public Activity getActivityFromID(int ID) {
-        for (Activity a : activities) {         // 1
-            if (a.getInfo().getID() == ID) {    // 2
-                return a;                       // 2a
+
+        assert ID >-1;
+
+        Activity result = null;
+
+        for (Activity a : activities) { // 1
+            if (a.getInfo().getID() == ID) { // 2
+                result = a;
+                break; // 2a
             }
         }
-        return null;                            // 3
+
+        assert (activities.contains(result) && result.getInfo().getID() == ID)
+                ^ (result == null && activities.stream().allMatch(a -> a.getInfo().getID() != ID));
+
+        return result;
     }
+
+    // for (Activity a : activities) { // 1
+    // if (a.getInfo().getID() == ID) { // 2
+    // return a; // 2a
+    // }
+    // }
+    // return null; // 3
+    // }
 
     public void removeActivity(Worker worker, Activity activity) throws OperationNotAllowedException {
         if (activity == null) {
@@ -223,9 +238,9 @@ public class Project {
         activity.getInfo().setEndDate(endDate);
     }
 
-    public void updateHoursWorked(){
+    public void updateHoursWorked() {
         int hoursWorked = 0;
-        for (Activity a : getActivities()){
+        for (Activity a : getActivities()) {
             hoursWorked = hoursWorked + a.getRegisteredHours();
         }
         this.info.setHoursWorked(hoursWorked);

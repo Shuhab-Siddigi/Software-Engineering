@@ -1,4 +1,5 @@
 package dtu.pma;
+
 import java.sql.Date;
 
 public class Info {
@@ -10,7 +11,8 @@ public class Info {
     private Date endDate;
     private String description;
 
-    public Info(String title, int ID, int expectedHours, int hoursWorked, Date startDate, Date endDate, String description) {
+    public Info(String title, int ID, int expectedHours, int hoursWorked, Date startDate, Date endDate,
+            String description) {
         this.title = title;
         this.ID = ID;
         this.setExpectedHours(expectedHours);
@@ -20,35 +22,52 @@ public class Info {
         this.setDescription(description);
     }
 
-    public boolean isFree(Date startDate, Date endDate) throws Exception{
-        
-        if (endDate.before(startDate)){ // 1
+    public boolean isFree(Date startDate, Date endDate) throws Exception {
+
+        assert true;
+
+        boolean result = false;
+
+        if (endDate.before(startDate)) { // 1
             throw new Exception("End Date is before Start Date"); // 1a
         }
-       
-        Date start = this.getStartDate(); 
-        Date end = this.getEndDate(); 
-        if(start.before(startDate) && end.after(endDate)){ // 2
-            return false; // 2a
-        }else if(start.after(endDate)){ // 3
-            return true;    // 3a
-        }else if(end.before(startDate)){ // 4
-            return true; // 4a
+
+        Date start = this.getStartDate();
+        Date end = this.getEndDate();
+        if (start.after(startDate) && end.before(endDate)) { // 2
+            result = false; // 2a
+        } else if (start.after(endDate)) { // 3
+            result = true; // 3a
+        } else if (end.before(startDate)) { // 4
+            result = true; // 4a
         }
-        return false;   // 5
+
+
+        assert(result == true && start.after(endDate) 
+                || end.before(startDate)
+                ) 
+                  ||  
+                (result == false  && (
+                start.after(endDate) && end.before(startDate) )     
+                || (startDate.after(start)  && startDate.before(end))
+                ||
+                (endDate.after(start) && endDate.before(end)));
+
+
+        return result; // 5
     }
-    
-    public Info (String title, int ID){
+
+    public Info(String title, int ID) {
         this.title = title;
         this.ID = ID;
-    } //For projects
+    } // For projects
 
-    public Info (String title, int ID, Date startDate, Date endDate){
+    public Info(String title, int ID, Date startDate, Date endDate) {
         this.title = title;
         this.ID = ID;
         this.startDate = startDate;
         this.endDate = endDate;
-    } //For activities
+    } // For activities
 
     public int getExpectedHours() {
         return expectedHours;
@@ -67,7 +86,7 @@ public class Info {
     }
 
     public Date getStartDate() {
-      
+
         return startDate;
     }
 
@@ -91,25 +110,19 @@ public class Info {
         this.description = description;
     }
 
-    
     public String getTitle() {
         return title;
     }
-
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-
     public int getID() {
         return ID;
     }
-
 
     public void setID(int iD) {
         this.ID = iD;
     }
 }
-
-
