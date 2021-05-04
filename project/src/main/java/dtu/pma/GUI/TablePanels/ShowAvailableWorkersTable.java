@@ -6,7 +6,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
+import java.util.List;
 import dtu.pma.Activity;
+import dtu.pma.OperationNotAllowedException;
 import dtu.pma.PMA;
 import dtu.pma.Project;
 import dtu.pma.Worker;
@@ -16,6 +18,7 @@ public class ShowAvailableWorkersTable extends JPanel {
     private DefaultTableModel projectModel = new DefaultTableModel();
     private DefaultTableModel activityModel = new DefaultTableModel();
     private DefaultTableModel workerModel = new DefaultTableModel();
+    private List<Worker> workers;
 
     private JTable projectTable = new JTable();
     private JTable activityTable = new JTable();
@@ -118,19 +121,23 @@ public class ShowAvailableWorkersTable extends JPanel {
         
     }
 
-    public void setWorkerModel(PMA pma, Activity activity) {
+    public void setWorkerModel(PMA pma, Activity activity) throws Exception {
 
         workerModel.setRowCount(0);
         if (pma.getWorkers() != null) {
-// @WIP
-            for (Worker w : pma.getWorkers()) {
-                
-                if (w.getActivities() != null) {
-                        //if (activity.getInfo().isFree(a.getInfo().getStartDate(), a.getInfo().getEndDate())) {
-                 workerModel.addRow(new Object[] { w.getFirstname(), w.getFirstname(), w.getID(), });
-                        //}   
-                }
-            }
+
+      workers = pma.findAvaliableWorkersByDates(
+            pma.getWorkers(), 
+            activity.getInfo().getStartDate(), 
+            activity.getInfo().getEndDate()
+            );
+        if(workers != null){
+           for (Worker worker : workers) {
+            workerModel.addRow(new Object[] { worker.getFirstname(), worker.getFirstname(), worker.getID(), });       
+           } 
+        }
+               
+          
         workerTable.setModel(workerModel);
         }
 

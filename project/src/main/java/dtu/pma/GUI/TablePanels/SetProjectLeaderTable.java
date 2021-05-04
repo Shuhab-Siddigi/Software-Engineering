@@ -27,8 +27,7 @@ public class SetProjectLeaderTable extends JPanel {
         projectTable.setRowSorter(projectSorter);
         workerTable.setRowSorter(workerSorter);
 
-        setProjectTable(pma);
-        setWorkerTable(pma);
+        setModels(pma);
 
         JScrollPane projectScrollPane = new JScrollPane(projectTable);
         JScrollPane workerScrollPane = new JScrollPane(workerTable);
@@ -45,66 +44,28 @@ public class SetProjectLeaderTable extends JPanel {
         constrain.weighty = 1;
         constrain.gridx = 0;
         constrain.gridy = 0;
-        this.add(workerScrollPane, constrain);
+        this.add(projectScrollPane, constrain);
 
         constrain.gridx = 1;
         constrain.gridy = 0;
-        this.add(projectScrollPane, constrain);
+        this.add(workerScrollPane, constrain);
 
     }
 
-    private void setProjectTable(PMA pma) {
+    private void setModels(PMA pma) {
 
         projectModel.addColumn("Title");
         projectModel.addColumn("ID");
         projectModel.addColumn("Project Leader");
 
-        if(pma.getProjects() != null){
-            for (Project p : pma.getProjects()) {
-                if (p.getProjectLeader() != null) {
-                    projectModel.addRow(
-                            new Object[] { 
-                            p.getInfo().getTitle(), 
-                            p.getInfo().getID(), 
-                            p.getProjectLeader().getID(), 
-                        });
-                } else {
-                    projectModel.addRow(new Object[] { 
-                        p.getInfo().getTitle(), 
-                        p.getInfo().getID(), 
-                        "", });
-                }
-            }
-        }
-
-        projectTable.setModel(projectModel);
-
-    }
-
-    public void addProject(Project p) {
-
-        projectModel.addRow(new Object[] { p.getInfo().getTitle(), p.getInfo().getID(), });
-
-    }
-
-    private void setWorkerTable(PMA pma) {
-
         workerModel.addColumn("Firstname");
         workerModel.addColumn("Lastname");
         workerModel.addColumn("ID");
 
-        if(pma.getWorkers() != null){
-            for (Worker w : pma.getWorkers()) {
-                workerModel.addRow(new Object[] { 
-                    w.getFirstname(), 
-                    w.getLastname(), 
-                    w.getID() });
-            }
-        }
-
-        workerTable.setModel(workerModel);
+        update(pma);
 
     }
+
 
     public void update(PMA pma){
         
@@ -140,6 +101,10 @@ public class SetProjectLeaderTable extends JPanel {
             }
         }
         projectTable.setModel(projectModel);
+    }
+
+    public void addProject(Project p) {
+        projectModel.addRow(new Object[] { p.getInfo().getTitle(), p.getInfo().getID(), });
     }
 
     public void setProjectLeaderAtRow(String projectLeader, int row) {

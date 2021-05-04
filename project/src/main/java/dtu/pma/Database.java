@@ -33,7 +33,7 @@ public class Database {
         return result;
     }
 
-    public List<Worker> getWorkers() {
+    public List<Worker> getWorkers() throws OperationNotAllowedException {
         // Female
         List<Worker> workers = new ArrayList<>();
         workers.add(new Worker("System", "Huset", "X"));

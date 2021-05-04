@@ -3,6 +3,8 @@ package dtu.pma.GUI.Panels;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
+
 import javax.swing.*;
 import dtu.pma.OperationNotAllowedException;
 import dtu.pma.PMA;
@@ -14,9 +16,11 @@ public class AddProjectPanel extends JPanel {
     private JButton addProjectBtn;
     private ProjectTree projectTree;
 
-    public AddProjectPanel(PMA pma,ProjectTree projectTree){
-        
-        //Date currentDate = new Date(System.currentTimeMillis());
+    public AddProjectPanel(PMA pma, ProjectTree projectTree) {
+
+        Date currentDate = new Date(System.currentTimeMillis());
+
+        // Date currentDate = new Date(System.currentTimeMillis());
         this.projectTree = projectTree;
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();
@@ -33,7 +37,8 @@ public class AddProjectPanel extends JPanel {
 
         JLabel setStartDateLabel = new JLabel();
         setStartDateLabel.setText("Start Date:");
-        JTextField setStartDateTextField = new JTextField("Set Start Date");
+
+        JTextField setStartDateTextField = new JTextField(currentDate.toString());
         setStartDateLabel.setFont(new Font("Serif", Font.BOLD, 20));
 
         JLabel setEndDateLabel = new JLabel();
@@ -92,8 +97,7 @@ public class AddProjectPanel extends JPanel {
         constrain.gridx = 0;
         constrain.gridy = 3;
         this.add(setEndDateLabel, constrain);
-        
-        
+
         constrain.gridx = 1;
         constrain.gridy = 3;
         this.add(setEndDateTextField, constrain);
@@ -101,7 +105,7 @@ public class AddProjectPanel extends JPanel {
         constrain.gridx = 0;
         constrain.gridy = 4;
         this.add(setExpectedHoursLabel, constrain);
-        
+
         constrain.gridx = 1;
         constrain.gridy = 4;
         this.add(setExptectedTextField, constrain);
@@ -162,49 +166,54 @@ public class AddProjectPanel extends JPanel {
             }
         });
 
-
-
         settitleTextField.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 settitleTextField.setText("");
             }
         });
 
-                setDescriptionTextField.addMouseListener(new MouseAdapter() {
-                    public void mouseClicked(MouseEvent e) {
-                        setDescriptionTextField.setText("");
-                    }
-                });
-
-                setProjectLeaderTextField.addMouseListener(new MouseAdapter() {
-                    public void mouseClicked(MouseEvent e) {
-                        setProjectLeaderTextField.setText("");
-                    }
-                });
-
-
-                addProjectBtn.addMouseListener(new MouseAdapter() {
-
-                    public void mouseClicked(MouseEvent e) {
-
-                        try {
-                            Project p = new Project(settitleTextField.getText(), Integer.parseInt(setIDTextField.getText()));
-                            if (setProjectLeaderTextField.getText() != ""
-                                    || setProjectLeaderTextField.getText() != "Set Project Leader") {
-                                p.setProjectLeader(pma.getWorkerWithID(setProjectLeaderTextField.getText()));
-                            }
-                            JOptionPane.showMessageDialog(addProjectBtn, "The Project was added");
-                            pma.addProject(p);
-                            projectTree.AddProjectToTree(p);
-                        } catch (OperationNotAllowedException e1) {
-                            JOptionPane.showMessageDialog(addProjectBtn, e1.getMessage());
-                        }
-                    }
-                });
-
+        setDescriptionTextField.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                setDescriptionTextField.setText("");
             }
-            public ProjectTree getProjectTree(){
-                return projectTree;
+        });
+
+        setProjectLeaderTextField.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                setProjectLeaderTextField.setText("");
             }
-        
+        });
+
+        addProjectBtn.addMouseListener(new MouseAdapter() {
+
+            public void mouseClicked(MouseEvent e) {
+
+                try {
+                    Project p = new Project(settitleTextField.getText(), Integer.parseInt(setIDTextField.getText()));
+                    if(p.isAllowedDate(setStartDateTextField.getText())){
+                    p.getInfo().setStartDate(Date.valueOf(setStartDateTextField.getText()));
+                    }
+                    if(p.isAllowedDate(setEndDateTextField.getText())){
+                    p.getInfo().setEndDate(Date.valueOf(setEndDateTextField.getText()));
+                    }
+                    p.getInfo().setDescription(setDescriptionTextField.getText());
+                    if (setProjectLeaderTextField.getText() != ""
+                            || setProjectLeaderTextField.getText() != "Set Project Leader") {
+                        p.setProjectLeader(pma.getWorkerWithID(setProjectLeaderTextField.getText()));
+                    }
+                    JOptionPane.showMessageDialog(addProjectBtn, "The Project was added");
+                    pma.addProject(p);
+                    projectTree.AddProjectToTree(p);
+                } catch (OperationNotAllowedException e1) {
+                    JOptionPane.showMessageDialog(addProjectBtn, e1.getMessage());
+                }
+            }
+        });
+
     }
+
+    public ProjectTree getProjectTree() {
+        return projectTree;
+    }
+
+}

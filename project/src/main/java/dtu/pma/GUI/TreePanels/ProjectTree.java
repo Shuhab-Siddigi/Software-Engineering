@@ -60,6 +60,7 @@ public class ProjectTree extends JPanel {
     }
 
     private void setNodeInfo(Project project) {
+        
         if (project.getProjectLeader() != null) {
             titleNode = new DefaultMutableTreeNode(project.getInfo().getTitle());
             titleNode.add(new DefaultMutableTreeNode(" ID: " + Integer.toString(project.getInfo().getID())));

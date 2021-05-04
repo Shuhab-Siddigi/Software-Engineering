@@ -38,7 +38,7 @@ public class ActivitySteps {
     }
 
     @Given("there exist an activity with title {string}, ID {int}, start date {string}, end date {string}")
-    public void thereExistAnActivityWithTitleIDStartDateEndDate(String title, Integer ID, String dateStart, String dateEnd) {
+    public void thereExistAnActivityWithTitleIDStartDateEndDate(String title, Integer ID, String dateStart, String dateEnd) throws OperationNotAllowedException {
         Date startDate = Date.valueOf(dateStart);
         Date endDate = Date.valueOf(dateEnd);
         activity = new Activity(title, ID, startDate, endDate);
@@ -109,7 +109,7 @@ public class ActivitySteps {
     }
     
     @Given("an activity exist with start date {string} and end date {string}")
-    public void anActivityExistWithStartDateAndEndDate(String startDate, String endDate) {
+    public void anActivityExistWithStartDateAndEndDate(String startDate, String endDate) throws OperationNotAllowedException {
         Date start = Date.valueOf(startDate);
         Date end = Date.valueOf(endDate);
         activity = new Activity("title", 00, start, end);

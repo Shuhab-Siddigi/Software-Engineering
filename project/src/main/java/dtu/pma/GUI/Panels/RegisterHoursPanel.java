@@ -5,24 +5,17 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
 import dtu.pma.Activity;
 import dtu.pma.OperationNotAllowedException;
 import dtu.pma.PMA;
-import dtu.pma.Project;
 import dtu.pma.Worker;
-import dtu.pma.GUI.GUITools;
-import dtu.pma.GUI.TablePanels.SetProjectLeaderTable;
-import dtu.pma.PMA;
 import dtu.pma.GUI.TablePanels.RegisterhoursTable;
-
 public class RegisterHoursPanel extends JPanel{
 
     private Worker worker;
@@ -38,7 +31,6 @@ public class RegisterHoursPanel extends JPanel{
 
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();
-        GUITools guiTools = new GUITools();
 
         JLabel projectLabel = new JLabel("Workers");
         projectLabel.setFont(new Font("Serif", Font.BOLD, 20));
@@ -129,7 +121,6 @@ public class RegisterHoursPanel extends JPanel{
                     activity = worker.getActivitiyByID(Integer.parseInt(activityID));
                     System.out.println("Worker activity: " + activity.getInfo().getTitle());
 
-                    //setWorkerTextField.setText((worker.getID()));
                 }
             }
         });

@@ -133,7 +133,6 @@ public class MainPanel extends JPanel {
         topPanel.getAddProjectBtn().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardLayoutPanel, "add-project");
-                
             }
         });
 

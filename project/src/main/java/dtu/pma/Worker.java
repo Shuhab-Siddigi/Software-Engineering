@@ -2,6 +2,7 @@ package dtu.pma;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Date;
 
 public class Worker {
 
@@ -61,7 +62,7 @@ public class Worker {
         if(this.Activities.contains(a)){
             a.setRegisteredHours(hours);
         } else {
-            throw new OperationNotAllowedException("Worker isn't assigned to activity");
+            throw new OperationNotAllowedException("Worker isn't assigned to project");
         }
     }
 
@@ -72,4 +73,13 @@ public class Worker {
 	public Activity getActivitiyByID(String activityID) {
 		return null;
 	}
+
+    public Boolean CheckSchedule(Date startDate, Date endDate) throws Exception{
+        for (Activity activity : Activities) {
+            if (!activity.getInfo().isFree(startDate, endDate)){
+                return false;
+            }
+        }
+        return true;
+    }
 }
