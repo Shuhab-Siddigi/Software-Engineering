@@ -1,10 +1,12 @@
 package dtu.pma.GUI.Panels;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.*;
 
 import dtu.pma.Activity;
+import dtu.pma.OperationNotAllowedException;
 import dtu.pma.PMA;
 import dtu.pma.Project;
 import dtu.pma.GUI.TablePanels.ShowAvailableWorkersTable;
@@ -87,7 +89,12 @@ public class ShowAvailableWorkersPanel extends JPanel{
                     selectedActivityRow = rowSelectionModel.getMinSelectionIndex();
                     activityID = showAvailableWorkersTable.getActivityTable().getModel().getValueAt(selectedActivityRow, 1).toString();
                     activity = project.getActivityFromID(Integer.parseInt(activityID));
-                    showAvailableWorkersTable.setWorkerModel(pma,activity);
+                    try {
+                        showAvailableWorkersTable.setWorkerModel(pma,activity);
+                    } catch (Exception e1) {
+                        JOptionPane.showMessageDialog(showAvailableWorkersTable, e1.getMessage());
+                        e1.printStackTrace();
+                    }
                 }
             }
         });
