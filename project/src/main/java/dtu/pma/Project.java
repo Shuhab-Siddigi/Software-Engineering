@@ -45,6 +45,17 @@ public class Project {
         return true;   // 3
     }
 
+    public boolean isAllowedDate(String date) throws OperationNotAllowedException {
+      
+        String regex = "^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(date);
+        if (!m.matches()) { 
+           return false;
+        }
+        return true;  
+    }
+
     public void setProjectLeader(Worker worker) {
         this.projectLeader = worker;
     }

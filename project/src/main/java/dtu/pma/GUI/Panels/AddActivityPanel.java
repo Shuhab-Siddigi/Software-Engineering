@@ -19,7 +19,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import dtu.pma.GUI.TablePanels.AddActivityTable;
 
-
 public class AddActivityPanel extends JPanel {
 
     private JButton addActivityBtn;
@@ -27,6 +26,7 @@ public class AddActivityPanel extends JPanel {
     private String projectID;
     private int selectedRow;
     private Activity activity;
+
     public AddActivityPanel(PMA pma, AddActivityTable addActivityTable) {
 
         setLayout(new GridBagLayout());
@@ -186,7 +186,7 @@ public class AddActivityPanel extends JPanel {
         });
 
         addActivityTable.update(pma);
-        
+
         addActivityTable.getProjectTable().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         addActivityTable.getProjectTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
@@ -197,6 +197,9 @@ public class AddActivityPanel extends JPanel {
                     project = pma.getProjectWithID(Integer.parseInt(projectID));
                     setProjectTextField.setText(Integer.toString(project.getInfo().getID()));
                     addActivityTable.setActivityModel(project);
+                    if (project.getInfo().getStartDate() != null) {
+                        setStartDateTextField.setText(project.getInfo().getStartDate().toString());
+                    }
                 }
             }
         });
@@ -227,6 +230,5 @@ public class AddActivityPanel extends JPanel {
 
         });
     }
-
 
 }

@@ -9,7 +9,6 @@ public class Activity {
 
     private List<Worker> workers = new ArrayList<>();
     private Info info;
-    private int registeredHours;
 
     public Activity(String title, int ID, Date startDate, Date endDate) {
         this.info = new Info(title, ID, startDate, endDate);

@@ -91,8 +91,8 @@ public class ShowProjectActivitysTable extends JPanel{
                 p.getInfo().getID(),
                 p.getInfo().getExpectedHours(),
                 p.getInfo().getHoursWorked(),
-            //    p.getInfo().getStartDate().toString(),
-            //    p.getInfo().getEndDate().toString(), 
+                p.getInfo().getStartDate().toString(),
+                p.getInfo().getEndDate().toString(), 
             });
         }
 
@@ -107,8 +107,8 @@ public class ShowProjectActivitysTable extends JPanel{
                 p.getInfo().getID(),
                 p.getInfo().getExpectedHours(),
                 p.getInfo().getHoursWorked(),
-            //    p.getInfo().getStartDate().toString(),
-            //    p.getInfo().getEndDate().toString(), 
+                p.getInfo().getStartDate(),
+                p.getInfo().getEndDate(), 
             });
         }
         projectTable.setModel(projectModel);
@@ -125,8 +125,8 @@ public class ShowProjectActivitysTable extends JPanel{
                     a.getInfo().getID(),
                     a.getInfo().getExpectedHours(),
                     a.getInfo().getHoursWorked(),
-                //    a.getInfo().getStartDate().toString(),
-                //    a.getInfo().getEndDate().toString(), 
+                    a.getInfo().getStartDate(),
+                    a.getInfo().getEndDate(), 
                 });
             }
         }
@@ -144,8 +144,8 @@ public class ShowProjectActivitysTable extends JPanel{
         activityModel.addRow(new Object[] {         
             activity.getInfo().getTitle(), 
             activity.getInfo().getID(),
-            activity.getInfo().getStartDate().toString(),
-            activity.getInfo().getEndDate().toString(), });
+            activity.getInfo().getStartDate(),
+            activity.getInfo().getEndDate(), });
     }
 }
 

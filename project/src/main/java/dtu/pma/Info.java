@@ -21,6 +21,7 @@ public class Info {
     }
 
     public boolean isFree(Date startDate, Date endDate) throws Exception{
+        
         if (endDate.before(startDate)){ // 1
             throw new Exception("End Date is before Start Date"); // 1a
         }
