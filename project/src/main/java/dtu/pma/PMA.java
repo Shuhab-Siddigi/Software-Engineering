@@ -179,7 +179,7 @@ public class PMA {
     public void addWorkHours (Worker w, Activity a, int hours) throws Exception{
         w.registerHours(hours, a);
         for (Project p : projects){
-            if (projectContainsActivity(p.getInfo().getID(), a.getInfo().getID())){
+            if (p.getActivities().contains(a)){
                 p.updateHoursWorked();
             }
         }
