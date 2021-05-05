@@ -1,5 +1,7 @@
 package dtu.pma;
 
+import static org.junit.Assert.assertTrue;
+
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,14 +52,31 @@ public class PMA {
     }
 
     public boolean projectContainsActivity(int projectID, int activityID) throws Exception {
-        Project p = getProjectWithID(projectID); 
-        if (p == null) { 
-            throw new NullPointerException("Project with " + projectID + " does not exist"); 
+
+        //assert pre 
+        assert projectID >-1 && activityID > -1;
+        assertTrue(getProjectWithID(projectID) instanceof Project);
+
+        boolean result = false;
+
+        Project p = getProjectWithID(projectID); // 1
+        if (p == null) { // 2
+            throw new NullPointerException("Project with " + projectID + " does not exist"); // 2a
         }
-        if (p.getActivityFromID(activityID) != null) { 
-            return true; 
+        if (p.getActivityFromID(activityID) != null) { // 3
+            result = true; // 3a
         }
-        return false; 
+
+        //assert post
+        //  assert 
+        assert ((result = true 
+                && p.getActivityFromID(activityID) != null) 
+                ||
+                (result == false && (p.getActivityFromID(activityID) == null)));
+
+
+
+        return result; // 4
     }
 
     public List<Worker> getWorkers() {
@@ -68,16 +87,25 @@ public class PMA {
         return this.projects;
     }
 
-    public void addProject(Project p) throws OperationNotAllowedException {
-        int lengthID = Integer.toString(p.getInfo().getID()).length(); 
-        if (containsProjectWithID(p.getInfo().getID())) { 
-            throw new OperationNotAllowedException("Project ID is already used!"); 
-        } else if (containsProjectWithTitle(p.getInfo().getTitle())) { 
-            throw new OperationNotAllowedException("Project title is already used!"); 
-        } else if (lengthID > 4) { 
-            throw new OperationNotAllowedException("Project can not have more than a 4 digit ID"); 
+    public void addProject(Project p) throws OperationNotAllowedException { 
+        //preconditions are mutually exclusive with if statements ( DO NOT DELETE COMMENTS)
+        //  assert containsProjectWithID(p.getInfo().getID()); //if  
+        //  assert containsProjectWithTitle(p.getInfo().getTitle());
+        //  assert Integer.toString(p.getInfo().getID()).length()> 4;
+        assert true;
+
+        int lengthID = Integer.toString(p.getInfo().getID()).length(); // 1
+        if (containsProjectWithID(p.getInfo().getID())) { // 2
+            throw new OperationNotAllowedException("Project ID is already used!"); // 2a
+        } else if (containsProjectWithTitle(p.getInfo().getTitle())) { // 3
+            throw new OperationNotAllowedException("Project title is already used!"); // 3a
+        } else if (lengthID > 4) { // 4
+            throw new OperationNotAllowedException("Project can not have more than a 4 digit ID"); // 4a
         }
-        projects.add(p); 
+        projects.add(p); // 5
+        
+        //assert post
+        assert projects.contains(p);
     }
 
     public void addActivityToProject(Project p, Activity a) throws OperationNotAllowedException {
