@@ -22,24 +22,6 @@ public class Info {
         this.setDescription(description);
     }
 
-<<<<<<< HEAD
-    public boolean isFree(Date startDate, Date endDate) throws Exception{
-        
-        if (endDate.before(startDate)){ 
-            throw new Exception("End Date is before Start Date"); 
-        }
-       
-        Date start = this.getStartDate(); 
-        Date end = this.getEndDate(); 
-        if(start.before(startDate) && end.after(endDate)){ 
-            return false; 
-        }else if(start.after(endDate)){ 
-            return true;    
-        }else if(end.before(startDate)){ 
-            return true; 
-        }
-        return false;   
-=======
     public boolean isFree(Date startDate, Date endDate) throws Exception {
 
         assert true;
@@ -73,28 +55,19 @@ public class Info {
 
 
         return result; // 5
->>>>>>> 1060196db03fc28e8414cf12dbdfa64591068d74
     }
 
     public Info(String title, int ID) {
         this.title = title;
         this.ID = ID;
-<<<<<<< HEAD
-    } 
-=======
     } // For projects
->>>>>>> 1060196db03fc28e8414cf12dbdfa64591068d74
 
     public Info(String title, int ID, Date startDate, Date endDate) {
         this.title = title;
         this.ID = ID;
         this.startDate = startDate;
         this.endDate = endDate;
-<<<<<<< HEAD
-    } 
-=======
     } // For activities
->>>>>>> 1060196db03fc28e8414cf12dbdfa64591068d74
 
     public int getExpectedHours() {
         return expectedHours;

@@ -14,15 +14,12 @@ import dtu.pma.GUI.TablePanels.ShowProjectActivitysTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import dtu.pma.OperationNotAllowedException;
+
 import dtu.pma.Worker;
-import dtu.pma.GUI.GUITools;
-import dtu.pma.GUI.TablePanels.SetProjectLeaderTable;
+
 
 public class ShowProjectActivitysPanel extends JPanel {
 
