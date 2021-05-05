@@ -7,11 +7,12 @@ import dtu.pma.PMA;
 import dtu.pma.GUI.TablePanels.ShowProjectsTable;
 
 public class ShowProjectsPanel extends JPanel{
-    private ShowProjectsTable projectTable;
+    private ShowProjectsTable showProjectsTable;
     public ShowProjectsPanel(PMA pma,ShowProjectsTable projectTable){
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();
-        this.projectTable = projectTable;
+        
+        showProjectsTable = projectTable;
 
         constrain.insets = new Insets(0, 0, 0, 0);
         constrain.weightx = 1;
@@ -24,6 +25,6 @@ public class ShowProjectsPanel extends JPanel{
         
     }
     public ShowProjectsTable getProjectTable(){
-        return projectTable;
+        return showProjectsTable;
     }
 }

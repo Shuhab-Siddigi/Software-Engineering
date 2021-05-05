@@ -16,12 +16,12 @@ public class GUITools {
         constrain.weightx = 0.0;
         constrain.weighty = 0.0;
         constrain.insets = new Insets(0, 0, 0, 0); // Padding
-        constrain.ipadx = 0; // request any extra vertical space
-        constrain.ipady = 0; // request any extra vertical space
+        constrain.ipadx = 0;
+        constrain.ipady = 0;
         constrain.gridwidth = 1;
     }
 
-      // Visual Debuging to show border around panel
+
       public void showBorder(JPanel panel) {
         Border blackline = BorderFactory.createLineBorder(Color.black);
         panel.setBorder(blackline);

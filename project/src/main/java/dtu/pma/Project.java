@@ -16,7 +16,7 @@ public class Project {
     }
 
     public Project(String title, String ID) throws OperationNotAllowedException {
-        // input_check
+        
         
             isAllowedID(ID);
             int IDInt = Integer.parseInt(ID);
@@ -32,7 +32,7 @@ public class Project {
         Pattern p = Pattern.compile(regex);
 
         if (id == null || id == "") {   
-            throw new OperationNotAllowedException ("Invalid input sequence: ID has to be inserted"); // 1a
+            throw new OperationNotAllowedException ("Invalid input sequence: ID has to be inserted"); 
           }
     
         Matcher m = p.matcher(id);
@@ -141,36 +141,36 @@ public class Project {
     }
 
     public void addActivity(Activity activity) throws OperationNotAllowedException {
-        // Creates start and end date for project
+     
         checksDates(activity);
         int lengthID = Integer.toString(activity.getInfo().getID()).length();
 
         if (getActivityFromID(activity.getInfo().getID()) != null) {
             throw new OperationNotAllowedException("Project already contains activity!");
         } else if (activity.getInfo().getEndDate().before(this.info.getStartDate())) {
-            // System.out.println("Date check works");
+           
             throw new OperationNotAllowedException("Activity date is before project start!");
         } else if (lengthID > 4) {
             throw new OperationNotAllowedException("Activity can not have more than a 4 digit ID");
         }
 
-        // Adds activity
+      
         this.activities.add(activity);
     }
 
     public Activity getActivityFromID(int ID) {
-        for (Activity a : activities) {         // 1
-            if (a.getInfo().getID() == ID) {    // 2
-                return a;                       // 2a
+        for (Activity a : activities) {         
+            if (a.getInfo().getID() == ID) {    
+                return a;                       
             }
         }
-        return null;                            // 3
+        return null;                            
     }
 
-    public void removeActivity(Worker worker, Activity activity) throws OperationNotAllowedException {
+    public void removeActivity(Worker projectleader, Activity activity) throws OperationNotAllowedException {
         if (activity == null) {
             throw new OperationNotAllowedException("Activity does not exist!");
-        } else if (worker != getProjectLeader()) {
+        } else if (projectleader != getProjectLeader()) {
             throw new OperationNotAllowedException("Only the project leader can remove activity!");
         }
         activities.remove(activity);
@@ -182,6 +182,8 @@ public class Project {
             throw new OperationNotAllowedException("Activity does not exist!");
         } else if (worker == null) {
             throw new OperationNotAllowedException("Worker does not exist in system");
+         } else if (activity.getWorker(worker.getID()) != null) {
+            throw new OperationNotAllowedException("Worker is already assigned to activity");
         } else if (projectLeader != this.projectLeader) {
             throw new OperationNotAllowedException("You are not the project leader for this project!");
         }
@@ -199,6 +201,7 @@ public class Project {
             throw new OperationNotAllowedException("You are not the project leader for this project!");
         }
         activity.removeWorker(worker);
+        worker.removeActivity(activity);
     }
 
     public void changeStartDateForActivity(Activity activity, Date startDate) throws OperationNotAllowedException {
@@ -207,8 +210,8 @@ public class Project {
         }
         if (startDate.before(this.info.getStartDate())) {
             this.info.setStartDate(startDate);
-        } // Skrevet af Tobias: Ikke sikker på om projekt start skal ændre sig hvis
-          // activity start gør..
+        } 
+          
 
         activity.getInfo().setStartDate(startDate);
     }
@@ -231,5 +234,5 @@ public class Project {
         this.info.setHoursWorked(hoursWorked);
     }
 
-    // Should expected hours be implemented?
+ 
 }

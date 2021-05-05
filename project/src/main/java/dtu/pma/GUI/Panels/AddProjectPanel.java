@@ -20,7 +20,7 @@ public class AddProjectPanel extends JPanel {
 
         Date currentDate = new Date(System.currentTimeMillis());
 
-        // Date currentDate = new Date(System.currentTimeMillis());
+     
         this.projectTree = projectTree;
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();

@@ -34,7 +34,7 @@ public class ProjectSteps {
         this.errorMessage = errorMessage;
     }
 
-    // First scenario
+
     @Given("there is a project with title {string}, ID {int}")
     public void thereIsAProjectWithTitleID(String title, Integer ID) {
         project = new Project(title, ID);
@@ -59,7 +59,6 @@ public class ProjectSteps {
         assertTrue(pma.containsProjectWithID(ID));
     }
 
-    // Second scenario
 
     @Given("the project exist in the system")
     public void theProjectExistInTheSystem() throws OperationNotAllowedException {

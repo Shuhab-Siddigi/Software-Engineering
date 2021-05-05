@@ -48,14 +48,17 @@ public class Worker {
     public void addActivity(Activity a){
         this.Activities.add(a);
     }
+    public void removeActivity(Activity activity) {
+        Activities.removeIf(a -> a.getInfo().equals(activity.getInfo()));
+    }
 
     public Activity getActivitiyByID(int ID) {
-        for (Activity a : Activities) {         // 1
-            if (a.getInfo().getID() == ID) {    // 2
-                return a;                       // 2a
+        for (Activity a : Activities) {         
+            if (a.getInfo().getID() == ID) {    
+                return a;                       
             }
         }
-        return null;                            // 3
+        return null;                            
     }
 
     public void registerHours(int hours, Activity a) throws OperationNotAllowedException {
@@ -65,6 +68,7 @@ public class Worker {
             throw new OperationNotAllowedException("Worker isn't assigned to project");
         }
     }
+
 
 	public Activity getActivitiyByID() {
 		return null;

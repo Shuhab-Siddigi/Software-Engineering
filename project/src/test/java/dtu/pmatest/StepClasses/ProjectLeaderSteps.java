@@ -12,7 +12,7 @@ import dtu.pma.ErrorMessageHolder;
 import dtu.pma.PMA;
 import dtu.pma.Project;
 import dtu.pma.Worker;
-//import pmatest.HelperClasses.WorkerHelper;
+
 
 public class ProjectLeaderSteps {
 
@@ -47,9 +47,6 @@ public class ProjectLeaderSteps {
         } catch (OperationNotAllowedException e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
-
-
-        // Write code here that turns the phrase above into concrete actions
       
     }
 

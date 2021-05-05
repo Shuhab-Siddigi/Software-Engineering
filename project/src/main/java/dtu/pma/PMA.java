@@ -15,12 +15,13 @@ public class PMA {
         if (databaseAdded == false) {
 
             databaseAdded = true;
-            for (Worker w : db.getWorkers()) {
-                workers.add(w);
-            }
             for (Project p : db.getProjects()) {
                 projects.add(p);
             }
+            for (Worker w : db.getWorkers()) {
+                workers.add(w);
+            }
+            
         }
     }
 
@@ -49,14 +50,14 @@ public class PMA {
     }
 
     public boolean projectContainsActivity(int projectID, int activityID) throws Exception {
-        Project p = getProjectWithID(projectID); // 1
-        if (p == null) { // 2
-            throw new NullPointerException("Project with " + projectID + " does not exist"); // 2a
+        Project p = getProjectWithID(projectID); 
+        if (p == null) { 
+            throw new NullPointerException("Project with " + projectID + " does not exist"); 
         }
-        if (p.getActivityFromID(activityID) != null) { // 3
-            return true; // 3a
+        if (p.getActivityFromID(activityID) != null) { 
+            return true; 
         }
-        return false; // 4
+        return false; 
     }
 
     public List<Worker> getWorkers() {
@@ -68,15 +69,15 @@ public class PMA {
     }
 
     public void addProject(Project p) throws OperationNotAllowedException {
-        int lengthID = Integer.toString(p.getInfo().getID()).length(); // 1
-        if (containsProjectWithID(p.getInfo().getID())) { // 2
-            throw new OperationNotAllowedException("Project ID is already used!"); // 2a
-        } else if (containsProjectWithTitle(p.getInfo().getTitle())) { // 3
-            throw new OperationNotAllowedException("Project title is already used!"); // 3a
-        } else if (lengthID > 4) { // 4
-            throw new OperationNotAllowedException("Project can not have more than a 4 digit ID"); // 4a
+        int lengthID = Integer.toString(p.getInfo().getID()).length(); 
+        if (containsProjectWithID(p.getInfo().getID())) { 
+            throw new OperationNotAllowedException("Project ID is already used!"); 
+        } else if (containsProjectWithTitle(p.getInfo().getTitle())) { 
+            throw new OperationNotAllowedException("Project title is already used!"); 
+        } else if (lengthID > 4) { 
+            throw new OperationNotAllowedException("Project can not have more than a 4 digit ID"); 
         }
-        projects.add(p); // 5
+        projects.add(p); 
     }
 
     public void addActivityToProject(Project p, Activity a) throws OperationNotAllowedException {
@@ -86,10 +87,10 @@ public class PMA {
         }
     }
 
-    public void removeProject(Worker worker, Project project) throws OperationNotAllowedException {
+    public void removeProject(Worker projectleader, Project project) throws OperationNotAllowedException {
         if (project == null) {
             throw new OperationNotAllowedException("Project does not exist!");
-        } else if (worker != project.getProjectLeader()) {
+        } else if (projectleader != project.getProjectLeader()) {
             throw new OperationNotAllowedException("Only the project leader can remove project!");
         } else {
             projects.remove(project);

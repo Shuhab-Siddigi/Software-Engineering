@@ -20,7 +20,8 @@ public class RegisterHoursPanel extends JPanel{
 
     private Worker worker;
     private Activity activity;
-    private int selectedRow;
+    private int selectedWorkerRow;
+    private int selectedActivityRow;
     private String workerID;
     private String activityID;
 
@@ -101,11 +102,9 @@ public class RegisterHoursPanel extends JPanel{
             public void valueChanged(ListSelectionEvent e) {
                 ListSelectionModel rowSelectionModel = (ListSelectionModel) e.getSource();
                 if (!rowSelectionModel.isSelectionEmpty()) {
-                    selectedRow = rowSelectionModel.getMinSelectionIndex();
-                    workerID = registerhoursTable.getWorkerTable().getModel().getValueAt(selectedRow, 2).toString();
+                    selectedWorkerRow = rowSelectionModel.getMinSelectionIndex();
+                    workerID = registerhoursTable.getWorkerTable().getModel().getValueAt(selectedWorkerRow, 2).toString();
                     worker = pma.getWorkerWithID(workerID);
-                   
-                    //setWorkerTextField.setText((worker.getID()));
                     registerhoursTable.setActivityModel(worker);
                 }
             }
@@ -115,12 +114,9 @@ public class RegisterHoursPanel extends JPanel{
             public void valueChanged(ListSelectionEvent e) {
                 ListSelectionModel rowSelectionModel = (ListSelectionModel) e.getSource();
                 if (!rowSelectionModel.isSelectionEmpty()) {
-                    selectedRow = rowSelectionModel.getMinSelectionIndex();
-                    activityID = registerhoursTable.getActivityTable().getModel().getValueAt(selectedRow, 1).toString();
-                    
+                    selectedActivityRow = rowSelectionModel.getMinSelectionIndex();
+                    activityID = registerhoursTable.getActivityTable().getModel().getValueAt(selectedActivityRow, 1).toString();
                     activity = worker.getActivitiyByID(Integer.parseInt(activityID));
-                    System.out.println("Worker activity: " + activity.getInfo().getTitle());
-
                 }
             }
         });
@@ -130,10 +126,11 @@ public class RegisterHoursPanel extends JPanel{
             public void mouseClicked(MouseEvent e) {
 
                 try {
-                    System.out.println("Worker: " + worker.getFirstname() + " Activity: " + activity);
+                    
                     worker.registerHours(Integer.parseInt(registersHoursTextField.getText()), activity);
                     JOptionPane.showMessageDialog(submitHoursBtn, "The hours has been added");
-                    System.out.println("Activity added hours: " + activity.getInfo().getHoursWorked());
+                    registerhoursTable.update(pma);
+                    registerhoursTable.setActivityModel(worker);
                 } catch (OperationNotAllowedException e1) {
                     JOptionPane.showMessageDialog(submitHoursBtn, e1.getMessage());
                 }

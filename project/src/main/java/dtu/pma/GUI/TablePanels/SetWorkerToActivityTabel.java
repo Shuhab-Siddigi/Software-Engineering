@@ -8,12 +8,11 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.util.List;
 import dtu.pma.Activity;
-import dtu.pma.OperationNotAllowedException;
 import dtu.pma.PMA;
 import dtu.pma.Project;
 import dtu.pma.Worker;
 
-public class ShowAvailableWorkersTable extends JPanel {
+public class SetWorkerToActivityTabel extends JPanel {
 
     private DefaultTableModel projectModel = new DefaultTableModel();
     private DefaultTableModel activityModel = new DefaultTableModel();
@@ -24,7 +23,7 @@ public class ShowAvailableWorkersTable extends JPanel {
     private JTable activityTable = new JTable();
     private JTable workerTable = new JTable();
 
-    public ShowAvailableWorkersTable(PMA pma, int width, int height) {
+    public SetWorkerToActivityTabel(PMA pma, int width, int height) {
 
         setModels(pma);
 
@@ -149,5 +148,8 @@ public class ShowAvailableWorkersTable extends JPanel {
 
     public JTable getActivityTable() {
         return activityTable;
+    }
+    public JTable getWorkerTable(){
+        return workerTable;
     }
 }
