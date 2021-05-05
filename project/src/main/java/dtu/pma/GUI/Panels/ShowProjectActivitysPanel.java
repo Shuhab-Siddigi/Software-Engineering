@@ -185,7 +185,7 @@ public class ShowProjectActivitysPanel extends JPanel {
                 if (a == JOptionPane.YES_OPTION) {
                     if (project.getProjectLeader() != null) {
                         projectLeaderID2 = JOptionPane.showInputDialog(removeProjectBtn, "Enter Project Leader ID ");
-                        projectLeader2 = pma.getWorkerWithID(projectLeaderID3);
+                        projectLeader2 = pma.getWorkerWithID(projectLeaderID2);
                     }
                     try {
                         project.removeActivity(projectLeader2, activity);
