@@ -4,15 +4,10 @@ import java.sql.Date;
 
 import dtu.pma.Activity;
 import dtu.pma.OperationNotAllowedException;
-import dtu.pma.PMA;
 
 public class ActivityHelper {
     private Activity activity;
-    private PMA pma;
-
-    public ActivityHelper(PMA pma) {
-        this.pma = pma;
-    }
+  
 
     public Activity getActivity() throws OperationNotAllowedException {
         if (activity == null){

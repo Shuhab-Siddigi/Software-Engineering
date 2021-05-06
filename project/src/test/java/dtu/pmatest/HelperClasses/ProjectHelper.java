@@ -1,20 +1,12 @@
 package dtu.pmatest.HelperClasses;
 
-import dtu.pma.PMA;
 import dtu.pma.Project;
 
 public class ProjectHelper {
     
 
     private Project project;
-    private PMA pma;
-
-    public ProjectHelper(PMA pma) {
-        this.pma = pma;
-    }
-
-
-
+   
     public Project getProject() {
         if (project == null) {
             project = exampleProject();
@@ -25,7 +17,6 @@ public class ProjectHelper {
     
     private Project exampleProject() {
         Project project = new Project("Extreme Programming",0001);
-        
         return project;
     }
 
