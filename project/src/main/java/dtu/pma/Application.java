@@ -17,7 +17,7 @@ public class Application {
     MainPanel mainpanel = new MainPanel(pma,frame);
     frame.getContentPane().add(mainpanel, BorderLayout.CENTER);
 
-    //frame.add(mainpanel);
+   
 
     frame.setVisible(true);
 

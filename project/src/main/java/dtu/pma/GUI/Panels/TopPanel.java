@@ -12,9 +12,8 @@ public class TopPanel extends JPanel {
     private JButton addActivityBtn;
     private JButton setIDBtn;
     private JButton showProjectsBtn;
-    private JButton showAvailableWorkersBtn;
-    private JButton addWorkerToActivity;
-    private JButton showProjectActivities;
+    private JButton setWorkerToActivityBtn;
+    private JButton showProjectActivitiesBtn;
     private JButton generateReportBtn;
     private JButton setProjectLeaderBtn;
 
@@ -25,71 +24,74 @@ public class TopPanel extends JPanel {
         GridBagConstraints constrain = new GridBagConstraints();
 
         homeBtn = new JButton();
+        registerHoursBtn = new JButton();
+        addProjectBtn = new JButton();
+        showProjectsBtn = new JButton();
+        addActivityBtn = new JButton();
+        showProjectActivitiesBtn = new JButton();
+        setWorkerToActivityBtn = new JButton();
+        setProjectLeaderBtn = new JButton();
+        generateReportBtn = new JButton();
+        
         homeBtn.setText("Home");
-        constrain.fill = GridBagConstraints.HORIZONTAL;
+        registerHoursBtn.setText("Register Hours");
+
+        addProjectBtn.setText("1. Add Project");
+        showProjectsBtn.setText("Show Projects");
+        
+        addActivityBtn.setText("2. Add Activity");
+        showProjectActivitiesBtn.setText("Project / Activities / Worker");
+        
+        setProjectLeaderBtn.setText("3. Set Project Leader");
+       
+
+        setWorkerToActivityBtn.setText("4. Add Worker to Activity");
+        generateReportBtn.setText("5. Generate Report");
+        
+
+        constrain.fill = GridBagConstraints.BOTH;
         constrain.anchor = GridBagConstraints.CENTER;
-        constrain.insets = new Insets(0, 10, 0, 0);
+        constrain.insets = new Insets(0, 0, 0, 0);
         constrain.weightx = 0.5;
         constrain.gridx = 0;
         constrain.gridy = 0;
+        constrain.gridheight = 2;
         this.add(homeBtn, constrain);
 
-        registerHoursBtn = new JButton();
-        registerHoursBtn.setText("Register Hours");
-        constrain.gridx = 0;
-        constrain.gridy = 1;
-        constrain.gridheight = 1;
-        this.add(registerHoursBtn, constrain);
-
-        addProjectBtn = new JButton();
-        addProjectBtn.setText("1. Add Project");
         constrain.gridx = 1;
         constrain.gridy = 0;
         constrain.gridheight = 1;
         this.add(addProjectBtn, constrain);
 
-        showProjectsBtn = new JButton();
-        showProjectsBtn.setText("2. Show Projects");
         constrain.gridx = 1;
         constrain.gridy = 1;
         this.add(showProjectsBtn, constrain);
 
-        addActivityBtn = new JButton();
-        addActivityBtn.setText("3. Add Activity");
         constrain.gridx = 2;
         constrain.gridy = 0;
         this.add(addActivityBtn, constrain);
 
-        showProjectActivities = new JButton();
-        showProjectActivities.setText("4. Show Project Activities");
         constrain.gridx = 2;
         constrain.gridy = 1;
-        this.add(showProjectActivities, constrain);
+        this.add(showProjectActivitiesBtn, constrain);
 
-        addWorkerToActivity = new JButton();
-        addWorkerToActivity.setText("5. Add Worker to Activity");
         constrain.gridx = 3;
         constrain.gridy = 0;
-        this.add(addWorkerToActivity, constrain);
-
-        showAvailableWorkersBtn = new JButton();
-        showAvailableWorkersBtn.setText("6. Show Available Workers");
-        constrain.gridx = 3;
-        constrain.gridy = 1;
-        this.add(showAvailableWorkersBtn, constrain);
-
-        setProjectLeaderBtn = new JButton();
-        setProjectLeaderBtn.setText("7. Set Project Leader");
-        constrain.gridx = 4;
-        constrain.gridy = 0;
-        constrain.insets = new Insets(0, 10, 0, 10);
         this.add(setProjectLeaderBtn, constrain);
 
-        generateReportBtn = new JButton();
-        generateReportBtn.setText("8. Generate Report");
+        constrain.gridx = 3;
+        constrain.gridy = 1;
+        this.add(registerHoursBtn, constrain);
+
+        constrain.gridx = 4;
+        constrain.gridy = 0;
+        this.add(setWorkerToActivityBtn, constrain);
+
         constrain.gridx = 4;
         constrain.gridy = 1;
         this.add(generateReportBtn, constrain);
+
+   
     }
 
     public JButton getHomeBtn() {
@@ -112,16 +114,13 @@ public class TopPanel extends JPanel {
         return showProjectsBtn;
     };
 
-    public JButton getShowAvailableWorkersBtn() {
-        return showAvailableWorkersBtn;
-    };
 
-    public JButton getAddWorkerToActivity() {
-        return addWorkerToActivity;
+    public JButton getSetWorkerToActivityBtn() {
+        return setWorkerToActivityBtn;
     };
 
     public JButton getShowProjectActivities() {
-        return showProjectActivities;
+        return showProjectActivitiesBtn;
     };
 
     public JButton getGenerateReportBtn() {

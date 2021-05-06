@@ -20,21 +20,19 @@ public class RegisterhoursTable extends JPanel{
     private JTable workerTable = new JTable();
     private JTable activityTable = new JTable();
 
-    public RegisterhoursTable(PMA pma, int width, int height){
+    public RegisterhoursTable(PMA pma){
        
         TableRowSorter<DefaultTableModel> workerSorter = new TableRowSorter<DefaultTableModel>(workerModel);
         workerTable.setRowSorter(workerSorter);
+        JScrollPane workerScrollPane = new JScrollPane(workerTable);
 
         TableRowSorter<DefaultTableModel> acitivtySorter = new TableRowSorter<DefaultTableModel>(activityModel);
         activityTable.setRowSorter(acitivtySorter);
 
         setModels(pma);
 
-        JScrollPane workerScrollPane = new JScrollPane(workerTable);
         JScrollPane activityScrollPane = new JScrollPane(activityTable);
 
-        workerTable.setPreferredSize(new Dimension(width / 2, height));
-        activityTable.setPreferredSize(new Dimension(width / 2, height));
 
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();
@@ -42,10 +40,10 @@ public class RegisterhoursTable extends JPanel{
         constrain.fill = GridBagConstraints.BOTH;
         constrain.anchor = GridBagConstraints.CENTER;
         constrain.insets = new Insets(0, 0, 0, 0);
-        constrain.weightx = 0.5;
-        constrain.weighty = 1;
         constrain.gridx = 0;
         constrain.gridy = 0;
+        constrain.weightx = 1;
+        constrain.weighty = 1;
         this.add(workerScrollPane, constrain);
         
         constrain.gridx = 1;
@@ -62,7 +60,10 @@ public class RegisterhoursTable extends JPanel{
 
         activityModel.addColumn("Title");
         activityModel.addColumn("ID");
+        activityModel.addColumn("Hours Worked");
+        activityModel.addColumn("Expected Hours");
 
+        
         if(pma.getWorkers() != null){
             for (Worker w : pma.getWorkers()) {
                 workerModel.addRow(new Object[] { 
@@ -90,9 +91,10 @@ public class RegisterhoursTable extends JPanel{
                     w.getLastname(), 
                     w.getID() });
             }
+        workerTable.setModel(workerModel);
         }
 
-        workerTable.setModel(workerModel);
+        
 
     }
 
@@ -105,6 +107,8 @@ public class RegisterhoursTable extends JPanel{
                 activityModel.addRow(new Object[] { 
                     a.getInfo().getTitle(), 
                     a.getInfo().getID(),
+                    a.getInfo().getHoursWorked(),
+                    a.getInfo().getExpectedHours(),
                 });
             }
         activityTable.setModel(activityModel);

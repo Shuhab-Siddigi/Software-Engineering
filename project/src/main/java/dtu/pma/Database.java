@@ -10,7 +10,7 @@ public class Database {
     private int startYear = 2016;
     private int endYear = 2025;
     private Random randomGenerator = new Random();
-
+    private List<Project> projects = new ArrayList<>();
     private Date randomStartDate() {
         long start = Timestamp.valueOf(startYear + 1 + "-1-1 0:0:0").getTime();
         long end = Timestamp.valueOf(endYear + "-1-1 0:0:0").getTime();
@@ -113,23 +113,24 @@ public class Database {
         workers.add(new Worker("Aiden", "Faulkner", "AVAA"));
         workers.add(new Worker("Maisy", "Hudson", "AWAA")); // 72
 
-        for (Worker worker : workers) {
-            Date activityStartDate = randomStartDate();
-            Date activityEndDate = randomEndDate(activityStartDate);
-           
-            String randomTitle = workers.get(randomNumber(0,workers.size()-1)).getFirstname();
-            Activity activity = new Activity(randomTitle, 0, activityStartDate, activityEndDate);
-           
-            worker.addActivity(activity);
+        Worker worker;
+        for (Project project : projects) {
+
+            worker = workers.get(randomNumber(0, workers.size()));
+            project.addWorkerToActivity(project.getActivities().get(0),worker, null);    
 
         }
+        
+
+
+        
         
         return workers;
     }
 
     public List<Project> getProjects() throws OperationNotAllowedException {
 
-        List<Project> projects = new ArrayList<>();
+        
 
         projects.add(new Project("Shark Platinum", 0002));
         projects.add(new Project("Shark Copper", 0003));

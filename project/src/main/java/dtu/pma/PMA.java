@@ -1,6 +1,5 @@
 package dtu.pma;
 
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.sql.Date;
@@ -18,12 +17,13 @@ public class PMA {
         if (databaseAdded == false) {
 
             databaseAdded = true;
-            for (Worker w : db.getWorkers()) {
-                workers.add(w);
-            }
             for (Project p : db.getProjects()) {
                 projects.add(p);
             }
+            for (Worker w : db.getWorkers()) {
+                workers.add(w);
+            }
+            
         }
     }
 
@@ -115,10 +115,10 @@ public class PMA {
         }
     }
 
-    public void removeProject(Worker worker, Project project) throws OperationNotAllowedException {
+    public void removeProject(Worker projectleader, Project project) throws OperationNotAllowedException {
         if (project == null) {
             throw new OperationNotAllowedException("Project does not exist!");
-        } else if (worker != project.getProjectLeader()) {
+        } else if (projectleader != project.getProjectLeader()) {
             throw new OperationNotAllowedException("Only the project leader can remove project!");
         } else {
             projects.remove(project);

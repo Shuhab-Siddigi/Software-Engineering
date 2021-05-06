@@ -21,7 +21,7 @@ public class Activity {
 
         String regex = "^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$";
 
-        Pattern p = Pattern.compile(date);
+        Pattern p = Pattern.compile(regex);
 
         if (date == null || date == "") {
             throw new OperationNotAllowedException("Invalid input sequence: Date has to be inserted");
@@ -57,7 +57,7 @@ public class Activity {
         return text;
     }
 
-    // er hurtigt tilføjet da den skulle bruges i generate_report.feature
+
     public void addWorker(Worker worker) {
         this.workers.add(worker);
     }
