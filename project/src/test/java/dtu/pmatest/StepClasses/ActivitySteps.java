@@ -301,7 +301,7 @@ public class ActivitySteps {
     }
     
     @When("the worker registers {int} work hours on activity")
-    public void theWorkerRegistersWorkHoursOnActivity(Integer hours) throws Exception {
+    public void theWorkerRegistersWorkHoursOnActivity(Integer hours) throws OperationNotAllowedException {
         worker = pma.getWorkerWithID("AAAA");
         try {
             pma.addWorkHours(worker, activity, hours);

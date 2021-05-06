@@ -132,7 +132,7 @@ public class SetWorkerToActivityTabel extends JPanel {
             );
         if(workers != null){
            for (Worker worker : workers) {
-            workerModel.addRow(new Object[] { worker.getFirstname(), worker.getFirstname(), worker.getID(), });       
+            workerModel.addRow(new Object[] { worker.getFirstname(), worker.getLastname(), worker.getID(), });       
            } 
         }
                

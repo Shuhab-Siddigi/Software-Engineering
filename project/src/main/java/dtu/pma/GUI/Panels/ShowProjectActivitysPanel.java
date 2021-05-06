@@ -1,13 +1,16 @@
 package dtu.pma.GUI.Panels;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 import java.awt.*;
 
 import dtu.pma.Activity;
+import dtu.pma.OperationNotAllowedException;
 import dtu.pma.PMA;
 import dtu.pma.Project;
 import dtu.pma.GUI.TablePanels.ShowProjectActivitysTable;
@@ -17,7 +20,8 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+import java.sql.Date;
+import javax.swing.Box;
 import dtu.pma.Worker;
 
 
@@ -35,6 +39,9 @@ public class ShowProjectActivitysPanel extends JPanel {
     private JButton removeProjectBtn;
     private JButton removeActivityBtn;
     private JButton removeWorkerBtn;
+    private JButton editActvityBtn; 
+    
+    
 
     private JTable projectTable;
     private JTable activityTable;
@@ -49,8 +56,11 @@ public class ShowProjectActivitysPanel extends JPanel {
     private String projectLeaderID2;
     private Worker projectLeader3;
     private String projectLeaderID3;
+    private String startDate;
+    private String endDate;
 
     public ShowProjectActivitysPanel(PMA pma, ShowProjectActivitysTable showProjectActivitysTable) {
+           
 
         setLayout(new GridBagLayout());
         GridBagConstraints constrain = new GridBagConstraints();
@@ -63,6 +73,9 @@ public class ShowProjectActivitysPanel extends JPanel {
 
         removeWorkerBtn = new JButton();
         removeWorkerBtn.setText("Remove Worker from Activity");
+
+        editActvityBtn = new JButton();
+        editActvityBtn.setText("Edit activity dates");
 
         constrain.insets = new Insets(0, 0, 0, 0);
         constrain.fill = GridBagConstraints.BOTH;
@@ -80,13 +93,18 @@ public class ShowProjectActivitysPanel extends JPanel {
         constrain.gridy = 1;
         this.add(removeWorkerBtn, constrain);
 
+        constrain.gridx = 3;
+        constrain.gridy = 1;
+        this.add(editActvityBtn, constrain);
+
+
         constrain.insets = new Insets(0, 0, 0, 0);
         constrain.fill = GridBagConstraints.BOTH;
         constrain.weightx = 1;
         constrain.weighty = 0.9;
         constrain.gridx = 0;
         constrain.gridy = 0;
-        constrain.gridwidth = 3;
+        constrain.gridwidth = 4;
 
         this.add(showProjectActivitysTable, constrain);
 
@@ -151,24 +169,24 @@ public class ShowProjectActivitysPanel extends JPanel {
         removeProjectBtn.addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(MouseEvent e) {
-
-                int a = JOptionPane.showConfirmDialog(removeProjectBtn, "Are you sure?");
-
-                if (a == JOptionPane.YES_OPTION) {
-                    try {
-                        if (project.getProjectLeader() != null) {
-                            projectLeaderID1 = JOptionPane.showInputDialog(removeProjectBtn,
-                                    "Enter Project Leader ID ");
-                            projectLeader1 = pma.getWorkerWithID(projectLeaderID1);
+                if(project == null){
+                    JOptionPane.showMessageDialog(editActvityBtn, "No project chosen");
+                }else {
+                    int a = JOptionPane.showConfirmDialog(removeProjectBtn, "Are you sure?");
+                    if (a == JOptionPane.YES_OPTION) {
+                        try {
+                            if (project.getProjectLeader() != null) {
+                                projectLeaderID1 = JOptionPane.showInputDialog(removeProjectBtn,
+                                        "Enter Project Leader ID ");
+                                projectLeader1 = pma.getWorkerWithID(projectLeaderID1);
+                            }
+                            pma.removeProject(projectLeader1, project);
+                            JOptionPane.showMessageDialog(removeProjectBtn, "Project Removed");
+                            showProjectActivitysTable.update(pma);
+                        } catch (Exception e1) {
+                            JOptionPane.showMessageDialog(removeProjectBtn, e1.getMessage());
                         }
-                        pma.removeProject(projectLeader1, project);
-                        JOptionPane.showMessageDialog(removeProjectBtn, "Project Removed");
-                        showProjectActivitysTable.update(pma);
-                    } catch (Exception e1) {
-                        JOptionPane.showMessageDialog(removeProjectBtn, e1.getMessage());
                     }
-                } else {
-                    JOptionPane.showMessageDialog(removeWorkerBtn, "Wuss");
                 }
             }
         });
@@ -176,51 +194,101 @@ public class ShowProjectActivitysPanel extends JPanel {
         removeActivityBtn.addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(MouseEvent e) {
+                if(activity == null){
+                    JOptionPane.showMessageDialog(editActvityBtn, "No activity chosen");
+                }else {
+                    int a = JOptionPane.showConfirmDialog(removeActivityBtn, "Are you sure?");
 
-                int a = JOptionPane.showConfirmDialog(removeActivityBtn, "Are you sure?");
-
-                if (a == JOptionPane.YES_OPTION) {
-                    if (project.getProjectLeader() != null) {
-                        projectLeaderID2 = JOptionPane.showInputDialog(removeProjectBtn, "Enter Project Leader ID ");
-                        projectLeader2 = pma.getWorkerWithID(projectLeaderID2);
+                    if (a == JOptionPane.YES_OPTION) {
+                        if (project.getProjectLeader() != null) {
+                            projectLeaderID2 = JOptionPane.showInputDialog(removeProjectBtn, "Enter Project Leader ID ");
+                            projectLeader2 = pma.getWorkerWithID(projectLeaderID2);
+                        }
+                        try {
+                            project.removeActivity(projectLeader2, activity);
+                            JOptionPane.showMessageDialog(removeProjectBtn, "Activ Removed");
+                            showProjectActivitysTable.update(pma);
+                        } catch (Exception e1) {
+                            JOptionPane.showMessageDialog(removeProjectBtn, e1.getMessage());
+                        }
                     }
-                    try {
-                        project.removeActivity(projectLeader2, activity);
-                        JOptionPane.showMessageDialog(removeProjectBtn, "Activ Removed");
-                        showProjectActivitysTable.update(pma);
-                    } catch (Exception e1) {
-                        JOptionPane.showMessageDialog(removeProjectBtn, e1.getMessage());
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(removeWorkerBtn, "Wuss");
                 }
-
             }
         });
 
         removeWorkerBtn.addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(MouseEvent e) {
-                int a = JOptionPane.showConfirmDialog(removeWorkerBtn, "Are you sure?");
-
-                if (a == JOptionPane.YES_OPTION) {
-                    if (project.getProjectLeader() != null) {
-                        projectLeaderID3 = JOptionPane.showInputDialog(removeProjectBtn, "Enter Project Leader ID ");
-                        projectLeader3 = pma.getWorkerWithID(projectLeaderID3);
+                if(worker == null){
+                    JOptionPane.showMessageDialog(editActvityBtn, "No worker chosen");
+                }else {
+                    int a = JOptionPane.showConfirmDialog(removeWorkerBtn, "Are you sure?");
+                    if (a == JOptionPane.YES_OPTION) {
+                        if (project.getProjectLeader() != null) {
+                            projectLeaderID3 = JOptionPane.showInputDialog(removeProjectBtn, "Enter Project Leader ID ");
+                            projectLeader3 = pma.getWorkerWithID(projectLeaderID3);
+                        }
+                        try {
+                            project.removeWorkerFromActivity(activity, worker, projectLeader3);
+                            JOptionPane.showMessageDialog(removeProjectBtn, "Worker Removed");
+                            showProjectActivitysTable.update(pma);
+                        } catch (Exception e1) {
+                            JOptionPane.showMessageDialog(removeProjectBtn, e1.getMessage());
+                        }
                     }
-                    try {
-                        project.removeWorkerFromActivity(activity, worker, projectLeader3);
-                        JOptionPane.showMessageDialog(removeProjectBtn, "Worker Removed");
-                        showProjectActivitysTable.update(pma);
-                    } catch (Exception e1) {
-                        JOptionPane.showMessageDialog(removeProjectBtn, e1.getMessage());
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(removeWorkerBtn, "Wuss");
                 }
+                
             }
         });
 
+        
+        editActvityBtn.addMouseListener(new MouseAdapter() {
+        
+            public void mouseClicked(MouseEvent e) {
+                if(activity == null){
+                    JOptionPane.showMessageDialog(editActvityBtn, "No activity chosen");
+                }else {
+                    changeDateInputDialog();
+                    System.out.println("Dates: " + startDate + " " + endDate);
+                    if(activity != null){
+                        try {
+                            System.out.println("Project: " + project.getInfo().getTitle() + " Activity: " + activity.getInfo().getTitle());
+                            Date start = Date.valueOf(startDate);
+                            Date end = Date.valueOf(endDate);
+                           
+                            pma.changeStartDateActivity(project, activity, start);
+                            pma.changeEndDateActivity(project, activity, end);
+                            showProjectActivitysTable.update(pma);
+                            JOptionPane.showMessageDialog(editActvityBtn, "Dates changed! " + start + "\n" + end);        
+                            
+                        } catch (OperationNotAllowedException e1) {
+                            // TODO Auto-generated catch block
+                            JOptionPane.showMessageDialog(editActvityBtn, e1.getMessage());
+                        }
+                    } 
+                }
+                
+            }
+        });
+    }
+    public void changeDateInputDialog() {
+        JTextField xField = new JTextField(5);
+        JTextField yField = new JTextField(5);
+    
+        JPanel myPanel = new JPanel();
+        myPanel.add(new JLabel("Start Date:"));
+        myPanel.add(xField);
+        myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+        myPanel.add(new JLabel("End Date:"));
+        myPanel.add(yField);
+    
+        int result = JOptionPane.showConfirmDialog(null, myPanel,
+            "Please Enter X and Y Values", JOptionPane.OK_CANCEL_OPTION);
+        if (result == JOptionPane.OK_OPTION) {
+          startDate = xField.getText();
+          endDate =  yField.getText();
+        }
+    
     }
 
 }

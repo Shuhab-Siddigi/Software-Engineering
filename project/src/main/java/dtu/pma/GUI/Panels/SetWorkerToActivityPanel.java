@@ -147,8 +147,8 @@ public class SetWorkerToActivityPanel extends JPanel{
 
                     selectedWorkerRow = rowSelectionModel.getMinSelectionIndex();
                     workerID = setWorkerToActivityTabel.getWorkerTable().getModel().getValueAt(selectedWorkerRow, 2).toString();
-                    
                     worker = pma.getWorkerWithID(workerID);
+                    System.out.println("worker: " + worker.getFirstname());
                 }
             }
         });
@@ -160,8 +160,8 @@ public class SetWorkerToActivityPanel extends JPanel{
             public void mouseClicked(MouseEvent e) {
 
                 try {
-                  ;
                     project.addWorkerToActivity(activity, worker, pma.getWorkerWithID(setProjectLeaderTextField.getText()));
+                    System.out.println("Activity: " + activity.getInfo().getTitle() + " worker: " + worker.getFirstname());
                     JOptionPane.showMessageDialog(setWorkerToActivityBtn, "Worker added to activity");
                 } catch (Exception e1) {
                     JOptionPane.showMessageDialog(setWorkerToActivityBtn, e1.getMessage());

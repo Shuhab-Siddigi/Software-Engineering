@@ -226,8 +226,6 @@ public class Project {
         if (startDate.before(this.info.getStartDate())) {
             this.info.setStartDate(startDate);
         } 
-          
-
         activity.getInfo().setStartDate(startDate);
     }
 
@@ -236,6 +234,8 @@ public class Project {
             throw new OperationNotAllowedException("Cannot change end date to before project starts!");
         }
         if (endDate.after(this.info.getEndDate())) {
+            this.info.setEndDate(endDate);
+        } else if (activities.size() == 1){
             this.info.setEndDate(endDate);
         }
         activity.getInfo().setEndDate(endDate);

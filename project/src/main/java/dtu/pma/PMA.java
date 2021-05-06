@@ -196,7 +196,7 @@ public class PMA {
         project.changeEndDateForActivity(activity, endDate);
     }
     
-    public void addWorkHours (Worker w, Activity a, int hours) throws Exception{
+    public void addWorkHours (Worker w, Activity a, int hours) throws OperationNotAllowedException{
         w.registerHours(hours, a);
         for (Project p : projects){
             if (p.getActivities().contains(a)){

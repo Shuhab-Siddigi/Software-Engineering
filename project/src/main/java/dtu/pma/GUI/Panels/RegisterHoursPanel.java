@@ -126,9 +126,12 @@ public class RegisterHoursPanel extends JPanel{
             public void mouseClicked(MouseEvent e) {
 
                 try {
+                    pma.addWorkHours(worker, activity, Integer.parseInt(registersHoursTextField.getText()));
                     
-                    worker.registerHours(Integer.parseInt(registersHoursTextField.getText()), activity);
+                    //worker.registerHours(Integer.parseInt(registersHoursTextField.getText()), activity);
                     JOptionPane.showMessageDialog(submitHoursBtn, "The hours has been added");
+                    System.out.println("Added hours to activity: " + activity.getInfo().getTitle());
+                    System.out.println("Worker to add hours: " + worker.getFirstname());
                     registerhoursTable.update(pma);
                     registerhoursTable.setActivityModel(worker);
                 } catch (OperationNotAllowedException e1) {
