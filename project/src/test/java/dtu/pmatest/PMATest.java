@@ -14,12 +14,12 @@ For example, the class name CucumberTests (Test with an s) will be ignored by Ma
 */
 
 @RunWith(Cucumber.class)
-@CucumberOptions(plugin="summary"
-		 ,features={"features"}
-		 ,publish= false
-	     ,snippets = SnippetType.CAMELCASE
-	     ,monochrome = true
-		 )
-		 
+@CucumberOptions(
+		features="features",
+		plugin={ "summary","html:target/report.html"},
+		publish= false,
+	    snippets = SnippetType.CAMELCASE,
+	    monochrome = true
+		 ) 
 public class PMATest {
 }
