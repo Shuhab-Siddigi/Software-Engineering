@@ -44,7 +44,7 @@ public class AddActivityPanel extends JPanel {
 
         JLabel setIDLabel = new JLabel();
         setIDLabel.setText("ID:");
-        JTextField setIDTextField = new JTextField("Set ID :");
+        JTextField setIDTextField = new JTextField("Set ID:");
         setIDLabel.setFont(new Font("Serif", Font.BOLD, 20));
 
         JLabel setStartDateLabel = new JLabel();
@@ -190,27 +190,37 @@ public class AddActivityPanel extends JPanel {
         addActivityBtn.addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(MouseEvent e) {
-                try {
-                    String title = settitleTextField.getText();
-                    int ID = Integer.parseInt(setIDTextField.getText());
-                    Date startDate = Date.valueOf(setStartDateTextField.getText());
-                    Date endDate = Date.valueOf(setEndDateTextField.getText());
-
-                    activity = new Activity(title, ID, startDate, endDate);
-                    String Description = setDescriptionTextField.getText();
-                    activity.getInfo().setDescription(Description);
+                if(project == null ){
+                    JOptionPane.showMessageDialog(addActivityBtn, "Please choose a project");
+                } else if (settitleTextField.getText().isEmpty() || settitleTextField.getText().equals("Set Title:") ) {
+                    JOptionPane.showMessageDialog(addActivityBtn , "Please enter a title");
+                } else if (setIDTextField.getText().isEmpty() || setIDTextField.getText().equals("Set ID:")){
+                    JOptionPane.showMessageDialog(addActivityBtn, "Please enter an ID");
+                } 
+                else{
+                    try {
+                        String title = settitleTextField.getText();
+                        int ID = Integer.parseInt(setIDTextField.getText());
+                        Date startDate = Date.valueOf(setStartDateTextField.getText());
+                        Date endDate = Date.valueOf(setEndDateTextField.getText());
+    
+                        activity = new Activity(title, ID, startDate, endDate);
+                        String Description = setDescriptionTextField.getText();
+                        activity.getInfo().setDescription(Description);
+                    
+                    } catch (Exception e1) {
+                        JOptionPane.showMessageDialog(addActivityBtn, e1.getMessage());
+                    }
+                    try {
+                        project.addActivity(activity);
+                        addActivityTable.addActivity(activity);
+                        JOptionPane.showMessageDialog(addActivityBtn,"Activity Added");
+                    } catch (OperationNotAllowedException e1) {
+                        JOptionPane.showMessageDialog(addActivityBtn, e1.getMessage());
+                        e1.printStackTrace();
+                    }
+                }
                 
-                } catch (Exception e1) {
-                    JOptionPane.showMessageDialog(addActivityBtn, e1.getMessage());
-                }
-                try {
-                    project.addActivity(activity);
-                    addActivityTable.addActivity(activity);
-                    JOptionPane.showMessageDialog(addActivityBtn,"Activity Added");
-                } catch (OperationNotAllowedException e1) {
-                    JOptionPane.showMessageDialog(addActivityBtn, e1.getMessage());
-                    e1.printStackTrace();
-                }
             }
 
         });

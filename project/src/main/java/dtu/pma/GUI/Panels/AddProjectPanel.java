@@ -32,7 +32,7 @@ public class AddProjectPanel extends JPanel {
 
         JLabel setIDLabel = new JLabel();
         setIDLabel.setText("ID:");
-        JTextField setIDTextField = new JTextField("Set ID :");
+        JTextField setIDTextField = new JTextField("Set ID:");
         setIDLabel.setFont(new Font("Serif", Font.BOLD, 20));
 
         JLabel setStartDateLabel = new JLabel();
@@ -187,26 +187,32 @@ public class AddProjectPanel extends JPanel {
         addProjectBtn.addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(MouseEvent e) {
-
-                try {
-                    Project p = new Project(settitleTextField.getText(), Integer.parseInt(setIDTextField.getText()));
-                    if(p.isAllowedDate(setStartDateTextField.getText())){
-                    p.getInfo().setStartDate(Date.valueOf(setStartDateTextField.getText()));
+                if(settitleTextField.getText().isEmpty() || settitleTextField.getText().equals("Set Title:")){
+                    JOptionPane.showMessageDialog(addProjectBtn, "Please enter a title");
+                } else if (setIDTextField.getText().isEmpty() || setIDTextField.getText().equals("Set ID:")) {
+                    JOptionPane.showMessageDialog(addProjectBtn, "Please enter an ID");
+                } else{
+                    try {
+                        Project p = new Project(settitleTextField.getText(), Integer.parseInt(setIDTextField.getText()));
+                        if(p.isAllowedDate(setStartDateTextField.getText())){
+                        p.getInfo().setStartDate(Date.valueOf(setStartDateTextField.getText()));
+                        }
+                        if(p.isAllowedDate(setEndDateTextField.getText())){
+                        p.getInfo().setEndDate(Date.valueOf(setEndDateTextField.getText()));
+                        }
+                        p.getInfo().setDescription(setDescriptionTextField.getText());
+                        if (setProjectLeaderTextField.getText() != ""
+                                || setProjectLeaderTextField.getText() != "Set Project Leader") {
+                            p.setProjectLeader(pma.getWorkerWithID(setProjectLeaderTextField.getText()));
+                        }
+                        JOptionPane.showMessageDialog(addProjectBtn, "The Project was added");
+                        pma.addProject(p);
+                        projectTree.AddProjectToTree(p);
+                    } catch (OperationNotAllowedException e1) {
+                        JOptionPane.showMessageDialog(addProjectBtn, e1.getMessage());
                     }
-                    if(p.isAllowedDate(setEndDateTextField.getText())){
-                    p.getInfo().setEndDate(Date.valueOf(setEndDateTextField.getText()));
-                    }
-                    p.getInfo().setDescription(setDescriptionTextField.getText());
-                    if (setProjectLeaderTextField.getText() != ""
-                            || setProjectLeaderTextField.getText() != "Set Project Leader") {
-                        p.setProjectLeader(pma.getWorkerWithID(setProjectLeaderTextField.getText()));
-                    }
-                    JOptionPane.showMessageDialog(addProjectBtn, "The Project was added");
-                    pma.addProject(p);
-                    projectTree.AddProjectToTree(p);
-                } catch (OperationNotAllowedException e1) {
-                    JOptionPane.showMessageDialog(addProjectBtn, e1.getMessage());
                 }
+                
             }
         });
 

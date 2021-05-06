@@ -124,19 +124,26 @@ public class RegisterHoursPanel extends JPanel{
         submitHoursBtn.addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(MouseEvent e) {
-
-                try {
-                    pma.addWorkHours(worker, activity, Integer.parseInt(registersHoursTextField.getText()));
-                    
-                    //worker.registerHours(Integer.parseInt(registersHoursTextField.getText()), activity);
-                    JOptionPane.showMessageDialog(submitHoursBtn, "The hours has been added");
-                    System.out.println("Added hours to activity: " + activity.getInfo().getTitle());
-                    System.out.println("Worker to add hours: " + worker.getFirstname());
-                    registerhoursTable.update(pma);
-                    registerhoursTable.setActivityModel(worker);
-                } catch (OperationNotAllowedException e1) {
-                    JOptionPane.showMessageDialog(submitHoursBtn, e1.getMessage());
+                if (worker == null || activity == null){
+                    JOptionPane.showMessageDialog(submitHoursBtn, "Please select activity and worker");
+                   
+                }else if (registersHoursTextField.getText().isEmpty() || registersHoursTextField.getText().equals("Register hours") ){
+                    JOptionPane.showMessageDialog(submitHoursBtn, "Please input hours worked");
+                }else {
+                    try {
+                        pma.addWorkHours(worker, activity, Integer.parseInt(registersHoursTextField.getText()));
+                        
+                        //worker.registerHours(Integer.parseInt(registersHoursTextField.getText()), activity);
+                        JOptionPane.showMessageDialog(submitHoursBtn, "The hours has been added");
+                        System.out.println("Added hours to activity: " + activity.getInfo().getTitle());
+                        System.out.println("Worker to add hours: " + worker.getFirstname());
+                        registerhoursTable.update(pma);
+                        registerhoursTable.setActivityModel(worker);
+                    } catch (OperationNotAllowedException e1) {
+                        JOptionPane.showMessageDialog(submitHoursBtn, e1.getMessage());
+                    }
                 }
+                
             }
         });
 

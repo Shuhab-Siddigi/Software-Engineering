@@ -158,13 +158,18 @@ public class SetWorkerToActivityPanel extends JPanel{
         setWorkerToActivityBtn.addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(MouseEvent e) {
-
-                try {
-                    project.addWorkerToActivity(activity, worker, pma.getWorkerWithID(setProjectLeaderTextField.getText()));
-                    System.out.println("Activity: " + activity.getInfo().getTitle() + " worker: " + worker.getFirstname());
-                    JOptionPane.showMessageDialog(setWorkerToActivityBtn, "Worker added to activity");
-                } catch (Exception e1) {
-                    JOptionPane.showMessageDialog(setWorkerToActivityBtn, e1.getMessage());
+                if(worker == null){
+                    JOptionPane.showMessageDialog(setWorkerToActivityBtn, "No worker choosen");
+                } else if (activity == null){
+                    JOptionPane.showMessageDialog(setWorkerToActivityBtn, "No activity choosen");
+                } else{
+                    try {
+                        project.addWorkerToActivity(activity, worker, pma.getWorkerWithID(setProjectLeaderTextField.getText()));
+                        System.out.println("Activity: " + activity.getInfo().getTitle() + " worker: " + worker.getFirstname());
+                        JOptionPane.showMessageDialog(setWorkerToActivityBtn, "Worker added to activity");
+                    } catch (Exception e1) {
+                        JOptionPane.showMessageDialog(setWorkerToActivityBtn, e1.getMessage());
+                    }
                 }
             }
         });

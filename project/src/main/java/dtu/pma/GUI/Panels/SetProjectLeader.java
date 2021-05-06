@@ -135,7 +135,11 @@ public class SetProjectLeader extends JPanel {
         addProjectLeader.addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(MouseEvent e) {
-
+                if(worker == null){
+                    JOptionPane.showMessageDialog(addProjectLeader, "No worker chosen");
+                } else if (project == null){
+                    JOptionPane.showMessageDialog(addProjectLeader, "No project chosen");
+                }
                 try {
                     pma.assignLeader(worker, project);
                     setProjectLeaderTable.setProjectLeaderAtRow(worker.getID(), selectedRow);
