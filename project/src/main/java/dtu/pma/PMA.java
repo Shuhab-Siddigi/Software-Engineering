@@ -15,7 +15,6 @@ public class PMA {
 
     public void addDatabase() throws OperationNotAllowedException {
         if (databaseAdded == false) {
-
             databaseAdded = true;
             for (Project p : db.getProjects()) {
                 projects.add(p);
@@ -87,31 +86,31 @@ public class PMA {
         return this.projects;
     }
 
-    public void addProject(Project p) throws OperationNotAllowedException { 
+    public void addProject(Project project) throws OperationNotAllowedException { 
         //preconditions are mutually exclusive with if statements ( DO NOT DELETE COMMENTS)
         //  assert containsProjectWithID(p.getInfo().getID()); //if  
         //  assert containsProjectWithTitle(p.getInfo().getTitle());
         //  assert Integer.toString(p.getInfo().getID()).length()> 4;
         assert true;
 
-        int lengthID = Integer.toString(p.getInfo().getID()).length(); // 1
-        if (containsProjectWithID(p.getInfo().getID())) { // 2
+        int lengthID = Integer.toString(project.getInfo().getID()).length(); // 1
+        if (containsProjectWithID(project.getInfo().getID())) { // 2
             throw new OperationNotAllowedException("Project ID is already used!"); // 2a
-        } else if (containsProjectWithTitle(p.getInfo().getTitle())) { // 3
+        } else if (containsProjectWithTitle(project.getInfo().getTitle())) { // 3
             throw new OperationNotAllowedException("Project title is already used!"); // 3a
         } else if (lengthID > 4) { // 4
             throw new OperationNotAllowedException("Project can not have more than a 4 digit ID"); // 4a
         }
-        projects.add(p); // 5
+        projects.add(project); // 5
         
         //assert post
-        assert projects.contains(p);
+        assert projects.contains(project);
     }
 
-    public void addActivityToProject(Project p, Activity a) throws OperationNotAllowedException {
-        p.addActivity(a);
-        if (a.getInfo().getEndDate().after(p.getInfo().getEndDate())) {
-            p.getInfo().setEndDate(a.getInfo().getEndDate());
+    public void addActivityToProject(Project project, Activity activity) throws OperationNotAllowedException {
+        project.addActivity(activity);
+        if (activity.getInfo().getEndDate().after(project.getInfo().getEndDate())) {
+            project.getInfo().setEndDate(activity.getInfo().getEndDate());
         }
     }
 
@@ -186,21 +185,19 @@ public class PMA {
         return avaliableWorkers;
     }
 
-    public void changeStartDateActivity(Project project, Activity activity, Date startDate)
-            throws OperationNotAllowedException {
+    public void changeStartDateActivity(Project project, Activity activity, Date startDate) throws OperationNotAllowedException {
         project.changeStartDateForActivity(activity, startDate);
     }
 
-    public void changeEndDateActivity(Project project, Activity activity, Date endDate)
-            throws OperationNotAllowedException {
+    public void changeEndDateActivity(Project project, Activity activity, Date endDate) throws OperationNotAllowedException {
         project.changeEndDateForActivity(activity, endDate);
     }
     
-    public void addWorkHours (Worker w, Activity a, int hours) throws OperationNotAllowedException{
-        w.registerHours(hours, a);
-        for (Project p : projects){
-            if (p.getActivities().contains(a)){
-                p.updateHoursWorked();
+    public void addWorkHours (Worker worker, Activity activity, int hours) throws OperationNotAllowedException{
+        worker.registerHours(hours, activity);
+        for (Project project : projects){
+            if (project.getActivities().contains(activity)){
+                project.updateHoursWorked();
             }
         }
     }

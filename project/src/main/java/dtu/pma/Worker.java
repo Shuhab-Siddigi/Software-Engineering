@@ -53,30 +53,21 @@ public class Worker {
     }
 
     public Activity getActivitiyByID(int ID) {
-        for (Activity a : Activities) {         
-            if (a.getInfo().getID() == ID) {    
-                return a;                       
+        for (Activity activity : Activities) {         
+            if (activity.getInfo().getID() == ID) {    
+                return activity;                       
             }
         }
         return null;                            
     }
 
-    public void registerHours(int hours, Activity a) throws OperationNotAllowedException {
-        if(this.Activities.contains(a)){
-            a.setRegisteredHours(hours);
-        } else {
+    public void registerHours(int hours, Activity activity) throws OperationNotAllowedException {
+        if(!this.Activities.contains(activity)){
             throw new OperationNotAllowedException("Worker isn't assigned to project");
         }
+
+        activity.setRegisteredHours(hours);
     }
-
-
-	public Activity getActivitiyByID() {
-		return null;
-	}
-
-	public Activity getActivitiyByID(String activityID) {
-		return null;
-	}
 
     public Boolean CheckSchedule(Date startDate, Date endDate) throws Exception{
         for (Activity activity : Activities) {

@@ -11,8 +11,7 @@ public class Info {
     private Date endDate;
     private String description;
 
-    public Info(String title, int ID, int expectedHours, int hoursWorked, Date startDate, Date endDate,
-            String description) {
+    public Info(String title, int ID, int expectedHours, int hoursWorked, Date startDate, Date endDate, String description) {
         this.title = title;
         this.ID = ID;
         this.setExpectedHours(expectedHours);
@@ -42,18 +41,12 @@ public class Info {
             result = true; // 4a
         }
 
-
-        assert(result == true && start.after(endDate) 
-                || end.before(startDate)
-                ) 
-                  ||  
-                (result == false  && (
-                start.after(endDate) && end.before(startDate) )     
-                || (startDate.after(start)  && startDate.before(end))
-                ||
-                (endDate.after(start) && endDate.before(end)));
-
-
+        assert(result == true && start.after(endDate) || end.before(startDate)) 
+            ||(result == false  && (
+                start.after(endDate) && end.before(startDate))     
+                ||(startDate.after(start)  && startDate.before(end))
+                ||(endDate.after(start) && endDate.before(end))
+            );
         return result; // 5
     }
 
@@ -86,7 +79,6 @@ public class Info {
     }
 
     public Date getStartDate() {
-
         return startDate;
     }
 
@@ -122,7 +114,7 @@ public class Info {
         return ID;
     }
 
-    public void setID(int iD) {
-        this.ID = iD;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 }

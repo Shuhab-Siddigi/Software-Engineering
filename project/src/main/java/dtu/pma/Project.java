@@ -16,8 +16,6 @@ public class Project {
     }
 
     public Project(String title, String ID) throws OperationNotAllowedException {
-        // input_check
-
         isAllowedID(ID);
         int IDInt = Integer.parseInt(ID);
         this.info = new Info(title, IDInt);
@@ -25,13 +23,10 @@ public class Project {
     }
 
     public boolean isAllowedID(String id) throws OperationNotAllowedException {
-
         assert true;
 
         String regex = "^[0-9]{4}$";
-
         Pattern p = Pattern.compile(regex);
-
         if (id == null || id == "") {
             throw new OperationNotAllowedException("Invalid input sequence: ID has to be inserted"); // 1a
         }
@@ -47,7 +42,6 @@ public class Project {
     }
 
     public boolean isAllowedDate(String date) throws OperationNotAllowedException {
-
         String regex = "^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(date);
@@ -69,59 +63,8 @@ public class Project {
         return this.info;
     }
 
-    public String gReport() {
-
-        String p = "Title: " + this.info.getTitle() + "\n" + "ID : " + this.info.getID() + "\n" + "Expected hours: "
-                + this.info.getExpectedHours() + "\n" + "Hours Worked: " + this.info.getHoursWorked() + "\n"
-                + "Start Date: " + this.info.getStartDate() + "\n" + "End Date : " + this.info.getEndDate() + "\n"
-                + "Description: " + this.info.getDescription() + "\n";
-
-        if (this.getActivities() != null) {
-
-            for (Activity activity : this.getActivities()) {
-
-                p += "\tActivity:\n\n" + "\tTitle: " + activity.getInfo().getTitle() + "\n" + "\tID : "
-                        + activity.getInfo().getID() + "\n" + "\tExpected hours: "
-                        + activity.getInfo().getExpectedHours() + "\n" + "\tHours Worked: "
-                        + activity.getInfo().getHoursWorked() + "\n" + "\tStart Date: "
-                        + activity.getInfo().getStartDate() + "\n" + "\tEnd Date : " + activity.getInfo().getEndDate()
-                        + "\n" + "\tDescription: " + activity.getInfo().getDescription() + "\n";
-            }
-        }
-        return p;
-    }
-
-    public String generateReport() {
-        String text = printRepport();
-        for (Activity a : activities) {
-            text += a.printActivity();
-        }
-
-        return text;
-    }
-
     public List<Activity> getActivities() {
         return this.activities;
-    }
-
-    public String printRepport() {
-        String text = this.getInfo().getTitle() + " " + this.getInfo().getID() + " ";
-        if (this.getInfo().getStartDate() != null)
-            text += this.getInfo().getStartDate() + " ";
-        if (this.getInfo().getEndDate() != null)
-            text += this.getInfo().getEndDate() + " ";
-        if (this.getInfo().getExpectedHours() > 0) {
-            text += this.getInfo().getExpectedHours() + " ";
-            text += this.getInfo().getHoursWorked() + " ";
-        }
-        text += "\n";
-        text += this.projectLeader.getLastname() + ", " + this.projectLeader.getFirstname() + " "
-                + this.projectLeader.getID();
-
-        if (this.activities.size() > 0)
-            text += "\n\n";
-
-        return text;
     }
 
     private void checksDates(Activity activity) {
@@ -139,7 +82,7 @@ public class Project {
 
     public void addActivity(Activity activity) throws OperationNotAllowedException {
      
-        checksDates(activity);
+        checksDates(activity); //@WIP
         int lengthID = Integer.toString(activity.getInfo().getID()).length();
 
         if (getActivityFromID(activity.getInfo().getID()) != null) {
@@ -151,12 +94,10 @@ public class Project {
             throw new OperationNotAllowedException("Activity can not have more than a 4 digit ID");
         }
 
-      
         this.activities.add(activity);
     }
 
     public Activity getActivityFromID(int ID) {
-
         assert ID >-1;
 
         Activity result = null;
@@ -174,14 +115,6 @@ public class Project {
         return result;
     }
 
-    // for (Activity a : activities) { // 1
-    // if (a.getInfo().getID() == ID) { // 2
-    // return a; // 2a
-    // }
-    // }
-    // return null; // 3
-    // }
-
     public void removeActivity(Worker projectleader, Activity activity) throws OperationNotAllowedException {
         if (activity == null) {
             throw new OperationNotAllowedException("Activity does not exist!");
@@ -191,8 +124,7 @@ public class Project {
         activities.remove(activity);
     }
 
-    public void addWorkerToActivity(Activity activity, Worker worker, Worker projectLeader)
-            throws OperationNotAllowedException {
+    public void addWorkerToActivity(Activity activity, Worker worker, Worker projectLeader) throws OperationNotAllowedException {
         if (activity == null) {
             throw new OperationNotAllowedException("Activity does not exist!");
         } else if (worker == null) {
@@ -206,8 +138,7 @@ public class Project {
         worker.addActivity(activity);
     }
 
-    public void removeWorkerFromActivity(Activity activity, Worker worker, Worker projectLeader)
-            throws OperationNotAllowedException {
+    public void removeWorkerFromActivity(Activity activity, Worker worker, Worker projectLeader) throws OperationNotAllowedException {
         if (activity == null) {
             throw new OperationNotAllowedException("Activity does not exist!");
         } else if (worker == null) {
@@ -244,10 +175,60 @@ public class Project {
     public void updateHoursWorked() {
         int hoursWorked = 0;
         for (Activity a : getActivities()) {
-            hoursWorked = hoursWorked + a.getRegisteredHours();
+            hoursWorked += a.getRegisteredHours();
         }
         this.info.setHoursWorked(hoursWorked);
     }
+    
+    public String gReport() {
 
+        String p = "Title: " + this.info.getTitle() + "\n" + "ID : " + this.info.getID() + "\n" + "Expected hours: "
+                + this.info.getExpectedHours() + "\n" + "Hours Worked: " + this.info.getHoursWorked() + "\n"
+                + "Start Date: " + this.info.getStartDate() + "\n" + "End Date : " + this.info.getEndDate() + "\n"
+                + "Description: " + this.info.getDescription() + "\n";
+
+        if (this.getActivities() != null) {
+
+            for (Activity activity : this.getActivities()) {
+
+                p += "\tActivity:\n\n" + "\tTitle: " + activity.getInfo().getTitle() + "\n" + "\tID : "
+                        + activity.getInfo().getID() + "\n" + "\tExpected hours: "
+                        + activity.getInfo().getExpectedHours() + "\n" + "\tHours Worked: "
+                        + activity.getInfo().getHoursWorked() + "\n" + "\tStart Date: "
+                        + activity.getInfo().getStartDate() + "\n" + "\tEnd Date : " + activity.getInfo().getEndDate()
+                        + "\n" + "\tDescription: " + activity.getInfo().getDescription() + "\n";
+            }
+        }
+        return p;
+    }
+
+    public String generateReport() {
+        String text = printRepport();
+        for (Activity a : activities) {
+            text += a.printActivity();
+        }
+
+        return text;
+    }
+
+    public String printRepport() {
+        String text = this.getInfo().getTitle() + " " + this.getInfo().getID() + " ";
+        if (this.getInfo().getStartDate() != null)
+            text += this.getInfo().getStartDate() + " ";
+        if (this.getInfo().getEndDate() != null)
+            text += this.getInfo().getEndDate() + " ";
+        if (this.getInfo().getExpectedHours() > 0) {
+            text += this.getInfo().getExpectedHours() + " ";
+            text += this.getInfo().getHoursWorked() + " ";
+        }
+        text += "\n";
+        text += this.projectLeader.getLastname() + ", " + this.projectLeader.getFirstname() + " "
+                + this.projectLeader.getID();
+
+        if (this.activities.size() > 0)
+            text += "\n\n";
+
+        return text;
+    }
  
 }

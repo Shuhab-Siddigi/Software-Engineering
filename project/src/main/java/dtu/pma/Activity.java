@@ -38,26 +38,6 @@ public class Activity {
         return this.info;
     }
 
-    public String printActivity() {
-        Info tempInfo = this.getInfo();
-        String text = tempInfo.getTitle() + " " + tempInfo.getStartDate() + " " + tempInfo.getEndDate() + " ";
-        if (tempInfo.getExpectedHours() > 0) {
-            text += tempInfo.getExpectedHours() + " " + tempInfo.getHoursWorked() + " ";
-        }
-
-        text += "\n";
-
-        if (workers.size() > 0) {
-            for (Worker w : workers) {
-                text += w.getLastname() + ", " + w.getFirstname() + " " + w.getID() + " \n";
-            }
-        }
-        text += "\n\n";
-
-        return text;
-    }
-
-
     public void addWorker(Worker worker) {
         this.workers.add(worker);
     }
@@ -80,5 +60,24 @@ public class Activity {
 
     public int getRegisteredHours() {
         return this.info.getHoursWorked();
+    }
+ 
+    public String printActivity() {
+        Info tempInfo = this.getInfo();
+        String text = tempInfo.getTitle() + " " + tempInfo.getStartDate() + " " + tempInfo.getEndDate() + " ";
+        if (tempInfo.getExpectedHours() > 0) {
+            text += tempInfo.getExpectedHours() + " " + tempInfo.getHoursWorked() + " ";
+        }
+
+        text += "\n";
+
+        if (workers.size() > 0) {
+            for (Worker w : workers) {
+                text += w.getLastname() + ", " + w.getFirstname() + " " + w.getID() + " \n";
+            }
+        }
+        text += "\n\n";
+
+        return text;
     }
 }
