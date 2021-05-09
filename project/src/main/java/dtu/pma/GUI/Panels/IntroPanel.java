@@ -20,7 +20,7 @@ public class IntroPanel extends JPanel{
         JLabel backgroundLabel = new JLabel();
         try {
             ImageIcon imageIcon = new ImageIcon(
-                    new ImageIcon("background.png").getImage().getScaledInstance(800, 700, Image.SCALE_SMOOTH));
+                    new ImageIcon("background.jpeg").getImage().getScaledInstance(800, 700, Image.SCALE_SMOOTH));
             backgroundLabel.setIcon(imageIcon);
         } catch (Exception e) {
             System.out.println(e);

@@ -212,9 +212,10 @@ public class AddActivityPanel extends JPanel {
                         JOptionPane.showMessageDialog(addActivityBtn, e1.getMessage());
                     }
                     try {
-                        project.addActivity(activity);
+                        pma.addActivityToProject(project, activity);
                         addActivityTable.addActivity(activity);
                         JOptionPane.showMessageDialog(addActivityBtn,"Activity Added");
+                        addActivityTable.update(pma);
                     } catch (OperationNotAllowedException e1) {
                         JOptionPane.showMessageDialog(addActivityBtn, e1.getMessage());
                         e1.printStackTrace();

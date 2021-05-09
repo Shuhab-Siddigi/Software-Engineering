@@ -24,10 +24,6 @@ public class PmaProjectContainsActivity {
 
 @Test
 public void testInputDataSetPmaA() throws OperationNotAllowedException {
-
-    //setup
-
-
     Project project = new Project("Extreme Programming",0001);
 
     Date startDate = Date.valueOf("2020-01-01");
@@ -114,38 +110,6 @@ public void testInputDataSetPmaC() throws OperationNotAllowedException {
     
 
 }
-
-
-
-
-
-
-// @Test
-// public void testInputDataSetPmaA() {
-
-//     int projectID = 1;
-//     int activityID = 3;
-//     boolean res = false;
-
-//     Project project = new Project("Extreme Programming",0001);
-
-
-
-
-
-//     try {
-//         res = sut.projectContainsActivity(projectID, activityID);
-//     } catch (Exception e) {
-//     }
-
-
-//  assertFalse(res);
-
-
-
-// }
-
-
 
 }
 

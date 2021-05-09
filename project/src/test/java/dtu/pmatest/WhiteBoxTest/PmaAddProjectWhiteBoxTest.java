@@ -20,7 +20,6 @@ public class PmaAddProjectWhiteBoxTest {
     PMA sut = new PMA();
 
    
-   //rigtige opsætning af exceptions?
    
     @Test
     public void PmaAddProjectTestInputDataSetA()  {
@@ -92,41 +91,4 @@ public class PmaAddProjectWhiteBoxTest {
         }
         assertTrue(sut.getProjects().contains(project));
     }
-
-
-
-
-
-
-//     @Test
-// public void testInputDataSetPmaAddProjectA() {
-
-//     int projectID = 2;
-//     int activityID = 3;
-
-//     try {
-//         sut.projectContainsActivity(projectID, activityID);
-//     } catch (Exception e) {
-//        assertTrue(e instanceof Exception);
-
-//     }
-
-
-
-
-
-// }
-
-
-// @Test
-
-
-    
-
-
-
-
-
-
-
 }

@@ -28,7 +28,7 @@ public class Project {
         String regex = "^[0-9]{4}$";
         Pattern p = Pattern.compile(regex);
         if (id == null || id == "") {
-            throw new OperationNotAllowedException("Invalid input sequence: ID has to be inserted"); // 1a
+            throw new OperationNotAllowedException("Invalid input sequence: ID has to be inserted"); 
         }
 
         Matcher m = p.matcher(id);
@@ -82,14 +82,14 @@ public class Project {
 
     public void addActivity(Activity activity) throws OperationNotAllowedException {
      
-        checksDates(activity); //@WIP
+        checksDates(activity); 
         int lengthID = Integer.toString(activity.getInfo().getID()).length();
 
         if (getActivityFromID(activity.getInfo().getID()) != null) {
             throw new OperationNotAllowedException("Project already contains activity!");
         } else if (activity.getInfo().getEndDate().before(this.info.getStartDate())) {
            
-            throw new OperationNotAllowedException("Activity date is before project start!");
+            throw new OperationNotAllowedException("Activity end date is before project start!");
         } else if (lengthID > 4) {
             throw new OperationNotAllowedException("Activity can not have more than a 4 digit ID");
         }
@@ -102,10 +102,10 @@ public class Project {
 
         Activity result = null;
 
-        for (Activity a : activities) { // 1
-            if (a.getInfo().getID() == ID) { // 2
+        for (Activity a : activities) { 
+            if (a.getInfo().getID() == ID) { 
                 result = a;
-                break; // 2a
+                break; 
             }
         }
 

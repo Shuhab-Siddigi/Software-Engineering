@@ -202,7 +202,7 @@ public class ShowProjectActivitysPanel extends JPanel {
                         }
                         try {
                             project.removeActivity(projectLeader2, activity);
-                            JOptionPane.showMessageDialog(removeProjectBtn, "Activ Removed");
+                            JOptionPane.showMessageDialog(removeProjectBtn, "Activity Removed");
                             showProjectActivitysTable.update(pma);
                         } catch (Exception e1) {
                             JOptionPane.showMessageDialog(removeProjectBtn, e1.getMessage());
@@ -270,7 +270,7 @@ public class ShowProjectActivitysPanel extends JPanel {
         JPanel myPanel = new JPanel();
         myPanel.add(new JLabel("Start Date:"));
         myPanel.add(xField);
-        myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+        myPanel.add(Box.createHorizontalStrut(15));
         myPanel.add(new JLabel("End Date:"));
         myPanel.add(yField);
 

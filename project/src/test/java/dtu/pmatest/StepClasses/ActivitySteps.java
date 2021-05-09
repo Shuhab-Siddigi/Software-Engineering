@@ -318,7 +318,6 @@ public class ActivitySteps {
 
     @Then("the registered hours is updated for the project with {int} hours")
     public void theRegisteredHoursIsUpdatedForTheProjectWithHours(Integer hours) {
-    //    System.out.println(project.getInfo().getHoursWorked()); 
         assertTrue(project.getInfo().getHoursWorked() == hours);
     }
 

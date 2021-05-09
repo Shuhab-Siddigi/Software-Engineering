@@ -184,6 +184,12 @@ public class AddProjectPanel extends JPanel {
             }
         });
 
+        setExptectedTextField.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                setExptectedTextField.setText("");
+            }
+        });
+
         addProjectBtn.addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(MouseEvent e) {
@@ -201,14 +207,18 @@ public class AddProjectPanel extends JPanel {
                         p.getInfo().setEndDate(Date.valueOf(setEndDateTextField.getText()));
                         }
                         p.getInfo().setDescription(setDescriptionTextField.getText());
-                        if (setProjectLeaderTextField.getText() != ""
-                                || setProjectLeaderTextField.getText() != "Set Project Leader") {
+                        if (setProjectLeaderTextField.getText() != "") {
                             p.setProjectLeader(pma.getWorkerWithID(setProjectLeaderTextField.getText()));
+                        }
+                        if (setExptectedTextField.getText().isEmpty() || setExptectedTextField.getText().equals("<Optional>")){
+                            System.out.println("");
+                        } else{
+                            p.getInfo().setExpectedHours(Integer.parseInt(setExptectedTextField.getText()));
                         }
                         JOptionPane.showMessageDialog(addProjectBtn, "The Project was added");
                         pma.addProject(p);
                         projectTree.AddProjectToTree(p);
-                    } catch (OperationNotAllowedException e1) {
+                    } catch (Exception e1) {
                         JOptionPane.showMessageDialog(addProjectBtn, e1.getMessage());
                     }
                 }
@@ -221,5 +231,6 @@ public class AddProjectPanel extends JPanel {
     public ProjectTree getProjectTree() {
         return projectTree;
     }
+   
 
 }

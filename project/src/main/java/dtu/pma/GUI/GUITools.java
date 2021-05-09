@@ -15,7 +15,7 @@ public class GUITools {
         constrain.anchor = GridBagConstraints.LINE_START;
         constrain.weightx = 0.0;
         constrain.weighty = 0.0;
-        constrain.insets = new Insets(0, 0, 0, 0); // Padding
+        constrain.insets = new Insets(0, 0, 0, 0); 
         constrain.ipadx = 0;
         constrain.ipady = 0;
         constrain.gridwidth = 1;

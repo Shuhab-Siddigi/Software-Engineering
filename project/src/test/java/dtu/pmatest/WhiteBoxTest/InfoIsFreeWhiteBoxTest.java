@@ -16,8 +16,6 @@ public class InfoIsFreeWhiteBoxTest {
 @Test
 public void InfoIsFreeWhiteBoxTestA() throws OperationNotAllowedException {
 
-    //direct activity?
-
     Date startDate = Date.valueOf("2020-01-01");
     Date endDate = Date.valueOf("2021-01-01");
 
@@ -46,8 +44,6 @@ public void InfoIsFreeWhiteBoxTestA() throws OperationNotAllowedException {
 @Test
 public void InfoIsFreeWhiteBoxTestB() throws OperationNotAllowedException {
 
-    //direct activity?
-
     Date startDate = Date.valueOf("2020-01-01");
     Date endDate = Date.valueOf("2021-01-01");
 
@@ -74,7 +70,6 @@ public void InfoIsFreeWhiteBoxTestB() throws OperationNotAllowedException {
 @Test
 public void InfoIsFreeWhiteBoxTestC() throws OperationNotAllowedException {
 
-    //direct activity?
 
     Date startDate = Date.valueOf("2020-01-01");
     Date endDate = Date.valueOf("2024-01-01");
@@ -103,7 +98,7 @@ public void InfoIsFreeWhiteBoxTestC() throws OperationNotAllowedException {
 @Test
 public void InfoIsFreeWhiteBoxTestD() throws OperationNotAllowedException {
 
-    //direct activity?
+  
 
     Date startDate = Date.valueOf("2020-01-01");
     Date endDate = Date.valueOf("2024-01-01");
@@ -132,8 +127,7 @@ public void InfoIsFreeWhiteBoxTestD() throws OperationNotAllowedException {
 @Test
 public void InfoIsFreeWhiteBoxTestE() throws OperationNotAllowedException {
 
-    //direct activity?
-
+   
     Date startDate = Date.valueOf("2020-01-01");
     Date endDate = Date.valueOf("2024-01-01");
 

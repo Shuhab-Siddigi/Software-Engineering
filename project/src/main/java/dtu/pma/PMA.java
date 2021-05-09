@@ -16,9 +16,9 @@ public class PMA {
     public void addDatabase() throws OperationNotAllowedException {
         if (databaseAdded == false) {
             databaseAdded = true;
-            for (Project p : db.getProjects()) {
+            /*for (Project p : db.getProjects()) {
                 projects.add(p);
-            }
+            }*/
             for (Worker w : db.getWorkers()) {
                 workers.add(w);
             }
@@ -52,22 +52,17 @@ public class PMA {
 
     public boolean projectContainsActivity(int projectID, int activityID) throws Exception {
 
-        //assert pre 
         assert projectID >-1 && activityID > -1;
-     //   assertTrue(getProjectWithID(projectID) instanceof Project);
 
         boolean result = false;
 
-        Project p = getProjectWithID(projectID); // 1
-        if (p == null) { // 2
-            throw new NullPointerException("Project with " + projectID + " does not exist"); // 2a
+        Project p = getProjectWithID(projectID); 
+        if (p == null) { 
+            throw new NullPointerException("Project with " + projectID + " does not exist"); 
         }
-        if (p.getActivityFromID(activityID) != null) { // 3
-            result = true; // 3a
+        if (p.getActivityFromID(activityID) != null) { 
+            result = true;
         }
-
-        //assert post
-        //  assert 
         assert ((result = true 
                 && p.getActivityFromID(activityID) != null) 
                 ||
@@ -75,7 +70,7 @@ public class PMA {
 
 
 
-        return result; // 4
+        return result; 
     }
 
     public List<Worker> getWorkers() {
@@ -87,31 +82,30 @@ public class PMA {
     }
 
     public void addProject(Project project) throws OperationNotAllowedException { 
-        //preconditions are mutually exclusive with if statements ( DO NOT DELETE COMMENTS)
-        //  assert containsProjectWithID(p.getInfo().getID()); //if  
-        //  assert containsProjectWithTitle(p.getInfo().getTitle());
-        //  assert Integer.toString(p.getInfo().getID()).length()> 4;
         assert true;
 
-        int lengthID = Integer.toString(project.getInfo().getID()).length(); // 1
-        if (containsProjectWithID(project.getInfo().getID())) { // 2
-            throw new OperationNotAllowedException("Project ID is already used!"); // 2a
-        } else if (containsProjectWithTitle(project.getInfo().getTitle())) { // 3
-            throw new OperationNotAllowedException("Project title is already used!"); // 3a
-        } else if (lengthID > 4) { // 4
-            throw new OperationNotAllowedException("Project can not have more than a 4 digit ID"); // 4a
+        int lengthID = Integer.toString(project.getInfo().getID()).length(); 
+        if (containsProjectWithID(project.getInfo().getID())) { 
+            throw new OperationNotAllowedException("Project ID is already used!"); 
+        } else if (containsProjectWithTitle(project.getInfo().getTitle())) { 
+            throw new OperationNotAllowedException("Project title is already used!"); 
+        } else if (lengthID > 4) { 
+            throw new OperationNotAllowedException("Project can not have more than a 4 digit ID"); 
         }
-        projects.add(project); // 5
+        projects.add(project); 
         
-        //assert post
         assert projects.contains(project);
     }
 
     public void addActivityToProject(Project project, Activity activity) throws OperationNotAllowedException {
         project.addActivity(activity);
-        if (activity.getInfo().getEndDate().after(project.getInfo().getEndDate())) {
+        if (project.getInfo().getEndDate() != null){
+            if (activity.getInfo().getEndDate().after(project.getInfo().getEndDate())) {
+                project.getInfo().setEndDate(activity.getInfo().getEndDate());
+            } 
+        } else {
             project.getInfo().setEndDate(activity.getInfo().getEndDate());
-        }
+        }  
     }
 
     public void removeProject(Worker projectleader, Project project) throws OperationNotAllowedException {
