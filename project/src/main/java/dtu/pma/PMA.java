@@ -54,7 +54,7 @@ public class PMA {
 
         //assert pre 
         assert projectID >-1 && activityID > -1;
-        assertTrue(getProjectWithID(projectID) instanceof Project);
+     //   assertTrue(getProjectWithID(projectID) instanceof Project);
 
         boolean result = false;
 

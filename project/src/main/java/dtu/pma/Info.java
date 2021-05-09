@@ -41,12 +41,21 @@ public class Info {
             result = true; // 4a
         }
 
+        // assert(result == true && start.after(endDate) || end.before(startDate)) 
+        //     ||(result == false  && (
+        //         start.after(endDate) && end.before(startDate))     
+        //         ||(startDate.after(start)  && startDate.before(end))
+        //         ||(endDate.after(start) && endDate.before(end))
+        //     );
+
         assert(result == true && start.after(endDate) || end.before(startDate)) 
-            ||(result == false  && (
-                start.after(endDate) && end.before(startDate))     
-                ||(startDate.after(start)  && startDate.before(end))
-                ||(endDate.after(start) && endDate.before(end))
-            );
+        ||(result == false  && !endDate.before(startDate) 
+                && ((start.after(startDate) && end.before(endDate)) 
+                || (!start.after(endDate) && !end.before(startDate))) 
+                );
+
+
+        
         return result; // 5
     }
 
