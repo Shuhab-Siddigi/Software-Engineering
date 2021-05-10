@@ -27,18 +27,18 @@ public class Project {
 
         String regex = "^[0-9]{4}$";
         Pattern p = Pattern.compile(regex);
-        if (id == null || id == "") {
-            throw new OperationNotAllowedException("Invalid input sequence: ID has to be inserted"); 
+        if (id == null || id == "") {                                                                                   //1
+            throw new OperationNotAllowedException("Invalid input sequence: ID has to be inserted");                    //1a
         }
 
         Matcher m = p.matcher(id);
 
-        if (m.matches() == false) {
-            throw new OperationNotAllowedException("Invalid input sequence: ID has to be in range [0000-9999]");
+        if (m.matches() == false) {                                                                                     //2
+            throw new OperationNotAllowedException("Invalid input sequence: ID has to be in range [0000-9999]");        //2a
         }
         assert true;
 
-        return true;
+        return true;                                                                                                    //3
     }
 
     public boolean isAllowedDate(String date) throws OperationNotAllowedException {
@@ -105,9 +105,9 @@ public class Project {
 
         Activity result = null;
 
-        for (Activity a : activities) { 
-            if (a.getInfo().getID() == ID) { 
-                result = a;
+        for (Activity a : activities) {         //1
+            if (a.getInfo().getID() == ID) {    //2
+                result = a;                    //2a
                 break; 
             }
         }
@@ -115,7 +115,7 @@ public class Project {
         assert (activities.contains(result) && result.getInfo().getID() == ID)
                 ^ (result == null && activities.stream().allMatch(a -> a.getInfo().getID() != ID));
 
-        return result;
+        return result;                          //3
     }
 
     public void removeActivity(Worker projectleader, Activity activity) throws OperationNotAllowedException {

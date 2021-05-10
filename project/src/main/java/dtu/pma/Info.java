@@ -30,18 +30,18 @@ public class Info {
 
         boolean result = false;
 
-        if (endDate.before(startDate)) {
-            throw new Exception("End Date is before Start Date"); 
+        if (endDate.before(startDate)) {                                        //1
+            throw new Exception("End Date is before Start Date");               //1a
         }
 
         Date start = this.getStartDate();
         Date end = this.getEndDate();
-        if (start.after(startDate) && end.before(endDate)) { 
-            result = false; 
-        } else if (start.after(endDate)) { 
-            result = true; 
-        } else if (end.before(startDate)) { 
-            result = true; 
+        if (start.after(startDate) && end.before(endDate)) {                    //2
+            result = false;                                                     //2a
+        } else if (start.after(endDate)) {                                      //3
+            result = true;                                                      //3a
+        } else if (end.before(startDate)) {                                     //4
+            result = true;                                                      //4a
         }
 
         assert(result == true && start.after(endDate) || end.before(startDate)) 
@@ -49,7 +49,7 @@ public class Info {
                 && ((start.after(startDate) && end.before(endDate)) 
                 || (!start.after(endDate) && !end.before(startDate))) 
                 );
-        return result;
+        return result;                                                          //5
     }
 
     public Info(String title, int ID) {
