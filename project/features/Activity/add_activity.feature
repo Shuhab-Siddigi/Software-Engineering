@@ -27,7 +27,7 @@ Feature: Create new Activity
         And the project contains the activity with title "Activity 1", ID 0001, start date "2020-12-21", end date "2021-01-20"
         And there exist an activity with title "Activity 2", ID 0002, start date "2010-12-01", end date "2010-12-02"
         When the activity with ID 0002 is added to the project
-        Then the error text "Activity date is before project start!" is given
+        Then the error text "Activity end date is before project start!" is given
 
     Scenario: Activity starts after estimated deadline
         Given there is a project with title "Extreme Programming", ID 0001

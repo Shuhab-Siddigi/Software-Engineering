@@ -102,9 +102,9 @@ public class Project {
 
         Activity result = null;
 
-        for (Activity a : activities) { 
-            if (a.getInfo().getID() == ID) { 
-                result = a;
+        for (Activity a : activities) {         //1
+            if (a.getInfo().getID() == ID) {    //2
+                result = a;                    //2a
                 break; 
             }
         }
@@ -112,7 +112,7 @@ public class Project {
         assert (activities.contains(result) && result.getInfo().getID() == ID)
                 ^ (result == null && activities.stream().allMatch(a -> a.getInfo().getID() != ID));
 
-        return result;
+        return result;                          //3
     }
 
     public void removeActivity(Worker projectleader, Activity activity) throws OperationNotAllowedException {
