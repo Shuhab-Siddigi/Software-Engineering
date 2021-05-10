@@ -46,7 +46,7 @@ public class Project {
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(date);
         if (!m.matches()) {
-            return false;
+            throw new OperationNotAllowedException("Not a valid date input!");
         }
         return true;
     }
@@ -90,6 +90,9 @@ public class Project {
         } else if (activity.getInfo().getEndDate().before(this.info.getStartDate())) {
            
             throw new OperationNotAllowedException("Activity end date is before project start!");
+        } else if (activity.getInfo().getStartDate().before(this.info.getStartDate())) {
+           
+            throw new OperationNotAllowedException("Activity start date is before project start!");
         } else if (lengthID > 4) {
             throw new OperationNotAllowedException("Activity can not have more than a 4 digit ID");
         }
