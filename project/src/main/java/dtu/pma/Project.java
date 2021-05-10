@@ -27,18 +27,18 @@ public class Project {
 
         String regex = "^[0-9]{4}$";
         Pattern p = Pattern.compile(regex);
-        if (id == null || id == "") {
-            throw new OperationNotAllowedException("Invalid input sequence: ID has to be inserted"); 
+        if (id == null || id == "") {                                                                                   //1
+            throw new OperationNotAllowedException("Invalid input sequence: ID has to be inserted");                    //1a
         }
 
         Matcher m = p.matcher(id);
 
-        if (m.matches() == false) {
-            throw new OperationNotAllowedException("Invalid input sequence: ID has to be in range [0000-9999]");
+        if (m.matches() == false) {                                                                                     //2
+            throw new OperationNotAllowedException("Invalid input sequence: ID has to be in range [0000-9999]");        //2a
         }
         assert true;
 
-        return true;
+        return true;                                                                                                    //3
     }
 
     public boolean isAllowedDate(String date) throws OperationNotAllowedException {

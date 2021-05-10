@@ -57,11 +57,11 @@ public class PMA {
         boolean result = false;
 
         Project p = getProjectWithID(projectID); 
-        if (p == null) { 
+        if (p == null) {                                                                                //1
             throw new NullPointerException("Project with " + projectID + " does not exist"); 
         }
-        if (p.getActivityFromID(activityID) != null) { 
-            result = true;
+        if (p.getActivityFromID(activityID) != null) {                                                  //2
+            result = true;                                                                              //2a
         }
         assert ((result = true 
                 && p.getActivityFromID(activityID) != null) 
@@ -70,7 +70,7 @@ public class PMA {
 
 
 
-        return result; 
+        return result;                                                                                   //3
     }
 
     public List<Worker> getWorkers() {
@@ -85,14 +85,14 @@ public class PMA {
         assert true;
 
         int lengthID = Integer.toString(project.getInfo().getID()).length(); 
-        if (containsProjectWithID(project.getInfo().getID())) { 
-            throw new OperationNotAllowedException("Project ID is already used!"); 
-        } else if (containsProjectWithTitle(project.getInfo().getTitle())) { 
-            throw new OperationNotAllowedException("Project title is already used!"); 
-        } else if (lengthID > 4) { 
-            throw new OperationNotAllowedException("Project can not have more than a 4 digit ID"); 
+        if (containsProjectWithID(project.getInfo().getID())) {                                             //1
+            throw new OperationNotAllowedException("Project ID is already used!");                          //1a
+        } else if (containsProjectWithTitle(project.getInfo().getTitle())) {                                //2
+            throw new OperationNotAllowedException("Project title is already used!");                       //2a
+        } else if (lengthID > 4) {                                                                          //3
+            throw new OperationNotAllowedException("Project can not have more than a 4 digit ID");          //3a
         }
-        projects.add(project); 
+        projects.add(project);                                                                              //4
         
         assert projects.contains(project);
     }
