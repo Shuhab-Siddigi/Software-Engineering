@@ -43,7 +43,7 @@ public class AddProjectPanel extends JPanel {
 
         JLabel setEndDateLabel = new JLabel();
         setEndDateLabel.setText("End Date:");
-        JTextField setEndDateTextField = new JTextField("<Optional>");
+        JTextField setEndDateTextField = new JTextField("Set End Date:");
         setEndDateLabel.setFont(new Font("Serif", Font.BOLD, 20));
 
         JLabel setExpectedHoursLabel = new JLabel();
